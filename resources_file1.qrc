@@ -1,0 +1,48 @@
+<RCC>
+    <qresource prefix="/new/ActionImage">
+        <file>ActionImageScene/Bold.png</file>
+        <file>ActionImageScene/colors.png</file>
+        <file>ActionImageScene/font_увеличить.png</file>
+        <file>ActionImageScene/Italic.png</file>
+        <file>ActionImageScene/minus.png</file>
+        <file>ActionImageScene/plus.png</file>
+        <file>ActionImageScene/textpointer.png</file>
+        <file>ActionImageScene/Underline.png</file>
+        <file>ActionImageMenuBar/Admin.png</file>
+        <file>ActionImageMenuBar/C++Developer.png</file>
+        <file>ActionImageMenuBar/Delete.ico</file>
+        <file>ActionImageMenuBar/Delete1.png</file>
+        <file>ActionImageMenuBar/DeleteAll.png</file>
+        <file>ActionImageMenuBar/Exit.png</file>
+        <file>ActionImageMenuBar/Font.png</file>
+        <file>ActionImageMenuBar/Load.png</file>
+        <file>ActionImageMenuBar/Note.png</file>
+        <file>ActionImageMenuBar/Open.png</file>
+        <file>ActionImageMenuBar/Qt.png</file>
+        <file>ActionImageMenuBar/Question.png</file>
+        <file>ActionImageMenuBar/Question5.png</file>
+        <file>ActionImageMenuBar/Restore.png</file>
+        <file>ActionImageMenuBar/Save.png</file>
+        <file>ActionImageMenuBar/Screens.png</file>
+        <file>ActionImageMenuBar/Size.png</file>
+        <file>ActionImageMenuBar/Speed.png</file>
+        <file>ActionImageMenuBar/Text.png</file>
+        <file>ActionImageMenuBar/Time.png</file>
+    </qresource>
+    <qresource prefix="/new/GroupBoxes">
+        <file>MaterialsGroupBoxes/Gradient 1.png</file>
+        <file>MaterialsGroupBoxes/Gradient 2.png</file>
+        <file>MaterialsGroupBoxes/The sun sparkles on the waves.png</file>
+        <file>MaterialsGroupBoxes/IconMusic.png</file>
+        <file>MaterialsGroupBoxes/IconTimer.png</file>
+        <file>MaterialsGroupBoxes/SoundIncorrectAnswer.wav</file>
+        <file>MaterialsGroupBoxes/SoundQuestion.mp3</file>
+        <file>MaterialsGroupBoxes/SoundTimer.mp3</file>
+        <file>MaterialsGroupBoxes/Bible Brain Ring (Icon).png</file>
+    </qresource>
+    <qresource prefix="/new/Other">
+        <file>FilesAndLogo/Logo_temporarily.png</file>
+        <file>FilesAndLogo/myappico.ico</file>
+        <file>FilesAndLogo/Вопросы по Есфири  ANSI Windows1251.txt</file>
+    </qresource>
+</RCC>
