@@ -1,4 +1,4 @@
-#include "SectorGroupBoxeLeft.h"
+#include "sectorGroupBoxeLeft.h"
 
 SectorGroupBoxeLeft::SectorGroupBoxeLeft(Ui::MainWindow *uiMain, QVector <QString> &vecStrMusicSector) :
     ui(uiMain),

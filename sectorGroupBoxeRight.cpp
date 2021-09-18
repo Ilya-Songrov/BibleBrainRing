@@ -1,4 +1,4 @@
-#include "SectorGroupBoxeRight.h"
+#include "sectorGroupBoxeRight.h"
 
 SectorGroupBoxeRight::SectorGroupBoxeRight(Ui::MainWindow *uiMain) :
     ui(uiMain)
