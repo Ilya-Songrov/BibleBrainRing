@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "server_classical/servermodeacceptsregistrations.h"
+#include "biblebrainringserverlib/server_classical/servermodeacceptsregistrations.h"
 
 ServerModeAcceptsRegistrations::ServerModeAcceptsRegistrations(QObject *parent) : ServerModeAbstract(ServerMode::AcceptsRegistrations, __FUNCTION__, parent)
     , value_notification_TeamDto                ("notification_TeamDto")

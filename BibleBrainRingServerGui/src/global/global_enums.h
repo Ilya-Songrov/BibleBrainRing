@@ -10,11 +10,25 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/biblebrainringserver.h"
-#include <QTcpSocket>
-#include <QTcpServer>
+#pragma once
 
-BibleBrainRingServer::BibleBrainRingServer()
-{
+#include <QObject>
+
+namespace BibleBrainRing {
+
+Q_NAMESPACE
+enum AppState {
+    None,
+    Start,
+    Registration,
+    GameSession,
+};
+Q_ENUM_NS(AppState)
+
+enum Button {
+    ButtonStartServerWifi,
+    ButtonStartServerBluetooth,
+};
+Q_ENUM_NS(Button)
 
 }

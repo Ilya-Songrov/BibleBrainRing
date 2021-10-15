@@ -1,6 +1,8 @@
 TEMPLATE = subdirs
 
+BIBLEBRAINRING_SOURCE_TREE = $$PWD
+
 SUBDIRS += \
-    BibleBrainRing \
-    BibleBrainRingClient \
-    BibleBrainRingServer
+    BibleBrainRingServerLib \
+    BibleBrainRingServerGui \
+    BibleBrainRingClientTester

@@ -10,11 +10,18 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/biblebrainringserver.h"
-#include <QTcpSocket>
-#include <QTcpServer>
+#pragma once
 
-BibleBrainRingServer::BibleBrainRingServer()
+#include "stateabstract.h"
+#include "all_states.h"
+#include "biblebrainringserverlib/iodevice/tcp/tcpserver.h"
+
+
+class StartStateMain : public StateAbstract
 {
+public:
+    explicit StartStateMain(QObject *parent = nullptr);
 
-}
+    virtual StateAbstract *onQmlButtonClicked   (const BibleBrainRing::Button button) override;
+};
+

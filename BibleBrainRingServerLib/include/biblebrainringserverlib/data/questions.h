@@ -10,11 +10,27 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/biblebrainringserver.h"
-#include <QTcpSocket>
-#include <QTcpServer>
+#pragma once
 
-BibleBrainRingServer::BibleBrainRingServer()
+#include <QObject>
+
+#include "biblebrainringserverlib/enums/global_enums.h"
+
+class Questions
 {
+public:
+    explicit Questions();
 
-}
+    void loadQuestions(const QStringList &questions);
+    void changeQuestionStatus(const QString &question, const QuestionStatus questionStatus);
+
+
+private:
+    struct QuestionNode{
+        QString question        ;
+        QuestionStatus status   = UnusedQuestion;
+    };
+
+    QList<QuestionNode> listQuestions;
+};
+

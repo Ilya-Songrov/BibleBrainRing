@@ -12,15 +12,14 @@
 
 #pragma once
 
-#include "dtoabstract.h"
-#include "enums/global_enums.h"
+#include "stateabstract.h"
+#include "all_states.h"
 
-struct TeamDto : public DtoAbstract
+class RegistrationStateMain : public StateAbstract
 {
-    QString guid        ;
-    QString name        ;
-    QString color       ;
-    double score        = -1.0;
-    int position        = -1;
-    TeamStatus status   = TeamStatus::None;
+public:
+    explicit RegistrationStateMain(QObject *parent = nullptr);
+
+    virtual StateAbstract *onQmlButtonClicked   (const BibleBrainRing::Button button) override;
 };
+

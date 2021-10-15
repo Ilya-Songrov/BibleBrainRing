@@ -30,7 +30,7 @@ public:
 
     void sendToServerStatus(const QJsonObject &obj, const QString &value_method);
 
-    QString getAddressPort();
+    QString getLocalAddressPort();
 
 signals:
     void dataReceivedFromServer(const QString &mode, const QString &status, const int timeout,

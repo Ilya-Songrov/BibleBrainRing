@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "server_classical/servermodeidle.h"
+#include "biblebrainringserverlib/server_classical/servermodeidle.h"
 
 ServerModeIdle::ServerModeIdle(QObject *parent) : ServerModeAbstract(ServerMode::Idle, __FUNCTION__, parent)
 {

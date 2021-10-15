@@ -17,7 +17,7 @@
 
 #include "servermodeabstract.h"
 #include "all_server_modes.h"
-#include "iodevice/iodeviceserverabstract.h"
+#include "biblebrainringserverlib/iodevice/iodeviceserverabstract.h"
 
 class BibleBrainRingServerClassical : public QObject
 {

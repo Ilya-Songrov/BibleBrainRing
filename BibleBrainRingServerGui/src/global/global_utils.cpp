@@ -10,11 +10,12 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/biblebrainringserver.h"
-#include <QTcpSocket>
-#include <QTcpServer>
+#include "global_utils.h"
 
-BibleBrainRingServer::BibleBrainRingServer()
+QScopedPointer<ProviderQml                  > providerQml (nullptr);
+QScopedPointer<BibleBrainRingServerClassical> serverClassical (nullptr);
+
+void createUtils()
 {
-
+    providerQml.reset(new ProviderQml());
 }

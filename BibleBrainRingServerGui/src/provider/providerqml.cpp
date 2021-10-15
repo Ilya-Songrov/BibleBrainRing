@@ -10,11 +10,26 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/biblebrainringserver.h"
-#include <QTcpSocket>
-#include <QTcpServer>
+#include "providerqml.h"
 
-BibleBrainRingServer::BibleBrainRingServer()
+ProviderQml::ProviderQml(QObject *parent) : QObject(parent)
+  , currentAppState(BibleBrainRing::None)
 {
 
+}
+
+void ProviderQml::setCurrentAppState(const BibleBrainRing::AppState appState)
+{
+    setCurrentAppState((int)appState);
+}
+
+void ProviderQml::setCurrentAppState(const int appState)
+{
+    currentAppState = appState;
+    emit currentAppStateChanged();
+}
+
+int ProviderQml::getCurrentAppState()
+{
+    return currentAppState;
 }

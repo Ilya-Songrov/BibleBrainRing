@@ -3,7 +3,7 @@
 #include <QObject>
 #include <QTcpServer>
 
-#include "iodevice/iodeviceserverabstract.h"
+#include "biblebrainringserverlib/iodevice/iodeviceserverabstract.h"
 #include "readwritesocket.h"
 
 class TcpServer : public IODeviceServerAbstract
@@ -31,7 +31,7 @@ signals:
     void disconnectedClient(const ReadWriteSocket *client);
 
 protected:
-    virtual void incomingConnection(qintptr handle);
+    virtual void incomingConnection();
 
 private:
     void removeClient(const ReadWriteSocket *clientSocket);

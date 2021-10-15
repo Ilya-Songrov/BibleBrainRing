@@ -10,27 +10,27 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    ../BibleBrainRingServer/src/information/informationconsoleprinter.cpp \
-    ../BibleBrainRingServer/src/iodevice/tcp/readwritesocket.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    tcp/tcpclient.cpp
+    $$PWD/../BibleBrainRingServerLib/src/information/informationconsoleprinter.cpp \
+    $$PWD/../BibleBrainRingServerLib/src/iodevice/tcp/readwritesocket.cpp \
+    $$PWD/main.cpp \
+    $$PWD/mainwindow.cpp \
+    $$PWD/tcp/tcpclient.cpp
 
 HEADERS += \
-    ../BibleBrainRingServer/include/biblebrainringserver/information/informationconsoleprinter.h \
-    ../BibleBrainRingServer/include/biblebrainringserver/iodevice/tcp/readwritesocket.h \
-    mainwindow.h \
-    tcp/tcpclient.h
+    $$PWD/../BibleBrainRingServerLib/include/biblebrainringserverlib/information/informationconsoleprinter.h \
+    $$PWD/../BibleBrainRingServerLib/include/biblebrainringserverlib/iodevice/tcp/readwritesocket.h \
+    $$PWD/mainwindow.h \
+    $$PWD/tcp/tcpclient.h
 
 FORMS += \
     mainwindow.ui
 
 INCLUDEPATH += \
-    ../BibleBrainRingServer/include/biblebrainringserver \
-    ../BibleBrainRingServer/include/biblebrainringserver/information \
-    ../BibleBrainRingServer/include/biblebrainringserver/iodevice/tcp \
-    ../BibleBrainRingServer/src/information \
-    ../BibleBrainRingServer/src/iodevice/tcp \
+    $$PWD/../BibleBrainRingServerLib/include \
+    $$PWD/../BibleBrainRingServerLib/include/biblebrainringserverlib/information \
+    $$PWD/../BibleBrainRingServerLib/include/biblebrainringserverlib/iodevice/tcp \
+    $$PWD/../BibleBrainRingServerLib/src/information \
+    $$PWD/../BibleBrainRingServerLib/src/iodevice/tcp \
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

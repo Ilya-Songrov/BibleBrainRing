@@ -20,7 +20,8 @@ public:
     virtual ~ReadWriteSocket();
 
     void sendDataToHost(const QByteArray &arr, const int timeout);
-    QString getAddressPort() const;
+    QString getPeerAddressPort() const;
+    QString getLocalAddressPort() const;
 
 signals:
     void dataReceivedFromHost(const QByteArray &arr);

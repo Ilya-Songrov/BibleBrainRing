@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "server_classical/servermodeabstract.h"
+#include "biblebrainringserverlib/server_classical/servermodeabstract.h"
 
 IODeviceServerAbstract* ServerModeAbstract::io                                          = nullptr;
 Questions ServerModeAbstract::q                                                         ;
@@ -31,7 +31,7 @@ ServerModeAbstract::ServerModeAbstract(const ServerMode mode, const QString &obj
 
 ServerModeAbstract *ServerModeAbstract::initServer()
 {
-    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(__FUNCTION__)
+    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(Q_FUNC_INFO)
                << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;
     return nullptr;
 }
@@ -39,21 +39,21 @@ ServerModeAbstract *ServerModeAbstract::initServer()
 
 ServerModeAbstract *ServerModeAbstract::startRegistration()
 {
-    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(__FUNCTION__)
+    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(Q_FUNC_INFO)
                << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;
     return nullptr;
 }
 
-ServerModeAbstract *ServerModeAbstract::stopRegistration()
+ServerModeAbstract *ServerModeAbstract:: stopRegistration()
 {
-    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(__FUNCTION__)
+    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(Q_FUNC_INFO)
                << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;
     return nullptr;
 }
 
 ServerModeAbstract *ServerModeAbstract::setSparringTeams(const QVector<QString> &vecGuidTeam)
 {
-    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(__FUNCTION__)
+    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(Q_FUNC_INFO)
                << "vecGuidTeam:" << vecGuidTeam
                << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;
     return nullptr;
@@ -62,14 +62,14 @@ ServerModeAbstract *ServerModeAbstract::setSparringTeams(const QVector<QString> 
 
 ServerModeAbstract *ServerModeAbstract::activateButtonsSparringTeams()
 {
-    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(__FUNCTION__)
+    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(Q_FUNC_INFO)
                << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;
     return nullptr;
 }
 
 ServerModeAbstract *ServerModeAbstract::banTeam(const QString &guidTeam)
 {
-    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(__FUNCTION__)
+    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(Q_FUNC_INFO)
                << QString("guidTeam: %1").arg(guidTeam)
                << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;
     return nullptr;
@@ -77,7 +77,7 @@ ServerModeAbstract *ServerModeAbstract::banTeam(const QString &guidTeam)
 
 ServerModeAbstract *ServerModeAbstract::changeTeamScore(const QString &guidTeam, const double score)
 {
-    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(__FUNCTION__)
+    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(Q_FUNC_INFO)
                << QString("guidTeam: %1").arg(guidTeam)
                << QString("score: %1").arg(score)
                << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;
@@ -86,7 +86,7 @@ ServerModeAbstract *ServerModeAbstract::changeTeamScore(const QString &guidTeam,
 
 ServerModeAbstract *ServerModeAbstract::loadListQuestions(const QStringList &questions)
 {
-    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(__FUNCTION__)
+    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(Q_FUNC_INFO)
                << "questions:" << questions
                << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;
     return nullptr;
@@ -94,7 +94,7 @@ ServerModeAbstract *ServerModeAbstract::loadListQuestions(const QStringList &que
 
 ServerModeAbstract *ServerModeAbstract::changeQuestionStatus(const QString &question, const QuestionStatus questionStatus)
 {
-    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(__FUNCTION__)
+    qWarning() << "Not processed:" << "State: " + objectName() << "function: " + QString(Q_FUNC_INFO)
                << QString("question: %1").arg(question)
                << "questionStatus:" << questionStatus
                << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;

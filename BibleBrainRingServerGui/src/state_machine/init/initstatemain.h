@@ -10,11 +10,26 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/biblebrainringserver.h"
-#include <QTcpSocket>
-#include <QTcpServer>
+#pragma once
 
-BibleBrainRingServer::BibleBrainRingServer()
+#include <QQmlContext>
+#include <QQmlApplicationEngine>
+#include <QTimer>
+
+#include "stateabstract.h"
+#include "all_states.h"
+#include "informationsettings.h"
+
+class InitStateMain : public StateAbstract
 {
+    QQmlApplicationEngine *_qmlApplicationEngine;
+public:
+    explicit InitStateMain(QQmlApplicationEngine *qmlApplicationEngine, QObject *parent = nullptr);
 
-}
+    virtual StateAbstract *onEndQmlCreation     () override;
+
+private:
+    void setQmlSettings();
+    void loadQml();
+};
+

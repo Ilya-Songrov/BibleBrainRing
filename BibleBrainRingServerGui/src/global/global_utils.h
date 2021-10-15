@@ -12,25 +12,10 @@
 
 #pragma once
 
-#include <QObject>
+#include "providerqml.h"
+#include "biblebrainringserverlib/server_classical/biblebrainringserverclassical.h"
 
-#include "enums/global_enums.h"
+extern QScopedPointer<ProviderQml                   > providerQml;
+extern QScopedPointer<BibleBrainRingServerClassical > serverClassical;
 
-class Questions
-{
-public:
-    explicit Questions();
-
-    void loadQuestions(const QStringList &questions);
-    void changeQuestionStatus(const QString &question, const QuestionStatus questionStatus);
-
-
-private:
-    struct QuestionNode{
-        QString question        ;
-        QuestionStatus status   = UnusedQuestion;
-    };
-
-    QList<QuestionNode> listQuestions;
-};
-
+extern void createUtils();

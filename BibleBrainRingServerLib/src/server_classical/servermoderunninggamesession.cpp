@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "server_classical/servermoderunninggamesession.h"
+#include "biblebrainringserverlib/server_classical/servermoderunninggamesession.h"
 
 ServerModeRunningGameSession::ServerModeRunningGameSession(QObject *parent) : ServerModeAbstract(ServerMode::RunningGameSession, __FUNCTION__, parent)
 {

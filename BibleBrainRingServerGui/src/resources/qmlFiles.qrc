@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/qmlFiles">
+        <file>qmlFiles/main.qml</file>
+        <file>qmlFiles/QmlPageStart.qml</file>
+        <file>qmlFiles/QmlPageRegistration.qml</file>
+    </qresource>
+</RCC>

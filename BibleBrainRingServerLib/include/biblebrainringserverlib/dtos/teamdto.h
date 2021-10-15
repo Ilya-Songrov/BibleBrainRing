@@ -12,7 +12,15 @@
 
 #pragma once
 
-#include "server_classical/servermodeinitialization.h"
-#include "server_classical/servermodeidle.h"
-#include "server_classical/servermodeacceptsregistrations.h"
-#include "server_classical/servermoderunninggamesession.h"
+#include "dtoabstract.h"
+#include "biblebrainringserverlib/enums/global_enums.h"
+
+struct TeamDto : public DtoAbstract
+{
+    QString guid        ;
+    QString name        ;
+    QString color       ;
+    double score        = -1.0;
+    int position        = -1;
+    TeamStatus status   = TeamStatus::None;
+};

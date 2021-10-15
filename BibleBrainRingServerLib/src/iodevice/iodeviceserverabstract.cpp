@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "iodevice/iodeviceserverabstract.h"
+#include "biblebrainringserverlib/iodevice/iodeviceserverabstract.h"
 
 IODeviceServerAbstract::IODeviceServerAbstract(QObject *parent) : QObject(parent)
 {

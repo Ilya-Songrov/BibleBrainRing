@@ -1,4 +1,4 @@
-#include "iodevice/tcp/readwritesocket.h"
+#include "biblebrainringserverlib/iodevice/tcp/readwritesocket.h"
 
 ReadWriteSocket::ReadWriteSocket(const DataCompletenessCheck dataCompletenessCheck, QObject *parent) : QTcpSocket(parent)
   , currentTransferDataWrite(TransferData{})
@@ -47,9 +47,14 @@ void ReadWriteSocket::sendDataToHost(const QByteArray &arr, const int timeout)
     timerWrite.start(currentTransferDataWrite.timeout);
 }
 
-QString ReadWriteSocket::getAddressPort() const
+QString ReadWriteSocket::getPeerAddressPort() const
 {
     return this->peerAddress().toString() + ":" + QString::number(this->peerPort());
+}
+
+QString ReadWriteSocket::getLocalAddressPort() const
+{
+    return this->localAddress().toString() + ":" + QString::number(this->localPort());
 }
 
 void ReadWriteSocket::handleBytesWritten(qint64 bytes)

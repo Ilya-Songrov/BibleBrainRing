@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "server_classical/servermodeinitialization.h"
+#include "biblebrainringserverlib/server_classical/servermodeinitialization.h"
 
 ServerModeInitialization::ServerModeInitialization(IODeviceServerAbstract *ioDeviceServerAbstract, QObject *parent) : ServerModeAbstract(ServerMode::Initialization, __FUNCTION__, parent)
 {
@@ -21,6 +21,7 @@ ServerModeAbstract *ServerModeInitialization::initServer()
 {
     const bool ret = io->initServer();
     if (ret) {
+        io->pauseAcceptingClients();
         return new ServerModeIdle();
     }
     return nullptr;

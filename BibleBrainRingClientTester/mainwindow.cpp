@@ -30,13 +30,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_GenerateClient_clicked()
 {
-    TcpClient* client = new TcpClient();
+    TcpClient* client = new TcpClient(this);
     const QString addressPort = ui->lineEdit_ServerAddressPort->text();
     const auto list = addressPort.split(":");
     const bool ret = client->connectToServer(list.at(0), list.at(1).toUShort());
     if (ret) {
         listTcpClients.append(client);
-        ui->comboBox->insertItem(0, client->getAddressPort());
+        ui->comboBox->addItem(client->getLocalAddressPort());
+        ui->comboBox->setCurrentIndex(ui->comboBox->count() - 1);
     }
 }
 

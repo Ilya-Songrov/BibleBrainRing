@@ -10,11 +10,9 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/biblebrainringserver.h"
-#include <QTcpSocket>
-#include <QTcpServer>
+#pragma once
 
-BibleBrainRingServer::BibleBrainRingServer()
-{
-
-}
+#include "biblebrainringserverlib/server_classical/servermodeinitialization.h"
+#include "biblebrainringserverlib/server_classical/servermodeidle.h"
+#include "biblebrainringserverlib/server_classical/servermodeacceptsregistrations.h"
+#include "biblebrainringserverlib/server_classical/servermoderunninggamesession.h"

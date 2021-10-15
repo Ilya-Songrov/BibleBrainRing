@@ -10,14 +10,13 @@
 **
 **************************************************************************/
 
-#include "server_classical/biblebrainringserverclassical.h"
+#include "biblebrainringserverlib/server_classical/biblebrainringserverclassical.h"
 
 BibleBrainRingServerClassical::BibleBrainRingServerClassical(IODeviceServerAbstract *ioDeviceServerAbstract)
     : currentServerMode(nullptr)
 {
-    changeCurrentServerMode(new ServerModeInitialization(ioDeviceServerAbstract));
     connect(ioDeviceServerAbstract, &IODeviceServerAbstract::joinedClient,          this,
-            [this](const QString &guidClient){ qDebug() << "slotJoinedClient" << Qt::endl; currentServerMode->slotJoinedClient(guidClient); });
+            [this](const QString &guidClient){ currentServerMode->slotJoinedClient(guidClient); });
     connect(ioDeviceServerAbstract, &IODeviceServerAbstract::responseFromClient,    this,
             [this](const QString &guidClient, const QByteArray &arr){ currentServerMode->slotResponseFromClient(guidClient, arr); });
     connect(ioDeviceServerAbstract, &IODeviceServerAbstract::clientStatusChanged,   this,
@@ -25,7 +24,7 @@ BibleBrainRingServerClassical::BibleBrainRingServerClassical(IODeviceServerAbstr
     connect(ioDeviceServerAbstract, &IODeviceServerAbstract::serverStatusChanged,   this,
             [](const QString &status){ qDebug() << status << Qt::endl; });
 
-    stopRegistration();
+    changeCurrentServerMode(new ServerModeInitialization(ioDeviceServerAbstract));
 }
 
 BibleBrainRingServerClassical::~BibleBrainRingServerClassical()

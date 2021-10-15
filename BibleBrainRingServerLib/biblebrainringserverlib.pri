@@ -14,29 +14,29 @@ SOURCES += \
     $$PWD/src/server_classical/servermoderunninggamesession.cpp
 
 HEADERS += \
-    $$PWD/include/biblebrainringserver/biblebrainringserver_global.h \
-    $$PWD/include/biblebrainringserver/biblebrainringserver.h \
-    $$PWD/include/biblebrainringserver/data/questions.h \
-    $$PWD/include/biblebrainringserver/dtos/answeraccepteddto.h \
-    $$PWD/include/biblebrainringserver/dtos/dtoabstract.h \
-    $$PWD/include/biblebrainringserver/dtos/dtocreator.h \
-    $$PWD/include/biblebrainringserver/dtos/gamestatusdto.h \
-    $$PWD/include/biblebrainringserver/dtos/sendanswerdto.h \
-    $$PWD/include/biblebrainringserver/dtos/serverstatusdto.h \
-    $$PWD/include/biblebrainringserver/dtos/teamdto.h \
-    $$PWD/include/biblebrainringserver/dtos/teamregistrationdto.h \
-    $$PWD/include/biblebrainringserver/enums/global_enums.h \
-    $$PWD/include/biblebrainringserver/information/informationconsoleprinter.h \
-    $$PWD/include/biblebrainringserver/iodevice/iodeviceserverabstract.h \
-    $$PWD/include/biblebrainringserver/iodevice/tcp/readwritesocket.h \
-    $$PWD/include/biblebrainringserver/iodevice/tcp/tcpserver.h \
-    $$PWD/include/biblebrainringserver/server_classical/all_server_modes.h \
-    $$PWD/include/biblebrainringserver/server_classical/biblebrainringserverclassical.h \
-    $$PWD/include/biblebrainringserver/server_classical/servermodeabstract.h \
-    $$PWD/include/biblebrainringserver/server_classical/servermodeacceptsregistrations.h \
-    $$PWD/include/biblebrainringserver/server_classical/servermodeidle.h \
-    $$PWD/include/biblebrainringserver/server_classical/servermodeinitialization.h \
-    $$PWD/include/biblebrainringserver/server_classical/servermoderunninggamesession.h
+    $$PWD/include/biblebrainringserverlib/biblebrainringserver_global.h \
+    $$PWD/include/biblebrainringserverlib/biblebrainringserver.h \
+    $$PWD/include/biblebrainringserverlib/data/questions.h \
+    $$PWD/include/biblebrainringserverlib/dtos/answeraccepteddto.h \
+    $$PWD/include/biblebrainringserverlib/dtos/dtoabstract.h \
+    $$PWD/include/biblebrainringserverlib/dtos/dtocreator.h \
+    $$PWD/include/biblebrainringserverlib/dtos/gamestatusdto.h \
+    $$PWD/include/biblebrainringserverlib/dtos/sendanswerdto.h \
+    $$PWD/include/biblebrainringserverlib/dtos/serverstatusdto.h \
+    $$PWD/include/biblebrainringserverlib/dtos/teamdto.h \
+    $$PWD/include/biblebrainringserverlib/dtos/teamregistrationdto.h \
+    $$PWD/include/biblebrainringserverlib/enums/global_enums.h \
+    $$PWD/include/biblebrainringserverlib/information/informationconsoleprinter.h \
+    $$PWD/include/biblebrainringserverlib/iodevice/iodeviceserverabstract.h \
+    $$PWD/include/biblebrainringserverlib/iodevice/tcp/readwritesocket.h \
+    $$PWD/include/biblebrainringserverlib/iodevice/tcp/tcpserver.h \
+    $$PWD/include/biblebrainringserverlib/server_classical/all_server_modes.h \
+    $$PWD/include/biblebrainringserverlib/server_classical/biblebrainringserverclassical.h \
+    $$PWD/include/biblebrainringserverlib/server_classical/servermodeabstract.h \
+    $$PWD/include/biblebrainringserverlib/server_classical/servermodeacceptsregistrations.h \
+    $$PWD/include/biblebrainringserverlib/server_classical/servermodeidle.h \
+    $$PWD/include/biblebrainringserverlib/server_classical/servermodeinitialization.h \
+    $$PWD/include/biblebrainringserverlib/server_classical/servermoderunninggamesession.h
 
 INCLUDEPATH += \
-    $$PWD/include/biblebrainringserver
+    $$PWD/include

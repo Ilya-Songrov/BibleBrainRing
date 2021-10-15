@@ -1,4 +1,4 @@
-include(biblebrainringserver.pri)
+include($$PWD/biblebrainringserverlib.pri)
 
 QT -= gui
 QT += network

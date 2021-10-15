@@ -1,4 +1,4 @@
-#include "information/informationconsoleprinter.h"
+#include "biblebrainringserverlib/information/informationconsoleprinter.h"
 
 
 void InformationConsolePrinter::printArrAndMessage(const QJsonDocument &doc, const QString &debugMessage, const bool useWarning)

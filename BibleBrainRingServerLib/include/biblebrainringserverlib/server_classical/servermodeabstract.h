@@ -14,10 +14,10 @@
 
 #include <QObject>
 
-#include "iodevice/iodeviceserverabstract.h"
-#include "dtos/dtocreator.h"
-#include "data/questions.h"
-#include "information/informationconsoleprinter.h"
+#include "biblebrainringserverlib/iodevice/iodeviceserverabstract.h"
+#include "biblebrainringserverlib/dtos/dtocreator.h"
+#include "biblebrainringserverlib/data/questions.h"
+#include "biblebrainringserverlib/information/informationconsoleprinter.h"
 
 class ServerModeAbstract : public QObject
 {

@@ -1,0 +1,3 @@
+[submodule "BibleBrainRingServerGui/Exceptions"]
+	path = BibleBrainRingServerGui/Exceptions
+	url = https://github.com/Ilya-Songrov/Exceptions.git
