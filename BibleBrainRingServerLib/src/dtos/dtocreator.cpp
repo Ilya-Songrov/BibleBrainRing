@@ -32,11 +32,11 @@ TeamDto DtoCreator::getTeamDto(const QString &guid, const TeamStatus status)
 TeamDto DtoCreator::getTeamDto(const QJsonObject &obj)
 {
     TeamDto team;
-    team.guid        = obj.value("guid")      .toString();
-    team.name        = obj.value("name")      .toString();
-    team.color       = obj.value("color")     .toString();
-    team.score       = obj.value("score")     .toDouble();
-    team.position    = obj.value("position")  .toInt();
-    team.status      = (TeamStatus)obj.value("status")    .toInt();
+    team.guid        = obj.value("guid")                    .toString();
+    team.name        = obj.value("name")                    .toString();
+    team.color       = obj.value("color")                   .toString();
+    team.score       = obj.value("score")                   .toDouble(TeamDto{}.score);
+    team.position    = obj.value("position")                .toInt(TeamDto{}.position);
+    team.status      = (TeamStatus)obj.value("status")      .toInt();
     return team;
 }

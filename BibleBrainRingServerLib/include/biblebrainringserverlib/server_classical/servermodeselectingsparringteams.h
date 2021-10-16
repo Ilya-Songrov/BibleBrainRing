@@ -10,16 +10,15 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/server_classical/servermodeidle.h"
+#pragma once
 
-ServerModeIdle::ServerModeIdle(QObject *parent) : ServerModeAbstract(ServerMode::Idle, __FUNCTION__, parent)
+#include "servermodegameabstract.h"
+#include "all_server_modes.h"
+
+class ServerModeSelectingSparringTeams : public ServerModeGameAbstract
 {
+public:
+    explicit ServerModeSelectingSparringTeams(QObject *parent = nullptr);
 
-}
-
-ServerModeAbstract *ServerModeIdle::startRegistration()
-{
-    io->resumeAcceptingClients();
-    return new ServerModeAcceptsRegistrations();
-}
-
+    virtual ServerModeAbstract* setSparringTeams(const QVector<QString>& vecGuidTeam) override;
+};

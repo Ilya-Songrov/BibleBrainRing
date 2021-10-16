@@ -13,18 +13,19 @@
 #include "biblebrainringserverlib/server_classical/biblebrainringserverclassical.h"
 
 BibleBrainRingServerClassical::BibleBrainRingServerClassical(IODeviceServerAbstract *ioDeviceServerAbstract)
-    : currentServerMode(nullptr)
+    : _currentServerMode(nullptr)
+    , _ioDeviceServerAbstract(ioDeviceServerAbstract)
 {
-    connect(ioDeviceServerAbstract, &IODeviceServerAbstract::joinedClient,          this,
-            [this](const QString &guidClient){ currentServerMode->slotJoinedClient(guidClient); });
-    connect(ioDeviceServerAbstract, &IODeviceServerAbstract::responseFromClient,    this,
-            [this](const QString &guidClient, const QByteArray &arr){ currentServerMode->slotResponseFromClient(guidClient, arr); });
-    connect(ioDeviceServerAbstract, &IODeviceServerAbstract::clientStatusChanged,   this,
-            [this](const QString &guidClient, const IODeviceServerAbstract::ClientStatus clientStatus){ currentServerMode->slotClientStatusChanged(guidClient, clientStatus); });
-    connect(ioDeviceServerAbstract, &IODeviceServerAbstract::serverStatusChanged,   this,
+    connect(_ioDeviceServerAbstract, &IODeviceServerAbstract::joinedClient,          this,
+            [this](const QString &guidClient){ _currentServerMode->slotJoinedClient(guidClient); });
+    connect(_ioDeviceServerAbstract, &IODeviceServerAbstract::responseFromClient,    this,
+            [this](const QString &guidClient, const QByteArray &arr){ _currentServerMode->slotResponseFromClient(guidClient, arr); });
+    connect(_ioDeviceServerAbstract, &IODeviceServerAbstract::clientStatusChanged,   this,
+            [this](const QString &guidClient, const IODeviceServerAbstract::ClientStatus clientStatus){ _currentServerMode->slotClientStatusChanged(guidClient, clientStatus); });
+    connect(_ioDeviceServerAbstract, &IODeviceServerAbstract::serverStatusChanged,   this,
             [](const QString &status){ qDebug() << status << Qt::endl; });
 
-    changeCurrentServerMode(new ServerModeInitialization(ioDeviceServerAbstract));
+    changeCurrentServerMode(new ServerModeInitialization(_ioDeviceServerAbstract));
 }
 
 BibleBrainRingServerClassical::~BibleBrainRingServerClassical()
@@ -34,80 +35,127 @@ BibleBrainRingServerClassical::~BibleBrainRingServerClassical()
 
 bool BibleBrainRingServerClassical::initServer()
 {
-    ServerModeAbstract* mode = currentServerMode->initServer();
+    ServerModeAbstract* mode = _currentServerMode->initServer();
     changeCurrentServerMode(mode);
     return mode != nullptr;
 }
 
+void BibleBrainRingServerClassical::setCurrentServerMode(const ServerMode serverMode)
+{
+    ServerModeAbstract* mode = nullptr;
+    if (serverMode == Unknown) {
+        qWarning() << "It is a bad idea. I ignored your request" << Qt::endl;
+        return;
+    }
+    else if (serverMode == Initialization) {
+        mode = new ServerModeInitialization(_ioDeviceServerAbstract);
+    }
+    else if (serverMode == Idle) {
+        mode = new ServerModeIdle();
+    }
+    else if (serverMode == AcceptsRegistrations) {
+        mode = new ServerModeAcceptsRegistrations();
+    }
+    else if (serverMode == SelectingSparringTeams) {
+        mode = new ServerModeSelectingSparringTeams();
+    }
+    else if (serverMode == RunningSparring) {
+        mode = new ServerModeRunningSparring();
+    }
+    else if (serverMode == ShowingSparringResult) {
+        mode = new ServerModeShowingSparringResult();
+    }
+    else if (serverMode == ShowingGameResult) {
+        mode = new ServerModeShowingGameResult();
+    }
+    changeCurrentServerMode(mode);
+}
+
 ServerMode BibleBrainRingServerClassical::getCurrentServerMode()
 {
-    if (currentServerMode) {
-        return currentServerMode->getCurrentServerMode();
+    if (_currentServerMode) {
+        return _currentServerMode->getCurrentServerMode();
     }
     return ServerMode::Unknown;
 }
 
 void BibleBrainRingServerClassical::startRegistration()
 {
-    ServerModeAbstract* mode = currentServerMode->startRegistration();
+    ServerModeAbstract* mode = _currentServerMode->startRegistration();
     changeCurrentServerMode(mode);
 }
 
 void BibleBrainRingServerClassical::stopRegistration()
 {
-    ServerModeAbstract* mode = currentServerMode->stopRegistration();
+    ServerModeAbstract* mode = _currentServerMode->stopRegistration();
     changeCurrentServerMode(mode);
 }
 
 void BibleBrainRingServerClassical::setSparringTeams(const QVector<QString> &vecGuidTeam)
 {
-    ServerModeAbstract* mode = currentServerMode->setSparringTeams(vecGuidTeam);
+    ServerModeAbstract* mode = _currentServerMode->setSparringTeams(vecGuidTeam);
     changeCurrentServerMode(mode);
 }
 
 QVector<QString> BibleBrainRingServerClassical::getSparringTeams()
 {
-    return currentServerMode->getSparringTeams();
+    return _currentServerMode->getSparringTeams();
 }
 
 void BibleBrainRingServerClassical::activateButtonsSparringTeams()
 {
-    ServerModeAbstract* mode = currentServerMode->activateButtonsSparringTeams();
+    ServerModeAbstract* mode = _currentServerMode->activateButtonsSparringTeams();
+    changeCurrentServerMode(mode);
+}
+
+void BibleBrainRingServerClassical::deactivateButtonsSparringTeams()
+{
+    ServerModeAbstract* mode = _currentServerMode->deactivateButtonsSparringTeams();
     changeCurrentServerMode(mode);
 }
 
 void BibleBrainRingServerClassical::banTeam(const QString &guidTeam)
 {
-    ServerModeAbstract* mode = currentServerMode->banTeam(guidTeam);
+    ServerModeAbstract* mode = _currentServerMode->banTeam(guidTeam);
     changeCurrentServerMode(mode);
 }
 
 TeamStatus BibleBrainRingServerClassical::getTeamStatus(const QString &guidTeam)
 {
-    return currentServerMode->getTeamStatus(guidTeam);;
+    return _currentServerMode->getTeamStatus(guidTeam);;
 }
 
 void BibleBrainRingServerClassical::changeTeamScore(const QString &guidTeam, const double score)
 {
-    ServerModeAbstract* mode = currentServerMode->changeTeamScore(guidTeam, score);
+    ServerModeAbstract* mode = _currentServerMode->changeTeamScore(guidTeam, score);
     changeCurrentServerMode(mode);
 }
 
 int BibleBrainRingServerClassical::getTeamScore(const QString &guidTeam)
 {
-    return currentServerMode->getTeamScore(guidTeam);;
+    return _currentServerMode->getTeamScore(guidTeam);;
 }
 
 void BibleBrainRingServerClassical::laodListQuestions(const QStringList &questions)
 {
-    ServerModeAbstract* mode = currentServerMode->loadListQuestions(questions);
+    ServerModeAbstract* mode = _currentServerMode->loadListQuestions(questions);
     changeCurrentServerMode(mode);
 }
 
 void BibleBrainRingServerClassical::changeQuestionStatus(const QString &question, const QuestionStatus questionStatus)
 {
-    ServerModeAbstract* mode = currentServerMode->changeQuestionStatus(question, questionStatus);
+    ServerModeAbstract* mode = _currentServerMode->changeQuestionStatus(question, questionStatus);
     changeCurrentServerMode(mode);
+}
+
+void BibleBrainRingServerClassical::setCurrentQuestion(const QString &question)
+{
+
+}
+
+QString BibleBrainRingServerClassical::getCurrentQuestion()
+{
+
 }
 
 void BibleBrainRingServerClassical::finishRound()
@@ -115,7 +163,7 @@ void BibleBrainRingServerClassical::finishRound()
 
 }
 
-void BibleBrainRingServerClassical::addRoundNote()
+void BibleBrainRingServerClassical::addRoundNote(const QString &note)
 {
 
 }
@@ -138,8 +186,8 @@ void BibleBrainRingServerClassical::onTeamDtoChanged(std::function<void (const T
 void BibleBrainRingServerClassical::changeCurrentServerMode(ServerModeAbstract *mode)
 {
     if (mode) {
-        delete currentServerMode;
-        currentServerMode = mode;
+        delete _currentServerMode;
+        _currentServerMode = mode;
     }
 }
 

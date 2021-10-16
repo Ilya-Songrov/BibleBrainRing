@@ -10,16 +10,9 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/server_classical/servermodeidle.h"
+#include "biblebrainringserverlib/server_classical/servermodeshowingsparringresult.h"
 
-ServerModeIdle::ServerModeIdle(QObject *parent) : ServerModeAbstract(ServerMode::Idle, __FUNCTION__, parent)
+ServerModeShowingSparringResult::ServerModeShowingSparringResult(QObject *parent) : ServerModeGameAbstract(ServerMode::ShowingSparringResult, __FUNCTION__, parent)
 {
 
 }
-
-ServerModeAbstract *ServerModeIdle::startRegistration()
-{
-    io->resumeAcceptingClients();
-    return new ServerModeAcceptsRegistrations();
-}
-

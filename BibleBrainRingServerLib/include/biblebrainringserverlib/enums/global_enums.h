@@ -26,7 +26,10 @@ enum ServerMode
     Initialization          ,
     Idle                    ,
     AcceptsRegistrations    ,
-    RunningGameSession      ,
+    SelectingSparringTeams  ,
+    RunningSparring         ,
+    ShowingSparringResult   ,
+    ShowingGameResult       ,
 };
 
 enum TeamStatus

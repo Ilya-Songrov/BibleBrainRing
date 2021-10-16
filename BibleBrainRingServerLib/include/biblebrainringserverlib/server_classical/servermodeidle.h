@@ -21,7 +21,5 @@ public:
     explicit ServerModeIdle(QObject *parent = nullptr);
 
     virtual ServerModeAbstract* startRegistration() override;
-
-    virtual ServerModeAbstract* loadListQuestions(const QStringList &questions) override;
 };
 

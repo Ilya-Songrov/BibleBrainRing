@@ -10,16 +10,20 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/server_classical/servermodeidle.h"
+#pragma once
 
-ServerModeIdle::ServerModeIdle(QObject *parent) : ServerModeAbstract(ServerMode::Idle, __FUNCTION__, parent)
+#include "servermodegameabstract.h"
+
+class ServerModeRunningSparring : public ServerModeGameAbstract
 {
+public:
+    explicit ServerModeRunningSparring(QObject *parent = nullptr);
 
-}
+    virtual ServerModeAbstract* slotResponseFromClient(const QString &guidClient, const QByteArray &arrBytes) override;
+    virtual ServerModeAbstract* activateButtonsSparringTeams() override;
+    virtual ServerModeAbstract* deactivateButtonsSparringTeams() override;
 
-ServerModeAbstract *ServerModeIdle::startRegistration()
-{
-    io->resumeAcceptingClients();
-    return new ServerModeAcceptsRegistrations();
-}
+private:
+    const QString value_notification_answer_to_question;
+};
 

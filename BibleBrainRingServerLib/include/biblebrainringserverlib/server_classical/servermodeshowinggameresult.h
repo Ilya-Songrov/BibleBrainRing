@@ -12,16 +12,11 @@
 
 #pragma once
 
-#include "servermodeabstract.h"
+#include "servermodegameabstract.h"
 
-class ServerModeRunningGameSession : public ServerModeAbstract
+class ServerModeShowingGameResult : public ServerModeGameAbstract
 {
 public:
-    explicit ServerModeRunningGameSession(QObject *parent = nullptr);
-
-    virtual ServerModeAbstract* changeQuestionStatus(const QString &question, const QuestionStatus questionStatus) override;
-
-    virtual ServerModeAbstract* slotResponseFromClient(const QString &guidClient, const QByteArray &arrBytes) override;
-    virtual ServerModeAbstract* slotClientStatusChanged(const QString &guidClient, const IODeviceServerAbstract::ClientStatus clientStatus) override;
+    explicit ServerModeShowingGameResult(QObject *parent = nullptr);
 };
 

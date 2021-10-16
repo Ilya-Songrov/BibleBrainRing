@@ -10,16 +10,13 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/server_classical/servermodeidle.h"
+#pragma once
 
-ServerModeIdle::ServerModeIdle(QObject *parent) : ServerModeAbstract(ServerMode::Idle, __FUNCTION__, parent)
+#include "servermodegameabstract.h"
+
+class ServerModeShowingSparringResult : public ServerModeGameAbstract
 {
-
-}
-
-ServerModeAbstract *ServerModeIdle::startRegistration()
-{
-    io->resumeAcceptingClients();
-    return new ServerModeAcceptsRegistrations();
-}
+public:
+    explicit ServerModeShowingSparringResult(QObject *parent = nullptr);
+};
 

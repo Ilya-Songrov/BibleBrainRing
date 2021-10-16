@@ -12,10 +12,10 @@
 
 #pragma once
 
-#include "servermodeabstract.h"
+#include "servermodegameabstract.h"
 #include "all_server_modes.h"
 
-class ServerModeAcceptsRegistrations : public ServerModeAbstract
+class ServerModeAcceptsRegistrations : public ServerModeGameAbstract
 {
 public:
     explicit ServerModeAcceptsRegistrations(QObject *parent = nullptr);
@@ -23,20 +23,14 @@ public:
     virtual ServerModeAbstract* stopRegistration() override;
 
     virtual ServerModeAbstract* banTeam(const QString &guidTeam) override;
-    virtual ServerModeAbstract* changeTeamScore(const QString &guidTeam, const double score) override;
-
-    virtual ServerModeAbstract* loadListQuestions(const QStringList &questions) override;
 
     virtual ServerModeAbstract* slotJoinedClient(const QString &guidClient) override;
     virtual ServerModeAbstract* slotResponseFromClient(const QString &guidClient, const QByteArray &arrBytes) override;
     virtual ServerModeAbstract* slotClientStatusChanged(const QString &guidClient, const IODeviceServerAbstract::ClientStatus clientStatus) override;
 
-    virtual QVector<QString> getSparringTeams() override;
     virtual TeamStatus getTeamStatus(const QString &guidTeam) override;
-    virtual int getTeamScore(const QString &guidTeam) override;
 
 private:
     const QString value_notification_TeamDto;
-    const QString value_notification_TeamRegistrationDto;
 };
 

@@ -10,16 +10,18 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/server_classical/servermodeidle.h"
+#include "biblebrainringserverlib/server_classical/servermodegameabstract.h"
 
-ServerModeIdle::ServerModeIdle(QObject *parent) : ServerModeAbstract(ServerMode::Idle, __FUNCTION__, parent)
+ServerModeGameAbstract::ServerModeGameAbstract(const ServerMode mode, const QString &objectName, QObject *parent) : ServerModeAbstract(mode, objectName, parent)
 {
 
 }
 
-ServerModeAbstract *ServerModeIdle::startRegistration()
+QVector<QString> ServerModeGameAbstract::getSparringTeams()
 {
-    io->resumeAcceptingClients();
-    return new ServerModeAcceptsRegistrations();
+    QVector<QString> vec;
+    for (const TeamDto &team : listTeams) {
+        vec.append(team.guid);
+    }
+    return vec;
 }
-

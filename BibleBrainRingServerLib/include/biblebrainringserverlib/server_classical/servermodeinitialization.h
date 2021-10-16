@@ -21,7 +21,5 @@ public:
     explicit ServerModeInitialization(IODeviceServerAbstract *ioDeviceServerAbstract, QObject *parent = nullptr);
 
     virtual ServerModeAbstract* initServer() override;
-
-    virtual ServerModeAbstract* loadListQuestions(const QStringList &questions) override;
 };
 

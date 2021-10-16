@@ -27,26 +27,32 @@ public:
     ~BibleBrainRingServerClassical();
 
     bool initServer();
+
+    void setCurrentServerMode(const ServerMode serverMode);
     ServerMode getCurrentServerMode();
 
     void startRegistration();
     void stopRegistration();
 
-    void setSparringTeams(const QVector<QString>& vecGuidTeam);
-    QVector<QString> getSparringTeams();
-    void activateButtonsSparringTeams();
-
     void banTeam(const QString &guidTeam);
     TeamStatus getTeamStatus(const QString &guidTeam);
+
+    void setSparringTeams(const QVector<QString>& vecGuidTeam);
+    QVector<QString> getSparringTeams();
+
+    void activateButtonsSparringTeams();
+    void deactivateButtonsSparringTeams();
 
     void changeTeamScore(const QString &guidTeam, const double score);
     int getTeamScore(const QString &guidTeam);
 
     void laodListQuestions(const QStringList &questions);
     void changeQuestionStatus(const QString &question, const QuestionStatus questionStatus);
+    void setCurrentQuestion(const QString &question);
+    QString getCurrentQuestion();
 
     void finishRound();
-    void addRoundNote();
+    void addRoundNote(const QString &note);
     QString getRoundResult();
 
     // callbacks:
@@ -57,6 +63,7 @@ private:
     void changeCurrentServerMode(ServerModeAbstract *mode);
 
 private:
-    ServerModeAbstract* currentServerMode;
+    ServerModeAbstract* _currentServerMode;
+    IODeviceServerAbstract *_ioDeviceServerAbstract;
 };
 

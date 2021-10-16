@@ -27,8 +27,3 @@ ServerModeAbstract *ServerModeInitialization::initServer()
     return nullptr;
 }
 
-ServerModeAbstract *ServerModeInitialization::loadListQuestions(const QStringList &questions)
-{
-    q.loadQuestions(questions);
-    return nullptr;
-}

@@ -15,4 +15,7 @@
 #include "biblebrainringserverlib/server_classical/servermodeinitialization.h"
 #include "biblebrainringserverlib/server_classical/servermodeidle.h"
 #include "biblebrainringserverlib/server_classical/servermodeacceptsregistrations.h"
-#include "biblebrainringserverlib/server_classical/servermoderunninggamesession.h"
+#include "biblebrainringserverlib/server_classical/servermodeselectingsparringteams.h"
+#include "biblebrainringserverlib/server_classical/servermoderunningsparring.h"
+#include "biblebrainringserverlib/server_classical/servermodeshowingsparringresult.h"
+#include "biblebrainringserverlib/server_classical/servermodeshowinggameresult.h"

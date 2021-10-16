@@ -12,9 +12,8 @@
 
 #include "biblebrainringserverlib/server_classical/servermodeacceptsregistrations.h"
 
-ServerModeAcceptsRegistrations::ServerModeAcceptsRegistrations(QObject *parent) : ServerModeAbstract(ServerMode::AcceptsRegistrations, __FUNCTION__, parent)
+ServerModeAcceptsRegistrations::ServerModeAcceptsRegistrations(QObject *parent) : ServerModeGameAbstract(ServerMode::AcceptsRegistrations, __FUNCTION__, parent)
     , value_notification_TeamDto                ("notification_TeamDto")
-    , value_notification_TeamRegistrationDto    ("notification_TeamRegistrationDto")
 {
 
 }
@@ -22,26 +21,12 @@ ServerModeAcceptsRegistrations::ServerModeAcceptsRegistrations(QObject *parent) 
 ServerModeAbstract *ServerModeAcceptsRegistrations::stopRegistration()
 {
     io->pauseAcceptingClients();
-    return new ServerModeRunningGameSession();
+    return new ServerModeSelectingSparringTeams();
 }
 
 ServerModeAbstract *ServerModeAcceptsRegistrations::banTeam(const QString &guidTeam)
 {
     ServerModeAbstract::bunTeam(guidTeam);
-    return nullptr;
-}
-
-ServerModeAbstract *ServerModeAcceptsRegistrations::changeTeamScore(const QString &guidTeam, const double score)
-{
-    auto team   = getTeam(guidTeam);
-    team.score  = score;
-    changeTeam(team);
-    return nullptr;
-}
-
-ServerModeAbstract *ServerModeAcceptsRegistrations::loadListQuestions(const QStringList &questions)
-{
-    q.loadQuestions(questions);
     return nullptr;
 }
 
@@ -71,15 +56,6 @@ ServerModeAbstract *ServerModeAcceptsRegistrations::slotResponseFromClient(const
                 qWarning() << QString("Server already have team info about this client (%1)" ).arg(guidClient) << Qt::endl;
             }
         }
-        else if(objRoot.value(key_method).toString() == value_notification_TeamRegistrationDto){
-            const auto team = DtoCreator::getTeamDto(objRoot);
-            if (getTeam(guidClient).status == TeamStatus::NotValid) {
-                changeTeam(team, false);
-            }
-            else{
-                qWarning() << QString("Server already have team info about this client (%1)" ).arg(guidClient) << Qt::endl;
-            }
-        }
     }
     return nullptr;
 }
@@ -90,18 +66,7 @@ ServerModeAbstract *ServerModeAcceptsRegistrations::slotClientStatusChanged(cons
     return nullptr;
 }
 
-QVector<QString> ServerModeAcceptsRegistrations::getSparringTeams()
-{
-    // TODO: write me
-    return {};
-}
-
 TeamStatus ServerModeAcceptsRegistrations::getTeamStatus(const QString &guidTeam)
 {
     return getTeam(guidTeam).status;
-}
-
-int ServerModeAcceptsRegistrations::getTeamScore(const QString &guidTeam)
-{
-    return getTeam(guidTeam).score;
 }

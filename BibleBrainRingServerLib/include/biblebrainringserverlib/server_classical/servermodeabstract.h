@@ -17,6 +17,7 @@
 #include "biblebrainringserverlib/iodevice/iodeviceserverabstract.h"
 #include "biblebrainringserverlib/dtos/dtocreator.h"
 #include "biblebrainringserverlib/data/questions.h"
+#include "biblebrainringserverlib/data/standings.h"
 #include "biblebrainringserverlib/information/informationconsoleprinter.h"
 
 class ServerModeAbstract : public QObject
@@ -31,7 +32,9 @@ public:
     virtual ServerModeAbstract* stopRegistration();
 
     virtual ServerModeAbstract* setSparringTeams(const QVector<QString>& vecGuidTeam);
+
     virtual ServerModeAbstract* activateButtonsSparringTeams();
+    virtual ServerModeAbstract* deactivateButtonsSparringTeams();
 
     virtual ServerModeAbstract* banTeam(const QString &guidTeam);
     virtual ServerModeAbstract* changeTeamScore(const QString &guidTeam, const double score);
@@ -63,6 +66,7 @@ protected:
 protected:
     static IODeviceServerAbstract* io;
     static Questions q;
+    static Standings s;
     static QList<TeamDto> listTeams;
     static std::function<void(const TeamDto &)>    functionConnectNewTeam;
     static std::function<void(const TeamDto &)>    functionTeamDtoChanged;

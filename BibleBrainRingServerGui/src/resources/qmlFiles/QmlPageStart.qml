@@ -14,14 +14,20 @@ Item {
 
         Button{
             width: parent.width
-            height: parent.height / 2
+            height: parent.height / 3
             text: "Start Server Wifi"
             onClicked: providerQml.onQmlButtonClicked(BibleBrainRing.ButtonStartServerWifi)
         }
         Button{
             width: parent.width
-            height: parent.height / 2
+            height: parent.height / 3
             text: "Start Server Bluetooth"
+            onClicked: providerQml.onQmlButtonClicked(BibleBrainRing.ButtonStartServerBluetooth)
+        }
+        Button{
+            width: parent.width
+            height: parent.height / 3
+            text: "Start Without Server"
             onClicked: providerQml.onQmlButtonClicked(BibleBrainRing.ButtonStartServerBluetooth)
         }
     }
