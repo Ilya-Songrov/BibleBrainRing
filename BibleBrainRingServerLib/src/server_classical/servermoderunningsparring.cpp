@@ -34,15 +34,15 @@ ServerModeAbstract *ServerModeRunningSparring::slotResponseFromClient(const QStr
                 qWarning() << QString("Server already have team info about this client (%1)" ).arg(guidClient) << Qt::endl;
             }
         }
-        else if(objRoot.value(key_method).toString() == value_notification_TeamRegistrationDto){
-            const auto team = DtoCreator::getTeamDto(objRoot);
-            if (getTeam(guidClient).status == TeamStatus::NotValid) {
-                changeTeam(team, false);
-            }
-            else{
-                qWarning() << QString("Server already have team data about this client (%1)" ).arg(guidClient) << Qt::endl;
-            }
-        }
+//        else if(objRoot.value(key_method).toString() == value_notification_TeamRegistrationDto){
+//            const auto team = DtoCreator::getTeamDto(objRoot);
+//            if (getTeam(guidClient).status == TeamStatus::NotValid) {
+//                changeTeam(team, false);
+//            }
+//            else{
+//                qWarning() << QString("Server already have team data about this client (%1)" ).arg(guidClient) << Qt::endl;
+//            }
+//        }
     }
     return nullptr;
 }

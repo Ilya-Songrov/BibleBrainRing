@@ -5,7 +5,7 @@ TcpServer::TcpServer(const QString &address, const QString &port, QObject *paren
   , _port(port)
   , _dataCompletenessCheck(ReadWriteSocket::JSONValid)
 {
-    connect(&tcpServer, &QTcpServer::newConnection, this, &TcpServer::incomingConnection);
+    connect(&tcpServer, &QTcpServer::newConnection, this, &TcpServer::newConnection);
 }
 
 TcpServer::~TcpServer()
@@ -62,12 +62,12 @@ int TcpServer::getQuantityClients() const
     return listClients.size();
 }
 
-void TcpServer::incomingConnection()
+void TcpServer::newConnection()
 {
+    qDebug() << "function:" << Q_FUNC_INFO << __LINE__ << Qt::endl;
     QTcpSocket *socket = tcpServer.nextPendingConnection();
-    ReadWriteSocket *client = new ReadWriteSocket(_dataCompletenessCheck, this);
-    if (!client->setSocketDescriptor(socket->socketDescriptor())) {
-        client->deleteLater();
+    ReadWriteSocket *client = new ReadWriteSocket(_dataCompletenessCheck, socket, this);
+    if (!socket) {
         return;
     }
     listClients.append(client);

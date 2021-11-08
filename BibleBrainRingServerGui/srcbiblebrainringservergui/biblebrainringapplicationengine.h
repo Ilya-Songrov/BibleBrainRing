@@ -4,9 +4,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include "stateabstract.h"
-#include "all_states.h"
-#include "global_utils.h"
+#include "biblebrainringserverlib/server_classical/biblebrainringserverclassical.h"
+#include "biblebrainringserverlib/iodevice/tcp/tcpserver.h"
 
 class BibleBrainRingApplicationEngine : public QQmlApplicationEngine
 {
@@ -15,15 +14,7 @@ public:
     explicit BibleBrainRingApplicationEngine(QObject *parent = nullptr);
     ~BibleBrainRingApplicationEngine();
 
-private slots:
-    void onEndQmlCreation();
-    void onQmlButtonClicked(const BibleBrainRing::Button button);
-
 private:
-    void setConnections();
-    void changeCurrentState(StateAbstract* state);
-
-private:
-    StateAbstract *currentState;
+    QScopedPointer<BibleBrainRingServerClassical> bbrClassical;
 };
 

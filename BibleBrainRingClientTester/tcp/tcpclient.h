@@ -28,9 +28,8 @@ public:
     bool connectToServer(const QString& address, const quint16 port);
     bool getConnectStatus();
 
-    void sendToServerStatus(const QJsonObject &obj, const QString &value_method);
-
-    QString getLocalAddressPort();
+    void sendToServerParams(const QJsonValue &valueParams, const QString &value_method);
+    QString getLocalAddressPort() const;
 
 signals:
     void dataReceivedFromServer(const QString &mode, const QString &status, const int timeout,

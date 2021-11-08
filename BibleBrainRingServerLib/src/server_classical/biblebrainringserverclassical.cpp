@@ -12,9 +12,9 @@
 
 #include "biblebrainringserverlib/server_classical/biblebrainringserverclassical.h"
 
-BibleBrainRingServerClassical::BibleBrainRingServerClassical(IODeviceServerAbstract *ioDeviceServerAbstract)
-    : _currentServerMode(nullptr)
+BibleBrainRingServerClassical::BibleBrainRingServerClassical(IODeviceServerAbstract *ioDeviceServerAbstract) : QObject(nullptr)
     , _ioDeviceServerAbstract(ioDeviceServerAbstract)
+    , _currentServerMode(nullptr)
 {
     connect(_ioDeviceServerAbstract, &IODeviceServerAbstract::joinedClient,          this,
             [this](const QString &guidClient){ _currentServerMode->slotJoinedClient(guidClient); });

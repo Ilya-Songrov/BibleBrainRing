@@ -50,7 +50,7 @@ ServerModeAbstract *ServerModeAcceptsRegistrations::slotResponseFromClient(const
         if (objRoot.value(key_method).toString() == value_notification_TeamDto) {
             const auto team = DtoCreator::getTeamDto(objRoot);
             if (getTeam(guidClient).status == TeamStatus::NotValid) {
-                changeTeam(team, false);
+                changeTeam(team, true);
             }
             else{
                 qWarning() << QString("Server already have team info about this client (%1)" ).arg(guidClient) << Qt::endl;

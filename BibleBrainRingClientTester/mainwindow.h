@@ -39,6 +39,9 @@ private slots:
     void on_pushButton_SendData_clicked();
 
 private:
+    TcpClient* findClient(const QString& clientLocalAddressPort);
+
+private:
     Ui::MainWindow *ui;
     QList<TcpClient*> listTcpClients;
 };

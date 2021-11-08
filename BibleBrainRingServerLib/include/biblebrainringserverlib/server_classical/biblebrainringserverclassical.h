@@ -63,7 +63,7 @@ private:
     void changeCurrentServerMode(ServerModeAbstract *mode);
 
 private:
-    ServerModeAbstract* _currentServerMode;
     IODeviceServerAbstract *_ioDeviceServerAbstract;
+    ServerModeAbstract* _currentServerMode;
 };
 
