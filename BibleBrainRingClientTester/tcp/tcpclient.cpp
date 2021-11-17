@@ -27,14 +27,13 @@ bool TcpClient::connectToServer(const QString &address, const quint16 port)
     readWriteSocket.connectToHost(QHostAddress(address), port);
     const bool ret = readWriteSocket.waitForConnected(5000);
     if (ret) {
-        connectStatus = true;
         InformationConsolePrinter::printArrAndMessage(QJsonDocument(), QString("%1 is connected to (%2) from (%3)").arg(QCoreApplication::applicationName(), readWriteSocket.getPeerAddressPort()
                                                                                                                            , readWriteSocket.getLocalAddressPort()), QString(), false);
     }
     else{
-        connectStatus = false;
         InformationConsolePrinter::printArrAndMessage(QJsonDocument(), QString("%1 is not connected to (%2:%3)").arg(QCoreApplication::applicationName(), address).arg(port), QString(), true);
     }
+    connectStatus = ret;
     return ret;
 }
 
@@ -43,15 +42,15 @@ bool TcpClient::getConnectStatus()
     return connectStatus;
 }
 
-void TcpClient::sendToServerStatus(const QJsonObject &obj, const QString &value_method)
+void TcpClient::sendToServerParams(const QJsonValue &valueParams, const QString &value_method)
 {
     QJsonObject objRoot;
     objRoot.insert("method", value_method);
-    objRoot.insert("params", obj);
+    objRoot.insert("params", valueParams);
     readWriteSocket.sendDataToHost(QJsonDocument(objRoot).toJson(), timeout);
 }
 
-QString TcpClient::getLocalAddressPort()
+QString TcpClient::getLocalAddressPort() const
 {
     return readWriteSocket.getLocalAddressPort();
 }

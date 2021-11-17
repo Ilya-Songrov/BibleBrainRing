@@ -8,7 +8,7 @@
 #include <QQueue>
 #include <QJsonDocument>
 
-class ReadWriteSocket : public QTcpSocket
+class ReadWriteSocket : public QObject
 {
     Q_OBJECT
 public:
@@ -16,12 +16,16 @@ public:
         JSONValid,
         QDataStream_5_15,
     };
-    explicit ReadWriteSocket(const DataCompletenessCheck dataCompletenessCheck, QObject *parent = nullptr);
+    explicit ReadWriteSocket(const DataCompletenessCheck dataCompletenessCheck, QTcpSocket *socket = nullptr, QObject *parent = nullptr);
     virtual ~ReadWriteSocket();
 
     void sendDataToHost(const QByteArray &arr, const int timeout);
     QString getPeerAddressPort() const;
     QString getLocalAddressPort() const;
+
+    void connectToHost(const QHostAddress &address, quint16 port);
+    bool waitForConnected(const int msecs = 30000);
+    void abort();
 
 signals:
     void dataReceivedFromHost(const QByteArray &arr);
@@ -38,6 +42,8 @@ private slots:
     void handleWriteTimeout();
     void finishCurrentTransferDataWrite();
 
+    void saveTransferData(const QByteArray &arr, const int timeout);
+
 private:
     struct TransferData{
         QByteArray arr;
@@ -48,6 +54,7 @@ private:
         inline bool isDataInTransit() { return sizeAllData != TransferData{}.sizeAllData; };
     };
 
+    QScopedPointer<QTcpSocket> _socket;
     QQueue<TransferData> queueTransferData;
     QDataStream dataStreamIn;
     TransferData currentTransferDataWrite;

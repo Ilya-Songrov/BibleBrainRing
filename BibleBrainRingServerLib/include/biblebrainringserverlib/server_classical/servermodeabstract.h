@@ -67,7 +67,6 @@ protected:
     void bunTeam(const QString &guidTeam);
     void changeClientStatus(const QString &guidClient, const IODeviceServerAbstract::ClientStatus clientStatus);
 
-
 protected:
     static IODeviceServerAbstract* io;
     static Questions q;
@@ -86,6 +85,5 @@ protected:
 
 private:
     ServerMode _mode;
-
 };
 

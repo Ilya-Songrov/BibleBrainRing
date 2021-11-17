@@ -30,10 +30,8 @@ signals:
     void clientStatusChanged(const QAbstractSocket::SocketState socketState, const ReadWriteSocket* client);
     void disconnectedClient(const ReadWriteSocket *client);
 
-protected:
-    virtual void incomingConnection();
-
 private:
+    void newConnection();
     void removeClient(const ReadWriteSocket *clientSocket);
     ReadWriteSocket *findClient(const QString &guidClient) const;
 

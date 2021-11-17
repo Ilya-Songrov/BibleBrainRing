@@ -1,20 +1,21 @@
 #include "biblebrainringserverlib/iodevice/tcp/readwritesocket.h"
 
-ReadWriteSocket::ReadWriteSocket(const DataCompletenessCheck dataCompletenessCheck, QObject *parent) : QTcpSocket(parent)
+ReadWriteSocket::ReadWriteSocket(const DataCompletenessCheck dataCompletenessCheck, QTcpSocket *socket, QObject *parent) : QObject(parent)
+  , _socket(socket ? socket : new QTcpSocket())
   , currentTransferDataWrite(TransferData{})
   , _dataCompletenessCheck(dataCompletenessCheck)
 {
-    dataStreamIn.setDevice(this);
+    dataStreamIn.setDevice(_socket.get());
     dataStreamIn.setVersion(QDataStream::Qt_5_15);
 
-    connect(&timerWrite,    &QTimer::timeout            , this, &ReadWriteSocket::handleWriteTimeout);
-    connect(this,           &QTcpSocket::bytesWritten   , this, &ReadWriteSocket::handleBytesWritten);
-    connect(this,           &QTcpSocket::readyRead      , this, &ReadWriteSocket::handleReadyRead);
-    connect(this,           &QTcpSocket::errorOccurred  , this, &ReadWriteSocket::errorOccurred  );
-    connect(this,           &QTcpSocket::stateChanged   , this, &ReadWriteSocket::stateChanged   );
-    connect(this,           &QTcpSocket::disconnected   , this, &ReadWriteSocket::disconnected   );
-    connect(this,           &QTcpSocket::connected      , this, &ReadWriteSocket::connected      );
-    connect(this,           &QTcpSocket::hostFound      , this, &ReadWriteSocket::hostFound      );
+    connect(&timerWrite,        &QTimer::timeout            , this, &ReadWriteSocket::handleWriteTimeout);
+    connect(_socket.get(),            &QTcpSocket::bytesWritten   , this, &ReadWriteSocket::handleBytesWritten);
+    connect(_socket.get(),            &QTcpSocket::readyRead      , this, &ReadWriteSocket::handleReadyRead);
+    connect(_socket.get(),            &QTcpSocket::errorOccurred  , this, &ReadWriteSocket::errorOccurred  );
+    connect(_socket.get(),            &QTcpSocket::stateChanged   , this, &ReadWriteSocket::stateChanged   );
+    connect(_socket.get(),            &QTcpSocket::disconnected   , this, &ReadWriteSocket::disconnected   );
+    connect(_socket.get(),            &QTcpSocket::connected      , this, &ReadWriteSocket::connected      );
+    connect(_socket.get(),            &QTcpSocket::hostFound      , this, &ReadWriteSocket::hostFound      );
 }
 
 ReadWriteSocket::~ReadWriteSocket()
@@ -34,33 +35,49 @@ void ReadWriteSocket::sendDataToHost(const QByteArray &arr, const int timeout)
     }
 
     if (currentTransferDataWrite.isDataInTransit()) {
-        TransferData transferData;
-        transferData.arr            = block;
-        transferData.sizeAllData    = transferData.arr.size();
-        transferData.timeout        = timeout;
-        queueTransferData.enqueue(transferData);
+        saveTransferData(arr, timeout);
         return;
     }
     currentTransferDataWrite.sizeAllData    = block.size();
     currentTransferDataWrite.timeout        = timeout;
-    this->write(block);
+    const auto writingBytes = _socket->write(block);
+    if (writingBytes == -1) {
+        qCritical() << "writingBytes:" << writingBytes << "block:" << block << Qt::endl;
+        saveTransferData(arr, timeout);
+        QTimer::singleShot(100, [this](){ finishCurrentTransferDataWrite(); });
+        return;
+    }
     timerWrite.start(currentTransferDataWrite.timeout);
 }
 
 QString ReadWriteSocket::getPeerAddressPort() const
 {
-    return this->peerAddress().toString() + ":" + QString::number(this->peerPort());
+    return _socket->peerAddress().toString() + ":" + QString::number(_socket->peerPort());
 }
 
 QString ReadWriteSocket::getLocalAddressPort() const
 {
-    return this->localAddress().toString() + ":" + QString::number(this->localPort());
+    return _socket->localAddress().toString() + ":" + QString::number(_socket->localPort());
+}
+
+void ReadWriteSocket::connectToHost(const QHostAddress &address, quint16 port)
+{
+    _socket->connectToHost(address, port);
+}
+
+bool ReadWriteSocket::waitForConnected(const int msecs)
+{
+    return _socket->waitForConnected(msecs);
+}
+
+void ReadWriteSocket::abort()
+{
+    _socket->abort();
 }
 
 void ReadWriteSocket::handleBytesWritten(qint64 bytes)
 {
     currentTransferDataWrite.alreadyTransitingBytes += bytes;
-
     if (currentTransferDataWrite.alreadyTransitingBytes == currentTransferDataWrite.sizeAllData) {
         finishCurrentTransferDataWrite();
         return;
@@ -75,7 +92,7 @@ void ReadWriteSocket::handleReadyRead()
 {
     QByteArray arr;
     if (_dataCompletenessCheck == JSONValid) {
-        arr = this->readAll();
+        arr = _socket->readAll();
         if (QJsonDocument::fromJson(arr).isNull()) {
             return;
         }
@@ -89,11 +106,12 @@ void ReadWriteSocket::handleReadyRead()
         }
     }
     emit dataReceivedFromHost(arr);
+    qDebug() << "function:" << Q_FUNC_INFO << __LINE__ << arr << Qt::endl;
 }
 
 void ReadWriteSocket::handleWriteTimeout()
 {
-    qWarning() << Q_FUNC_INFO << QString("Operation TimeoutWrite for port (%1), Elapsed time (timerWrite: %2ms)").arg(this->peerName()).arg(timerWrite.remainingTime()) << Qt::endl;
+    qWarning() << Q_FUNC_INFO << QString("Operation TimeoutWrite for LocalAddressPort (%1), Elapsed time (timerWrite: %2ms)").arg(this->getLocalAddressPort()).arg(timerWrite.remainingTime()) << Qt::endl;
     finishCurrentTransferDataWrite();
 }
 
@@ -105,4 +123,13 @@ void ReadWriteSocket::finishCurrentTransferDataWrite()
         const auto transferData = queueTransferData.dequeue();
         sendDataToHost(transferData.arr, transferData.timeout);
     }
+}
+
+void ReadWriteSocket::saveTransferData(const QByteArray &arr, const int timeout)
+{
+    TransferData transferData;
+    transferData.arr            = arr;
+    transferData.sizeAllData    = transferData.arr.size();
+    transferData.timeout        = timeout;
+    queueTransferData.enqueue(transferData);
 }
