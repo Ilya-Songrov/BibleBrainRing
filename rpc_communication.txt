@@ -1,0 +1,29 @@
+
+--> Client to Server {"jsonrpc": "2.0", "method": "registration", "params": {"name": "team_name", "color": "green"}, "id": 1}
+<-- Server to Client {"jsonrpc": "2.0", "result": {"status": "success"}, "id": 1}
+<-- Server to Client {"jsonrpc": "2.0", "result": {"status": "error", "message": "Color not available"}, "id": "1"}
+<-- Server to Client {"jsonrpc": "2.0", "result": {"status": "error", "message": "The name is already in use"}, "id": "1"}
+
+--> Server to Client {"jsonrpc": "2.0", "method": "change_button_state", "params": true/false, "id": 2}
+<-- Client to Server {"jsonrpc": "2.0", "result": {"status": "success"}, "id": 2}
+<-- Client to Server {"jsonrpc": "2.0", "result": {"status": "error", "message": "error description"}, "id": 2}
+
+--> Server to Client {"jsonrpc": "2.0", "method": "start_time_for_question", "params": {"timeoutMsecs", 15000}, "id": 3}
+<-- Client to Server {"jsonrpc": "2.0", "result": {"status": "success"}, "id": 3}
+<-- Client to Server {"jsonrpc": "2.0", "result": {"status": "error", "message": "error description"}, "id": 3}
+
+--> Client to Server {"jsonrpc": "2.0", "method": "answer_to_question", "params": {"gmt_answer_time": "13:12:53.223"}, "id": 4}
+<-- Server to Client {"jsonrpc": "2.0", "result": {"status": "success"}, "id": 4}
+<-- Server to Client {"jsonrpc": "2.0", "result": {"status": "error", "message": "error description"}, "id": 4}
+
+--> Server to Client {"jsonrpc": "2.0", "method": "round_result", "params": {"score": 1.5}, "id": 5}
+<-- Client to Server {"jsonrpc": "2.0", "result": {"status": "success"}, "id": 5}
+<-- Client to Server {"jsonrpc": "2.0", "result": {"status": "error", "message": "error description"}, "id": 5}
+
+--> Server to Client {"jsonrpc": "2.0", "method": "sparring_result", "params": {"score": 3.5, "position": 2}, "id": 6}
+<-- Client to Server {"jsonrpc": "2.0", "result": {"status": "success"}, "id": 6}
+<-- Client to Server {"jsonrpc": "2.0", "result": {"status": "error", "message": "error description"}, "id": 6}
+
+--> Server to Client {"jsonrpc": "2.0", "method": "game_result", "params": {"score": 12.5, "position": 4}, "id": 7}
+<-- Client to Server {"jsonrpc": "2.0", "result": {"status": "success"}, "id": 7}
+<-- Client to Server {"jsonrpc": "2.0", "result": {"status": "error", "message": "error description"}, "id": 7}
