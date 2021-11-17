@@ -31,12 +31,15 @@ public:
     virtual ServerModeAbstract* startRegistration();
     virtual ServerModeAbstract* stopRegistration();
 
+    virtual ServerModeAbstract* banTeam(const QString &guidTeam);
     virtual ServerModeAbstract* setSparringTeams(const QVector<QString>& vecGuidTeam);
 
     virtual ServerModeAbstract* activateButtonsSparringTeams();
     virtual ServerModeAbstract* deactivateButtonsSparringTeams();
 
-    virtual ServerModeAbstract* banTeam(const QString &guidTeam);
+    virtual ServerModeAbstract* startRound(const int timeoutMsecs);
+    virtual ServerModeAbstract* finishSparring();
+    virtual ServerModeAbstract* addSparringNote(const QString &note);
     virtual ServerModeAbstract* changeTeamScore(const QString &guidTeam, const double score);
 
     virtual ServerModeAbstract* loadListQuestions(const QStringList &questions);
@@ -46,8 +49,10 @@ public:
     virtual ServerModeAbstract* slotResponseFromClient(const QString &guidClient, const QByteArray &arrBytes);
     virtual ServerModeAbstract* slotClientStatusChanged(const QString &guidClient, const IODeviceServerAbstract::ClientStatus clientStatus);
 
-    virtual QVector<QString> getSparringTeams();
     virtual TeamStatus getTeamStatus(const QString &guidTeam);
+    virtual QVector<QString> getSparringTeams();
+    virtual QString getRoundResult();
+    virtual QString getSparringResult();
     virtual int getTeamScore(const QString &guidTeam);
 
     ServerMode getCurrentServerMode();
@@ -72,9 +77,12 @@ protected:
     static std::function<void(const TeamDto &)>    functionTeamDtoChanged;
 
     static const QString print_color;
+    static const QString key_jsonrpc;
     static const QString key_method;
     static const QString key_params;
+    static const QString key_result;
     static const QString key_id;
+    static const QString value_jsonrpc;
 
 private:
     ServerMode _mode;

@@ -91,6 +91,17 @@ void BibleBrainRingServerClassical::stopRegistration()
     changeCurrentServerMode(mode);
 }
 
+void BibleBrainRingServerClassical::banTeam(const QString &guidTeam)
+{
+    ServerModeAbstract* mode = _currentServerMode->banTeam(guidTeam);
+    changeCurrentServerMode(mode);
+}
+
+TeamStatus BibleBrainRingServerClassical::getTeamStatus(const QString &guidTeam)
+{
+    return _currentServerMode->getTeamStatus(guidTeam);;
+}
+
 void BibleBrainRingServerClassical::setSparringTeams(const QVector<QString> &vecGuidTeam)
 {
     ServerModeAbstract* mode = _currentServerMode->setSparringTeams(vecGuidTeam);
@@ -114,15 +125,29 @@ void BibleBrainRingServerClassical::deactivateButtonsSparringTeams()
     changeCurrentServerMode(mode);
 }
 
-void BibleBrainRingServerClassical::banTeam(const QString &guidTeam)
+void BibleBrainRingServerClassical::startRound(const int timeoutMsecs)
 {
-    ServerModeAbstract* mode = _currentServerMode->banTeam(guidTeam);
-    changeCurrentServerMode(mode);
+
 }
 
-TeamStatus BibleBrainRingServerClassical::getTeamStatus(const QString &guidTeam)
+void BibleBrainRingServerClassical::finishSparring()
 {
-    return _currentServerMode->getTeamStatus(guidTeam);;
+
+}
+
+void BibleBrainRingServerClassical::addSparringNote(const QString &note)
+{
+
+}
+
+QString BibleBrainRingServerClassical::getRoundResult()
+{
+
+}
+
+QString BibleBrainRingServerClassical::getSparringResult()
+{
+
 }
 
 void BibleBrainRingServerClassical::changeTeamScore(const QString &guidTeam, const double score)
@@ -154,21 +179,6 @@ void BibleBrainRingServerClassical::setCurrentQuestion(const QString &question)
 }
 
 QString BibleBrainRingServerClassical::getCurrentQuestion()
-{
-
-}
-
-void BibleBrainRingServerClassical::finishRound()
-{
-
-}
-
-void BibleBrainRingServerClassical::addRoundNote(const QString &note)
-{
-
-}
-
-QString BibleBrainRingServerClassical::getRoundResult()
 {
 
 }

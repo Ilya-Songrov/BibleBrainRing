@@ -33,7 +33,7 @@ public:
 private:
     struct Round{
         const TeamDto player                ;
-        double score                  = TeamDto{}.score;
+        double score                        = TeamDto{}.score;
         Round(const TeamDto &t, const double s) : player(t), score(s) {}
     };
     struct Sparring{

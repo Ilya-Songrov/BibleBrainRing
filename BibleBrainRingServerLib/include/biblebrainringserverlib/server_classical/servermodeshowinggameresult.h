@@ -18,5 +18,8 @@ class ServerModeShowingGameResult : public ServerModeGameAbstract
 {
 public:
     explicit ServerModeShowingGameResult(QObject *parent = nullptr);
+
+private:
+    const QString notification_server_to_client_game_result;
 };
 

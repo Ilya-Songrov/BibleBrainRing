@@ -38,7 +38,7 @@ enum TeamStatus
     NotValid                ,
     Registered              ,
     WaitingForTheNextRound  ,
-    InGame                  ,
+    InSparring              ,
     Lost                    ,
     Banned                  ,
 };

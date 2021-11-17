@@ -43,6 +43,12 @@ public:
     void activateButtonsSparringTeams();
     void deactivateButtonsSparringTeams();
 
+    void startRound(const int timeoutMsecs);
+    void finishSparring();
+    void addSparringNote(const QString &note);
+    QString getRoundResult();
+    QString getSparringResult();
+
     void changeTeamScore(const QString &guidTeam, const double score);
     int getTeamScore(const QString &guidTeam);
 
@@ -51,9 +57,6 @@ public:
     void setCurrentQuestion(const QString &question);
     QString getCurrentQuestion();
 
-    void finishRound();
-    void addRoundNote(const QString &note);
-    QString getRoundResult();
 
     // callbacks:
     void onConnectNewTeam   (std::function<void(const TeamDto &)> function);

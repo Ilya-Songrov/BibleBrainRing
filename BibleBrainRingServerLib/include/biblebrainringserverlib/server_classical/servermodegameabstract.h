@@ -22,6 +22,12 @@ public:
     virtual QVector<QString> getSparringTeams() override;
 
 protected:
+    void sendToSparringTeams(const QString &method,
+                             const QJsonValue &params = QJsonValue::Null,
+                             const QJsonValue &id = QJsonValue::Null,
+                             const TeamStatus &status = InSparring);
+
+protected:
     QVector<TeamDto> vecSparringTeams;
 };
 

@@ -14,14 +14,18 @@
 
 IODeviceServerAbstract* ServerModeAbstract::io                                          = nullptr;
 Questions ServerModeAbstract::q                                                         ;
+Standings ServerModeAbstract::s                                                         ;
 QList<TeamDto> ServerModeAbstract::listTeams                                            ;
 std::function<void(const TeamDto &)>    ServerModeAbstract::functionConnectNewTeam      = nullptr;
 std::function<void(const TeamDto &)>    ServerModeAbstract::functionTeamDtoChanged      = nullptr;
 
 const QString ServerModeAbstract::print_color                                           = { "192;61;205" };
+const QString ServerModeAbstract::key_jsonrpc                                           = { "jsonrpc" };
 const QString ServerModeAbstract::key_method                                            = { "method" };
 const QString ServerModeAbstract::key_params                                            = { "params" };
+const QString ServerModeAbstract::key_result                                            = { "result" };
 const QString ServerModeAbstract::key_id                                                = { "id" };
+const QString ServerModeAbstract::value_jsonrpc                                         = { "2.0" };
 
 ServerModeAbstract::ServerModeAbstract(const ServerMode mode, const QString &objectName, QObject *parent) : QObject(parent)
   , _mode(mode)
@@ -51,6 +55,14 @@ ServerModeAbstract *ServerModeAbstract:: stopRegistration()
     return nullptr;
 }
 
+ServerModeAbstract *ServerModeAbstract::banTeam(const QString &guidTeam)
+{
+    qWarning() << "Not processed:" << "Mode: " + objectName() << "function: " + QString(Q_FUNC_INFO)
+               << QString("guidTeam: %1").arg(guidTeam)
+               << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;
+    return nullptr;
+}
+
 ServerModeAbstract *ServerModeAbstract::setSparringTeams(const QVector<QString> &vecGuidTeam)
 {
     qWarning() << "Not processed:" << "Mode: " + objectName() << "function: " + QString(Q_FUNC_INFO)
@@ -74,14 +86,31 @@ ServerModeAbstract *ServerModeAbstract::deactivateButtonsSparringTeams()
     return nullptr;
 }
 
-ServerModeAbstract *ServerModeAbstract::banTeam(const QString &guidTeam)
+ServerModeAbstract *ServerModeAbstract::startRound(const int timeoutMsecs)
 {
+    if (_mode == RunningSparring || _mode == ShowingSparringResult) {
+        return nullptr;
+    }
     qWarning() << "Not processed:" << "Mode: " + objectName() << "function: " + QString(Q_FUNC_INFO)
-               << QString("guidTeam: %1").arg(guidTeam)
+               << QString("guidTeam: %1").arg(timeoutMsecs)
                << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;
     return nullptr;
 }
 
+ServerModeAbstract *ServerModeAbstract::finishSparring()
+{
+    qWarning() << "Not processed:" << "Mode: " + objectName() << "function: " + QString(Q_FUNC_INFO)
+               << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;
+    return nullptr;
+}
+
+ServerModeAbstract *ServerModeAbstract::addSparringNote(const QString &note)
+{
+    qWarning() << "Not processed:" << "Mode: " + objectName() << "function: " + QString(Q_FUNC_INFO)
+               << QString("note: %1").arg(note)
+               << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;
+    return nullptr;
+}
 ServerModeAbstract *ServerModeAbstract::changeTeamScore(const QString &guidTeam, const double score)
 {
     qWarning() << "Not processed:" << "Mode: " + objectName() << "function: " + QString(Q_FUNC_INFO)
@@ -143,6 +172,14 @@ ServerModeAbstract *ServerModeAbstract::slotClientStatusChanged(const QString &g
     return nullptr;
 }
 
+TeamStatus ServerModeAbstract::getTeamStatus(const QString &guidTeam)
+{
+    qWarning() << "You cannot get this information in the current mode! Not processed:" << "Mode: " + objectName() << "function: " + QString(__FUNCTION__)
+               << QString("guidTeam: %1").arg(guidTeam)
+               << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;
+    return {};
+}
+
 QVector<QString> ServerModeAbstract::getSparringTeams()
 {
     qWarning() << "You cannot get this information in the current mode! Not processed:" << "Mode: " + objectName() << "function: " + QString(__FUNCTION__)
@@ -150,10 +187,16 @@ QVector<QString> ServerModeAbstract::getSparringTeams()
     return {};
 }
 
-TeamStatus ServerModeAbstract::getTeamStatus(const QString &guidTeam)
+QString ServerModeAbstract::getRoundResult()
 {
     qWarning() << "You cannot get this information in the current mode! Not processed:" << "Mode: " + objectName() << "function: " + QString(__FUNCTION__)
-               << QString("guidTeam: %1").arg(guidTeam)
+               << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;
+    return {};
+}
+
+QString ServerModeAbstract::getSparringResult()
+{
+    qWarning() << "You cannot get this information in the current mode! Not processed:" << "Mode: " + objectName() << "function: " + QString(__FUNCTION__)
                << QDateTime::currentDateTime().toString("yyyy:MM:dd - hh:mm:ss:zzz") << Qt::endl;
     return {};
 }

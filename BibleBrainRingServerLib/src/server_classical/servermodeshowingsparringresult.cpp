@@ -13,6 +13,7 @@
 #include "biblebrainringserverlib/server_classical/servermodeshowingsparringresult.h"
 
 ServerModeShowingSparringResult::ServerModeShowingSparringResult(QObject *parent) : ServerModeGameAbstract(ServerMode::ShowingSparringResult, __FUNCTION__, parent)
+  , notification_server_to_client_sparring_result("notification_server_to_client_sparring_result")
 {
 
 }

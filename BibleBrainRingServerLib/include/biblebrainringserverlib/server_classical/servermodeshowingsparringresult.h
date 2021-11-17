@@ -18,5 +18,8 @@ class ServerModeShowingSparringResult : public ServerModeGameAbstract
 {
 public:
     explicit ServerModeShowingSparringResult(QObject *parent = nullptr);
+
+private:
+    const QString notification_server_to_client_sparring_result;
 };
 

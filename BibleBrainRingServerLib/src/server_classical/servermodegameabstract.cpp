@@ -25,3 +25,22 @@ QVector<QString> ServerModeGameAbstract::getSparringTeams()
     }
     return vec;
 }
+
+void ServerModeGameAbstract::sendToSparringTeams(const QString &method, const QJsonValue &params, const QJsonValue &id, const TeamStatus &status)
+{
+    QJsonObject obj;
+    obj.insert(key_jsonrpc, value_jsonrpc);
+    obj.insert(key_method, method);
+    if (params != QJsonValue::Null) {
+        obj.insert(key_params, params);
+    }
+    if (id != QJsonValue::Null) {
+        obj.insert(key_id, id);
+    }
+    const QByteArray arr = QJsonDocument(obj).toJson();
+    for (const TeamDto &team : qAsConst(vecSparringTeams)) {
+        if (team.status == status) {
+            io->sendToClient(team.guid, arr, 5000);
+        }
+    }
+}

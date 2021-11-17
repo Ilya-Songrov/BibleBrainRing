@@ -31,6 +31,6 @@ public:
     virtual TeamStatus getTeamStatus(const QString &guidTeam) override;
 
 private:
-    const QString value_notification_TeamDto;
+    const QString value_notification_client_to_server_registration;
 };
 

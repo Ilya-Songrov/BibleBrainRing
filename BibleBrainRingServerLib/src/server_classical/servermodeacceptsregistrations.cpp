@@ -13,7 +13,7 @@
 #include "biblebrainringserverlib/server_classical/servermodeacceptsregistrations.h"
 
 ServerModeAcceptsRegistrations::ServerModeAcceptsRegistrations(QObject *parent) : ServerModeGameAbstract(ServerMode::AcceptsRegistrations, __FUNCTION__, parent)
-    , value_notification_TeamDto                ("notification_TeamDto")
+    , value_notification_client_to_server_registration                ("notification_client_to_server_registration")
 {
 
 }
@@ -47,7 +47,7 @@ ServerModeAbstract *ServerModeAcceptsRegistrations::slotResponseFromClient(const
     const QJsonObject objRoot = doc.object();
     const bool isItNotification = objRoot.value(key_id) == QJsonValue::Null;
     if (isItNotification) {
-        if (objRoot.value(key_method).toString() == value_notification_TeamDto) {
+        if (objRoot.value(key_method).toString() == value_notification_client_to_server_registration) {
             const auto team = DtoCreator::getTeamDto(objRoot);
             if (getTeam(guidClient).status == TeamStatus::NotValid) {
                 changeTeam(team, false);
