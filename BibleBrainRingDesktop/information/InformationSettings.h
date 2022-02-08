@@ -5,7 +5,7 @@
 #include <QScreen>
 #include <QNetworkInterface>
 
-#include "informationabstract.h"
+#include "InformationAbstract.h"
 
 
 class InformationSettings : public InformationAbstract

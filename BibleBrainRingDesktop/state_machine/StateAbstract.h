@@ -5,6 +5,7 @@
 
 #include "global_enums.h"
 #include "global_utils.h"
+#include "ListTeams.hpp"
 
 class StateAbstract : public QObject
 {
@@ -17,5 +18,10 @@ public:
 
 protected:
     void printCurrentState();
+
+protected:
+    static QScopedPointer<ListTeams> listTeamsRegistration;
+    static QScopedPointer<ListTeams> listTeamsInGameSession;
+    static QScopedPointer<ListTeams> listTeamsInBattle;
 };
 

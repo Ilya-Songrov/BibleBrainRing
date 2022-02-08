@@ -38,6 +38,16 @@ ApplicationWindow {
         visible: providerQml.currentAppState === BibleBrainRing.Registration
     }
 
+    QmlPageGameSession{
+        id: pageGameSession
+        visible: providerQml.currentAppState === BibleBrainRing.GameSession
+    }
+
+    QmlPageShowingResult{
+        id: pageShowingResult
+        visible: providerQml.currentAppState === BibleBrainRing.ShowingResult
+    }
+
     QmlToolTip{
         id: toolTipMessage
     }

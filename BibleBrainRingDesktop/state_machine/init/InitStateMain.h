@@ -12,15 +12,25 @@
 
 #pragma once
 
-#include "stateabstract.h"
+#include <QQmlContext>
+#include <QQmlApplicationEngine>
+#include <QTimer>
+
+#include "StateAbstract.h"
 #include "all_states.h"
+#include "InformationSettings.h"
+#include "ListModel.hpp"
 
-class RegistrationStateMain : public StateAbstract
+class InitStateMain : public StateAbstract
 {
+    QQmlApplicationEngine *_qmlApplicationEngine;
 public:
-    explicit RegistrationStateMain(QObject *parent = nullptr);
+    explicit InitStateMain(QQmlApplicationEngine *qmlApplicationEngine, QObject *parent = nullptr);
 
-    virtual StateAbstract *onQmlButtonClicked   (const BibleBrainRing::Button button) override;
+    virtual StateAbstract *onEndQmlCreation     () override;
 
+private:
+    void setQmlSettings();
+    void loadQml();
 };
 

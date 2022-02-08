@@ -17,10 +17,10 @@
 
 struct TeamDto : public DtoAbstract
 {
-    QString guid        ;
-    QString name        ;
-    QString color       ;
-    double score        = -1.0;
-    int position        = -1;
-    TeamStatus status   = TeamStatus::None;
+    QString     guid        ;
+    QString     name        ;
+    QString     color       ;
+    double      score       = -1.0;
+    int         position    = -1;
+    TeamStatus  status      = TeamStatus::None;
 };

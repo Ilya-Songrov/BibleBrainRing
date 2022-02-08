@@ -1,4 +1,4 @@
-#include "informationabstract.h"
+#include "InformationAbstract.h"
 
 InformationAbstract::InformationAbstract()
 {

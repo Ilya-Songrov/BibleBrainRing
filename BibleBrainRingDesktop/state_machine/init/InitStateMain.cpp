@@ -10,9 +10,10 @@
 **
 **************************************************************************/
 
-#include "initstatemain.h"
+#include "InitStateMain.h"
 
-InitStateMain::InitStateMain(QQmlApplicationEngine *qmlApplicationEngine, QObject *parent) : StateAbstract(__FUNCTION__, parent)
+InitStateMain::InitStateMain(QQmlApplicationEngine *qmlApplicationEngine, QObject *parent)
+    : StateAbstract(__FUNCTION__, parent)
   , _qmlApplicationEngine(qmlApplicationEngine)
 {
     providerQml->setCurrentAppState(BibleBrainRing::Init);
@@ -39,6 +40,10 @@ void InitStateMain::setQmlSettings()
                 );
     qRegisterMetaType<BibleBrainRing::AppState>("BibleBrainRing::AppState"); // not qmlRegister but qRegister
     qRegisterMetaType<BibleBrainRing::Button>("BibleBrainRing::Button"); // not qmlRegister but qRegister
+    qmlRegisterType<ListModel>("ListModelQml", 1, 0, "ListModel");
+    _qmlApplicationEngine->rootContext()->setContextProperty("listTeamsRegistrationQml", listTeamsRegistration.get());
+    _qmlApplicationEngine->rootContext()->setContextProperty("listTeamsInGameSession", listTeamsInGameSession.get());
+    _qmlApplicationEngine->rootContext()->setContextProperty("listTeamsInBattleQml", listTeamsInBattle.get());
 }
 
 void InitStateMain::loadQml()

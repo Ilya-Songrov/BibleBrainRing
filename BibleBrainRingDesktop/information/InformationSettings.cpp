@@ -1,6 +1,6 @@
-#include "informationsettings.h"
+#include "InformationSettings.h"
 
-QRect       InformationSettings::rectPrimaryScreen;
+QRect InformationSettings::rectPrimaryScreen;
 
 InformationSettings::InformationSettings() : InformationAbstract()
 {

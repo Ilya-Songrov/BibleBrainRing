@@ -12,24 +12,16 @@
 
 #pragma once
 
-#include <QQmlContext>
-#include <QQmlApplicationEngine>
-#include <QTimer>
-
-#include "stateabstract.h"
+#include "StateAbstract.h"
 #include "all_states.h"
-#include "informationsettings.h"
+#include "biblebrainringserverlib/iodevice/tcp/tcpserver.h"
 
-class InitStateMain : public StateAbstract
+
+class StartStateMenuMain : public StateAbstract
 {
-    QQmlApplicationEngine *_qmlApplicationEngine;
 public:
-    explicit InitStateMain(QQmlApplicationEngine *qmlApplicationEngine, QObject *parent = nullptr);
+    explicit StartStateMenuMain(QObject *parent = nullptr);
 
-    virtual StateAbstract *onEndQmlCreation     () override;
-
-private:
-    void setQmlSettings();
-    void loadQml();
+    virtual StateAbstract *onQmlButtonClicked   (const BibleBrainRing::Button button) override;
 };
 

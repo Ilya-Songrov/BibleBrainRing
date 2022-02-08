@@ -24,7 +24,7 @@ enum AppState {
     RunServer,
     Registration,
     GameSession,
-    ShowResult,
+    ShowingResult,
 };
 Q_ENUM_NS(AppState)
 

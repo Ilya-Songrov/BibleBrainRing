@@ -14,29 +14,37 @@ CONFIG += c++17
 
 
 HEADERS += \
-    biblebrainringapplicationengine.h \
+    BibleBrainRingApplicationEngine.h \
     global/global_enums.h \
     global/global_utils.h \
-    information/informationabstract.h \
-    information/informationsettings.h \
+    information/InformationAbstract.h \
+    information/InformationSettings.h \
     provider/providerqml.h \
+    state_machine/ShowingResult/ShowingResult.hpp \
+    state_machine/StateAbstract.h \
     state_machine/all_states.h \
-    state_machine/init/initstatemain.h \
-    state_machine/registration/registrationstatemain.h \
-    state_machine/start_menu/startstatemain.h \
-    state_machine/stateabstract.h
+    state_machine/game_session/GameSession.hpp \
+    state_machine/init/InitStateMain.h \
+    state_machine/registration/RegistrationStateMain.h \
+    state_machine/start_menu/StartStateMenuMain.h \
+    view/ListModel.hpp \
+    view/ListTeams.hpp
 
 SOURCES += \
-    biblebrainringapplicationengine.cpp \
+    BibleBrainRingApplicationEngine.cpp \
     global/global_utils.cpp \
-    information/informationabstract.cpp \
-    information/informationsettings.cpp \
+    information/InformationAbstract.cpp \
+    information/InformationSettings.cpp \
     provider/providerqml.cpp \
-    state_machine/init/initstatemain.cpp \
-    state_machine/registration/registrationstatemain.cpp \
-    state_machine/start_menu/startstatemain.cpp \
-    state_machine/stateabstract.cpp \
-    main.cpp
+    state_machine/ShowingResult/ShowingResult.cpp \
+    state_machine/StateAbstract.cpp \
+    state_machine/game_session/GameSession.cpp \
+    state_machine/init/InitStateMain.cpp \
+    state_machine/registration/RegistrationStateMain.cpp \
+    state_machine/start_menu/StartStateMenuMain.cpp \
+    main.cpp \
+    view/ListModel.cpp \
+    view/ListTeams.cpp
 
 RESOURCES += \
     resources/qmlFiles.qrc \
@@ -46,11 +54,13 @@ INCLUDEPATH += \
     information \
     global \
     provider \
+    view \
     state_machine \
     state_machine/init \
     state_machine/start_menu \
     state_machine/registration \
-    state_machine/gameSession
+    state_machine/game_session \
+    state_machine/ShowingResult
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =

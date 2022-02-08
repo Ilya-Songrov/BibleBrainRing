@@ -17,7 +17,7 @@
 
 #include <iostream>
 
-#include "biblebrainringapplicationengine.h"
+#include "BibleBrainRingApplicationEngine.h"
 #include "../Exceptions/exceptions/applicationnotify.h"
 
 int main(int argc, char *argv[])

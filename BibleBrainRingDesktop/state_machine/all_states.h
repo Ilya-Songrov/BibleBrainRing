@@ -1,7 +1,7 @@
 #pragma once
 
-#include "initstatemain.h"
-
-#include "startstatemain.h"
-
-#include "registrationstatemain.h"
+#include "InitStateMain.h"
+#include "StartStateMenuMain.h"
+#include "RegistrationStateMain.h"
+#include "GameSession.hpp"
+#include "ShowingResult.hpp"

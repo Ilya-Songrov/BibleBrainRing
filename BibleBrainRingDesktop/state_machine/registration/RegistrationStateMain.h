@@ -12,16 +12,15 @@
 
 #pragma once
 
-#include "stateabstract.h"
+#include "StateAbstract.h"
 #include "all_states.h"
-#include "biblebrainringserverlib/iodevice/tcp/tcpserver.h"
 
-
-class StartStateMenuMain : public StateAbstract
+class RegistrationStateMain : public StateAbstract
 {
 public:
-    explicit StartStateMenuMain(QObject *parent = nullptr);
+    explicit RegistrationStateMain(QObject *parent = nullptr);
 
     virtual StateAbstract *onQmlButtonClicked   (const BibleBrainRing::Button button) override;
+
 };
 

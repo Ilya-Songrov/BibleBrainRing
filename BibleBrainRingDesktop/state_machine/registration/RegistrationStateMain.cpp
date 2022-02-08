@@ -10,9 +10,10 @@
 **
 **************************************************************************/
 
-#include "registrationstatemain.h"
+#include "RegistrationStateMain.h"
 
-RegistrationStateMain::RegistrationStateMain(QObject *parent) : StateAbstract(__FUNCTION__, parent)
+RegistrationStateMain::RegistrationStateMain(QObject *parent)
+    : StateAbstract(__FUNCTION__, parent)
 {
     providerQml->setCurrentAppState(BibleBrainRing::Registration);
 //    serverClassical->startRegistration();
@@ -30,7 +31,25 @@ RegistrationStateMain::RegistrationStateMain(QObject *parent) : StateAbstract(__
 
     QTimer::singleShot(100, [this](){
         qDebug() << "SingleShot" << Qt::endl;
-
+        TeamDto team;
+        team.guid        = "guid";
+        team.name        = "name";
+        team.color       = "green";
+        team.score       = 2;
+        team.position    = 3;
+        team.status      = TeamStatus::NotValid;
+        listTeamsRegistration->appendTeam(team);
+        team.color      = "blue";
+        team.status      = TeamStatus::Lost;
+        listTeamsRegistration->appendTeam(team);
+        QTimer::singleShot(1000, [team](){
+            qDebug() << "SingleShot" << Qt::endl;
+            listTeamsRegistration->appendTeam(team);
+        });
+        QTimer::singleShot(2000, [team](){
+            qDebug() << "SingleShot" << Qt::endl;
+            listTeamsRegistration->appendTeam(team);
+        });
     });
 }
 
@@ -39,6 +58,10 @@ StateAbstract *RegistrationStateMain::onQmlButtonClicked(const BibleBrainRing::B
     if (button == BibleBrainRing::ButtonComeback) {
         // TODO: add: do you want to lose all progress?
         return new StartStateMenuMain();
+    }
+    else if (button == BibleBrainRing::ButtonNext) {
+        // TODO: add: do you want to lose all progress?
+        return new GameSession();
     }
     return nullptr;
 }
