@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/qmlFiles">
+        <file>images/3313578_arrow_left_direction_pointing_icon.svg</file>
+    </qresource>
+</RCC>

@@ -5,6 +5,7 @@ SOURCES += \
     $$PWD/src/dtos/dtocreator.cpp \
     $$PWD/src/information/informationconsoleprinter.cpp \
     $$PWD/src/iodevice/iodeviceserverabstract.cpp \
+    $$PWD/src/iodevice/none/NoneServer.cpp \
     $$PWD/src/iodevice/tcp/readwritesocket.cpp \
     $$PWD/src/iodevice/tcp/tcpserver.cpp \
     $$PWD/src/server_classical/biblebrainringserverclassical.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     $$PWD/include/biblebrainringserverlib/enums/global_enums.h \
     $$PWD/include/biblebrainringserverlib/information/informationconsoleprinter.h \
     $$PWD/include/biblebrainringserverlib/iodevice/iodeviceserverabstract.h \
+    $$PWD/include/biblebrainringserverlib/iodevice/none/NoneServer.h \
     $$PWD/include/biblebrainringserverlib/iodevice/tcp/readwritesocket.h \
     $$PWD/include/biblebrainringserverlib/iodevice/tcp/tcpserver.h \
     $$PWD/include/biblebrainringserverlib/server_classical/all_server_modes.h \

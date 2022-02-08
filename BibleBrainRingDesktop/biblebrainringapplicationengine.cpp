@@ -6,7 +6,12 @@ BibleBrainRingApplicationEngine::BibleBrainRingApplicationEngine(QObject *parent
 {
     createUtils();
     setConnections();
+#ifdef QT_DEBUG
     currentState = new InitStateMain(this);
+    currentState = new RegistrationStateMain();
+#else
+    currentState = new InitStateMain(this);
+#endif
 }
 
 BibleBrainRingApplicationEngine::~BibleBrainRingApplicationEngine()

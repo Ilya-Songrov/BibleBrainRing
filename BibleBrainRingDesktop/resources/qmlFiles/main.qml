@@ -3,6 +3,8 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 
 import biblebrainring.namespace 1.0
+import "Components" as MyComponents
+
 
 ApplicationWindow {
     id: rootWindow
@@ -12,11 +14,11 @@ ApplicationWindow {
     y: rectScreen.y
     visible: true
 
+    readonly property string pathArrow:  "qrc:/qmlFiles/images/3313578_arrow_left_direction_pointing_icon.svg"
     Connections{
         target: providerQml
         function onShowMessage(message){
-            toolTipMessage.text = message
-            toolTipMessage.visible = true
+            toolTipMessage.show(message)
         }
     }
 
@@ -36,17 +38,40 @@ ApplicationWindow {
         visible: providerQml.currentAppState === BibleBrainRing.Registration
     }
 
-    ToolTip{
+    QmlToolTip{
         id: toolTipMessage
-        text: "Hello!"
-        visible: false
-        timeout: 2222
-        background: Rectangle{
-            anchors.fill: parent
-            color: "red"
-            radius: 2
-        }
-//        closePolicy: Popup.CloseOnPressOutsideParent
+    }
+
+    MyComponents.QmlComponentButtonImage{
+        id: buttonComeback
+        width: Math.min(parent.width, parent.height) * 0.05
+        height: width
+        anchors.left: parent.left
+        anchors.leftMargin: width * 0.2
+        anchors.top: parent.top
+        anchors.topMargin: width * 0.2
+        pathImage: pathArrow
+        visible: providerQml.currentAppState !== BibleBrainRing.None &&
+                 providerQml.currentAppState !== BibleBrainRing.Init &&
+                 providerQml.currentAppState !== BibleBrainRing.StartMenu
+        onClicked: providerQml.onQmlButtonClicked(BibleBrainRing.ButtonComeback)
+    }
+    MyComponents.QmlComponentButtonImage{
+        id: buttonNext
+        width: Math.min(parent.width, parent.height) * 0.05
+        height: width
+        anchors.right: parent.right
+        anchors.rightMargin: width * 0.2
+        anchors.top: parent.top
+        anchors.topMargin: width * 0.2
+        transformOrigin: Item.Center
+        rotation: 180
+        rotationOclock: true
+        pathImage: pathArrow
+        visible: providerQml.currentAppState !== BibleBrainRing.None &&
+                 providerQml.currentAppState !== BibleBrainRing.Init &&
+                 providerQml.currentAppState !== BibleBrainRing.StartMenu
+        onClicked: providerQml.onQmlButtonClicked(BibleBrainRing.ButtonNext)
     }
 
     Component.onCompleted: { providerQml.onEndQmlCreation() }

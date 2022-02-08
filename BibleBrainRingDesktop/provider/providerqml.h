@@ -37,6 +37,7 @@ signals:
     void currentAppStateChanged();
 
     void showMessage(const QString &message);
+    void setDataSelectCrypto(const QVariantList variantListCrypto);
 
     void onEndQmlCreation();
     void onQmlButtonClicked(const BibleBrainRing::Button button);

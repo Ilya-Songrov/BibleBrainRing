@@ -39,7 +39,8 @@ SOURCES += \
     main.cpp
 
 RESOURCES += \
-    resources/qmlFiles.qrc
+    resources/qmlFiles.qrc \
+    resources/visualData.qrc
 
 INCLUDEPATH += \
     information \

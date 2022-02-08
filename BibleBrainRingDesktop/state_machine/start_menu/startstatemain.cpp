@@ -20,25 +20,24 @@ StartStateMenuMain::StartStateMenuMain(QObject *parent) : StateAbstract(__FUNCTI
 StateAbstract *StartStateMenuMain::onQmlButtonClicked(const BibleBrainRing::Button button)
 {
     if (button == BibleBrainRing::ButtonStartServerWifi) {
-        providerQml->showMessage("Write me, please");
+        emit providerQml->showMessage("Write me, please");
 //        static TcpServer tcpServer("127.0.0.1", "9090");
 //        serverClassical.reset(new BibleBrainRingServerClassical(&tcpServer));
     }
     else if (button == BibleBrainRing::ButtonStartServerBluetooth) {
-        providerQml->showMessage("Write me, please");
+        emit providerQml->showMessage("Write me, please");
     }
     else if (button == BibleBrainRing::ButtonStartServerHttp) {
-        providerQml->showMessage("Write me, please");
         return new RegistrationStateMain();
     }
     else if (button == BibleBrainRing::ButtonStartClientWifi) {
-        providerQml->showMessage("Write me, please");
+        emit providerQml->showMessage("Write me, please");
     }
     else if (button == BibleBrainRing::ButtonStartClientBluetooth) {
-        providerQml->showMessage("Write me, please");
+        emit providerQml->showMessage("Write me, please");
     }
     else if (button == BibleBrainRing::ButtonStartOnlyProgram) {
-        providerQml->showMessage("Write me, please");
+        emit providerQml->showMessage("Write me, please");
     }
     return nullptr;
 }

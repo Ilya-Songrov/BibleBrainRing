@@ -35,6 +35,8 @@ enum Button {
     ButtonStartClientWifi,
     ButtonStartClientBluetooth,
     ButtonStartOnlyProgram,
+    ButtonComeback,
+    ButtonNext,
 };
 Q_ENUM_NS(Button)
 

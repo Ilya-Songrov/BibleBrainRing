@@ -1,14 +1,15 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 
-import biblebrainring.namespace 1.0
+import "Components" as MyComponents
 
 Item {
     anchors.fill: parent
 
-    Text {
+    MyComponents.QmlComponentGridView{
+        width: parent.width * 0.8
+        height: parent.height * 0.8
         anchors.centerIn: parent
-        text: qsTr("text")
     }
 
 }

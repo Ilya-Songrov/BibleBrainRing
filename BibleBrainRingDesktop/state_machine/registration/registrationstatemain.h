@@ -21,5 +21,6 @@ public:
     explicit RegistrationStateMain(QObject *parent = nullptr);
 
     virtual StateAbstract *onQmlButtonClicked   (const BibleBrainRing::Button button) override;
+
 };
 

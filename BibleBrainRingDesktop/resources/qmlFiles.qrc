@@ -3,5 +3,8 @@
         <file>qmlFiles/main.qml</file>
         <file>qmlFiles/QmlPageStart.qml</file>
         <file>qmlFiles/QmlPageRegistration.qml</file>
+        <file>qmlFiles/QmlToolTip.qml</file>
+        <file>qmlFiles/Components/QmlComponentButtonImage.qml</file>
+        <file>qmlFiles/Components/QmlComponentGridView.qml</file>
     </qresource>
 </RCC>
