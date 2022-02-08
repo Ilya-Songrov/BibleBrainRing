@@ -14,7 +14,7 @@
 
 StartStateMain::StartStateMain(QObject *parent) : StateAbstract(__FUNCTION__, parent)
 {
-    providerQml->setCurrentAppState(BibleBrainRing::Start);
+    providerQml->setCurrentAppState(BibleBrainRing::StartMenu);
 }
 
 StateAbstract *StartStateMain::onQmlButtonClicked(const BibleBrainRing::Button button)

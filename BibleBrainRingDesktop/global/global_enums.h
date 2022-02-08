@@ -19,7 +19,9 @@ namespace BibleBrainRing {
 Q_NAMESPACE
 enum AppState {
     None,
-    Start,
+    Init,
+    StartMenu,
+    RunServer,
     Registration,
     GameSession,
 };
@@ -28,6 +30,10 @@ Q_ENUM_NS(AppState)
 enum Button {
     ButtonStartServerWifi,
     ButtonStartServerBluetooth,
+    ButtonStartServerHttp,
+    ButtonStartClientWifi,
+    ButtonStartClientBluetooth,
+    ButtonStartProgram,
 };
 Q_ENUM_NS(Button)
 
