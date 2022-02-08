@@ -1,0 +1,16 @@
+{
+    "example.png": {
+        "author_name": "example",
+        "author_link": "example",
+        "license": "example",
+        "site_download": "example",
+        "image_name": "example.png"
+    },
+    "example.png": {
+        "author_name": "Gary Mendonca",
+        "author_link": "https://twitter.com/mendonca_gary",
+        "license": "Free for commercial use",
+        "site_download": "https://www.iconfinder.com/icons/3313578/arrow_left_direction_pointing_icon",
+        "image_name": "3313578_arrow_left_direction_pointing_icon.svg"
+    }
+}
