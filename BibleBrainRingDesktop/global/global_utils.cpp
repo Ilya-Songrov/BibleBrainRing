@@ -18,4 +18,5 @@ QScopedPointer<BibleBrainRingServerClassical> serverClassical (nullptr);
 void createUtils()
 {
     providerQml.reset(new ProviderQml());
+    serverClassical.reset(new IODeviceServerAbstract());
 }

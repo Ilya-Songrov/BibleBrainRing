@@ -1,27 +1,43 @@
 #include "biblebrainringapplicationengine.h"
 
-BibleBrainRingApplicationEngine::BibleBrainRingApplicationEngine(QObject *parent) : QQmlApplicationEngine(parent)
-  #ifdef QT_DEBUG
-  , bbrClassical(new BibleBrainRingServerClassical(new TcpServer("127.0.0.1", "9090", this)))
-  #endif
-  , currentState(nullptr)
+BibleBrainRingApplicationEngine::BibleBrainRingApplicationEngine(QObject *parent)
+    : QQmlApplicationEngine(parent)
+    , currentState(nullptr)
 {
+    createUtils();
+    setConnections();
     currentState = new InitStateMain(this);
-//    providerQml->setCurrentAppState(BibleBrainRing::AppState::Init);
-
-//    const bool ret = bbrClassical->initServer();
-//    if (!ret) {
-//        qWarning() << "Error server init" << Qt::endl;
-//        return;
-//    }
-//    bbrClassical->onConnectNewTeam([](const TeamDto& team){ qDebug() << "new team:" << team.guid << Qt::endl; });
-//    bbrClassical->onTeamDtoChanged([](const TeamDto& team){ qDebug() << "new team data:" << team.status << Qt::endl; });
-//    bbrClassical->startRegistration();
 }
 
 BibleBrainRingApplicationEngine::~BibleBrainRingApplicationEngine()
 {
 
+}
+
+void BibleBrainRingApplicationEngine::onEndQmlCreation()
+{
+    StateAbstract* state = currentState->onEndQmlCreation();
+    changeAppState(state);
+}
+
+void BibleBrainRingApplicationEngine::onQmlButtonClicked(const BibleBrainRing::Button button)
+{
+    StateAbstract* state = currentState->onQmlButtonClicked(button);
+    changeAppState(state);
+}
+
+void BibleBrainRingApplicationEngine::changeAppState(StateAbstract* state)
+{
+    if (state) {
+        delete currentState;
+        currentState = state;
+    }
+}
+
+void BibleBrainRingApplicationEngine::setConnections()
+{
+    connect(providerQml.get(), &ProviderQml::onEndQmlCreation   , this, &BibleBrainRingApplicationEngine::onEndQmlCreation);
+    connect(providerQml.get(), &ProviderQml::onQmlButtonClicked , this, &BibleBrainRingApplicationEngine::onQmlButtonClicked);
 }
 
 

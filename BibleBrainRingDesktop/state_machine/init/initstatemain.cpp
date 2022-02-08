@@ -15,6 +15,7 @@
 InitStateMain::InitStateMain(QQmlApplicationEngine *qmlApplicationEngine, QObject *parent) : StateAbstract(__FUNCTION__, parent)
   , _qmlApplicationEngine(qmlApplicationEngine)
 {
+    providerQml->setCurrentAppState(BibleBrainRing::Init);
     InformationSettings::initValues();
     setQmlSettings();
     loadQml();
@@ -22,7 +23,7 @@ InitStateMain::InitStateMain(QQmlApplicationEngine *qmlApplicationEngine, QObjec
 
 StateAbstract *InitStateMain::onEndQmlCreation()
 {
-    return new StartStateMain();
+    return new StartStateMenuMain();
 }
 
 void InitStateMain::setQmlSettings()

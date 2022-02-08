@@ -23,7 +23,7 @@ HEADERS += \
     state_machine/all_states.h \
     state_machine/init/initstatemain.h \
     state_machine/registration/registrationstatemain.h \
-    state_machine/start/startstatemain.h \
+    state_machine/start_menu/startstatemain.h \
     state_machine/stateabstract.h
 
 SOURCES += \
@@ -34,7 +34,7 @@ SOURCES += \
     provider/providerqml.cpp \
     state_machine/init/initstatemain.cpp \
     state_machine/registration/registrationstatemain.cpp \
-    state_machine/start/startstatemain.cpp \
+    state_machine/start_menu/startstatemain.cpp \
     state_machine/stateabstract.cpp \
     main.cpp
 
@@ -47,7 +47,7 @@ INCLUDEPATH += \
     provider \
     state_machine \
     state_machine/init \
-    state_machine/start \
+    state_machine/start_menu \
     state_machine/registration \
     state_machine/gameSession
 

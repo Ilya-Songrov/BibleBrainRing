@@ -7,8 +7,6 @@
 #include <QDir>
 
 #include "state_machine/all_states.h"
-#include "biblebrainringserverlib/server_classical/biblebrainringserverclassical.h"
-#include "biblebrainringserverlib/iodevice/tcp/tcpserver.h"
 
 class BibleBrainRingApplicationEngine : public QQmlApplicationEngine
 {
@@ -17,9 +15,15 @@ public:
     explicit BibleBrainRingApplicationEngine(QObject *parent = nullptr);
     ~BibleBrainRingApplicationEngine();
 
+private slots:
+    void onEndQmlCreation();
+    void onQmlButtonClicked(const BibleBrainRing::Button button);
 
 private:
-    QScopedPointer<BibleBrainRingServerClassical> bbrClassical;
+    void changeAppState(StateAbstract *state);
+    void setConnections();
+
+private:
     StateAbstract *currentState;
 };
 

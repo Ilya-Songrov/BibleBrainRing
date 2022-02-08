@@ -24,6 +24,7 @@ enum AppState {
     RunServer,
     Registration,
     GameSession,
+    ShowResult,
 };
 Q_ENUM_NS(AppState)
 
@@ -33,7 +34,7 @@ enum Button {
     ButtonStartServerHttp,
     ButtonStartClientWifi,
     ButtonStartClientBluetooth,
-    ButtonStartProgram,
+    ButtonStartOnlyProgram,
 };
 Q_ENUM_NS(Button)
 

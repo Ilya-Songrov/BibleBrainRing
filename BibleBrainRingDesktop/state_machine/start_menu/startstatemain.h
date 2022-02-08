@@ -17,10 +17,10 @@
 #include "biblebrainringserverlib/iodevice/tcp/tcpserver.h"
 
 
-class StartStateMain : public StateAbstract
+class StartStateMenuMain : public StateAbstract
 {
 public:
-    explicit StartStateMain(QObject *parent = nullptr);
+    explicit StartStateMenuMain(QObject *parent = nullptr);
 
     virtual StateAbstract *onQmlButtonClicked   (const BibleBrainRing::Button button) override;
 };

@@ -47,7 +47,7 @@ Item {
             width: parent.width
             height: parent.height / columnButtons.count
             text: "Start only program"
-            onClicked: providerQml.onQmlButtonClicked(BibleBrainRing.ButtonStartProgram)
+            onClicked: providerQml.onQmlButtonClicked(BibleBrainRing.ButtonStartOnlyProgram)
         }
     }
 

@@ -27,6 +27,7 @@ public:
     explicit ProviderQml(QObject *parent = nullptr);
 
     void setCurrentAppState(const BibleBrainRing::AppState appState);
+
 private:
     void setCurrentAppState(const int appState);
 
@@ -35,6 +36,7 @@ private:
 signals:
     void currentAppStateChanged();
 
+    void showMessage(const QString &message);
 
     void onEndQmlCreation();
     void onQmlButtonClicked(const BibleBrainRing::Button button);

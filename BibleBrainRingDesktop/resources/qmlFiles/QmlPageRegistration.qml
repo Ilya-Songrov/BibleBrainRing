@@ -6,9 +6,9 @@ import biblebrainring.namespace 1.0
 Item {
     anchors.fill: parent
 
-//    Text {
-//        anchors.centerIn: parent
-//        text: qsTr("text")
-//    }
+    Text {
+        anchors.centerIn: parent
+        text: qsTr("text")
+    }
 
 }
