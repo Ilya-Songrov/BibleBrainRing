@@ -14,10 +14,6 @@ Item {
     }
 
     ListView {
-        property int maxQuantityCells:  4
-        property int minQuantityCells:  3
-
-        id: listViewButtons
         anchors.fill: parent
         clip: true
         orientation: ListView.Horizontal
@@ -52,7 +48,6 @@ Item {
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     color: "#252525"
-                    //                   font.family: fontGlobal.family
                     text: model["name"]
                 }
                 MouseArea{

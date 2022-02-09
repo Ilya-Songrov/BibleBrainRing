@@ -11,5 +11,6 @@
         <file>qmlFiles/QmlPageShowingResult.qml</file>
         <file>qmlFiles/Components/QmlComponentListView.qml</file>
         <file>qmlFiles/Components/QmlComponentLittleScreen.qml</file>
+        <file>qmlFiles/Components/QmlComponentRowLayout.qml</file>
     </qresource>
 </RCC>

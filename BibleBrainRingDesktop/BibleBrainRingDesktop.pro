@@ -19,6 +19,9 @@ HEADERS += \
     global/global_utils.h \
     information/InformationAbstract.h \
     information/InformationSettings.h \
+    managers/ManagerQuestions/ManagerQuestions.hpp \
+    managers/ManagerQuestions/QuestionsFileParser.hpp \
+    provider/ProviderQuestions.hpp \
     provider/providerqml.h \
     state_machine/ShowingResult/ShowingResult.hpp \
     state_machine/StateAbstract.h \
@@ -35,6 +38,9 @@ SOURCES += \
     global/global_utils.cpp \
     information/InformationAbstract.cpp \
     information/InformationSettings.cpp \
+    managers/ManagerQuestions/ManagerQuestions.cpp \
+    managers/ManagerQuestions/QuestionsFileParser.cpp \
+    provider/ProviderQuestions.cpp \
     provider/providerqml.cpp \
     state_machine/ShowingResult/ShowingResult.cpp \
     state_machine/StateAbstract.cpp \

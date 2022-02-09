@@ -39,11 +39,6 @@ void ListTeams::clear()
     emit postResetModel();
 }
 
-int ListTeams::getSize() const
-{
-    return list.size();
-}
-
 TeamDto ListTeams::getTeam(const int index)
 {
     if (index > -1 && list.size() > index) {
@@ -57,3 +52,7 @@ QList<TeamDto>& ListTeams::getList()
     return list;
 }
 
+int ListTeams::getSize() const
+{
+    return list.size();
+}

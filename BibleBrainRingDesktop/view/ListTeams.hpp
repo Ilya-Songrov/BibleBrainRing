@@ -16,9 +16,10 @@ public:
     void removeTeam(const int index);
     void clear();
 
-    int getSize() const;
     TeamDto getTeam(const int index);
     QList<TeamDto>& getList();
+
+    Q_INVOKABLE int getSize() const;
 
 signals:
     void moveTeamToAnotherList(int index);

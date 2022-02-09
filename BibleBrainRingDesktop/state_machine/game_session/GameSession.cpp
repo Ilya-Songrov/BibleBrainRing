@@ -14,14 +14,30 @@ GameSession::GameSession(QObject *parent)
     team.score       = 2;
     team.position    = 3;
     team.status      = TeamStatus::Registered;
-    listTeamsInGameSession->appendTeam(team);
+    listTeamsInBattle->appendTeam(team);
     team.color      = "blue";
-    team.status      = TeamStatus::Registered;
-    team.name = "name 1111";
-    team.guid = "1111";
+    team.status     = TeamStatus::Registered;
+    team.name       = "name nameA nameA nameA";
+    team.guid       = "1111";
+    listTeamsInBattle->appendTeam(team);
+    team.name       = "name nameB nameB nameB";
+    team.guid       = "2222";
     listTeamsInGameSession->appendTeam(team);
-    team.name = "name 2222";
-    team.guid = "2222";
+    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
     listTeamsInGameSession->appendTeam(team);
 #endif
 }
