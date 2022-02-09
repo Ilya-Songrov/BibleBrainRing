@@ -6,6 +6,7 @@ GameSession::GameSession(QObject *parent)
     setConnections();
     providerQml->setCurrentAppState(BibleBrainRing::GameSession);
 
+#ifdef QT_DEBUG
     TeamDto team;
     team.guid        = "guid";
     team.name        = "name";
@@ -22,6 +23,7 @@ GameSession::GameSession(QObject *parent)
     team.name = "name 2222";
     team.guid = "2222";
     listTeamsInGameSession->appendTeam(team);
+#endif
 }
 
 StateAbstract* GameSession::onQmlButtonClicked(const BibleBrainRing::Button button)

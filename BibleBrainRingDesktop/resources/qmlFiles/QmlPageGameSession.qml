@@ -33,4 +33,13 @@ Item {
         onMoveTeamToAnotherList: listTeamsInBattleQml.moveTeamToAnotherList(index)
     }
 
+    MyComponents.QmlComponentLittleScreen{
+        width: parent.width * 0.7
+        height: parent.height * 0.6
+        anchors.top: listViewTeamsInBattle.bottom
+        anchors.topMargin: listViewTeamsInBattle.height * 0.1
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: parent.height * 0.05
+        anchors.horizontalCenter: parent.horizontalCenter
+    }
 }

@@ -28,8 +28,8 @@ RegistrationStateMain::RegistrationStateMain(QObject *parent)
 //        });
 //    });
 
-
-    QTimer::singleShot(100, [this](){
+#ifdef QT_DEBUG
+    QTimer::singleShot(100, [](){
         qDebug() << "SingleShot" << Qt::endl;
         TeamDto team;
         team.guid        = "guid";
@@ -51,6 +51,7 @@ RegistrationStateMain::RegistrationStateMain(QObject *parent)
             listTeamsRegistration->appendTeam(team);
         });
     });
+#endif
 }
 
 StateAbstract *RegistrationStateMain::onQmlButtonClicked(const BibleBrainRing::Button button)

@@ -10,5 +10,6 @@
         <file>qmlFiles/QmlPageGameSession.qml</file>
         <file>qmlFiles/QmlPageShowingResult.qml</file>
         <file>qmlFiles/Components/QmlComponentListView.qml</file>
+        <file>qmlFiles/Components/QmlComponentLittleScreen.qml</file>
     </qresource>
 </RCC>
