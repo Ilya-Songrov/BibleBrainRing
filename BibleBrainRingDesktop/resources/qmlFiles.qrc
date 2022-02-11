@@ -10,7 +10,9 @@
         <file>qmlFiles/QmlPageGameSession.qml</file>
         <file>qmlFiles/QmlPageShowingResult.qml</file>
         <file>qmlFiles/Components/QmlComponentListView.qml</file>
-        <file>qmlFiles/Components/QmlComponentLittleScreen.qml</file>
-        <file>qmlFiles/Components/QmlComponentRowLayout.qml</file>
+        <file>qmlFiles/Components/QmlTranslatorToScreens.qml</file>
+        <file>qmlFiles/Components/QmlRowLayout.qml</file>
+        <file>qmlFiles/Components/QmlScreenWidget.qml</file>
+        <file>qmlFiles/Components/QmlScreensControlPanel.qml</file>
     </qresource>
 </RCC>

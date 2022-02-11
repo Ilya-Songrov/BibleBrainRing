@@ -14,6 +14,7 @@ ApplicationWindow {
     y: rectScreen.y
     visible: true
 
+
     readonly property string pathArrow:  "qrc:/qmlFiles/images/3313578_arrow_left_direction_pointing_icon.svg"
     Connections{
         target: providerQml
@@ -84,5 +85,5 @@ ApplicationWindow {
         onClicked: providerQml.onQmlButtonClicked(BibleBrainRing.ButtonNext)
     }
 
-    Component.onCompleted: { providerQml.onEndQmlCreation() }
+    Component.onCompleted: { providerQml.onEndQmlCreation(); console.log("Text", Qt.application.screens); }
 }

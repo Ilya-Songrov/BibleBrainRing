@@ -18,8 +18,9 @@
 
 #include "StateAbstract.h"
 #include "all_states.h"
-#include "InformationSettings.h"
+#include "ManagerScreens.hpp"
 #include "ListModel.hpp"
+#include "ListModelScreens.hpp"
 
 class InitStateMain : public StateAbstract
 {
@@ -32,5 +33,6 @@ public:
 private:
     void setQmlSettings();
     void loadQml();
+    void setScreensInfo();
 };
 

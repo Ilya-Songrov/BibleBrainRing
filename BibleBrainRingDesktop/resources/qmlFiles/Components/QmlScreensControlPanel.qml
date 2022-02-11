@@ -9,7 +9,16 @@ import ListModelQml 1.0
 
 Item {
     readonly property real marginValue: height * 0.02
-    readonly property real widthComponents: width / 1.7
+
+    QtObject{
+        id: objSCP
+        property color backgroundColor      : "black"
+        property color textColor            : "white"
+        property string textQuestionStr     : "textQuestion textQuestion  textQuestion textQuestion textQuestion textQuestion?"
+        property real textPixelSize         : Math.min(width, height) * 0.1
+        property bool visibleTeams          : true
+        property int widthElements          : width * 0.9
+    }
 
     Rectangle{
         id: rectBorder
@@ -21,7 +30,7 @@ Item {
 
     ComboBox {
         id: comboBoxQuestions
-        width: widthComponents
+        width: boundingItemScreenWidget.width
         anchors.top: parent.top
         anchors.topMargin: marginValue
         anchors.left: parent.left
@@ -31,74 +40,52 @@ Item {
         model: ["First", "Second", "Second2", "Third"]
     }
 
-    Rectangle{
-        property int widthElements          : width * 0.9
-        property color backgroundColor      : "black"
-        property color textColor            : "white"
-        property alias textQuestionStr      : textQuestion
-        property real textPixelSize         : Math.min(width, height) * 0.1
-        property bool visibleTeams          : true
-
-        id: rectangleScreen
-        width: widthComponents
+    Item{
+        id: boundingItemScreenWidget
+        width: parent.width / 1.5
         anchors.top: comboBoxQuestions.bottom
         anchors.topMargin: marginValue
         anchors.bottom: parent.bottom
         anchors.bottomMargin: marginValue
         anchors.left: parent.left
         anchors.leftMargin: marginValue
-        color: backgroundColor
 
-        MyComponents.QmlComponentRowLayout{
-            id: listViewScreen
-            width: rectangleScreen.widthElements
-            height: parent.height / 3
-            anchors.top: parent.top
-            anchors.topMargin: marginValue * 3
-            anchors.horizontalCenter: parent.horizontalCenter
-            textColor: rectangleScreen.textColor
-            textPixelSize: rectangleScreen.textPixelSize
-            listModelObj: ListModel {
-                listTeams: listTeamsInBattleQml
-            }
-            visible: rectangleScreen.visibleTeams
-        }
-        Text {
-            id: textQuestion
-            width: rectangleScreen.widthElements
-            anchors.top: listViewScreen.visible ? listViewScreen.bottom : parent.top
-            anchors.topMargin: parent.height * 0.02
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: anchors.topMargin
-            anchors.horizontalCenter: parent.horizontalCenter
-            horizontalAlignment: Qt.AlignHCenter
-            verticalAlignment: Qt.AlignVCenter
-            wrapMode: Text.WordWrap
-            fontSizeMode: Text.Fit
-            minimumPixelSize: 1
-            font.pixelSize: rectangleScreen.textPixelSize
-            color: rectangleScreen.textColor
-            text: "textQuestion textQuestion  textQuestion textQuestion textQuestion textQuestion?"
-        }
+        QmlScreenWidget{
+            property size sizeWidget: Qt.size()
 
+            id: screenWidget
+            width: sizeWidget.width
+            height: sizeWidget.height
+            anchors.centerIn: parent
+            scalePixelSize: 1
+        }
+        onWidthChanged: screenWidget.sizeWidget = providerScreens.getSizeForScreenWidget(Qt.size(width, height))
+        onHeightChanged: screenWidget.sizeWidget = providerScreens.getSizeForScreenWidget(Qt.size(width, height))
     }
+
+    QmlTranslatorToScreens{
+        id: translatorToScreens
+//        listInfoAdditionalScreens: providerScreens.getInfoAdditionalScreens()
+    }
+
 
     ColumnLayout{
         id: columnLayoutSettings
-        width: (parent.width - rectangleScreen.width) * 0.5
+        width: parent.width / 3
         anchors.top: parent.top
         anchors.topMargin: marginValue
-        anchors.left: rectangleScreen.right
+        anchors.left: boundingItemScreenWidget.right
         anchors.leftMargin: marginValue
+        anchors.right: parent.right
+        anchors.rightMargin: marginValue
 
         Button{
             Layout.maximumWidth: columnLayoutSettings.width
             Layout.minimumWidth: Layout.maximumWidth
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             text: "background color"
-            visible: true
             onClicked: {
-                colorDialog.showDialog((color)=>{rectangleScreen.backgroundColor = color})
+                colorDialog.showDialog((color)=>{objSCP.backgroundColor = color})
             }
         }
         Button{
@@ -106,18 +93,17 @@ Item {
             Layout.minimumWidth: Layout.maximumWidth
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             text: "text color"
-            visible: true
             onClicked: {
-                colorDialog.showDialog((color)=>{rectangleScreen.textColor = color})
+                colorDialog.showDialog((color)=>{objSCP.textColor = color})
             }
         }
         CheckBox{
             Layout.maximumWidth: columnLayoutSettings.width
             Layout.minimumWidth: Layout.maximumWidth
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            checked: rectangleScreen.visibleTeams
+            checked: objSCP.visibleTeams
             text: "teams"
-            onCheckedChanged: rectangleScreen.visibleTeams = checked
+            onCheckedChanged: objSCP.visibleTeams = checked
         }
         Row{
             Layout.maximumWidth: columnLayoutSettings.width
@@ -141,10 +127,18 @@ Item {
                     bottom: 1
                     top: 1000
                 }
-                onTextChanged: rectangleScreen.textPixelSize = text
+                onTextChanged: objSCP.textPixelSize = text
             }
         }
-
+        Button{
+            Layout.maximumWidth: columnLayoutSettings.width
+            Layout.minimumWidth: Layout.maximumWidth
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            text: "show"
+            onClicked: {
+                translatorToScreens.visibleScreens = !translatorToScreens.visibleScreens
+            }
+        }
     }
 
     ColorDialog {

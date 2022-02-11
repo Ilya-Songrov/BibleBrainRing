@@ -21,12 +21,12 @@ Item {
             property int minMaxHeightElement: parent.height / 2
 
             // for example
-            //            function updateminPixelSize(){
-            //                let minPs = textPixelSize
-            //                for (var index = 0; index < count; index++) {
-            //                    let ps = repeaterModel.itemAt(index).children[0].fontInfo.pixelSize
-            //                }
-            //            }
+            // function updateminPixelSize(){
+            //     let minPs = textPixelSize
+            //     for (var index = 0; index < count; index++) {
+            //         let ps = repeaterModel.itemAt(index).children[0].fontInfo.pixelSize
+            //     }
+            // }
 
             id: repeaterModel
             model: listModelObj

@@ -12,15 +12,5 @@ class InformationSettings : public InformationAbstract
 {
 public:
     explicit InformationSettings();
-
-    static void initValues();
-
-    static const QRect &getRectPrimaryScreen();
-
-private:
-    static inline void initRectPrimaryScreen();
-
-private:
-    static QRect        rectPrimaryScreen;
 };
 

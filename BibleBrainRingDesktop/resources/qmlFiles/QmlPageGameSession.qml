@@ -16,9 +16,9 @@ Item {
         anchors.topMargin: parent.height * 0.05
         anchors.horizontalCenter: parent.horizontalCenter
         listModelObj: ListModel {
-            listTeams: listTeamsInGameSession
+            listTeams: listTeamsInGameSessionQml
         }
-        onMoveTeamToAnotherList: listTeamsInGameSession.moveTeamToAnotherList(index)
+        onMoveTeamToAnotherList: listTeamsInGameSessionQml.moveTeamToAnotherList(index)
     }
     MyComponents.QmlComponentListView{
         id: listViewTeamsInBattle
@@ -33,7 +33,7 @@ Item {
         onMoveTeamToAnotherList: listTeamsInBattleQml.moveTeamToAnotherList(index)
     }
 
-    MyComponents.QmlComponentLittleScreen{
+    MyComponents.QmlScreensControlPanel{
         width: parent.width * 0.7
         height: parent.height * 0.6
         anchors.top: listViewTeamsInBattle.bottom

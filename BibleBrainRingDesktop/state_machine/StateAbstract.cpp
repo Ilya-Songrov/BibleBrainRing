@@ -1,8 +1,10 @@
 #include "StateAbstract.h"
 
+QScopedPointer<ProviderScreens> StateAbstract::providerScreens  (new ProviderScreens());
 QScopedPointer<ListTeams> StateAbstract::listTeamsRegistration  (new ListTeams());
 QScopedPointer<ListTeams> StateAbstract::listTeamsInGameSession (new ListTeams());
 QScopedPointer<ListTeams> StateAbstract::listTeamsInBattle      (new ListTeams());
+QScopedPointer<ListScreens> StateAbstract::listScreens          (new ListScreens());
 
 StateAbstract::StateAbstract(const QString &objectName, QObject *parent) : QObject(parent)
 {

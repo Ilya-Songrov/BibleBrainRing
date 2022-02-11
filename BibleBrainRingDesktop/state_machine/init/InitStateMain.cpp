@@ -17,9 +17,9 @@ InitStateMain::InitStateMain(QQmlApplicationEngine *qmlApplicationEngine, QObjec
   , _qmlApplicationEngine(qmlApplicationEngine)
 {
     providerQml->setCurrentAppState(BibleBrainRing::Init);
-    InformationSettings::initValues();
     setQmlSettings();
     loadQml();
+    setScreensInfo();
 }
 
 StateAbstract *InitStateMain::onEndQmlCreation()
@@ -29,8 +29,9 @@ StateAbstract *InitStateMain::onEndQmlCreation()
 
 void InitStateMain::setQmlSettings()
 {
-    _qmlApplicationEngine->rootContext()->setContextProperty("rectScreen", InformationSettings::getRectPrimaryScreen());
+    _qmlApplicationEngine->rootContext()->setContextProperty("rectScreen", ManagerScreens::getRectPrimaryScreen());
     _qmlApplicationEngine->rootContext()->setContextProperty("providerQml", providerQml.get());
+    _qmlApplicationEngine->rootContext()->setContextProperty("providerScreens", providerScreens.get());
     qmlRegisterUncreatableMetaObject(
                 BibleBrainRing::staticMetaObject,       // static meta object
                 "biblebrainring.namespace",             // import statement (can be any string)
@@ -41,9 +42,11 @@ void InitStateMain::setQmlSettings()
     qRegisterMetaType<BibleBrainRing::AppState>("BibleBrainRing::AppState"); // not qmlRegister but qRegister
     qRegisterMetaType<BibleBrainRing::Button>("BibleBrainRing::Button"); // not qmlRegister but qRegister
     qmlRegisterType<ListModel>("ListModelQml", 1, 0, "ListModel");
+    qmlRegisterType<ListModelScreens>("ListModelScreensQml", 1, 0, "ListModelScreens");
     _qmlApplicationEngine->rootContext()->setContextProperty("listTeamsRegistrationQml", listTeamsRegistration.get());
-    _qmlApplicationEngine->rootContext()->setContextProperty("listTeamsInGameSession", listTeamsInGameSession.get());
+    _qmlApplicationEngine->rootContext()->setContextProperty("listTeamsInGameSessionQml", listTeamsInGameSession.get());
     _qmlApplicationEngine->rootContext()->setContextProperty("listTeamsInBattleQml", listTeamsInBattle.get());
+    _qmlApplicationEngine->rootContext()->setContextProperty("listScreensQml", listScreens.get());
 }
 
 void InitStateMain::loadQml()
@@ -51,5 +54,24 @@ void InitStateMain::loadQml()
     QTimer::singleShot(0, this, [this](){
         _qmlApplicationEngine->load("qrc:/qmlFiles/qmlFiles/main.qml");
     });
+}
+
+void InitStateMain::setScreensInfo()
+{
+//    listScreens.wid
+    const auto* primaryScreen = QGuiApplication::primaryScreen();
+    const QRect rect = primaryScreen->geometry();
+    AdditionalScreen screen;
+    screen.xPos                 = rect.y();
+    screen.yPos                 = rect.y();
+    screen.widthReal            = rect.y();
+    screen.heightReal           = rect.y();
+    screen.widthVisual          = rect.y();
+    screen.heightVisual         = rect.y();
+    screen.scalePixelSize       = 1.0;
+
+#ifdef QT_DEBUG
+    ManagerScreens::getInfoAdditionalScreens();
+#endif
 }
 

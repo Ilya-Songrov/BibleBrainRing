@@ -21,7 +21,9 @@ HEADERS += \
     information/InformationSettings.h \
     managers/ManagerQuestions/ManagerQuestions.hpp \
     managers/ManagerQuestions/QuestionsFileParser.hpp \
+    managers/ManagerScreens/ManagerScreens.hpp \
     provider/ProviderQuestions.hpp \
+    provider/ProviderScreens.hpp \
     provider/providerqml.h \
     state_machine/ShowingResult/ShowingResult.hpp \
     state_machine/StateAbstract.h \
@@ -30,7 +32,10 @@ HEADERS += \
     state_machine/init/InitStateMain.h \
     state_machine/registration/RegistrationStateMain.h \
     state_machine/start_menu/StartStateMenuMain.h \
+    view/AdditionalScreen.hpp \
     view/ListModel.hpp \
+    view/ListModelScreens.hpp \
+    view/ListScreens.hpp \
     view/ListTeams.hpp
 
 SOURCES += \
@@ -40,7 +45,9 @@ SOURCES += \
     information/InformationSettings.cpp \
     managers/ManagerQuestions/ManagerQuestions.cpp \
     managers/ManagerQuestions/QuestionsFileParser.cpp \
+    managers/ManagerScreens/ManagerScreens.cpp \
     provider/ProviderQuestions.cpp \
+    provider/ProviderScreens.cpp \
     provider/providerqml.cpp \
     state_machine/ShowingResult/ShowingResult.cpp \
     state_machine/StateAbstract.cpp \
@@ -49,7 +56,10 @@ SOURCES += \
     state_machine/registration/RegistrationStateMain.cpp \
     state_machine/start_menu/StartStateMenuMain.cpp \
     main.cpp \
+    view/AdditionalScreen.cpp \
     view/ListModel.cpp \
+    view/ListModelScreens.cpp \
+    view/ListScreens.cpp \
     view/ListTeams.cpp
 
 RESOURCES += \
@@ -61,6 +71,8 @@ INCLUDEPATH += \
     global \
     provider \
     view \
+    managers/ManagerQuestions \
+    managers/ManagerScreens \
     state_machine \
     state_machine/init \
     state_machine/start_menu \
