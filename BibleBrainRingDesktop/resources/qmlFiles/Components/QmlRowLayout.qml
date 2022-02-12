@@ -66,7 +66,6 @@ Item {
                     color: textColor
                     text: model["score"]
                 }
-
             }
         }
     }

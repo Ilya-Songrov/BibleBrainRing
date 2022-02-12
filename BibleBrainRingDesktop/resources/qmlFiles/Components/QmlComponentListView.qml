@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.12
 
 import "." as MyComponents
 
@@ -54,6 +55,38 @@ Item {
                     anchors.fill: parent
                     onClicked: {
                         moveTeamToAnotherList(index)
+                    }
+                }
+                Row{
+                    width: parent.width * 0.9
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: parent.height * 0.04
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+                    spacing: parent.width * 0.1
+                    Text{
+                        id: textFontSize
+                        height: textFieldFontSize.height
+                        horizontalAlignment: Qt.AlignHCenter
+                        verticalAlignment: Qt.AlignVCenter
+                        text: "score:"
+                    }
+                    SpinBox{
+                        id: textFieldFontSize
+                        width: parent.width - parent.spacing - textFontSize.width
+                        value: model["score"]
+                        inputMethodHints: Qt.ImhDigitsOnly
+                        validator: IntValidator {
+                            bottom: 1
+                            top: 1000
+                        }
+                        onValueModified: {
+                            model["score"] = value
+//                            model.changeScore(value, index);
+//                            listModelObj.dataChanged(index, index)
+//                            console.log("onTextChanged changeScore", model["score"], value, index);
+                        }
+//                        onVisibleChanged: value = model["score"]
                     }
                 }
             }

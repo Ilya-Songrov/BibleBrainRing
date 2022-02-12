@@ -41,6 +41,8 @@ public:
     ListTeams* listTeams() const;
     void setListTeams(ListTeams* listTeams);
 
+    Q_INVOKABLE void changeScore(const QVariant value, const int index);
+
 private:
     ListTeams* mList;
 };

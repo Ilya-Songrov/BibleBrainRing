@@ -7,6 +7,9 @@ import ListModelQml 1.0
 
 Item {
     anchors.fill: parent
+    property var listModelObjInstance: ListModel {
+        listTeams: listTeamsInBattleQml
+    }
 
     MyComponents.QmlComponentListView{
         id: listViewTeamsGameSession
@@ -20,6 +23,7 @@ Item {
         }
         onMoveTeamToAnotherList: listTeamsInGameSessionQml.moveTeamToAnotherList(index)
     }
+
     MyComponents.QmlComponentListView{
         id: listViewTeamsInBattle
         width: listViewTeamsGameSession.width
@@ -27,9 +31,7 @@ Item {
         anchors.top: listViewTeamsGameSession.bottom
         anchors.topMargin: listViewTeamsGameSession.height * 0.1
         anchors.horizontalCenter: parent.horizontalCenter
-        listModelObj: ListModel {
-            listTeams: listTeamsInBattleQml
-        }
+        listModelObj: listModelObjInstance
         onMoveTeamToAnotherList: listTeamsInBattleQml.moveTeamToAnotherList(index)
     }
 

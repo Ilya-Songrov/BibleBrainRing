@@ -47,10 +47,12 @@ QVariant ListModel::data(const QModelIndex& index, int role) const
 
 bool ListModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
+    qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " text: " << __LINE__ << Qt::endl;
     const int position = index.row();
     if (position < 0 || listTeams()->getSize() <= position || mList == nullptr) {
         return false;
     }
+    qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " text: " << __LINE__ << Qt::endl;
 
     if(role == Name) {
         listTeams()->getList()[position].name = value.toString();
@@ -68,6 +70,7 @@ bool ListModel::setData(const QModelIndex& index, const QVariant& value, int rol
         listTeams()->getList()[position].status = TeamStatus(value.toInt());
     }
     emit dataChanged(index, index, {role});
+    qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " role: " << role << Qt::endl;
     return true;
 }
 
@@ -132,5 +135,12 @@ void ListModel::setListTeams(ListTeams* listTeams)
     }
 
     endResetModel();
+}
+
+void ListModel::changeScore(const QVariant value, const int index)
+{
+    auto modelIndex = createIndex(index, 0);
+    setData(modelIndex, value, Score);
+    qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " text: " << __LINE__ << Qt::endl;
 }
 

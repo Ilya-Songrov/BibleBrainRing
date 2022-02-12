@@ -83,7 +83,6 @@ Item {
         id: translatorToScreens
     }
 
-
     ColumnLayout{
         id: columnLayoutSettings
         width: parent.width / 3

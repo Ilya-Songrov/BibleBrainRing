@@ -9,13 +9,13 @@ GameSession::GameSession(QObject *parent)
 
 #ifdef QT_DEBUG
 //    managerQuestions->loadQuestions("/home/songrov/test_questions.txt");
-//    TeamDto team;
-//    team.guid        = "guid";
-//    team.name        = "name";
-//    team.color       = "green";
-//    team.score       = 2;
-//    team.position    = 3;
-//    team.status      = TeamStatus::Registered;
+    TeamDto team;
+    team.guid        = "guid";
+    team.name        = "name";
+    team.color       = "green";
+    team.score       = 2;
+    team.position    = 3;
+    team.status      = TeamStatus::Registered;
 //    listTeamsInBattle->appendTeam(team);
 //    team.color      = "blue";
 //    team.status     = TeamStatus::Registered;
@@ -24,7 +24,7 @@ GameSession::GameSession(QObject *parent)
 //    listTeamsInBattle->appendTeam(team);
 //    team.name       = "name nameB nameB nameB";
 //    team.guid       = "2222";
-//    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
 //    listTeamsInGameSession->appendTeam(team);
 //    listTeamsInGameSession->appendTeam(team);
 //    listTeamsInGameSession->appendTeam(team);

@@ -20,9 +20,7 @@ Rectangle{
         anchors.horizontalCenter: parent.horizontalCenter
         textColor: objSCP.textColor
         textPixelSize: objSCP.textPixelSize * scalePixelSize
-        listModelObj: ListModel {
-            listTeams: listTeamsInBattleQml
-        }
+        listModelObj: listModelObjInstance
         visible: objSCP.visibleTeams
     }
     Text {
