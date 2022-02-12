@@ -4,42 +4,43 @@ GameSession::GameSession(QObject *parent)
     : StateAbstract(__FUNCTION__, parent)
 {
     setConnections();
+    loadTeams();
     providerQml->setCurrentAppState(BibleBrainRing::GameSession);
 
 #ifdef QT_DEBUG
-    managerQuestions->loadQuestions("/home/songrov/test_questions.txt");
-    TeamDto team;
-    team.guid        = "guid";
-    team.name        = "name";
-    team.color       = "green";
-    team.score       = 2;
-    team.position    = 3;
-    team.status      = TeamStatus::Registered;
-    listTeamsInBattle->appendTeam(team);
-    team.color      = "blue";
-    team.status     = TeamStatus::Registered;
-    team.name       = "name nameA nameA nameA";
-    team.guid       = "1111";
-    listTeamsInBattle->appendTeam(team);
-    team.name       = "name nameB nameB nameB";
-    team.guid       = "2222";
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
-    listTeamsInGameSession->appendTeam(team);
+//    managerQuestions->loadQuestions("/home/songrov/test_questions.txt");
+//    TeamDto team;
+//    team.guid        = "guid";
+//    team.name        = "name";
+//    team.color       = "green";
+//    team.score       = 2;
+//    team.position    = 3;
+//    team.status      = TeamStatus::Registered;
+//    listTeamsInBattle->appendTeam(team);
+//    team.color      = "blue";
+//    team.status     = TeamStatus::Registered;
+//    team.name       = "name nameA nameA nameA";
+//    team.guid       = "1111";
+//    listTeamsInBattle->appendTeam(team);
+//    team.name       = "name nameB nameB nameB";
+//    team.guid       = "2222";
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
 #endif
 }
 
@@ -66,4 +67,15 @@ void GameSession::setConnections()
         listTeamsInGameSession->appendTeam(team);
         listTeamsInBattle->removeTeam(index);
     });
+}
+
+void GameSession::loadTeams()
+{
+    listTeamsInBattle->clear();
+    listTeamsInGameSession->clear();
+    for (const TeamDto& team: listTeamsRegistration->getList()) {
+        if (team.status == Registered || team.status == WaitingForTheNextRound || team.status == InSparring) {
+            listTeamsInGameSession->appendTeam(team);
+        }
+    }
 }

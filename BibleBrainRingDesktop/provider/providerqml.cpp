@@ -14,6 +14,7 @@
 
 ProviderQml::ProviderQml(QObject *parent) : QObject(parent)
   , currentAppState(BibleBrainRing::None)
+  , currentAppMode(BibleBrainRing::AppModeNone)
 {
 
 }
@@ -23,13 +24,29 @@ void ProviderQml::setCurrentAppState(const BibleBrainRing::AppState appState)
     setCurrentAppState((int)appState);
 }
 
+void ProviderQml::setCurrentAppMode(const BibleBrainRing::AppMode appMode)
+{
+    setCurrentAppMode((int)appMode);
+}
+
 void ProviderQml::setCurrentAppState(const int appState)
 {
     currentAppState = appState;
     emit currentAppStateChanged();
 }
 
+void ProviderQml::setCurrentAppMode(const int appMode)
+{
+    currentAppMode = appMode;
+    emit currentAppModeChanged();
+}
+
 int ProviderQml::getCurrentAppState()
 {
     return currentAppState;
+}
+
+int ProviderQml::getCurrentAppMode()
+{
+    return currentAppMode;
 }

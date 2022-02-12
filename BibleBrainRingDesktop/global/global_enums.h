@@ -41,4 +41,15 @@ enum Button {
 };
 Q_ENUM_NS(Button)
 
+enum AppMode {
+    AppModeNone,
+    AppModeServerWifi,
+    AppModeServerBluetooth,
+    AppModeServerHttp,
+    AppModeClientWifi,
+    AppModeClientBluetooth,
+    AppModeOnlyProgram,
+};
+Q_ENUM_NS(AppMode)
+
 }

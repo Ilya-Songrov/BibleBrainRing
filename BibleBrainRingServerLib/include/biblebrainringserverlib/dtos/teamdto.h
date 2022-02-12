@@ -20,7 +20,7 @@ struct TeamDto : public DtoAbstract
     QString     guid        ;
     QString     name        ;
     QString     color       ;
-    double      score       = -1.0;
-    int         position    = -1;
+    double      score       = 0.0;
+    int         position    = 0;
     TeamStatus  status      = TeamStatus::None;
 };

@@ -17,40 +17,33 @@ RegistrationStateMain::RegistrationStateMain(QObject *parent)
 {
     providerQml->setCurrentAppState(BibleBrainRing::Registration);
 //    serverClassical->startRegistration();
-
-//    serverClassical->onConnectNewTeam([](const TeamDto &team){ qDebug() << "new team:" << team.guid << Qt::endl;});
-//    QTimer::singleShot(4000, [this](){
-//        qDebug() << "SingleShot1" << Qt::endl;
-//        serverClassical->stopRegistration();
-//        QTimer::singleShot(4000, [this](){
-//            qDebug() << "SingleShot2" << Qt::endl;
-//            serverClassical->startRegistration();
-//        });
-//    });
+#ifdef QT_DEBUG
+    providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeOnlyProgram);
+#endif
 
 #ifdef QT_DEBUG
-    QTimer::singleShot(100, [](){
-        qDebug() << "SingleShot" << Qt::endl;
-        TeamDto team;
-        team.guid        = "guid";
-        team.name        = "name";
-        team.color       = "green";
-        team.score       = 2;
-        team.position    = 3;
-        team.status      = TeamStatus::NotValid;
-        listTeamsRegistration->appendTeam(team);
-        team.color      = "blue";
-        team.status      = TeamStatus::Lost;
-        listTeamsRegistration->appendTeam(team);
-        QTimer::singleShot(1000, [team](){
-            qDebug() << "SingleShot" << Qt::endl;
-            listTeamsRegistration->appendTeam(team);
-        });
-        QTimer::singleShot(2000, [team](){
-            qDebug() << "SingleShot" << Qt::endl;
-            listTeamsRegistration->appendTeam(team);
-        });
-    });
+//    QTimer::singleShot(100, [](){
+//        qDebug() << "SingleShot" << Qt::endl;
+//        TeamDto team;
+//        team.guid        = "guid";
+//        team.name        = "name";
+//        team.color       = "green";
+//        team.score       = 2;
+//        team.position    = 3;
+//        team.status      = TeamStatus::NotValid;
+//        listTeamsRegistration->appendTeam(team);
+//        team.color      = "blue";
+//        team.status      = TeamStatus::Lost;
+//        listTeamsRegistration->appendTeam(team);
+//        QTimer::singleShot(1000, [team](){
+//            qDebug() << "SingleShot" << Qt::endl;
+//            listTeamsRegistration->appendTeam(team);
+//        });
+//        QTimer::singleShot(2000, [team](){
+//            qDebug() << "SingleShot" << Qt::endl;
+//            listTeamsRegistration->appendTeam(team);
+//        });
+//    });
 #endif
 }
 

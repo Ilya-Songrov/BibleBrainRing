@@ -5,7 +5,7 @@ import "." as MyComponents
 import ListModelScreensQml 1.0
 
 Item {
-    property bool visibleScreens: true
+    property bool visibleScreens: false
 
     Repeater{
         id: repeaterAdditionalScreens
@@ -29,8 +29,6 @@ Item {
                         height: modelData["heightVisual"]
                         anchors.centerIn: parent
                         scalePixelSize: modelData["scalePixelSize"]
-                        onScalePixelSizeChanged: console.log("onScalePixelSizeChanged scalePixelSize", scalePixelSize);
-                        Component.onCompleted: { console.log("Component.onCompleted scalePixelSize", scalePixelSize); }
                     }
                 }
             }

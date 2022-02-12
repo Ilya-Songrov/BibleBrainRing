@@ -20,24 +20,30 @@ StartStateMenuMain::StartStateMenuMain(QObject *parent) : StateAbstract(__FUNCTI
 StateAbstract *StartStateMenuMain::onQmlButtonClicked(const BibleBrainRing::Button button)
 {
     if (button == BibleBrainRing::ButtonStartServerWifi) {
+        providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeServerWifi);
         emit providerQml->showMessage("Write me, please");
 //        static TcpServer tcpServer("127.0.0.1", "9090");
 //        serverClassical.reset(new BibleBrainRingServerClassical(&tcpServer));
     }
     else if (button == BibleBrainRing::ButtonStartServerBluetooth) {
+        providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeServerBluetooth);
         emit providerQml->showMessage("Write me, please");
     }
     else if (button == BibleBrainRing::ButtonStartServerHttp) {
+        providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeServerHttp);
         return new EnvironmentSetup();
     }
     else if (button == BibleBrainRing::ButtonStartClientWifi) {
+        providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeClientWifi);
         emit providerQml->showMessage("Write me, please");
     }
     else if (button == BibleBrainRing::ButtonStartClientBluetooth) {
+        providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeClientBluetooth);
         emit providerQml->showMessage("Write me, please");
     }
     else if (button == BibleBrainRing::ButtonStartOnlyProgram) {
-        emit providerQml->showMessage("Write me, please");
+        providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeOnlyProgram);
+        return new EnvironmentSetup();
     }
     return nullptr;
 }

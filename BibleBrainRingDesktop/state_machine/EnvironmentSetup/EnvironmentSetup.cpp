@@ -4,7 +4,6 @@ EnvironmentSetup::EnvironmentSetup(QObject *parent)
     : StateAbstract(__FUNCTION__, parent)
 {
     providerQml->setCurrentAppState(BibleBrainRing::EnvironmentSetup);
-
 }
 
 StateAbstract* EnvironmentSetup::onQmlButtonClicked(const BibleBrainRing::Button button)

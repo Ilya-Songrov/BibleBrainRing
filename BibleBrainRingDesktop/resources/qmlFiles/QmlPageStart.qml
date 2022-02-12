@@ -18,12 +18,14 @@ Item {
             height: parent.height / columnButtons.count
             text: "Start Wifi server"
             onClicked: providerQml.onQmlButtonClicked(BibleBrainRing.ButtonStartServerWifi)
+            enabled: false
         }
         Button{
             width: parent.width
             height: parent.height / columnButtons.count
             text: "Start Bluetooth server"
             onClicked: providerQml.onQmlButtonClicked(BibleBrainRing.ButtonStartServerBluetooth)
+            enabled: false
         }
         Button{
             width: parent.width
@@ -36,12 +38,14 @@ Item {
             height: parent.height / columnButtons.count
             text: "Start Wifi client"
             onClicked: providerQml.onQmlButtonClicked(BibleBrainRing.ButtonStartClientWifi)
+            enabled: false
         }
         Button{
             width: parent.width
             height: parent.height / columnButtons.count
             text: "Start Bluetooth client"
             onClicked: providerQml.onQmlButtonClicked(BibleBrainRing.ButtonStartClientBluetooth)
+            enabled: false
         }
         Button{
             width: parent.width

@@ -21,20 +21,26 @@ class ProviderQml : public QObject
     Q_OBJECT
 
     int currentAppState;
+    int currentAppMode;
 
     Q_PROPERTY(int currentAppState READ getCurrentAppState WRITE setCurrentAppState NOTIFY currentAppStateChanged)
+    Q_PROPERTY(int currentAppMode  READ getCurrentAppMode  WRITE setCurrentAppMode  NOTIFY currentAppModeChanged)
 public:
     explicit ProviderQml(QObject *parent = nullptr);
 
     void setCurrentAppState(const BibleBrainRing::AppState appState);
+    void setCurrentAppMode(const BibleBrainRing::AppMode appMode);
 
 private:
     void setCurrentAppState(const int appState);
+    void setCurrentAppMode(const int appMode);
 
     int getCurrentAppState();
+    int getCurrentAppMode();
 
 signals:
     void currentAppStateChanged();
+    void currentAppModeChanged();
 
     void showMessage(const QString &message);
 

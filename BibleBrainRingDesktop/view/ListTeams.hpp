@@ -20,6 +20,7 @@ public:
     QList<TeamDto>& getList();
 
     Q_INVOKABLE int getSize() const;
+    Q_INVOKABLE void addTeam(const QString name, const QString color);
 
 signals:
     void moveTeamToAnotherList(int index);

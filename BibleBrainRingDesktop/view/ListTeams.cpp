@@ -56,3 +56,13 @@ int ListTeams::getSize() const
 {
     return list.size();
 }
+
+void ListTeams::addTeam(const QString name, const QString color)
+{
+    TeamDto team;
+    team.name   = name;
+    team.color  = color;
+    team.status = Registered;
+    appendTeam(team);
+
+}
