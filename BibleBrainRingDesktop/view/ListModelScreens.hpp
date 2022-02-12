@@ -43,8 +43,6 @@ public:
     ListScreens* listScreens() const;
     void setListScreens(ListScreens* listScreens);
 
-//    Q_INVOKABLE int getQuantityPositions();
-
 private:
     ListScreens* mList;
 };

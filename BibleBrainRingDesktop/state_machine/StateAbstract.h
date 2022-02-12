@@ -7,7 +7,6 @@
 #include "global_utils.h"
 #include "ListTeams.hpp"
 #include "ListScreens.hpp"
-#include "ProviderScreens.hpp"
 
 class StateAbstract : public QObject
 {
@@ -22,7 +21,6 @@ protected:
     void printCurrentState();
 
 protected:
-    static QScopedPointer<ProviderScreens> providerScreens;
     static QScopedPointer<ListTeams> listTeamsRegistration;
     static QScopedPointer<ListTeams> listTeamsInGameSession;
     static QScopedPointer<ListTeams> listTeamsInBattle;

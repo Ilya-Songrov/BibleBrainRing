@@ -12,7 +12,7 @@ Rectangle{
 
     color: objSCP.backgroundColor
     MyComponents.QmlRowLayout{
-        id: listViewScreen
+        id: rowLayoutNameScore
         width: parent.width * 0.9
         height: parent.height / 3
         anchors.top: parent.top
@@ -27,8 +27,8 @@ Rectangle{
     }
     Text {
         id: textQuestion
-        width: listViewScreen.width
-        anchors.top: listViewScreen.visible ? listViewScreen.bottom : parent.top
+        width: rowLayoutNameScore.width
+        anchors.top: rowLayoutNameScore.visible ? rowLayoutNameScore.bottom : parent.top
         anchors.topMargin: parent.height * 0.02
         anchors.bottom: parent.bottom
         anchors.bottomMargin: anchors.topMargin
@@ -38,7 +38,7 @@ Rectangle{
         wrapMode: Text.WordWrap
         fontSizeMode: Text.Fit
         minimumPixelSize: 1
-        font.pixelSize: objSCP.textPixelSize * scalePixelSize
+        font.pixelSize: Number(objSCP.textPixelSize) * scalePixelSize
         color: objSCP.textColor
         text: objSCP.textQuestionStr
     }

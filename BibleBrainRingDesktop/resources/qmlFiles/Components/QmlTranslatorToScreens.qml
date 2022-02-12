@@ -29,6 +29,8 @@ Item {
                         height: modelData["heightVisual"]
                         anchors.centerIn: parent
                         scalePixelSize: modelData["scalePixelSize"]
+                        onScalePixelSizeChanged: console.log("onScalePixelSizeChanged scalePixelSize", scalePixelSize);
+                        Component.onCompleted: { console.log("Component.onCompleted scalePixelSize", scalePixelSize); }
                     }
                 }
             }

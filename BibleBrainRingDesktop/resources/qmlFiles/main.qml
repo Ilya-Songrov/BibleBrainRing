@@ -8,10 +8,10 @@ import "Components" as MyComponents
 
 ApplicationWindow {
     id: rootWindow
-    width: rectScreen.width
-    height: rectScreen.height
-    x: rectScreen.x
-    y: rectScreen.y
+    width: listScreensQml.getRectForApp().width
+    height: listScreensQml.getRectForApp().height
+    x: listScreensQml.getRectForApp().x
+    y: listScreensQml.getRectForApp().y
     visible: true
 
 

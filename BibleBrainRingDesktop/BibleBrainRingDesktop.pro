@@ -21,9 +21,7 @@ HEADERS += \
     information/InformationSettings.h \
     managers/ManagerQuestions/ManagerQuestions.hpp \
     managers/ManagerQuestions/QuestionsFileParser.hpp \
-    managers/ManagerScreens/ManagerScreens.hpp \
     provider/ProviderQuestions.hpp \
-    provider/ProviderScreens.hpp \
     provider/providerqml.h \
     state_machine/ShowingResult/ShowingResult.hpp \
     state_machine/StateAbstract.h \
@@ -45,9 +43,7 @@ SOURCES += \
     information/InformationSettings.cpp \
     managers/ManagerQuestions/ManagerQuestions.cpp \
     managers/ManagerQuestions/QuestionsFileParser.cpp \
-    managers/ManagerScreens/ManagerScreens.cpp \
     provider/ProviderQuestions.cpp \
-    provider/ProviderScreens.cpp \
     provider/providerqml.cpp \
     state_machine/ShowingResult/ShowingResult.cpp \
     state_machine/StateAbstract.cpp \

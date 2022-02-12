@@ -18,7 +18,6 @@
 
 #include "StateAbstract.h"
 #include "all_states.h"
-#include "ManagerScreens.hpp"
 #include "ListModel.hpp"
 #include "ListModelScreens.hpp"
 
@@ -33,6 +32,5 @@ public:
 private:
     void setQmlSettings();
     void loadQml();
-    void setScreensInfo();
 };
 

@@ -19,7 +19,7 @@ int ListModelScreens::rowCount(const QModelIndex& parent) const
     if (parent.isValid() || !mList)
         return 0;
 
-    return mList->getSize();
+    return mList->getListSize();
 }
 
 QVariant ListModelScreens::data(const QModelIndex& index, int role) const
@@ -52,7 +52,7 @@ QVariant ListModelScreens::data(const QModelIndex& index, int role) const
 bool ListModelScreens::setData(const QModelIndex& index, const QVariant& value, int role)
 {
     const int position = index.row();
-    if (position < 0 || listScreens()->getSize() <= position || mList == nullptr) {
+    if (position < 0 || listScreens()->getListSize() <= position || mList == nullptr) {
         return false;
     }
 
@@ -92,14 +92,16 @@ Qt::ItemFlags ListModelScreens::flags(const QModelIndex& index) const
 
 QHash<int, QByteArray> ListModelScreens::roleNames() const
 {
-    QHash<int, QByteArray> names;
-    names[XPos              ] = "xPos";
-    names[YPos              ] = "yPos";
-    names[WidthReal         ] = "widthReal";
-    names[HeightReal        ] = "heightReal";
-    names[WidthVisual       ] = "widthVisual";
-    names[HeightVisual      ] = "heightVisual";
-    names[ScalePixelSize    ] = "scalePixelSize";
+    static QHash<int, QByteArray> names;
+    if (names.isEmpty()) {
+        names[XPos              ] = "xPos";
+        names[YPos              ] = "yPos";
+        names[WidthReal         ] = "widthReal";
+        names[HeightReal        ] = "heightReal";
+        names[WidthVisual       ] = "widthVisual";
+        names[HeightVisual      ] = "heightVisual";
+        names[ScalePixelSize    ] = "scalePixelSize";
+    }
     return names;
 }
 
@@ -128,7 +130,7 @@ void ListModelScreens::setListScreens(ListScreens* listScreens)
         });
 
         connect(mList, &ListScreens::preSetItems, this, [=](int count) {
-            const int index = mList->getSize();
+            const int index = mList->getListSize();
             beginInsertRows(QModelIndex(), index, index + count - 1);
         });
         connect(mList, &ListScreens::postSetItems, this, [=]() {
@@ -141,6 +143,12 @@ void ListModelScreens::setListScreens(ListScreens* listScreens)
         connect(mList, &ListScreens::postRemoveItems, this, [=]() {
             endRemoveRows();
         });
+        connect(mList, &ListScreens::updateModel, this, [=]() {
+            QModelIndex topLeft = createIndex(0,0);
+            QModelIndex bottomRight = createIndex( mList->getListSize(), 0);
+            emit dataChanged( topLeft, bottomRight );
+        });
+
     }
 
     endResetModel();

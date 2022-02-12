@@ -41,8 +41,6 @@ public:
     ListTeams* listTeams() const;
     void setListTeams(ListTeams* listTeams);
 
-//    Q_INVOKABLE int getQuantityPositions();
-
 private:
     ListTeams* mList;
 };

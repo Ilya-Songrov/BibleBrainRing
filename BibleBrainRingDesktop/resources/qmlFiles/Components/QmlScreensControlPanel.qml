@@ -15,7 +15,7 @@ Item {
         property color backgroundColor      : "black"
         property color textColor            : "white"
         property string textQuestionStr     : "textQuestion textQuestion  textQuestion textQuestion textQuestion textQuestion?"
-        property real textPixelSize         : Math.min(width, height) * 0.1
+        property real textPixelSize         : textFieldFontSize.text
         property bool visibleTeams          : true
         property int widthElements          : width * 0.9
     }
@@ -42,30 +42,24 @@ Item {
 
     Item{
         id: boundingItemScreenWidget
-        width: parent.width / 1.5
+        width: listScreensQml.getSizeForBoundingItemScreenWidget().width
+        height: listScreensQml.getSizeForBoundingItemScreenWidget().height
         anchors.top: comboBoxQuestions.bottom
         anchors.topMargin: marginValue
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: marginValue
         anchors.left: parent.left
         anchors.leftMargin: marginValue
 
         QmlScreenWidget{
-            property size sizeWidget: Qt.size()
-
             id: screenWidget
-            width: sizeWidget.width
-            height: sizeWidget.height
+            width: listScreensQml.getSizeForScreenWidget().width
+            height: listScreensQml.getSizeForScreenWidget().height
             anchors.centerIn: parent
             scalePixelSize: 1
         }
-        onWidthChanged: screenWidget.sizeWidget = providerScreens.getSizeForScreenWidget(Qt.size(width, height))
-        onHeightChanged: screenWidget.sizeWidget = providerScreens.getSizeForScreenWidget(Qt.size(width, height))
     }
 
     QmlTranslatorToScreens{
         id: translatorToScreens
-//        listInfoAdditionalScreens: providerScreens.getInfoAdditionalScreens()
     }
 
 
@@ -127,7 +121,6 @@ Item {
                     bottom: 1
                     top: 1000
                 }
-                onTextChanged: objSCP.textPixelSize = text
             }
         }
         Button{

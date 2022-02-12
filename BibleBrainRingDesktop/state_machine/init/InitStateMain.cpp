@@ -17,9 +17,9 @@ InitStateMain::InitStateMain(QQmlApplicationEngine *qmlApplicationEngine, QObjec
   , _qmlApplicationEngine(qmlApplicationEngine)
 {
     providerQml->setCurrentAppState(BibleBrainRing::Init);
+    listScreens->initScreens();
     setQmlSettings();
     loadQml();
-    setScreensInfo();
 }
 
 StateAbstract *InitStateMain::onEndQmlCreation()
@@ -29,9 +29,7 @@ StateAbstract *InitStateMain::onEndQmlCreation()
 
 void InitStateMain::setQmlSettings()
 {
-    _qmlApplicationEngine->rootContext()->setContextProperty("rectScreen", ManagerScreens::getRectPrimaryScreen());
     _qmlApplicationEngine->rootContext()->setContextProperty("providerQml", providerQml.get());
-    _qmlApplicationEngine->rootContext()->setContextProperty("providerScreens", providerScreens.get());
     qmlRegisterUncreatableMetaObject(
                 BibleBrainRing::staticMetaObject,       // static meta object
                 "biblebrainring.namespace",             // import statement (can be any string)
@@ -56,22 +54,10 @@ void InitStateMain::loadQml()
     });
 }
 
-void InitStateMain::setScreensInfo()
-{
-//    listScreens.wid
-    const auto* primaryScreen = QGuiApplication::primaryScreen();
-    const QRect rect = primaryScreen->geometry();
-    AdditionalScreen screen;
-    screen.xPos                 = rect.y();
-    screen.yPos                 = rect.y();
-    screen.widthReal            = rect.y();
-    screen.heightReal           = rect.y();
-    screen.widthVisual          = rect.y();
-    screen.heightVisual         = rect.y();
-    screen.scalePixelSize       = 1.0;
 
-#ifdef QT_DEBUG
-    ManagerScreens::getInfoAdditionalScreens();
-#endif
-}
+
+
+
+
+
 
