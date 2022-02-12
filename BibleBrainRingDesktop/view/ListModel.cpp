@@ -19,7 +19,7 @@ int ListModel::rowCount(const QModelIndex& parent) const
     if (parent.isValid() || !mList)
         return 0;
 
-    return mList->getSize();
+    return mList->getListSize();
 }
 
 QVariant ListModel::data(const QModelIndex& index, int role) const
@@ -49,7 +49,7 @@ bool ListModel::setData(const QModelIndex& index, const QVariant& value, int rol
 {
     qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " text: " << __LINE__ << Qt::endl;
     const int position = index.row();
-    if (position < 0 || listTeams()->getSize() <= position || mList == nullptr) {
+    if (position < 0 || listTeams()->getListSize() <= position || mList == nullptr) {
         return false;
     }
     qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " text: " << __LINE__ << Qt::endl;
@@ -119,7 +119,7 @@ void ListModel::setListTeams(ListTeams* listTeams)
         });
 
         connect(mList, &ListTeams::preSetItems, this, [=](int count) {
-            const int index = mList->getSize();
+            const int index = mList->getListSize();
             beginInsertRows(QModelIndex(), index, index + count - 1);
         });
         connect(mList, &ListTeams::postSetItems, this, [=]() {
@@ -131,6 +131,11 @@ void ListModel::setListTeams(ListTeams* listTeams)
         });
         connect(mList, &ListTeams::postRemoveItems, this, [=]() {
             endRemoveRows();
+        });
+        connect(mList, &ListTeams::updateModel, this, [=]() {
+            QModelIndex topLeft = createIndex(0,0);
+            QModelIndex bottomRight = createIndex( mList->getListSize(), 0);
+            emit dataChanged( topLeft, bottomRight );
         });
     }
 

@@ -3,6 +3,7 @@
 QScopedPointer<ListTeams> StateAbstract::listTeamsRegistration          (new ListTeams());
 QScopedPointer<ListTeams> StateAbstract::listTeamsInGameSession         (new ListTeams());
 QScopedPointer<ListTeams> StateAbstract::listTeamsInBattle              (new ListTeams());
+QScopedPointer<ListTeams> StateAbstract::listTeamsInResult              (new ListTeams());
 QScopedPointer<ListScreens> StateAbstract::listScreens                  (new ListScreens());
 QScopedPointer<ManagerQuestions> StateAbstract::managerQuestions        (new ManagerQuestions());
 

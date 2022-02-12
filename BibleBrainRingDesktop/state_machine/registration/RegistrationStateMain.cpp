@@ -17,9 +17,6 @@ RegistrationStateMain::RegistrationStateMain(QObject *parent)
 {
     providerQml->setCurrentAppState(BibleBrainRing::Registration);
 //    serverClassical->startRegistration();
-#ifdef QT_DEBUG
-    providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeOnlyProgram);
-#endif
 
 #ifdef QT_DEBUG
 //    QTimer::singleShot(100, [](){
@@ -54,7 +51,6 @@ StateAbstract *RegistrationStateMain::onQmlButtonClicked(const BibleBrainRing::B
         return new EnvironmentSetup();
     }
     else if (button == BibleBrainRing::ButtonNext) {
-        // TODO: add: do you want to lose all progress?
         return new GameSession();
     }
     return nullptr;

@@ -25,6 +25,7 @@ protected:
     static QScopedPointer<ListTeams> listTeamsRegistration;
     static QScopedPointer<ListTeams> listTeamsInGameSession;
     static QScopedPointer<ListTeams> listTeamsInBattle;
+    static QScopedPointer<ListTeams> listTeamsInResult;
     static QScopedPointer<ListScreens> listScreens;
     static QScopedPointer<ManagerQuestions> managerQuestions;
 };

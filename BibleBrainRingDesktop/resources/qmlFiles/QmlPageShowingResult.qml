@@ -7,15 +7,26 @@ import ListModelQml 1.0
 Item {
     anchors.fill: parent
 
-    Rectangle{
-        anchors.fill: parent
-        color: "yellow"
-        opacity: 0.5
-    }
-    Text {
-        id: name
+    MyComponents.QmlComponentListView{
+        id: listViewShowingResult
+        width: parent.width * 0.8
+        height: parent.height * 0.8
+        anchors.top: parent.top
         anchors.centerIn: parent
-        text: qsTr("Show result: 0 : 0")
+        orientaionList: ListView.Vertical
+        listModelObj: ListModel {
+            listTeams: listTeamsInResultQml
+        }
     }
 
+    MyComponents.QmlComponentHelpBoard{
+        id: helpBoardShowingResult
+        width: listViewShowingResult.width
+        anchors.top: listViewShowingResult.bottom
+        anchors.topMargin: parent.height * 0.01
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: anchors.topMargin
+        anchors.horizontalCenter: listViewShowingResult.horizontalCenter
+        textHelp: qsTr("Save team result here")
+    }
 }

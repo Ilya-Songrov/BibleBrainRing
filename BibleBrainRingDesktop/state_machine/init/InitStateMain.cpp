@@ -45,6 +45,7 @@ void InitStateMain::setQmlSettings()
     _qmlApplicationEngine->rootContext()->setContextProperty("listTeamsRegistrationQml", listTeamsRegistration.get());
     _qmlApplicationEngine->rootContext()->setContextProperty("listTeamsInGameSessionQml", listTeamsInGameSession.get());
     _qmlApplicationEngine->rootContext()->setContextProperty("listTeamsInBattleQml", listTeamsInBattle.get());
+    _qmlApplicationEngine->rootContext()->setContextProperty("listTeamsInResultQml", listTeamsInResult.get());
     _qmlApplicationEngine->rootContext()->setContextProperty("listScreensQml", listScreens.get());
 }
 

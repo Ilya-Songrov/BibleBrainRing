@@ -6,6 +6,7 @@ import "." as MyComponents
 
 Item {
     property var listModelObj           : ListModel;
+    property int orientaionList         : ListView.Horizontal
     signal moveTeamToAnotherList(int index)
 
     Rectangle{
@@ -17,7 +18,7 @@ Item {
     ListView {
         anchors.fill: parent
         clip: true
-        orientation: ListView.Horizontal
+        orientation: orientaionList
         model: listModelObj
         delegate: componentDelegate
     }
@@ -25,8 +26,8 @@ Item {
         id: componentDelegate
 
         Item {
-            width: ListView.view.width / 6
-            height: ListView.view.height
+            width: ListView.view.width / (orientaionList === ListView.Horizontal ? 6 : 1)
+            height: ListView.view.height / (orientaionList === ListView.Vertical ? 6 : 1)
 
             Rectangle{
                 id: rectColor
@@ -82,11 +83,7 @@ Item {
                         }
                         onValueModified: {
                             model["score"] = value
-//                            model.changeScore(value, index);
-//                            listModelObj.dataChanged(index, index)
-//                            console.log("onTextChanged changeScore", model["score"], value, index);
                         }
-//                        onVisibleChanged: value = model["score"]
                     }
                 }
             }

@@ -24,7 +24,7 @@ GameSession::GameSession(QObject *parent)
 //    listTeamsInBattle->appendTeam(team);
 //    team.name       = "name nameB nameB nameB";
 //    team.guid       = "2222";
-    listTeamsInGameSession->appendTeam(team);
+//    listTeamsInGameSession->appendTeam(team);
 //    listTeamsInGameSession->appendTeam(team);
 //    listTeamsInGameSession->appendTeam(team);
 //    listTeamsInGameSession->appendTeam(team);
@@ -73,9 +73,21 @@ void GameSession::loadTeams()
 {
     listTeamsInBattle->clear();
     listTeamsInGameSession->clear();
-    for (const TeamDto& team: listTeamsRegistration->getList()) {
+    for (const TeamDto& team: qAsConst(listTeamsRegistration->getList())) {
         if (team.status == Registered || team.status == WaitingForTheNextRound || team.status == InSparring) {
             listTeamsInGameSession->appendTeam(team);
+        }
+    }
+    for (const TeamDto& teamG: qAsConst(listTeamsInGameSession->getList())) {
+        bool found = false;
+        for (const TeamDto& teamR: qAsConst(listTeamsInResult->getList())) {
+            if (teamG.name == teamR.name) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            listTeamsInResult->appendTeam(teamG);
         }
     }
 }

@@ -15,6 +15,8 @@
 StartStateMenuMain::StartStateMenuMain(QObject *parent) : StateAbstract(__FUNCTION__, parent)
 {
     providerQml->setCurrentAppState(BibleBrainRing::StartMenu);
+    providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeNone);
+    listTeamsInResult->clear();
 }
 
 StateAbstract *StartStateMenuMain::onQmlButtonClicked(const BibleBrainRing::Button button)

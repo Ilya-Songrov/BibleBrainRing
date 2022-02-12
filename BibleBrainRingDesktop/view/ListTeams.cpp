@@ -52,7 +52,7 @@ QList<TeamDto>& ListTeams::getList()
     return list;
 }
 
-int ListTeams::getSize() const
+int ListTeams::getListSize() const
 {
     return list.size();
 }

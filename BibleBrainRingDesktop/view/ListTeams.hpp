@@ -19,7 +19,7 @@ public:
     TeamDto getTeam(const int index);
     QList<TeamDto>& getList();
 
-    Q_INVOKABLE int getSize() const;
+    Q_INVOKABLE int getListSize() const;
     Q_INVOKABLE void addTeam(const QString name, const QString color);
 
 signals:
@@ -32,6 +32,7 @@ signals:
     void postSetItems       ();
     void preRemoveItems     (int first, int last);
     void postRemoveItems    ();
+    void updateModel        ();
 
 private:
     QList<TeamDto> list;
