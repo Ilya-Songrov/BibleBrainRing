@@ -30,6 +30,7 @@ StateAbstract *InitStateMain::onEndQmlCreation()
 void InitStateMain::setQmlSettings()
 {
     _qmlApplicationEngine->rootContext()->setContextProperty("providerQml", providerQml.get());
+    _qmlApplicationEngine->rootContext()->setContextProperty("managerQuestionsQml", managerQuestions.get());
     qmlRegisterUncreatableMetaObject(
                 BibleBrainRing::staticMetaObject,       // static meta object
                 "biblebrainring.namespace",             // import statement (can be any string)

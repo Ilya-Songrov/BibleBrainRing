@@ -1,9 +1,10 @@
 #include "StateAbstract.h"
 
-QScopedPointer<ListTeams> StateAbstract::listTeamsRegistration  (new ListTeams());
-QScopedPointer<ListTeams> StateAbstract::listTeamsInGameSession (new ListTeams());
-QScopedPointer<ListTeams> StateAbstract::listTeamsInBattle      (new ListTeams());
-QScopedPointer<ListScreens> StateAbstract::listScreens          (new ListScreens());
+QScopedPointer<ListTeams> StateAbstract::listTeamsRegistration          (new ListTeams());
+QScopedPointer<ListTeams> StateAbstract::listTeamsInGameSession         (new ListTeams());
+QScopedPointer<ListTeams> StateAbstract::listTeamsInBattle              (new ListTeams());
+QScopedPointer<ListScreens> StateAbstract::listScreens                  (new ListScreens());
+QScopedPointer<ManagerQuestions> StateAbstract::managerQuestions        (new ManagerQuestions());
 
 StateAbstract::StateAbstract(const QString &objectName, QObject *parent) : QObject(parent)
 {

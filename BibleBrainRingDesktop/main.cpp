@@ -25,6 +25,8 @@ int main(int argc, char *argv[])
     try {
         ApplicationNotify<QApplication> app(argc, argv);
         QCoreApplication::setApplicationVersion("2.0.0");
+        app.setOrganizationName("somename");
+        app.setOrganizationDomain("somename");
 
         QCommandLineParser parser;
         parser.setApplicationDescription("App description");

@@ -23,6 +23,7 @@ HEADERS += \
     managers/ManagerQuestions/QuestionsFileParser.hpp \
     provider/ProviderQuestions.hpp \
     provider/providerqml.h \
+    state_machine/EnvironmentSetup/EnvironmentSetup.hpp \
     state_machine/ShowingResult/ShowingResult.hpp \
     state_machine/StateAbstract.h \
     state_machine/all_states.h \
@@ -45,6 +46,7 @@ SOURCES += \
     managers/ManagerQuestions/QuestionsFileParser.cpp \
     provider/ProviderQuestions.cpp \
     provider/providerqml.cpp \
+    state_machine/EnvironmentSetup/EnvironmentSetup.cpp \
     state_machine/ShowingResult/ShowingResult.cpp \
     state_machine/StateAbstract.cpp \
     state_machine/game_session/GameSession.cpp \
@@ -72,6 +74,7 @@ INCLUDEPATH += \
     state_machine \
     state_machine/init \
     state_machine/start_menu \
+    state_machine/EnvironmentSetup \
     state_machine/registration \
     state_machine/game_session \
     state_machine/ShowingResult

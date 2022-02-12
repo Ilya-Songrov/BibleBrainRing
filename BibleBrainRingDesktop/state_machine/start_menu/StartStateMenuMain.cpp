@@ -28,7 +28,7 @@ StateAbstract *StartStateMenuMain::onQmlButtonClicked(const BibleBrainRing::Butt
         emit providerQml->showMessage("Write me, please");
     }
     else if (button == BibleBrainRing::ButtonStartServerHttp) {
-        return new RegistrationStateMain();
+        return new EnvironmentSetup();
     }
     else if (button == BibleBrainRing::ButtonStartClientWifi) {
         emit providerQml->showMessage("Write me, please");

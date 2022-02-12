@@ -58,7 +58,7 @@ StateAbstract *RegistrationStateMain::onQmlButtonClicked(const BibleBrainRing::B
 {
     if (button == BibleBrainRing::ButtonComeback) {
         // TODO: add: do you want to lose all progress?
-        return new StartStateMenuMain();
+        return new EnvironmentSetup();
     }
     else if (button == BibleBrainRing::ButtonNext) {
         // TODO: add: do you want to lose all progress?

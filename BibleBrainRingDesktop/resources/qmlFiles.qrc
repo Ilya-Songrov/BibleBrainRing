@@ -14,5 +14,6 @@
         <file>qmlFiles/Components/QmlRowLayout.qml</file>
         <file>qmlFiles/Components/QmlScreenWidget.qml</file>
         <file>qmlFiles/Components/QmlScreensControlPanel.qml</file>
+        <file>qmlFiles/QmlPageEnvironmentSetup.qml</file>
     </qresource>
 </RCC>

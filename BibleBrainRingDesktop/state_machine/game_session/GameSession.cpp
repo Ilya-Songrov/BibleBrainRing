@@ -7,6 +7,7 @@ GameSession::GameSession(QObject *parent)
     providerQml->setCurrentAppState(BibleBrainRing::GameSession);
 
 #ifdef QT_DEBUG
+    managerQuestions->loadQuestions("/home/songrov/test_questions.txt");
     TeamDto team;
     team.guid        = "guid";
     team.name        = "name";

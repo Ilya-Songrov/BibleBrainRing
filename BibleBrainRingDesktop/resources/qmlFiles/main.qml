@@ -34,6 +34,11 @@ ApplicationWindow {
         visible: providerQml.currentAppState === BibleBrainRing.StartMenu
     }
 
+    QmlPageEnvironmentSetup{
+        id: pageEnvironmentSetup
+        visible: providerQml.currentAppState === BibleBrainRing.EnvironmentSetup
+    }
+
     QmlPageRegistration{
         id: pageRegistration
         visible: providerQml.currentAppState === BibleBrainRing.Registration

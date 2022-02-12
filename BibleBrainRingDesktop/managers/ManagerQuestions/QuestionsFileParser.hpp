@@ -8,7 +8,5 @@ class QuestionsFileParser : public QObject
 public:
     explicit QuestionsFileParser(QObject *parent = nullptr);
 
-signals:
-
 };
 

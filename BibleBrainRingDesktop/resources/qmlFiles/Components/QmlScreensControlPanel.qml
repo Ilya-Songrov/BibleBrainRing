@@ -14,7 +14,7 @@ Item {
         id: objSCP
         property color backgroundColor      : "black"
         property color textColor            : "white"
-        property string textQuestionStr     : "textQuestion textQuestion  textQuestion textQuestion textQuestion textQuestion?"
+        property string textQuestionStr     : "Do you have any questions?"
         property real textPixelSize         : textFieldFontSize.text
         property bool visibleTeams          : true
         property int widthElements          : width * 0.9
@@ -37,7 +37,28 @@ Item {
         anchors.leftMargin: marginValue
         editable: true
         selectTextByMouse: true
-        model: ["First", "Second", "Second2", "Third"]
+        model: []
+        contentItem: TextField{
+            id: textFieldQuestions
+            width: boundingItemScreenWidget.width
+            selectByMouse: true
+            Keys.onReturnPressed: comboBoxQuestions.findSubStr(text)
+            Keys.onEnterPressed: comboBoxQuestions.findSubStr(text)
+            onTextChanged: {
+                comboBoxQuestions.findSubStr(text)
+                if(text.length === 0){
+                    comboBoxQuestions.popup.close()
+                }
+            }
+        }
+        function findSubStr(subStr){
+            model = managerQuestionsQml.updateSearchQuestions(subStr)
+            popup.open()
+        }
+        onActivated: {
+            objSCP.textQuestionStr = currentText
+            textFieldQuestions.text = currentText
+        }
     }
 
     Item{

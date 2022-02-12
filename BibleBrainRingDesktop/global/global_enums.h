@@ -21,6 +21,7 @@ enum AppState {
     None,
     Init,
     StartMenu,
+    EnvironmentSetup,
     RunServer,
     Registration,
     GameSession,
