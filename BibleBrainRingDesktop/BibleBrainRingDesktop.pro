@@ -93,7 +93,20 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 #### cqtdeployer ####
 CONFIG(release, debug | release) {
-QMAKE_POST_LINK=/bin/bash -c \"cqtdeployer -bin $${OUT_PWD}/$${TARGET} -targetDir cqtdeploy-of-$${TARGET} -qmake $${QMAKE_QMAKE} -libDir $${PWD} \
-                               -recursiveDepth 10 -qmlDir $${PWD} force-clear ; \"
+unix:{
+    QMAKE_POST_LINK=/bin/bash -c \"cqtdeployer -bin $${OUT_PWD}/$${TARGET} -targetDir cqtdeploy-of-$${TARGET} -qmake $${QMAKE_QMAKE} -libDir $${PWD} \
+                                    -recursiveDepth 10 -qmlDir $${PWD} force-clear ; \"
+}
+win32:{
+    FOLDER_WIN_BUILD = $$OUT_PWD/$${TARGET}_Win
+    FOLDER_WIN_BUILD_SHELL = \"$$shell_path($$FOLDER_WIN_BUILD)\"
+    BINARY_EXECUTABLE_FILE = $$OUT_PWD/release/$${TARGET}.exe
+
+    QMAKE_POST_LINK += if exist $$FOLDER_WIN_BUILD_SHELL $(DEL_DIR) /s /q $$FOLDER_WIN_BUILD_SHELL $$escape_expand(\n\t) \
+                windeployqt $${BINARY_EXECUTABLE_FILE} --dir $${FOLDER_WIN_BUILD} -qmldir $${PWD} $$OUT_PWD/release/$${TARGET}.exe $$escape_expand(\n\t) \
+                $(COPY_FILE) \"$$shell_path($$BINARY_EXECUTABLE_FILE)\" \"$$shell_path($$FOLDER_WIN_BUILD)\"
+
+}
+
 }
 #### cqtdeployer ####
