@@ -13,8 +13,8 @@
 #pragma once
 
 #include "providerqml.h"
-#include "biblebrainringserverlib/server_classical/biblebrainringserverclassical.h"
-#include "biblebrainringserverlib/iodevice/none/NoneServer.h"
+#include "server_classical/biblebrainringserverclassical.h"
+#include "iodevice/none/NoneServer.h"
 
 extern QScopedPointer<ProviderQml                   > providerQml;
 extern QScopedPointer<BibleBrainRingServerClassical > serverClassical;

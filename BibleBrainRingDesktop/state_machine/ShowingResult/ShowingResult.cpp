@@ -13,8 +13,10 @@ StateAbstract* ShowingResult::onQmlButtonClicked(const BibleBrainRing::Button bu
         return new GameSession();
     }
     else if (button == BibleBrainRing::ButtonNext) {
-        // TODO: add: do you want to finish game?
-        return new StartStateMenuMain();
+        const int res = QMessageBox::question(nullptr, QObject::tr("Game"), "Do you want to end the game and lose all progress?");
+        if (res == QMessageBox::Button::Yes) {
+            return new StartStateMenuMain();
+        }
     }
     return nullptr;
 }

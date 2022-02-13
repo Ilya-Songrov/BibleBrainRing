@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/server_classical/servermodeacceptsregistrations.h"
+#include "servermodeacceptsregistrations.h"
 
 ServerModeAcceptsRegistrations::ServerModeAcceptsRegistrations(QObject *parent) : ServerModeGameAbstract(ServerMode::AcceptsRegistrations, __FUNCTION__, parent)
     , value_notification_client_to_server_registration                ("notification_client_to_server_registration")

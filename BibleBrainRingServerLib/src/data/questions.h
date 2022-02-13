@@ -12,15 +12,25 @@
 
 #pragma once
 
-#include "dtoabstract.h"
-#include "biblebrainringserverlib/enums/global_enums.h"
+#include <QObject>
 
-struct TeamDto : public DtoAbstract
+#include "../enums/global_enums.h"
+
+class Questions
 {
-    QString     guid        ;
-    QString     name        ;
-    QString     color       ;
-    double      score       = 0.0;
-    int         position    = 0;
-    TeamStatus  status      = TeamStatus::None;
+public:
+    explicit Questions();
+
+    void loadQuestions(const QStringList &questions);
+    void changeQuestionStatus(const QString &question, const QuestionStatus questionStatus);
+
+
+private:
+    struct QuestionNode{
+        QString question        ;
+        QuestionStatus status   = UnusedQuestion;
+    };
+
+    QList<QuestionNode> listQuestions;
 };
+

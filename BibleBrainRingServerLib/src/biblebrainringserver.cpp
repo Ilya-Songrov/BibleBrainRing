@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/biblebrainringserver.h"
+#include "biblebrainringserver.h"
 #include <QTcpSocket>
 #include <QTcpServer>
 

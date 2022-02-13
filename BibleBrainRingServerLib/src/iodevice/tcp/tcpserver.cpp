@@ -1,4 +1,4 @@
-#include "biblebrainringserverlib/iodevice/tcp/tcpserver.h"
+#include "tcpserver.h"
 
 TcpServer::TcpServer(const QString &address, const QString &port, QObject *parent) : IODeviceServerAbstract(parent)
   , _address(address)

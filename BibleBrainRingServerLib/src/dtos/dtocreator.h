@@ -15,8 +15,8 @@
 #include <QString>
 #include <QJsonObject>
 
-#include "biblebrainringserverlib/enums/global_enums.h"
-#include "biblebrainringserverlib/dtos/teamdto.h"
+#include "../enums/global_enums.h"
+#include "../dtos/teamdto.h"
 
 
 class DtoCreator

@@ -3,7 +3,7 @@
 #include <QObject>
 #include <QDebug>
 
-#include "biblebrainringserverlib/dtos/teamdto.h"
+#include "dtos/teamdto.h"
 
 class ListTeams : public QObject
 {

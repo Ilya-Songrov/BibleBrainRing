@@ -17,8 +17,8 @@ SOURCES += \
     $$PWD/tcp/tcpclient.cpp
 
 HEADERS += \
-    $$PWD/../BibleBrainRingServerLib/include/biblebrainringserverlib/information/informationconsoleprinter.h \
-    $$PWD/../BibleBrainRingServerLib/include/biblebrainringserverlib/iodevice/tcp/readwritesocket.h \
+    $$PWD/../BibleBrainRingServerLib/src/information/informationconsoleprinter.h \
+    $$PWD/../BibleBrainRingServerLib/src/iodevice/tcp/readwritesocket.h \
     $$PWD/mainwindow.h \
     $$PWD/tcp/tcpclient.h
 
@@ -26,9 +26,9 @@ FORMS += \
     mainwindow.ui
 
 INCLUDEPATH += \
-    $$PWD/../BibleBrainRingServerLib/include \
-    $$PWD/../BibleBrainRingServerLib/include/biblebrainringserverlib/information \
-    $$PWD/../BibleBrainRingServerLib/include/biblebrainringserverlib/iodevice/tcp \
+    $$PWD/../src \
+    $$PWD/../src/biblebrainringserverlib/information \
+    $$PWD/../src/biblebrainringserverlib/iodevice/tcp \
     $$PWD/../BibleBrainRingServerLib/src/information \
     $$PWD/../BibleBrainRingServerLib/src/iodevice/tcp \
 

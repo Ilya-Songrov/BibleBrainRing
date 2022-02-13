@@ -2,7 +2,7 @@
 
 #include <QObject>
 
-#include "biblebrainringserverlib/iodevice/iodeviceserverabstract.h"
+#include "../iodeviceserverabstract.h"
 
 class NoneServer : public IODeviceServerAbstract
 {

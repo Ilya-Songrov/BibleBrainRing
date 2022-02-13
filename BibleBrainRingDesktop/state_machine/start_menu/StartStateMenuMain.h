@@ -14,7 +14,7 @@
 
 #include "StateAbstract.h"
 #include "all_states.h"
-#include "biblebrainringserverlib/iodevice/tcp/tcpserver.h"
+#include "iodevice/tcp/tcpserver.h"
 
 
 class StartStateMenuMain : public StateAbstract

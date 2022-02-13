@@ -20,9 +20,9 @@ QStringList ManagerQuestions::getSearchingQuestions()
 QString ManagerQuestions::loadQuestions(const QString fileUrls)
 {
     allQuestions.clear();
-    QFile inputFile(QUrl(fileUrls).path());
+    QFile inputFile(QUrl(fileUrls).toLocalFile());
     if (!inputFile.open(QIODevice::ReadOnly)){
-        QMessageBox::warning(nullptr, QObject::tr("Codecs"), QString("Cannot read file %1").arg(fileUrls));
+        QMessageBox::warning(nullptr, QObject::tr("Codecs"), QString("Cannot read file %1").arg(QUrl(fileUrls).toLocalFile()));
     }
     QTextStream in(&inputFile);
     while (!in.atEnd())

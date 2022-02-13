@@ -15,7 +15,7 @@
 #include <QDebug>
 #include <QVector>
 
-#include "biblebrainringserverlib/dtos/teamdto.h"
+#include "../dtos/teamdto.h"
 
 class Standings
 {

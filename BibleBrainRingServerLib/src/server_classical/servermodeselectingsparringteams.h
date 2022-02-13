@@ -12,25 +12,13 @@
 
 #pragma once
 
-#include <QObject>
+#include "servermodegameabstract.h"
+#include "ServerModeRunningSparring.h"
 
-#include "biblebrainringserverlib/enums/global_enums.h"
-
-class Questions
+class ServerModeSelectingSparringTeams : public ServerModeGameAbstract
 {
 public:
-    explicit Questions();
+    explicit ServerModeSelectingSparringTeams(QObject *parent = nullptr);
 
-    void loadQuestions(const QStringList &questions);
-    void changeQuestionStatus(const QString &question, const QuestionStatus questionStatus);
-
-
-private:
-    struct QuestionNode{
-        QString question        ;
-        QuestionStatus status   = UnusedQuestion;
-    };
-
-    QList<QuestionNode> listQuestions;
+    virtual ServerModeAbstract* setSparringTeams(const QVector<QString>& vecGuidTeam) override;
 };
-

@@ -3,7 +3,7 @@
 #include <QObject>
 #include <QTcpServer>
 
-#include "biblebrainringserverlib/iodevice/iodeviceserverabstract.h"
+#include "../iodeviceserverabstract.h"
 #include "readwritesocket.h"
 
 class TcpServer : public IODeviceServerAbstract

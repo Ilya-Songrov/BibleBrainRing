@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/server_classical/servermodegameabstract.h"
+#include "servermodegameabstract.h"
 
 ServerModeGameAbstract::ServerModeGameAbstract(const ServerMode mode, const QString &objectName, QObject *parent) : ServerModeAbstract(mode, objectName, parent)
 {

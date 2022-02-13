@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/dtos/dtocreator.h"
+#include "dtocreator.h"
 
 TeamDto DtoCreator::getTeamDto(const QString &guid, const QString &name, const QString &color, const double score, const int position, const TeamStatus status)
 {

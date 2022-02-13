@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/server_classical/biblebrainringserverclassical.h"
+#include "biblebrainringserverclassical.h"
 
 BibleBrainRingServerClassical::BibleBrainRingServerClassical(IODeviceServerAbstract *ioDeviceServerAbstract) : QObject(nullptr)
     , _ioDeviceServerAbstract(ioDeviceServerAbstract)

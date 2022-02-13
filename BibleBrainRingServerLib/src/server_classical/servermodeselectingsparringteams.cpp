@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/server_classical/servermodeselectingsparringteams.h"
+#include "servermodeselectingsparringteams.h"
 
 ServerModeSelectingSparringTeams::ServerModeSelectingSparringTeams(QObject *parent) : ServerModeGameAbstract(ServerMode::SelectingSparringTeams, __FUNCTION__, parent)
 {

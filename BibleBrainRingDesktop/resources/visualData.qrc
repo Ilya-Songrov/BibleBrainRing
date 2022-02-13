@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/qmlFiles">
         <file>images/3313578_arrow_left_direction_pointing_icon.svg</file>
-        <file>images/3017955_examination_inquiry_interrogation_investigation_poll_icon.svg</file>
     </qresource>
 </RCC>

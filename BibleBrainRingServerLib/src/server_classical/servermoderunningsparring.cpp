@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/server_classical/servermoderunningsparring.h"
+#include "servermoderunningsparring.h"
 
 ServerModeRunningSparring::ServerModeRunningSparring(QObject *parent) : ServerModeGameAbstract(ServerMode::RunningSparring, __FUNCTION__, parent)
   , notification_server_to_client_change_button_state("notification_server_to_client_change_button_state")

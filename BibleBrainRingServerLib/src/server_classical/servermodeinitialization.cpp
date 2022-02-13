@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/server_classical/servermodeinitialization.h"
+#include "servermodeinitialization.h"
 
 ServerModeInitialization::ServerModeInitialization(IODeviceServerAbstract *ioDeviceServerAbstract, QObject *parent) : ServerModeAbstract(ServerMode::Initialization, __FUNCTION__, parent)
 {

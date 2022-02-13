@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/data/questions.h"
+#include "questions.h"
 
 Questions::Questions()
 {

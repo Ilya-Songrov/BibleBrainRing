@@ -12,13 +12,10 @@
 
 #pragma once
 
-#include "servermodegameabstract.h"
-#include "all_server_modes.h"
-
-class ServerModeSelectingSparringTeams : public ServerModeGameAbstract
-{
-public:
-    explicit ServerModeSelectingSparringTeams(QObject *parent = nullptr);
-
-    virtual ServerModeAbstract* setSparringTeams(const QVector<QString>& vecGuidTeam) override;
-};
+#include "servermodeinitialization.h"
+#include "servermodeidle.h"
+#include "servermodeacceptsregistrations.h"
+#include "servermodeselectingsparringteams.h"
+#include "servermoderunningsparring.h"
+#include "servermodeshowingsparringresult.h"
+#include "servermodeshowinggameresult.h"

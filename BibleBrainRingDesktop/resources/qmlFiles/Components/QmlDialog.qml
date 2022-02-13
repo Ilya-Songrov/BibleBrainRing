@@ -9,8 +9,10 @@ Dialog {
     anchors.centerIn: parent
     implicitWidth: parent.width / 2.5
     closePolicy: Popup.NoAutoClose
-    standardButtons: Dialog.Save | Dialog.Cancel
+    standardButtons: Dialog.Cancel | Dialog.Save
     modal: true
+    Keys.onReturnPressed: accept()
+    Keys.onEnterPressed: accept()
     background: Rectangle{
         anchors.fill: parent
     }

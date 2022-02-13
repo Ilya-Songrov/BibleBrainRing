@@ -1,4 +1,4 @@
-#include "biblebrainringserverlib/iodevice/none/NoneServer.h"
+#include "NoneServer.h"
 
 NoneServer::NoneServer(QObject *parent)
     : IODeviceServerAbstract{parent}

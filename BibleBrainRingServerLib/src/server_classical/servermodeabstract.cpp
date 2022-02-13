@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/server_classical/servermodeabstract.h"
+#include "servermodeabstract.h"
 
 IODeviceServerAbstract* ServerModeAbstract::io                                          = nullptr;
 Questions ServerModeAbstract::q                                                         ;

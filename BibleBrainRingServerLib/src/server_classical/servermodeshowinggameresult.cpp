@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/server_classical/servermodeshowinggameresult.h"
+#include "servermodeshowinggameresult.h"
 
 ServerModeShowingGameResult::ServerModeShowingGameResult(QObject *parent) : ServerModeGameAbstract(ServerMode::ShowingGameResult, __FUNCTION__, parent)
   , notification_server_to_client_game_result("notification_server_to_client_game_result")

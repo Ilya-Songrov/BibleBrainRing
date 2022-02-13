@@ -10,7 +10,7 @@
 **
 **************************************************************************/
 
-#include "biblebrainringserverlib/data/standings.h"
+#include "standings.h"
 
 Standings::Standings()
 {

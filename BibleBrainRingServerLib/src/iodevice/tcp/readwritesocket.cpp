@@ -1,4 +1,4 @@
-#include "biblebrainringserverlib/iodevice/tcp/readwritesocket.h"
+#include "readwritesocket.h"
 
 ReadWriteSocket::ReadWriteSocket(const DataCompletenessCheck dataCompletenessCheck, QTcpSocket *socket, QObject *parent) : QObject(parent)
   , _socket(socket ? socket : new QTcpSocket())
