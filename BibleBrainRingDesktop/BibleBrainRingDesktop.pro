@@ -91,7 +91,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 
-#### cqtdeployer ####
+#### release ####
 CONFIG(release, debug | release) {
 unix:{
     QMAKE_POST_LINK=/bin/bash -c \"cqtdeployer -bin $${OUT_PWD}/$${TARGET} -targetDir cqtdeploy-of-$${TARGET} -qmake $${QMAKE_QMAKE} -libDir $${PWD} \
@@ -109,4 +109,3 @@ win32:{
 }
 
 }
-#### cqtdeployer ####

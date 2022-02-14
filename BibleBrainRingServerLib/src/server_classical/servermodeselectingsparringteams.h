@@ -13,7 +13,7 @@
 #pragma once
 
 #include "servermodegameabstract.h"
-#include "ServerModeRunningSparring.h"
+#include "servermoderunningsparring.h"
 
 class ServerModeSelectingSparringTeams : public ServerModeGameAbstract
 {
