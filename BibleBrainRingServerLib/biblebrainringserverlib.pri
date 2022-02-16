@@ -1,9 +1,16 @@
+include($$PWD/../QtWebApp/QtWebApp/httpserver/httpserver.pri)
+include($$PWD/../QtWebApp/QtWebApp/logging/logging.pri)
+include($$PWD/../QtWebApp/QtWebApp/templateengine/templateengine.pri)
+
 SOURCES += \
     $$PWD/src/biblebrainringserver.cpp \
     $$PWD/src/data/questions.cpp \
     $$PWD/src/data/standings.cpp \
     $$PWD/src/dtos/dtocreator.cpp \
     $$PWD/src/information/informationconsoleprinter.cpp \
+    $$PWD/src/iodevice/bluetooth/BluetoothServer.cpp \
+    $$PWD/src/iodevice/http/HttpServer.cpp \
+    $$PWD/src/iodevice/http/MyRequestHandler.cpp \
     $$PWD/src/iodevice/iodeviceserverabstract.cpp \
     $$PWD/src/iodevice/none/NoneServer.cpp \
     $$PWD/src/iodevice/tcp/readwritesocket.cpp \
@@ -34,6 +41,9 @@ HEADERS += \
     $$PWD/src/dtos/teamregistrationdto.h \
     $$PWD/src/enums/global_enums.h \
     $$PWD/src/information/informationconsoleprinter.h \
+    $$PWD/src/iodevice/bluetooth/BluetoothServer.hpp \
+    $$PWD/src/iodevice/http/HttpServer.hpp \
+    $$PWD/src/iodevice/http/MyRequestHandler.hpp \
     $$PWD/src/iodevice/iodeviceserverabstract.h \
     $$PWD/src/iodevice/none/NoneServer.h \
     $$PWD/src/iodevice/tcp/readwritesocket.h \

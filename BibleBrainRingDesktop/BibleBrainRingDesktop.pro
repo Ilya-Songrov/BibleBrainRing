@@ -1,4 +1,4 @@
-include($$PWD/../BibleBrainRingServerLib/biblebrainringserverlib.pri)
+#include($$PWD/../BibleBrainRingServerLib/biblebrainringserverlib.pri)
 include($$PWD/../Exceptions/exceptions.pri)
 
 QT += quick

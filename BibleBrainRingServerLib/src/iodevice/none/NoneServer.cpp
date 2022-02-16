@@ -38,10 +38,10 @@ void NoneServer::resumeAcceptingClients()
 
 bool NoneServer::containsClient(const QString& /*guidClient*/) const
 {
-
+    return true;
 }
 
 int NoneServer::getQuantityClients() const
 {
-
+    return 0;
 }
