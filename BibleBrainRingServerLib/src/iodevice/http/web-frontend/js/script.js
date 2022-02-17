@@ -8,8 +8,9 @@ form.addEventListener("submit", (e) => {
 });
 
 function sendData(data) {
+  var hostPort = "192.168.0.104:8081"
   var http = new XMLHttpRequest();
-  var url = "http://176.36.224.228:8080/bogdan_post";
+  var url = hostPort + "/bogdan_post";
   var params = data;
   http.open("POST", url, true);
 
@@ -18,12 +19,14 @@ function sendData(data) {
 
   http.onreadystatechange = function () {
     //Call a function when the state changes.
+    console.log("onreadystatechange lenght", http.responseText.lenght);
     console.log("onreadystatechange", http.responseText);
+
     if (http.readyState == 4 && http.status == 200) {
         const obj = JSON.parse(http.responseText);
         if(obj.your_name == "ilya"){
         	console.log("obj.your_name", obj.your_name);
-        	window.location.replace("http://176.36.224.228:8080/button");
+        	window.location.replace( "http://192.168.0.104:8081/button");
         }
       // alert(http.responseText);
       //window.location.replace("http://192.168.0.104:8080/button");

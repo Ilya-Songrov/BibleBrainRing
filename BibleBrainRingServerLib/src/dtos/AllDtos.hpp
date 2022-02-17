@@ -16,11 +16,14 @@
 #include "DtoTeamActivationForBattleServerRq.hpp"
 #include "DtoTeamRegistrationClientRq.h"
 #include "DtoTeamRegistrationServerRs.h"
+#include "DtoButtonPressedRq.hpp"
 #include "answeraccepteddto.h"
 #include "dtoabstract.h"
 #include "gamestatusdto.h"
 #include "sendanswerdto.h"
 #include "serverstatusdto.h"
 #include "teamdto.h"
+
+#include "dtocreator.h"
 
 

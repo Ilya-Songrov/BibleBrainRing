@@ -15,7 +15,6 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
-#include "servermodeabstract.h"
 #include "dtos/AllDtos.hpp"
 #include "iodevice/iodeviceserverabstract.h"
 
@@ -35,6 +34,7 @@ public:
     void removeTeamsFromBattle();
     QVector<QString> getTeamsInBattle();
 
+    TeamDto getTeam(const QString& guidTeam);
 
     // callbacks:
     void onConnectNewTeam   (std::function<void(const TeamDto &)> function);
@@ -44,7 +44,6 @@ private:
     void appendTeam(const TeamDto &team);
     void changeTeam(const TeamDto &team, const bool runCallback = false);
     void changeTeam(const QString& guidTeam, const TeamStatus teamStatus, const bool runCallback = false);
-    TeamDto getTeam(const QString& guidTeam);
     QVector<TeamDto> getTeams(const TeamStatus teamStatus);
 
 

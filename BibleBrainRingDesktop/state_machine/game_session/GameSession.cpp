@@ -74,7 +74,7 @@ void GameSession::loadTeams()
     listTeamsInBattle->clear();
     listTeamsInGameSession->clear();
     for (const TeamDto& team: qAsConst(listTeamsRegistration->getList())) {
-        if (team.status == Registered || team.status == WaitingForTheNextRound || team.status == InSparring) {
+        if (team.status == Registered || team.status == WaitingForTheNextRound || team.status == InBattle) {
             listTeamsInGameSession->appendTeam(team);
         }
     }

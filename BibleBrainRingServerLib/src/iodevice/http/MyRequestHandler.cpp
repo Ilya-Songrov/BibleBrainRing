@@ -1,9 +1,12 @@
 #include "MyRequestHandler.hpp"
 
 
-MyRequestHandler::MyRequestHandler(QObject* parent)
+MyRequestHandler::MyRequestHandler(std::function<TeamDto(QString guidTeam)> funcGetTeam, bool* acceptClients, QObject* parent)
     : HttpRequestHandler(parent)
+    // TODO: finish me
     , rootPath("/home/songrov/DeveloperRoot/AllProjects/Ilya_Songrov/BibleBrainRing/BibleBrainRing/BibleBrainRingServerLib/src/iodevice/http/web-frontend")
+    , _funcGetTeam(funcGetTeam)
+    , _acceptClients(acceptClients)
 {
     qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << Qt::endl;
 }
@@ -15,23 +18,95 @@ MyRequestHandler::~MyRequestHandler()
 
 void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings::HttpResponse& response)
 {
+    static const QString page_registrartion = "registrartion";
+    static const QString page_waiting_hall = "waiting-hall";
+    static const QString page_button = "button";
+    static const QString page_wrong = "wrong";
     const QByteArray path = request.getPath();
     qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
 
-    if (path == "/") {
-        response.write(FileWorker::readFile(rootPath), true);
+    QString guid = request.getParameter("guid");
+    QString status("success");
+    QString error;
+    if(path == "/check-guid"){
+        const TeamDto team = _funcGetTeam (guid);
+        QString page;
+        if (*_acceptClients && !team.guid.isEmpty()) {
+            page = page_waiting_hall;
+        }
+        else if(*_acceptClients && guid.isEmpty()){
+            guid = QUuid::createUuid().toString();
+            page = page_registrartion;
+        }
+        else if(team.status == TeamStatus::InBattle){
+            page = page_button;
+        }
+        else{
+            status = "error";
+            page = page_wrong;
+            error = "Something went wrong";
+        }
+        QJsonObject obj{
+            {"status", status},
+            {"page", page},
+            {"guid", guid},
+            {"error", error},
+        };
+        response.write(QJsonDocument(obj).toJson(), true);
+        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
     }
-    else if(path == "/check-uuid"){
-//        const
+    else if(path == "/button-pressed"){
+        const QString time = request.getParameter("time");
+        bool ok = false;
+        DtoButtonPressedRq buttonPressedRq;
+        buttonPressedRq.guid = guid;
+        buttonPressedRq.time = QString(time).toLongLong(&ok);
+        if (!ok) {
+            qWarning() << "time is not valid:" << time << Qt::endl;
+            buttonPressedRq.time = QDateTime::currentSecsSinceEpoch();
+        }
+        emit buttonPressed(buttonPressedRq);
+        QJsonObject obj{
+            {"status", status},
+            {"error", error},
+        };
+        response.write(QJsonDocument(obj).toJson(), true);
+    }
+    else if(path == "/" + page_registrartion){
+        const TeamDto team = _funcGetTeam (guid);
+        if (!team.guid.isEmpty()) {
+            const QString name = request.getParameter("name");
+            const QString color = request.getParameter("color");
+            DtoTeamRegistrationClientRs rs;
+            rs.guid     = guid;
+            rs.name     = name;
+            rs.color    = color;
+            emit joinedClient(rs);
+        }
+        else{
+            status = "error";
+            error = "Registration failed";
+        }
+        QJsonObject obj{
+            {"status", status},
+            {"error", error},
+        };
+        response.write(QJsonDocument(obj).toJson(), true);
 
     }
-    // Set a response header
-    response.setHeader("Content-Type", "text/html; charset=ISO-8859-1");
+    else if(path == "/" + page_waiting_hall){
+        response.write(FileWorker::readFile(rootPath + path + ".html"), true);
+    }
+    else if(path == "/" + page_button){
+        response.write(FileWorker::readFile(rootPath + path + ".html"), true);
+    }
+    else if(path == "/" + page_wrong){
+        response.write(FileWorker::readFile(rootPath + path + ".html"), true);
+    }
+    else if(path.isEmpty()){
+        response.write(FileWorker::readFile(rootPath + path), true);
+        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
+    }
 
-    // Return a simple HTML document
-    response.write("<html><body>Hello World!</body></html>",true);
-
-    // /home/songrov/DeveloperRoot/AllProjects/Ilya_Songrov/BibleBrainRing/BibleBrainRing/BibleBrainRingServerLib/src/iodevice/http/web-frontend
-
-    qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << "finished request" << Qt::endl;
+    qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
 }

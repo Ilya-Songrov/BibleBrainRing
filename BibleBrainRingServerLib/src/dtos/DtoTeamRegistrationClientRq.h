@@ -16,10 +16,11 @@
 
 #include "dtoabstract.h"
 
-struct DtoTeamRegistrationClientRq : public DtoAbstract
+struct DtoTeamRegistrationClientRs : public DtoAbstract
 {
-    QString     teamName;
-    QString     teamColorName;
+    QString     guid;
+    QString     name;
+    QString     color;
     QStringList members;
 //    QString adminPassCode;
 };

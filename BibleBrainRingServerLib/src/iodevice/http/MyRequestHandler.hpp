@@ -2,6 +2,7 @@
 
 #include "../httpserver/httprequesthandler.h"
 #include "utils/FileWorker.hpp"
+#include "dtos/AllDtos.hpp"
 
 class MyRequestHandler : public stefanfrings::HttpRequestHandler {
     Q_OBJECT
@@ -12,7 +13,7 @@ public:
       Constructor.
       @param parent Parent object
     */
-    MyRequestHandler(QObject* parent = nullptr);
+    MyRequestHandler(std::function<TeamDto(QString guidTeam)> funcGetTeam, bool* acceptClients, QObject* parent = nullptr);
 
     /**
       Destructor
@@ -26,7 +27,12 @@ public:
     */
     void service(stefanfrings::HttpRequest& request, stefanfrings::HttpResponse& response);
 
+signals:
+    void joinedClient(const DtoTeamRegistrationClientRs teamRegistrationDto);
+    void buttonPressed(const DtoButtonPressedRq buttonPressedRq);
+
 private:
     const QByteArray rootPath;
-
+    std::function<TeamDto(QString guidTeam)> _funcGetTeam;
+    bool* _acceptClients;
 };

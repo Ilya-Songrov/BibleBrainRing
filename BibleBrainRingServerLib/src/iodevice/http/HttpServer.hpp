@@ -7,12 +7,11 @@
 #include "enums/global_enums.h"
 #include "dtos/teamdto.h"
 #include "httplistener.h"
-#include "MyRequestHandler.hpp"
 
 class HttpServer : public IODeviceServerAbstract
 {
 public:
-    explicit HttpServer(const QString& host, const QString& port, QObject *parent = nullptr);
+    explicit HttpServer(const QString& host, const QString& port, std::function<TeamDto(QString guidTeam)> funcGetTeam, QObject *parent = nullptr);
     virtual ~HttpServer();
 
     virtual bool initServer();
@@ -28,7 +27,7 @@ private:
 private:
     const QString _host;
     const QString _port;
-    MyRequestHandler myRequestHandler;
     stefanfrings::HttpListener* httpListener;
+    std::function<TeamDto(QString guidTeam)> _funcGetTeam;
 };
 

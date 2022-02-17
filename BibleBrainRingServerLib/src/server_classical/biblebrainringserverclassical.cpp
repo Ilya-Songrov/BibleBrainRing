@@ -67,7 +67,6 @@ QVector<QString> BibleBrainRingServerClassical::getTeamsInBattle()
 {
 }
 
-
 void BibleBrainRingServerClassical::onConnectNewTeam(std::function<void (const TeamDto &)> function)
 {
     functionConnectNewTeam = function;

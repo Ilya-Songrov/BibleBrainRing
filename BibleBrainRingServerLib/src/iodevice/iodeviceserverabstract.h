@@ -39,13 +39,13 @@ public:
     virtual void sendToClients(const QVector<DtoTeamActivationForBattleServerRq>& vecDto);
 
 signals:
-    void joinedClient(const DtoTeamRegistrationClientRq& teamRegistrationDto);
+    void joinedClient(const DtoTeamRegistrationClientRs& teamRegistrationDto);
     void disconnectedClient(const QString &guidClient);
     void responseFromClient(const QString &guidClient, const QByteArray &arr);
     void clientStatusChanged(const QString &guidClient, const ClientStatus clientStatus);
     void serverStatusChanged(const QString &status);
 
-private:
+protected:
     bool acceptClients;
 };
 
