@@ -42,12 +42,12 @@ void TcpServer::broadcast(const QByteArray &arr, const int writeTimeout)
     }
 }
 
-void TcpServer::pauseAcceptingClients()
+void TcpServer::stopAcceptingClients()
 {
     tcpServer.pauseAccepting();
 }
 
-void TcpServer::resumeAcceptingClients()
+void TcpServer::startAcceptingClients()
 {
     tcpServer.resumeAccepting();
 }
@@ -78,7 +78,7 @@ void TcpServer::newConnection()
     connect(client, &ReadWriteSocket::dataReceivedFromHost,     this, std::bind(&TcpServer::responseFromClient, this, client->getPeerAddressPort(), std::placeholders::_1));
     connect(client, &ReadWriteSocket::errorOccurred,            this, std::bind(&TcpServer::clientErrorOccurred, this, std::placeholders::_1, client));
     connect(client, &ReadWriteSocket::stateChanged,             this, std::bind(&TcpServer::clientStatusChanged, this, std::placeholders::_1, client));
-    emit joinedClient(client->getPeerAddressPort());
+//    emit joinedClient(client->getPeerAddressPort());
 }
 
 void TcpServer::removeClient(const ReadWriteSocket *clientSocket)

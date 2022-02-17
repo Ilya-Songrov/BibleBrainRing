@@ -32,7 +32,7 @@ ServerModeAbstract *ServerModeRunningSparring::slotResponseFromClient(const QStr
     if (isItRequest) {
         if (objRoot.value(key_method).toString() == request_client_to_server_answer_to_question) {
             const auto team = getTeam(guidClient);
-            if (team.status == TeamStatus::InSparring) {
+            if (team.status == TeamStatus::InBattle) {
                 changeTeam(team, false);
             }
             else{

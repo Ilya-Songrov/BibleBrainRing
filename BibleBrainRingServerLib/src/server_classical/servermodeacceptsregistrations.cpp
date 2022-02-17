@@ -20,7 +20,7 @@ ServerModeAcceptsRegistrations::ServerModeAcceptsRegistrations(QObject *parent) 
 
 ServerModeAbstract *ServerModeAcceptsRegistrations::stopRegistration()
 {
-    io->pauseAcceptingClients();
+    io->stopAcceptingClients();
     return new ServerModeSelectingSparringTeams();
 }
 

@@ -14,5 +14,13 @@
 
 #include <QString>
 
-struct DtoAbstract{};
+struct DtoAbstract
+{
+    int id  = 0;
+};
+
+struct DtoAbstractRs
+{
+    int id = 0;
+};
 

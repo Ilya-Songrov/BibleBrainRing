@@ -1,13 +1,18 @@
 #pragma once
 
 #include <QObject>
+#include <QUuid>
 
-#include "../iodeviceserverabstract.h"
+#include "iodevice/iodeviceserverabstract.h"
+#include "enums/global_enums.h"
+#include "dtos/teamdto.h"
+#include "httplistener.h"
+#include "MyRequestHandler.hpp"
 
 class HttpServer : public IODeviceServerAbstract
 {
 public:
-    explicit HttpServer(QObject *parent = nullptr);
+    explicit HttpServer(const QString& host, const QString& port, QObject *parent = nullptr);
     virtual ~HttpServer();
 
     virtual bool initServer();
@@ -15,10 +20,15 @@ public:
     virtual void sendToClient(const QString &guidClient, const QByteArray &arr, const int writeTimeout);
     virtual void broadcast(const QByteArray &arr, const int writeTimeout = 5000);
 
-    virtual void pauseAcceptingClients();
-    virtual void resumeAcceptingClients();
+    virtual void stopAcceptingClients();
+    virtual void startAcceptingClients();
 
-    virtual  bool containsClient(const QString &guidClient) const;
-    virtual  int getQuantityClients() const;
+private:
+
+private:
+    const QString _host;
+    const QString _port;
+    MyRequestHandler myRequestHandler;
+    stefanfrings::HttpListener* httpListener;
 };
 

@@ -12,6 +12,8 @@
 
 #pragma once
 
+#include <QStringList>
+
 #include "dtoabstract.h"
 #include "../enums/global_enums.h"
 
@@ -23,4 +25,5 @@ struct TeamDto : public DtoAbstract
     double      score       = 0.0;
     int         position    = 0;
     TeamStatus  status      = TeamStatus::None;
+    QStringList members     = {};
 };

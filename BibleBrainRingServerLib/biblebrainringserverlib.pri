@@ -24,13 +24,19 @@ SOURCES += \
     $$PWD/src/server_classical/servermoderunningsparring.cpp \
     $$PWD/src/server_classical/servermodeselectingsparringteams.cpp \
     $$PWD/src/server_classical/servermodeshowinggameresult.cpp \
-    $$PWD/src/server_classical/servermodeshowingsparringresult.cpp
+    $$PWD/src/server_classical/servermodeshowingsparringresult.cpp \
+    $$PWD/src/utils/FileWorker.cpp
 
 HEADERS += \
     $$PWD/src/biblebrainringserver_global.h \
     $$PWD/src/biblebrainringserver.h \
     $$PWD/src/data/questions.h \
     $$PWD/src/data/standings.h \
+    $$PWD/src/dtos/AllDtos.hpp \
+    $$PWD/src/dtos/DtoTeamActivationForBattleClientRs.hpp \
+    $$PWD/src/dtos/DtoTeamActivationForBattleServerRq.hpp \
+    $$PWD/src/dtos/DtoTeamRegistrationClientRq.h \
+    $$PWD/src/dtos/DtoTeamRegistrationServerRs.h \
     $$PWD/src/dtos/answeraccepteddto.h \
     $$PWD/src/dtos/dtoabstract.h \
     $$PWD/src/dtos/dtocreator.h \
@@ -38,7 +44,6 @@ HEADERS += \
     $$PWD/src/dtos/sendanswerdto.h \
     $$PWD/src/dtos/serverstatusdto.h \
     $$PWD/src/dtos/teamdto.h \
-    $$PWD/src/dtos/teamregistrationdto.h \
     $$PWD/src/enums/global_enums.h \
     $$PWD/src/information/informationconsoleprinter.h \
     $$PWD/src/iodevice/bluetooth/BluetoothServer.hpp \
@@ -58,7 +63,8 @@ HEADERS += \
     $$PWD/src/server_classical/servermoderunningsparring.h \
     $$PWD/src/server_classical/servermodeselectingsparringteams.h \
     $$PWD/src/server_classical/servermodeshowinggameresult.h \
-    $$PWD/src/server_classical/servermodeshowingsparringresult.h
+    $$PWD/src/server_classical/servermodeshowingsparringresult.h \
+    $$PWD/src/utils/FileWorker.hpp
 
 INCLUDEPATH += \
     $$PWD/src

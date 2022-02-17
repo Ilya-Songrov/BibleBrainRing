@@ -19,7 +19,7 @@ ServerModeIdle::ServerModeIdle(QObject *parent) : ServerModeAbstract(ServerMode:
 
 ServerModeAbstract *ServerModeIdle::startRegistration()
 {
-    io->resumeAcceptingClients();
+    io->startAcceptingClients();
     return new ServerModeAcceptsRegistrations();
 }
 

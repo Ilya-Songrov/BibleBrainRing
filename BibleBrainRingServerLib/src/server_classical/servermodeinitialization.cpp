@@ -21,7 +21,7 @@ ServerModeAbstract *ServerModeInitialization::initServer()
 {
     const bool ret = io->initServer();
     if (ret) {
-        io->pauseAcceptingClients();
+        io->stopAcceptingClients();
         return new ServerModeIdle();
     }
     return nullptr;

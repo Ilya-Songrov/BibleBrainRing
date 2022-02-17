@@ -12,12 +12,19 @@
 
 #include "iodeviceserverabstract.h"
 
-IODeviceServerAbstract::IODeviceServerAbstract(QObject *parent) : QObject(parent)
+IODeviceServerAbstract::IODeviceServerAbstract(QObject *parent)
+    : QObject(parent)
+    , acceptClients(false)
 {
 
 }
 
 IODeviceServerAbstract::~IODeviceServerAbstract()
+{
+
+}
+
+void IODeviceServerAbstract::sendToClients(const QVector<DtoTeamActivationForBattleServerRq>& vecDto)
 {
 
 }

@@ -26,22 +26,13 @@ void NoneServer::broadcast(const QByteArray& /*arr*/, const int /*writeTimeout*/
 
 }
 
-void NoneServer::pauseAcceptingClients()
+void NoneServer::stopAcceptingClients()
 {
 
 }
 
-void NoneServer::resumeAcceptingClients()
+void NoneServer::startAcceptingClients()
 {
 
 }
 
-bool NoneServer::containsClient(const QString& /*guidClient*/) const
-{
-    return true;
-}
-
-int NoneServer::getQuantityClients() const
-{
-    return 0;
-}

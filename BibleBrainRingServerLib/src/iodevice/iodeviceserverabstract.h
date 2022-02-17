@@ -14,6 +14,8 @@
 
 #include <QObject>
 
+#include "dtos/AllDtos.hpp"
+
 class IODeviceServerAbstract : public QObject
 {
     Q_OBJECT
@@ -28,21 +30,22 @@ public:
 
     virtual bool initServer() = 0;
 
+    virtual void startAcceptingClients() = 0;
+    virtual void stopAcceptingClients() = 0;
+
     virtual void sendToClient(const QString &guidClient, const QByteArray &arr, const int writeTimeout) = 0;
     virtual void broadcast(const QByteArray &arr, const int writeTimeout) = 0;
 
-    virtual void pauseAcceptingClients() = 0;
-    virtual void resumeAcceptingClients() = 0;
-
-    virtual  bool containsClient(const QString &guidClient) const = 0;
-    virtual  int getQuantityClients() const = 0;
+    virtual void sendToClients(const QVector<DtoTeamActivationForBattleServerRq>& vecDto);
 
 signals:
-    void joinedClient(const QString &guidClient);
+    void joinedClient(const DtoTeamRegistrationClientRq& teamRegistrationDto);
     void disconnectedClient(const QString &guidClient);
     void responseFromClient(const QString &guidClient, const QByteArray &arr);
     void clientStatusChanged(const QString &guidClient, const ClientStatus clientStatus);
     void serverStatusChanged(const QString &status);
 
+private:
+    bool acceptClients;
 };
 

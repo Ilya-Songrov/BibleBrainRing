@@ -12,11 +12,15 @@
 
 #pragma once
 
+#include "DtoTeamActivationForBattleClientRs.hpp"
+#include "DtoTeamActivationForBattleServerRq.hpp"
+#include "DtoTeamRegistrationClientRq.h"
+#include "DtoTeamRegistrationServerRs.h"
+#include "answeraccepteddto.h"
 #include "dtoabstract.h"
+#include "gamestatusdto.h"
+#include "sendanswerdto.h"
+#include "serverstatusdto.h"
+#include "teamdto.h"
 
-struct TeamRegistrationDto : public DtoAbstract
-{
-    QString teamName;
-    QString teamColorName;
-    QString adminPassCode;
-};
+

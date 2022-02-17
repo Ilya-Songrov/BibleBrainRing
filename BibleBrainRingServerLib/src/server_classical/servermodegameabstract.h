@@ -25,7 +25,7 @@ protected:
     void sendToSparringTeams(const QString &method,
                              const QJsonValue &params = QJsonValue::Null,
                              const QJsonValue &id = QJsonValue::Null,
-                             const TeamStatus &status = InSparring);
+                             const TeamStatus &status = InBattle);
 
 protected:
     QVector<TeamDto> vecSparringTeams;

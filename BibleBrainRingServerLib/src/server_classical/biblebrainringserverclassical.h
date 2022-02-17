@@ -16,8 +16,8 @@
 #include <QJsonObject>
 
 #include "servermodeabstract.h"
-#include "all_server_modes.h"
-#include "../iodevice/iodeviceserverabstract.h"
+#include "dtos/AllDtos.hpp"
+#include "iodevice/iodeviceserverabstract.h"
 
 class BibleBrainRingServerClassical : public QObject
 {
@@ -28,34 +28,12 @@ public:
 
     bool initServer();
 
-    void setCurrentServerMode(const ServerMode serverMode);
-    ServerMode getCurrentServerMode();
-
     void startRegistration();
     void stopRegistration();
 
-    void banTeam(const QString &guidTeam);
-    TeamStatus getTeamStatus(const QString &guidTeam);
-
-    void setSparringTeams(const QVector<QString>& vecGuidTeam);
-    QVector<QString> getSparringTeams();
-
-    void activateButtonsSparringTeams();
-    void deactivateButtonsSparringTeams();
-
-    void startRound(const int timeoutMsecs);
-    void finishSparring();
-    void addSparringNote(const QString &note);
-    QString getRoundResult();
-    QString getSparringResult();
-
-    void changeTeamScore(const QString &guidTeam, const double score);
-    int getTeamScore(const QString &guidTeam);
-
-    void laodListQuestions(const QStringList &questions);
-    void changeQuestionStatus(const QString &question, const QuestionStatus questionStatus);
-    void setCurrentQuestion(const QString &question);
-    QString getCurrentQuestion();
+    void addTeamsToBattle(const QVector<QString>& vecGuidTeam);
+    void removeTeamsFromBattle();
+    QVector<QString> getTeamsInBattle();
 
 
     // callbacks:
@@ -63,10 +41,18 @@ public:
     void onTeamDtoChanged   (std::function<void(const TeamDto &)> function);
 
 private:
-    void changeCurrentServerMode(ServerModeAbstract *mode);
+    void appendTeam(const TeamDto &team);
+    void changeTeam(const TeamDto &team, const bool runCallback = false);
+    void changeTeam(const QString& guidTeam, const TeamStatus teamStatus, const bool runCallback = false);
+    TeamDto getTeam(const QString& guidTeam);
+    QVector<TeamDto> getTeams(const TeamStatus teamStatus);
+
 
 private:
-    IODeviceServerAbstract *_ioDeviceServerAbstract;
-    ServerModeAbstract* _currentServerMode;
+    IODeviceServerAbstract *io;
+    QList<TeamDto> listTeams;
+    std::function<void(const TeamDto &)>    functionConnectNewTeam;
+    std::function<void(const TeamDto &)>    functionTeamDtoChanged;
+//    ServerModeAbstract* _currentServerMode;
 };
 

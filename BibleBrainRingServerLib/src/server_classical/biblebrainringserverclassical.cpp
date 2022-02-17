@@ -13,19 +13,8 @@
 #include "biblebrainringserverclassical.h"
 
 BibleBrainRingServerClassical::BibleBrainRingServerClassical(IODeviceServerAbstract *ioDeviceServerAbstract) : QObject(nullptr)
-    , _ioDeviceServerAbstract(ioDeviceServerAbstract)
-    , _currentServerMode(nullptr)
+    , io(ioDeviceServerAbstract)
 {
-    connect(_ioDeviceServerAbstract, &IODeviceServerAbstract::joinedClient,          this,
-            [this](const QString &guidClient){ _currentServerMode->slotJoinedClient(guidClient); });
-    connect(_ioDeviceServerAbstract, &IODeviceServerAbstract::responseFromClient,    this,
-            [this](const QString &guidClient, const QByteArray &arr){ _currentServerMode->slotResponseFromClient(guidClient, arr); });
-    connect(_ioDeviceServerAbstract, &IODeviceServerAbstract::clientStatusChanged,   this,
-            [this](const QString &guidClient, const IODeviceServerAbstract::ClientStatus clientStatus){ _currentServerMode->slotClientStatusChanged(guidClient, clientStatus); });
-    connect(_ioDeviceServerAbstract, &IODeviceServerAbstract::serverStatusChanged,   this,
-            [](const QString &status){ qDebug() << status << Qt::endl; });
-
-    changeCurrentServerMode(new ServerModeInitialization(_ioDeviceServerAbstract));
 }
 
 BibleBrainRingServerClassical::~BibleBrainRingServerClassical()
@@ -35,169 +24,108 @@ BibleBrainRingServerClassical::~BibleBrainRingServerClassical()
 
 bool BibleBrainRingServerClassical::initServer()
 {
-    ServerModeAbstract* mode = _currentServerMode->initServer();
-    changeCurrentServerMode(mode);
-    return mode != nullptr;
-}
-
-void BibleBrainRingServerClassical::setCurrentServerMode(const ServerMode serverMode)
-{
-    ServerModeAbstract* mode = nullptr;
-    if (serverMode == Unknown) {
-        qWarning() << "It is a bad idea. I ignored your request" << Qt::endl;
-        return;
-    }
-    else if (serverMode == Initialization) {
-        mode = new ServerModeInitialization(_ioDeviceServerAbstract);
-    }
-    else if (serverMode == Idle) {
-        mode = new ServerModeIdle();
-    }
-    else if (serverMode == AcceptsRegistrations) {
-        mode = new ServerModeAcceptsRegistrations();
-    }
-    else if (serverMode == SelectingSparringTeams) {
-        mode = new ServerModeSelectingSparringTeams();
-    }
-    else if (serverMode == RunningSparring) {
-        mode = new ServerModeRunningSparring();
-    }
-    else if (serverMode == ShowingSparringResult) {
-        mode = new ServerModeShowingSparringResult();
-    }
-    else if (serverMode == ShowingGameResult) {
-        mode = new ServerModeShowingGameResult();
-    }
-    changeCurrentServerMode(mode);
-}
-
-ServerMode BibleBrainRingServerClassical::getCurrentServerMode()
-{
-    if (_currentServerMode) {
-        return _currentServerMode->getCurrentServerMode();
-    }
-    return ServerMode::Unknown;
+    return io->initServer();
 }
 
 void BibleBrainRingServerClassical::startRegistration()
 {
-    ServerModeAbstract* mode = _currentServerMode->startRegistration();
-    changeCurrentServerMode(mode);
+    io->startAcceptingClients();
 }
 
 void BibleBrainRingServerClassical::stopRegistration()
 {
-    ServerModeAbstract* mode = _currentServerMode->stopRegistration();
-    changeCurrentServerMode(mode);
+    io->stopAcceptingClients();
 }
 
-void BibleBrainRingServerClassical::banTeam(const QString &guidTeam)
+void BibleBrainRingServerClassical::addTeamsToBattle(const QVector<QString>& vecGuidTeam)
 {
-    ServerModeAbstract* mode = _currentServerMode->banTeam(guidTeam);
-    changeCurrentServerMode(mode);
+    QVector<DtoTeamActivationForBattleServerRq> vec;
+    for (const QString& guid: vecGuidTeam) {
+        DtoTeamActivationForBattleServerRq dto;
+        dto.guid = guid;
+        dto.isActive = true;
+        vec.append(dto);
+        changeTeam(guid, TeamStatus::InBattle);
+    }
+    io->sendToClients(vec);
 }
 
-TeamStatus BibleBrainRingServerClassical::getTeamStatus(const QString &guidTeam)
+void BibleBrainRingServerClassical::removeTeamsFromBattle()
 {
-    return _currentServerMode->getTeamStatus(guidTeam);;
+    QVector<DtoTeamActivationForBattleServerRq> vec;
+    const auto vecTeams = getTeams(TeamStatus::InBattle);
+    for (const TeamDto& t: vecTeams) {
+        DtoTeamActivationForBattleServerRq dto;
+        dto.guid = t.guid;
+        dto.isActive = false;
+        vec.append(dto);
+    }
+    io->sendToClients(vec);
 }
 
-void BibleBrainRingServerClassical::setSparringTeams(const QVector<QString> &vecGuidTeam)
+QVector<QString> BibleBrainRingServerClassical::getTeamsInBattle()
 {
-    ServerModeAbstract* mode = _currentServerMode->setSparringTeams(vecGuidTeam);
-    changeCurrentServerMode(mode);
 }
 
-QVector<QString> BibleBrainRingServerClassical::getSparringTeams()
-{
-    return _currentServerMode->getSparringTeams();
-}
-
-void BibleBrainRingServerClassical::activateButtonsSparringTeams()
-{
-    ServerModeAbstract* mode = _currentServerMode->activateButtonsSparringTeams();
-    changeCurrentServerMode(mode);
-}
-
-void BibleBrainRingServerClassical::deactivateButtonsSparringTeams()
-{
-    ServerModeAbstract* mode = _currentServerMode->deactivateButtonsSparringTeams();
-    changeCurrentServerMode(mode);
-}
-
-void BibleBrainRingServerClassical::startRound(const int timeoutMsecs)
-{
-
-}
-
-void BibleBrainRingServerClassical::finishSparring()
-{
-
-}
-
-void BibleBrainRingServerClassical::addSparringNote(const QString &note)
-{
-
-}
-
-QString BibleBrainRingServerClassical::getRoundResult()
-{
-
-}
-
-QString BibleBrainRingServerClassical::getSparringResult()
-{
-
-}
-
-void BibleBrainRingServerClassical::changeTeamScore(const QString &guidTeam, const double score)
-{
-    ServerModeAbstract* mode = _currentServerMode->changeTeamScore(guidTeam, score);
-    changeCurrentServerMode(mode);
-}
-
-int BibleBrainRingServerClassical::getTeamScore(const QString &guidTeam)
-{
-    return _currentServerMode->getTeamScore(guidTeam);;
-}
-
-void BibleBrainRingServerClassical::laodListQuestions(const QStringList &questions)
-{
-    ServerModeAbstract* mode = _currentServerMode->loadListQuestions(questions);
-    changeCurrentServerMode(mode);
-}
-
-void BibleBrainRingServerClassical::changeQuestionStatus(const QString &question, const QuestionStatus questionStatus)
-{
-    ServerModeAbstract* mode = _currentServerMode->changeQuestionStatus(question, questionStatus);
-    changeCurrentServerMode(mode);
-}
-
-void BibleBrainRingServerClassical::setCurrentQuestion(const QString &question)
-{
-
-}
-
-QString BibleBrainRingServerClassical::getCurrentQuestion()
-{
-
-}
 
 void BibleBrainRingServerClassical::onConnectNewTeam(std::function<void (const TeamDto &)> function)
 {
-    ServerModeAbstract::onConnectNewTeam(function);
+    functionConnectNewTeam = function;
 }
 
 void BibleBrainRingServerClassical::onTeamDtoChanged(std::function<void (const TeamDto &)> function)
 {
-    ServerModeAbstract::onTeamDtoChanged(function);
+    functionTeamDtoChanged = function;
 }
 
-void BibleBrainRingServerClassical::changeCurrentServerMode(ServerModeAbstract *mode)
+void BibleBrainRingServerClassical::appendTeam(const TeamDto& team)
 {
-    if (mode) {
-        delete _currentServerMode;
-        _currentServerMode = mode;
+    listTeams.append(team);
+    if (functionTeamDtoChanged) {
+        functionTeamDtoChanged (team);
     }
 }
+
+void BibleBrainRingServerClassical::changeTeam(const TeamDto& team, const bool runCallback)
+{
+    for (TeamDto &t: listTeams) {
+        if (t.guid == team.guid) {
+            t = team;
+            if (runCallback && functionTeamDtoChanged) {
+                functionTeamDtoChanged (team);
+            }
+            return;
+        }
+    }
+}
+
+void BibleBrainRingServerClassical::changeTeam(const QString& guidTeam, const TeamStatus teamStatus, const bool runCallback)
+{
+    auto team = DtoCreator::getTeamDto(guidTeam);
+    team.status = teamStatus;
+    changeTeam(team, runCallback);
+}
+
+TeamDto BibleBrainRingServerClassical::getTeam(const QString& guidTeam)
+{
+    for (const TeamDto &t: qAsConst(listTeams)) {
+        if (t.guid == guidTeam) {
+            return t;
+        }
+    }
+    return {};
+}
+
+QVector<TeamDto> BibleBrainRingServerClassical::getTeams(const TeamStatus teamStatus)
+{
+    QVector<TeamDto> vec;
+    for (const TeamDto &t: qAsConst(listTeams)) {
+        if (t.status == teamStatus) {
+            vec.append(t);
+        }
+    }
+    return vec;
+}
+
+
 
