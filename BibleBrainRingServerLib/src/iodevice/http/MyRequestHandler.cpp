@@ -56,21 +56,26 @@ void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings:
         qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
     }
     else if(path == "/button-pressed"){
+        const TeamDto team = _funcGetTeam (guid);
         const QString time = request.getParameter("time");
         bool ok = false;
         DtoButtonPressedRq buttonPressedRq;
         buttonPressedRq.guid = guid;
         buttonPressedRq.time = QString(time).toLongLong(&ok);
+        status = team.status == TeamStatus::InBattle ? "success" : "redirect";
         if (!ok) {
             qWarning() << "time is not valid:" << time << Qt::endl;
             buttonPressedRq.time = QDateTime::currentSecsSinceEpoch();
         }
-        emit buttonPressed(buttonPressedRq);
+        if (team.status == TeamStatus::InBattle) {
+            emit buttonPressed(buttonPressedRq);
+        }
         QJsonObject obj{
             {"status", status},
             {"error", error},
         };
         response.write(QJsonDocument(obj).toJson(), true);
+        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
     }
     else if(path == "/" + page_registrartion){
         const TeamDto team = _funcGetTeam (guid);
@@ -92,16 +97,19 @@ void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings:
             {"error", error},
         };
         response.write(QJsonDocument(obj).toJson(), true);
-
+        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
     }
     else if(path == "/" + page_waiting_hall){
         response.write(FileWorker::readFile(rootPath + path + ".html"), true);
+        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
     }
     else if(path == "/" + page_button){
         response.write(FileWorker::readFile(rootPath + path + ".html"), true);
+        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
     }
     else if(path == "/" + page_wrong){
         response.write(FileWorker::readFile(rootPath + path + ".html"), true);
+        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
     }
     else if(path.isEmpty()){
         response.write(FileWorker::readFile(rootPath + path), true);

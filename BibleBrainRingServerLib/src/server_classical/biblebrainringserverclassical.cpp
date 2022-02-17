@@ -15,6 +15,8 @@
 BibleBrainRingServerClassical::BibleBrainRingServerClassical(IODeviceServerAbstract *ioDeviceServerAbstract) : QObject(nullptr)
     , io(ioDeviceServerAbstract)
 {
+    connect(io, &IODeviceServerAbstract::joinedClient, this, &BibleBrainRingServerClassical::slotJoinedClient);
+    connect(io, &IODeviceServerAbstract::buttonPressed, this, &BibleBrainRingServerClassical::slotButtonPressed);
 }
 
 BibleBrainRingServerClassical::~BibleBrainRingServerClassical()
@@ -63,18 +65,38 @@ void BibleBrainRingServerClassical::removeTeamsFromBattle()
     io->sendToClients(vec);
 }
 
-QVector<QString> BibleBrainRingServerClassical::getTeamsInBattle()
+QVector<TeamDto> BibleBrainRingServerClassical::getTeamsInBattle()
 {
+    return getTeams(TeamStatus::InBattle);
 }
 
-void BibleBrainRingServerClassical::onConnectNewTeam(std::function<void (const TeamDto &)> function)
+void BibleBrainRingServerClassical::onConnectNewTeam(std::function<void (const TeamDto)> function)
 {
     functionConnectNewTeam = function;
 }
 
-void BibleBrainRingServerClassical::onTeamDtoChanged(std::function<void (const TeamDto &)> function)
+void BibleBrainRingServerClassical::onPressedButton(std::function<void (const DtoButtonPressedRq)> function)
+{
+    functionPressedButton = function;
+}
+
+void BibleBrainRingServerClassical::onTeamDtoChanged(std::function<void (const TeamDto&)> function)
 {
     functionTeamDtoChanged = function;
+}
+
+void BibleBrainRingServerClassical::slotJoinedClient(const DtoTeamRegistrationClientRs teamRs)
+{
+    TeamDto team = DtoCreator::getTeamDto(teamRs.guid, teamRs.name, teamRs.color);
+    team.status = TeamStatus::Registered;
+    appendTeam(team);
+}
+
+void BibleBrainRingServerClassical::slotButtonPressed(const DtoButtonPressedRq buttonPressedRq)
+{
+    if (functionPressedButton) {
+        functionPressedButton (buttonPressedRq);
+    }
 }
 
 void BibleBrainRingServerClassical::appendTeam(const TeamDto& team)

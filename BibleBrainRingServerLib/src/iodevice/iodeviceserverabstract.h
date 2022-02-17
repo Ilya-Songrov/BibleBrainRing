@@ -39,7 +39,8 @@ public:
     virtual void sendToClients(const QVector<DtoTeamActivationForBattleServerRq>& vecDto);
 
 signals:
-    void joinedClient(const DtoTeamRegistrationClientRs& teamRegistrationDto);
+    void joinedClient(const DtoTeamRegistrationClientRs teamRegistrationDto);
+    void buttonPressed(const DtoButtonPressedRq buttonPressedRq);
     void disconnectedClient(const QString &guidClient);
     void responseFromClient(const QString &guidClient, const QByteArray &arr);
     void clientStatusChanged(const QString &guidClient, const ClientStatus clientStatus);

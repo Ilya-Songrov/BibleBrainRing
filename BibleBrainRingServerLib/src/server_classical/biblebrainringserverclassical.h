@@ -32,13 +32,18 @@ public:
 
     void addTeamsToBattle(const QVector<QString>& vecGuidTeam);
     void removeTeamsFromBattle();
-    QVector<QString> getTeamsInBattle();
+    QVector<TeamDto> getTeamsInBattle();
 
     TeamDto getTeam(const QString& guidTeam);
 
     // callbacks:
-    void onConnectNewTeam   (std::function<void(const TeamDto &)> function);
+    void onConnectNewTeam   (std::function<void(const TeamDto)> function);
+    void onPressedButton    (std::function<void(const DtoButtonPressedRq)> function);
     void onTeamDtoChanged   (std::function<void(const TeamDto &)> function);
+
+private slots:
+    void slotJoinedClient(const DtoTeamRegistrationClientRs teamRs);
+    void slotButtonPressed(const DtoButtonPressedRq buttonPressedRq);
 
 private:
     void appendTeam(const TeamDto &team);
@@ -50,8 +55,8 @@ private:
 private:
     IODeviceServerAbstract *io;
     QList<TeamDto> listTeams;
-    std::function<void(const TeamDto &)>    functionConnectNewTeam;
-    std::function<void(const TeamDto &)>    functionTeamDtoChanged;
-//    ServerModeAbstract* _currentServerMode;
+    std::function<void(const TeamDto)>              functionConnectNewTeam;
+    std::function<void(const DtoButtonPressedRq)>   functionPressedButton;
+    std::function<void(const TeamDto)>              functionTeamDtoChanged;
 };
 
