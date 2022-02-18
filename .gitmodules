@@ -4,3 +4,6 @@
 [submodule "QtWebApp"]
 	path = QtWebApp
 	url = https://github.com/fffaraz/QtWebApp.git
+[submodule "YeelightSmartLEDBulb"]
+	path = YeelightSmartLEDBulb
+	url = https://github.com/Ilya-Songrov/YeelightSmartLEDBulb.git
