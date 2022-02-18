@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QCoreApplication>
+
 #include "../httpserver/httprequesthandler.h"
 #include "utils/FileWorker.hpp"
 #include "dtos/AllDtos.hpp"

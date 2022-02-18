@@ -34,7 +34,7 @@ StateAbstract *StartStateMenuMain::onQmlButtonClicked(const BibleBrainRing::Butt
     else if (button == BibleBrainRing::ButtonStartServerHttp) {
         providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeServerHttp);
 #ifdef QT_DEBUG
-        HttpServer* httpServer = new HttpServer("192.168.43.45", "8080");
+        HttpServer* httpServer = new HttpServer("192.168.1.101", "8282");
 #else
         HttpServer* httpServer = new HttpServer(QHostAddress(QHostAddress::Any).toString(), "8080");
 #endif

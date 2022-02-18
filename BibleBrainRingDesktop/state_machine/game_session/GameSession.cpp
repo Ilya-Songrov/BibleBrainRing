@@ -42,6 +42,7 @@ void GameSession::slotPressedButtonBulb(DtoButtonPressedRq rq)
 
 void GameSession::slotRefereeReset(qint64)
 {
+// 192.168.1.104:55443
     for (const TeamDto& team: qAsConst(listTeamsInBattle->getList())) {
         listTeamsInBattle->setBulbPosition(0, team.guid);
     }
@@ -111,7 +112,7 @@ void GameSession::showResult()
                         currentStep = refereeStartTime > rqVoted.time ? currentStep * -1 : currentStep;
                     }
                     listTeamsInBattle->setBulbPosition(currentStep, team.guid);
-                    if (step == 0) {
+                    if (currentStep == 1) {
                         setBulbPower(listTeamsInBattle->getIndex(team.guid), true);
                     }
                 }
@@ -123,7 +124,7 @@ void GameSession::showResult()
 
 void GameSession::setBulbPower(const int index, const bool power)
 {
-    if (index > -1 && vecBulbs.size() < index) {
+    if (index > -1 && vecBulbs.size() > index) {
         vecBulbs.at(index)->set_power(power, YeelightBulb::Bulb::Sudden, 1);
     }
     else{

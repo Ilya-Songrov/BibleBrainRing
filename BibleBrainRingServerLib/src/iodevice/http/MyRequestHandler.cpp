@@ -3,7 +3,8 @@
 
 MyRequestHandler::MyRequestHandler(std::function<TeamDto(QString guidTeam)> funcGetTeam, bool* acceptClients, QObject* parent)
     : HttpRequestHandler(parent)
-    , rootPath(":/all_files/web-frontend")
+//    , rootPath(":/all_files/web-frontend")
+    , rootPath(QCoreApplication::applicationDirPath().toUtf8() + "/web-frontend")
     , _funcGetTeam(funcGetTeam)
     , _acceptClients(acceptClients)
 {
@@ -14,7 +15,8 @@ MyRequestHandler::~MyRequestHandler()
 {
     qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << Qt::endl;
 }
-
+// 192.168.1.101:8080
+// 192.168.1.103:55443
 void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings::HttpResponse& response)
 {
     static const QString page_registration_page = "registration-page";

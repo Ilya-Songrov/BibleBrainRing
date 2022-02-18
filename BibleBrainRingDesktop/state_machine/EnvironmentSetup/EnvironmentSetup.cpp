@@ -50,6 +50,9 @@ void EnvironmentSetup::addBulb()
         const QString address = "Your bulb address: " + bulb->getPeerHostPort();
         const QString message = ret ? address : "I can't connect to bulb";
         QMessageBox::information(nullptr, "Bulb info", message);
+        if (ret) {
+            vecBulbs.append(bulb);
+        }
     }
     else{
         emit providerQml->showMessage("Parse error!");
