@@ -10,7 +10,7 @@ BibleBrainRingApplicationEngine::BibleBrainRingApplicationEngine(QObject *parent
     currentState = new InitStateMain(this);
 //    currentState = new EnvironmentSetup();
 //    currentState = new RegistrationStateMain();
-    currentState = new GameSession();
+//    currentState = new GameSession();
 #else
     currentState = new InitStateMain(this);
 #endif

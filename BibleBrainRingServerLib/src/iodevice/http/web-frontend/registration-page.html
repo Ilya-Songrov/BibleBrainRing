@@ -55,6 +55,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="css/util.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css  " />
     <!--===============================================================================================-->
     <link rel="stylesheet" href="./coloris.min.css" />
     <script src="./coloris.min.js"></script>
@@ -83,8 +84,10 @@
               <span class="focus-input100" data-symbol="&#xf206;"></span>
             </div>
 
-            <div class="label-input100">Color</div>
-            <input type="color" class="color-input" value="#ff0000" />
+            <div class="input-color-wrapper">
+              <label class="label-input100" for="custom-color">Color</label>
+            <input type="color" class="color-input" value="white" id="custom-color"/>
+            </div>
 
             <div class="container-login100-form-btn">
               <div class="wrap-login100-form-btn">
@@ -95,7 +98,7 @@
               </div>
             </div>
           </form>
-        </div>  
+        </div>
       </div>
     </div>
 
@@ -117,6 +120,6 @@
     <script src="vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="js/check-guid.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/registration-script.js"></script>
   </body>
 </html>

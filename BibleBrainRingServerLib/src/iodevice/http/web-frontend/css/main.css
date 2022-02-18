@@ -49,6 +49,21 @@ a {
   -moz-transition: all 0.4s;
 }
 
+
+.btn-ref .login100-form-btn {
+  height: 200px;
+  font-size: 30px;
+}
+
+.reset-btn-ref .login100-form-btn {
+  color: white!important;
+}
+
+.start-btn-ref {
+  margin-top: 30px!important;
+}
+
+
 a:focus {
   outline: none !important;
 }
@@ -355,10 +370,15 @@ iframe {
 
 .info-wrapper {
   text-align: center;
+  font-size: 20px;
 }
 
 .color-picker {
   margin-top: 20px;
+}
+
+#ref-wrap {
+  height: 80vh;
 }
 
 .color-input {

@@ -110,7 +110,7 @@ void GameSession::setConnections()
     connect(bibleBrainRingServerClassical.get(), &BibleBrainRingServerClassical::signalRefereeReset,
             this, &GameSession::slotRefereeReset, Qt::BlockingQueuedConnection);
     connect(bibleBrainRingServerClassical.get(), &BibleBrainRingServerClassical::signalRefereeStartTime,
-            this, &GameSession::slotRefereeReset, Qt::BlockingQueuedConnection);
+            this, &GameSession::slotRefereeStartTime, Qt::BlockingQueuedConnection);
 }
 
 void GameSession::loadTeams()
