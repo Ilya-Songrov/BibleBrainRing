@@ -47,50 +47,12 @@ void BibleBrainRingServerClassical::stopRegistration()
     io->stopAcceptingClients();
 }
 
-void BibleBrainRingServerClassical::addTeamsToBattle(const QVector<QString>& vecGuidTeam)
+void BibleBrainRingServerClassical::changeTeamStatus(const QString& guidTeam, const TeamStatus teamStatus)
 {
-    QVector<DtoTeamActivationForBattleServerRq> vec;
-    for (const QString& guid: vecGuidTeam) {
-        DtoTeamActivationForBattleServerRq dto;
-        dto.guid = guid;
-        dto.isActive = true;
-        vec.append(dto);
-        changeTeam(guid, TeamStatus::InBattle);
-    }
-    io->sendToClients(vec);
-}
-
-void BibleBrainRingServerClassical::removeTeamsFromBattle()
-{
-    QVector<DtoTeamActivationForBattleServerRq> vec;
-    const auto vecTeams = getTeams(TeamStatus::InBattle);
-    for (const TeamDto& t: vecTeams) {
-        DtoTeamActivationForBattleServerRq dto;
-        dto.guid = t.guid;
-        dto.isActive = false;
-        vec.append(dto);
-    }
-    io->sendToClients(vec);
-}
-
-void BibleBrainRingServerClassical::addTeamToBattle(const QString& guidTeam)
-{
-    TeamDto team = getTeam(guidTeam);
-    DtoTeamActivationForBattleServerRq dto;
-    dto.guid = team.guid;
-    dto.isActive = true;
-    changeTeam(guidTeam, TeamStatus::InBattle);
-    io->sendToClients(dto);
-}
-
-void BibleBrainRingServerClassical::removeTeamFromBattle(const QString& guidTeam)
-{
-    changeTeam(guidTeam, TeamStatus::WaitingForTheNextRound);
-    TeamDto team = getTeam(guidTeam);
-    DtoTeamActivationForBattleServerRq dto;
-    dto.guid = team.guid;
-    dto.isActive = false;
-    io->sendToClients(dto);
+    auto team = DtoCreator::getTeamDto(guidTeam);
+    team.status = teamStatus;
+    updateTeam(team);
+//    io->sendToClients(dto);
 }
 
 QVector<TeamDto> BibleBrainRingServerClassical::getTeamsInBattle()
@@ -142,7 +104,7 @@ void BibleBrainRingServerClassical::appendTeam(const TeamDto& team)
     emit signalConnectNewTeam(team);
 }
 
-void BibleBrainRingServerClassical::changeTeam(const TeamDto& team)
+void BibleBrainRingServerClassical::updateTeam(const TeamDto& team)
 {
     for (TeamDto &t: listTeams) {
         if (t.guid == team.guid) {
@@ -150,13 +112,6 @@ void BibleBrainRingServerClassical::changeTeam(const TeamDto& team)
             return;
         }
     }
-}
-
-void BibleBrainRingServerClassical::changeTeam(const QString& guidTeam, const TeamStatus teamStatus)
-{
-    auto team = DtoCreator::getTeamDto(guidTeam);
-    team.status = teamStatus;
-    changeTeam(team);
 }
 
 TeamDto BibleBrainRingServerClassical::getTeam(QString guidTeam)

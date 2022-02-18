@@ -31,10 +31,7 @@ public:
     void startRegistration();
     void stopRegistration();
 
-    void addTeamsToBattle(const QVector<QString>& vecGuidTeam);
-    void removeTeamsFromBattle();
-    void addTeamToBattle(const QString& guidTeam);
-    void removeTeamFromBattle(const QString& guidTeam);
+    void changeTeamStatus(const QString& guidTeam, const TeamStatus teamStatus);
     QVector<TeamDto> getTeamsInBattle();
 
     static TeamDto getTeam(QString guidTeam);
@@ -57,8 +54,7 @@ private slots:
 
 private:
     void appendTeam(const TeamDto &team);
-    void changeTeam(const TeamDto &team);
-    void changeTeam(const QString& guidTeam, const TeamStatus teamStatus);
+    void updateTeam(const TeamDto &team);
     QVector<TeamDto> getTeams(const TeamStatus teamStatus);
 
 

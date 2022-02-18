@@ -35,7 +35,7 @@ enum ServerMode
 enum TeamStatus
 {
     None                    = 0,
-    NotValid                ,
+    NotValid                    ,
     Registered              ,
     WaitingForTheNextRound  ,
     InBattle                ,

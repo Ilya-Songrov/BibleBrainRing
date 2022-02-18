@@ -77,7 +77,7 @@ void GameSession::slotPressedButtonBulb(DtoButtonPressedRq rq)
 void GameSession::slotRefereeReset(qint64)
 {
     for (const DtoButtonPressedRq& rq: qAsConst(vecButtonPressed)) {
-        listTeamsInGameSession->setBulbPosition(0, rq.guid);
+        listTeamsInBattle->setBulbPosition(0, rq.guid);
     }
     vecButtonPressed.clear();
 }
@@ -93,13 +93,13 @@ void GameSession::setConnections()
         const TeamDto team = listTeamsInGameSession->getTeam(index);
         listTeamsInBattle->appendTeam(team);
         listTeamsInGameSession->removeTeam(index);
-        bibleBrainRingServerClassical->addTeamToBattle(team.guid);
+        bibleBrainRingServerClassical->changeTeamStatus(team.guid, TeamStatus::InBattle);
     });
     connect(listTeamsInBattle.get(), &ListTeams::moveTeamToAnotherList, this, [](int index){
         const TeamDto team = listTeamsInBattle->getTeam(index);
         listTeamsInGameSession->appendTeam(team);
         listTeamsInBattle->removeTeam(index);
-        bibleBrainRingServerClassical->removeTeamFromBattle(team.guid);
+        bibleBrainRingServerClassical->changeTeamStatus(team.guid, TeamStatus::WaitingForTheNextRound);
     });
     connect(bibleBrainRingServerClassical.get(), &BibleBrainRingServerClassical::signalPressedButton,
             this, &GameSession::slotPressedButtonBulb, Qt::BlockingQueuedConnection);
