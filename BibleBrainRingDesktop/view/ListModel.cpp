@@ -38,6 +38,8 @@ QVariant ListModel::data(const QModelIndex& index, int role) const
         return QVariant(team.score);
     case Position:
         return QVariant(team.position);
+    case BulbPosition:
+        return QVariant(team.bulbPosition);
     case Status:
         return QVariant(int(team.status));
     }
@@ -66,6 +68,9 @@ bool ListModel::setData(const QModelIndex& index, const QVariant& value, int rol
     else if(role == Position) {
         listTeams()->getList()[position].position = value.toInt();
     }
+    else if(role == BulbPosition) {
+        listTeams()->getList()[position].bulbPosition = value.toInt();
+    }
     else if(role == Status) {
         listTeams()->getList()[position].status = TeamStatus(value.toInt());
     }
@@ -86,11 +91,12 @@ Qt::ItemFlags ListModel::flags(const QModelIndex& index) const
 QHash<int, QByteArray> ListModel::roleNames() const
 {
     QHash<int, QByteArray> names;
-    names[Name]     = "name";
-    names[Color]    = "color";
-    names[Score]    = "score";
-    names[Position] = "position";
-    names[Status]   = "status";
+    names[Name]             = "name";
+    names[Color]            = "color";
+    names[Score]            = "score";
+    names[Position]         = "position";
+    names[BulbPosition]     = "bulbPosition";
+    names[Status]           = "status";
     return names;
 }
 

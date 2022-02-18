@@ -33,6 +33,8 @@ bool HttpServer::initServer()
     httpListener = new stefanfrings::HttpListener(settings, myRequestHandler, this);
     connect(myRequestHandler, &MyRequestHandler::joinedClient, this, &IODeviceServerAbstract::joinedClient, Qt::DirectConnection);
     connect(myRequestHandler, &MyRequestHandler::buttonPressed, this, &IODeviceServerAbstract::buttonPressed, Qt::DirectConnection);
+    connect(myRequestHandler, &MyRequestHandler::refereeReset, this, &IODeviceServerAbstract::refereeReset, Qt::DirectConnection);
+    connect(myRequestHandler, &MyRequestHandler::refereeStartTime, this, &IODeviceServerAbstract::refereeStartTime, Qt::DirectConnection);
     return httpListener->isListening();
 }
 

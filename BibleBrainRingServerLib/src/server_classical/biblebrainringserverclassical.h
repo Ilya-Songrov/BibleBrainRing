@@ -46,6 +46,8 @@ public:
 signals:
     void signalConnectNewTeam(TeamDto);
     void signalPressedButton(DtoButtonPressedRq);
+    void signalRefereeReset(qint64);
+    void signalRefereeStartTime(qint64);
 
 private slots:
     void slotJoinedClient(const DtoTeamRegistrationClientRs teamRs);

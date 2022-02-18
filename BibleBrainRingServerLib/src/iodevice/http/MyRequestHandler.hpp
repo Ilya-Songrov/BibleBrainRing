@@ -30,6 +30,8 @@ public:
 signals:
     void joinedClient(const DtoTeamRegistrationClientRs teamRegistrationDto);
     void buttonPressed(const DtoButtonPressedRq buttonPressedRq);
+    void refereeReset(qint64);
+    void refereeStartTime(qint64);
 
 private:
     const QByteArray rootPath;

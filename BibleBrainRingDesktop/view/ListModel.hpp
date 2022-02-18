@@ -12,11 +12,12 @@ class ListModel : public QAbstractListModel
 
 public:
     enum {
-        Name     = Qt::UserRole + 1,
-        Color   ,
-        Score   ,
-        Position,
-        Status  ,
+        Name            = Qt::UserRole + 1,
+        Color           ,
+        Score           ,
+        Position        ,
+        BulbPosition    ,
+        Status          ,
     };
 
     explicit ListModel(QObject *parent = nullptr);

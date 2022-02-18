@@ -10,6 +10,11 @@ Item {
     property color textColor            : "white"
     property real textPixelSize         : Math.min(parent.width, parent.height) * 0.1
 
+    Rectangle{
+        anchors.fill: rowLayoutModel
+        color: "red"
+        opacity: 0.5
+    }
     RowLayout {
         id: rowLayoutModel
         width: parent.width
@@ -18,7 +23,7 @@ Item {
 
         Repeater {
             property int minMaxWidthElement: count < 4 ? parent.width / 4 : parent.width / count
-            property int minMaxHeightElement: parent.height / 2
+            property int minMaxHeightElement: parent.height / 3
 
             // for example
             // function updateminPixelSize(){
@@ -38,6 +43,20 @@ Item {
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 spacing: 0
 
+                Text {
+                    Layout.fillWidth: true
+                    Layout.minimumHeight: repeaterModel.minMaxHeightElement
+                    Layout.maximumHeight: repeaterModel.minMaxHeightElement
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    horizontalAlignment: Qt.AlignHCenter
+                    verticalAlignment: Qt.AlignVCenter
+                    wrapMode: Text.WordWrap
+                    fontSizeMode: Text.Fit
+                    minimumPixelSize: 1
+                    font.pixelSize: textPixelSize
+                    color: textColor
+                    text: model["bulbPosition"]
+                }
                 Text {
                     Layout.fillWidth: true
                     Layout.minimumHeight: repeaterModel.minMaxHeightElement

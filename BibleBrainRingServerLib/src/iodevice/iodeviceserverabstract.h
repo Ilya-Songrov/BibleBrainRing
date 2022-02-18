@@ -42,6 +42,8 @@ public:
 signals:
     void joinedClient(const DtoTeamRegistrationClientRs teamRegistrationDto);
     void buttonPressed(const DtoButtonPressedRq buttonPressedRq);
+    void refereeReset(qint64);
+    void refereeStartTime(qint64);
     void disconnectedClient(const QString &guidClient);
     void responseFromClient(const QString &guidClient, const QByteArray &arr);
     void clientStatusChanged(const QString &guidClient, const ClientStatus clientStatus);

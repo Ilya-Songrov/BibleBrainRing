@@ -14,9 +14,9 @@ Rectangle{
     MyComponents.QmlRowLayout{
         id: rowLayoutNameScore
         width: parent.width * 0.9
-        height: parent.height / 3
+        height: parent.height / 2.7
         anchors.top: parent.top
-        anchors.topMargin: parent.height * 0.08
+        anchors.topMargin: parent.height * 0.025
         anchors.horizontalCenter: parent.horizontalCenter
         textColor: objSCP.textColor
         textPixelSize: objSCP.textPixelSize * scalePixelSize
@@ -24,10 +24,15 @@ Rectangle{
         visible: objSCP.visibleTeams
     }
     Text {
+        Rectangle{
+            anchors.fill: parent
+            color: "green"
+            opacity: 0.5
+        }
         id: textQuestion
         width: rowLayoutNameScore.width
         anchors.top: rowLayoutNameScore.visible ? rowLayoutNameScore.bottom : parent.top
-        anchors.topMargin: parent.height * 0.02
+        anchors.topMargin: rowLayoutNameScore.anchors.topMargin
         anchors.bottom: parent.bottom
         anchors.bottomMargin: anchors.topMargin
         anchors.horizontalCenter: parent.horizontalCenter

@@ -2,7 +2,7 @@
 
 GameSession::GameSession(QObject *parent)
     : StateAbstract(__FUNCTION__, parent)
-    , resetTime(QDateTime::currentSecsSinceEpoch())
+    , refereeStartTime(QDateTime::currentSecsSinceEpoch())
 {
     setConnections();
     loadTeams();
@@ -11,13 +11,14 @@ GameSession::GameSession(QObject *parent)
 
 #ifdef QT_DEBUG
 //    managerQuestions->loadQuestions("/home/songrov/test_questions.txt");
-//    TeamDto team;
-//    team.guid        = "guid";
-//    team.name        = "name";
-//    team.color       = "green";
-//    team.score       = 2;
-//    team.position    = 3;
-//    team.status      = TeamStatus::Registered;
+    TeamDto team;
+    team.guid        = "guid";
+    team.name        = "name";
+    team.color       = "green";
+    team.score       = 2;
+    team.position    = 3;
+    team.bulbPosition= 1;
+    team.status      = TeamStatus::Registered;
 //    listTeamsInBattle->appendTeam(team);
 //    team.color      = "blue";
 //    team.status     = TeamStatus::Registered;
@@ -26,7 +27,7 @@ GameSession::GameSession(QObject *parent)
 //    listTeamsInBattle->appendTeam(team);
 //    team.name       = "name nameB nameB nameB";
 //    team.guid       = "2222";
-//    listTeamsInGameSession->appendTeam(team);
+    listTeamsInGameSession->appendTeam(team);
 //    listTeamsInGameSession->appendTeam(team);
 //    listTeamsInGameSession->appendTeam(team);
 //    listTeamsInGameSession->appendTeam(team);
@@ -59,7 +60,22 @@ StateAbstract* GameSession::onQmlButtonClicked(const BibleBrainRing::Button butt
 
 void GameSession::slotPressedButtonBulb(DtoButtonPressedRq rq)
 {
+    for (const DtoButtonPressedRq& rqSaved: vecButtonPressed) {
+        if (rqSaved.guid == rq.guid) {
+            return;
+        }
+    }
+    vecButtonPressed.append(rq);
+}
 
+void GameSession::slotRefereeReset(qint64)
+{
+    vecButtonPressed.clear();
+}
+
+void GameSession::slotRefereeStartTime(qint64 time)
+{
+    refereeStartTime = time;
 }
 
 void GameSession::setConnections()
@@ -78,6 +94,10 @@ void GameSession::setConnections()
     });
     connect(bibleBrainRingServerClassical.get(), &BibleBrainRingServerClassical::signalPressedButton,
             this, &GameSession::slotPressedButtonBulb, Qt::BlockingQueuedConnection);
+    connect(bibleBrainRingServerClassical.get(), &BibleBrainRingServerClassical::signalRefereeReset,
+            this, &GameSession::slotRefereeReset, Qt::BlockingQueuedConnection);
+    connect(bibleBrainRingServerClassical.get(), &BibleBrainRingServerClassical::signalRefereeStartTime,
+            this, &GameSession::slotRefereeReset, Qt::BlockingQueuedConnection);
 }
 
 void GameSession::loadTeams()

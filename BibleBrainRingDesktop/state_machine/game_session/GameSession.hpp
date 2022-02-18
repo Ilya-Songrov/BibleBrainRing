@@ -12,12 +12,15 @@ public:
 
 private slots:
     void slotPressedButtonBulb(DtoButtonPressedRq rq);
+    void slotRefereeReset(qint64);
+    void slotRefereeStartTime(qint64 time);
 
 private:
     void setConnections();
     void loadTeams();
 
 private:
-    qint64 resetTime;
+    qint64 refereeStartTime;
+    QVector<DtoButtonPressedRq> vecButtonPressed;
 };
 

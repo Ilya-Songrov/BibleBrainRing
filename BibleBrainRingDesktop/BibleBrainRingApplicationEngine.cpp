@@ -8,9 +8,9 @@ BibleBrainRingApplicationEngine::BibleBrainRingApplicationEngine(QObject *parent
     setConnections();
 #ifdef QT_DEBUG
     currentState = new InitStateMain(this);
-//    currentState = new RegistrationStateMain();
-//    currentState = new GameSession();
 //    currentState = new EnvironmentSetup();
+//    currentState = new RegistrationStateMain();
+    currentState = new GameSession();
 #else
     currentState = new InitStateMain(this);
 #endif

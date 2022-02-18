@@ -4,7 +4,7 @@
 MyRequestHandler::MyRequestHandler(std::function<TeamDto(QString guidTeam)> funcGetTeam, bool* acceptClients, QObject* parent)
     : HttpRequestHandler(parent)
     // TODO: finish me
-    , rootPath("/home/songrov/DeveloperRoot/AllProjects/Ilya_Songrov/BibleBrainRing/BibleBrainRing/BibleBrainRingServerLib/src/iodevice/http/web-frontend")
+    , rootPath(QFileInfo(__FILE__).dir().absolutePath().toUtf8() + "/../web-frontend")
     , _funcGetTeam(funcGetTeam)
     , _acceptClients(acceptClients)
 {
@@ -18,9 +18,10 @@ MyRequestHandler::~MyRequestHandler()
 
 void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings::HttpResponse& response)
 {
-    static const QString page_index = "index";
+    static const QString page_registration_page = "registration-page";
     static const QString page_waiting_hall = "waiting-hall";
     static const QString page_button = "button";
+    static const QString page_referee = "referee";
     static const QString page_wrong = "wrong";
     const QByteArray path = request.getPath();
     qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " Start handller. path: " << path << Qt::endl;
@@ -40,7 +41,7 @@ void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings:
             page = page_button;
         }
         else{
-            page = page_index;
+            page = page_registration_page;
         }
         QJsonObject obj{
             {"status", status},
@@ -95,6 +96,38 @@ void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings:
         response.write(QJsonDocument(obj).toJson(), true);
         qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << " obj: " << obj << Qt::endl;
     }
+    else if(path == "/referee-reset"){
+        const QString time = request.getParameter("time");
+        bool ok = false;
+        qint64 timeNum = QString(time).toLongLong(&ok);
+        if (!ok) {
+            qWarning() << "time is not valid:" << time << Qt::endl;
+            timeNum = QDateTime::currentSecsSinceEpoch();
+        }
+        emit refereeReset(timeNum);
+        QJsonObject obj{
+            {"status", status},
+            {"error", error},
+        };
+        response.write(QJsonDocument(obj).toJson(), true);
+        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << " obj: " << obj << Qt::endl;
+    }
+    else if(path == "/referee-start-time"){
+        const QString time = request.getParameter("time");
+        bool ok = false;
+        qint64 timeNum = QString(time).toLongLong(&ok);
+        if (!ok) {
+            qWarning() << "time is not valid:" << time << Qt::endl;
+            timeNum = QDateTime::currentSecsSinceEpoch();
+        }
+        emit refereeStartTime(timeNum);
+        QJsonObject obj{
+            {"status", status},
+            {"error", error},
+        };
+        response.write(QJsonDocument(obj).toJson(), true);
+        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << " obj: " << obj << Qt::endl;
+    }
     else if(path == "/" + page_waiting_hall){
         response.write(FileWorker::readFile(rootPath + path + ".html"), true);
         qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
@@ -107,8 +140,12 @@ void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings:
         response.write(FileWorker::readFile(rootPath + path + ".html"), true);
         qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
     }
-    else if(path == "/" + page_index || path == "/"){
-        response.write(FileWorker::readFile(rootPath + "/index.html"), true);
+    else if(path == "/" + page_referee){
+        response.write(FileWorker::readFile(rootPath + path + ".html"), true);
+        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
+    }
+    else if(path == "/" + page_registration_page || path == "/"){
+        response.write(FileWorker::readFile(rootPath + "/" + page_registration_page + ".html"), true);
         qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
     }
     else if(!path.isEmpty()){

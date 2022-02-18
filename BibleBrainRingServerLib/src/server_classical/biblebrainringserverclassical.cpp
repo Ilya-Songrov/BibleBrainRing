@@ -21,6 +21,8 @@ BibleBrainRingServerClassical::BibleBrainRingServerClassical(IODeviceServerAbstr
 {
     connect(io, &IODeviceServerAbstract::joinedClient, this, &BibleBrainRingServerClassical::slotJoinedClient, Qt::DirectConnection);
     connect(io, &IODeviceServerAbstract::buttonPressed, this, &BibleBrainRingServerClassical::slotButtonPressed, Qt::DirectConnection);
+    connect(io, &IODeviceServerAbstract::refereeReset, this, &BibleBrainRingServerClassical::signalRefereeReset, Qt::DirectConnection);
+    connect(io, &IODeviceServerAbstract::refereeStartTime, this, &BibleBrainRingServerClassical::signalRefereeStartTime, Qt::DirectConnection);
 }
 
 BibleBrainRingServerClassical::~BibleBrainRingServerClassical()
