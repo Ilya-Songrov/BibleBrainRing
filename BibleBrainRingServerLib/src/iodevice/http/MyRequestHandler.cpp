@@ -4,7 +4,7 @@
 MyRequestHandler::MyRequestHandler(std::function<TeamDto(QString guidTeam)> funcGetTeam, bool* acceptClients, QObject* parent)
     : HttpRequestHandler(parent)
     // TODO: finish me
-    , rootPath(QFileInfo(__FILE__).dir().absolutePath().toUtf8() + "/../web-frontend")
+    , rootPath(QFileInfo(__FILE__).dir().absolutePath().toUtf8() + "/web-frontend")
     , _funcGetTeam(funcGetTeam)
     , _acceptClients(acceptClients)
 {
@@ -23,6 +23,7 @@ void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings:
     static const QString page_button = "button";
     static const QString page_referee = "referee";
     static const QString page_wrong = "wrong";
+    static QString guidReferee;
     const QByteArray path = request.getPath();
     qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " Start handller. path: " << path << Qt::endl;
 
@@ -39,6 +40,9 @@ void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings:
         }
         else if(team.status == TeamStatus::InBattle){
             page = page_button;
+        }
+        else if(guid == guidReferee){
+            page = page_referee;
         }
         else{
             page = page_registration_page;
@@ -141,6 +145,7 @@ void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings:
         qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
     }
     else if(path == "/" + page_referee){
+        guidReferee = guid;
         response.write(FileWorker::readFile(rootPath + path + ".html"), true);
         qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
     }

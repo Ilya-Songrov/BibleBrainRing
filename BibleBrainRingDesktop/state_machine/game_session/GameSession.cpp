@@ -28,6 +28,11 @@ GameSession::GameSession(QObject *parent)
 //    team.name       = "name nameB nameB nameB";
 //    team.guid       = "2222";
     listTeamsInGameSession->appendTeam(team);
+
+//    QTimer::singleShot(2000, [team](){
+//        qDebug() << "SingleShot" << Qt::endl;
+//        listTeamsInBattle->setBulbPosition(3, team.guid);
+//    });
 //    listTeamsInGameSession->appendTeam(team);
 //    listTeamsInGameSession->appendTeam(team);
 //    listTeamsInGameSession->appendTeam(team);
@@ -66,6 +71,11 @@ void GameSession::slotPressedButtonBulb(DtoButtonPressedRq rq)
         }
     }
     vecButtonPressed.append(rq);
+    for (const TeamDto& team: qAsConst(listTeamsInBattle->getList())) {
+        if (team.guid == rq.guid) {
+            listTeamsInGameSession->setBulbPosition(vecButtonPressed.size(), team.guid);
+        }
+    }
 }
 
 void GameSession::slotRefereeReset(qint64)

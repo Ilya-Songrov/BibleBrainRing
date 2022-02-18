@@ -24,11 +24,6 @@ Rectangle{
         visible: objSCP.visibleTeams
     }
     Text {
-        Rectangle{
-            anchors.fill: parent
-            color: "green"
-            opacity: 0.5
-        }
         id: textQuestion
         width: rowLayoutNameScore.width
         anchors.top: rowLayoutNameScore.visible ? rowLayoutNameScore.bottom : parent.top

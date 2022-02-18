@@ -10,11 +10,6 @@ Item {
     property color textColor            : "white"
     property real textPixelSize         : Math.min(parent.width, parent.height) * 0.1
 
-    Rectangle{
-        anchors.fill: rowLayoutModel
-        color: "red"
-        opacity: 0.5
-    }
     RowLayout {
         id: rowLayoutModel
         width: parent.width

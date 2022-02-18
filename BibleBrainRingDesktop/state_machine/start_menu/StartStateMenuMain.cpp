@@ -33,7 +33,7 @@ StateAbstract *StartStateMenuMain::onQmlButtonClicked(const BibleBrainRing::Butt
     }
     else if (button == BibleBrainRing::ButtonStartServerHttp) {
         providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeServerHttp);
-        HttpServer* httpServer = new HttpServer("192.168.0.104", "8282"); // TODO: finish me
+        HttpServer* httpServer = new HttpServer("192.168.0.106", "8686"); // TODO: finish me
         bibleBrainRingServerClassical.reset(new BibleBrainRingServerClassical(httpServer));
         bibleBrainRingServerClassical->initServer();
         return new EnvironmentSetup();
