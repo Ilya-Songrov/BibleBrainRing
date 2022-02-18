@@ -33,10 +33,13 @@ StateAbstract *StartStateMenuMain::onQmlButtonClicked(const BibleBrainRing::Butt
     }
     else if (button == BibleBrainRing::ButtonStartServerHttp) {
         providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeServerHttp);
-        HttpServer* httpServer = new HttpServer("192.168.0.106", "8686"); // TODO: finish me
+        HttpServer* httpServer = new HttpServer("192.168.0.104", "8484"); // TODO: finish me
         bibleBrainRingServerClassical.reset(new BibleBrainRingServerClassical(httpServer));
-        bibleBrainRingServerClassical->initServer();
-        return new EnvironmentSetup();
+        const bool ret = bibleBrainRingServerClassical->initServer();
+        if (ret) {
+            return new EnvironmentSetup();
+        }
+        emit providerQml->showMessage("Http server can't start");
     }
     else if (button == BibleBrainRing::ButtonStartClientWifi) {
         providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeClientWifi);

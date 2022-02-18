@@ -4,7 +4,7 @@
 MyRequestHandler::MyRequestHandler(std::function<TeamDto(QString guidTeam)> funcGetTeam, bool* acceptClients, QObject* parent)
     : HttpRequestHandler(parent)
     // TODO: finish me
-    , rootPath(QFileInfo(__FILE__).dir().absolutePath().toUtf8() + "/web-frontend")
+    , rootPath(":/all_files/web-frontend")
     , _funcGetTeam(funcGetTeam)
     , _acceptClients(acceptClients)
 {

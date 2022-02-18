@@ -50,3 +50,6 @@ HEADERS += \
 
 INCLUDEPATH += \
     $$PWD/src
+
+RESOURCES += \
+    $$PWD/src/iodevice/http/http_web_frontend.qrc

@@ -1,0 +1,17 @@
+{
+    "example.png": {
+        "author_name": "example",
+        "author_link": "example",
+        "license": "example",
+        "site_download": "example",
+        "image_name": "example.png"
+    },
+    "3032478_bible_book_chritian_cross_icon.ico": {
+        "author_name": "Alpár-Etele Méder",
+        "author_link": "https://thoseicons.com/",
+        "license": "Creative Commons (Attribution 3.0 Unported)",
+        "site_download": "https://www.iconfinder.com/search?q=bible",
+        "image_name": "3032478_bible_book_chritian_cross_icon.ico",
+        "image_name_alias": "favicon.ico"
+    }
+}
