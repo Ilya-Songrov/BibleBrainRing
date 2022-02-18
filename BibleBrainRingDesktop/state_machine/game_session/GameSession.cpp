@@ -2,10 +2,12 @@
 
 GameSession::GameSession(QObject *parent)
     : StateAbstract(__FUNCTION__, parent)
+    , resetTime(QDateTime::currentSecsSinceEpoch())
 {
     setConnections();
     loadTeams();
     providerQml->setCurrentAppState(BibleBrainRing::GameSession);
+
 
 #ifdef QT_DEBUG
 //    managerQuestions->loadQuestions("/home/songrov/test_questions.txt");
@@ -55,6 +57,11 @@ StateAbstract* GameSession::onQmlButtonClicked(const BibleBrainRing::Button butt
     return nullptr;
 }
 
+void GameSession::slotPressedButtonBulb(DtoButtonPressedRq rq)
+{
+
+}
+
 void GameSession::setConnections()
 {
     connect(listTeamsInGameSession.get(), &ListTeams::moveTeamToAnotherList, this, [](int index){
@@ -69,6 +76,8 @@ void GameSession::setConnections()
         listTeamsInBattle->removeTeam(index);
         bibleBrainRingServerClassical->removeTeamFromBattle(team.guid);
     });
+    connect(bibleBrainRingServerClassical.get(), &BibleBrainRingServerClassical::signalPressedButton,
+            this, &GameSession::slotPressedButtonBulb, Qt::BlockingQueuedConnection);
 }
 
 void GameSession::loadTeams()

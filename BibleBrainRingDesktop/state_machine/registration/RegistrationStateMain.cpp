@@ -17,13 +17,8 @@ RegistrationStateMain::RegistrationStateMain(QObject *parent)
 {
     providerQml->setCurrentAppState(BibleBrainRing::Registration);
     bibleBrainRingServerClassical->startRegistration();
-//    bibleBrainRingServerClassical->onConnectNewTeam([](TeamDto team){
-//        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " text: " << __LINE__ << Qt::endl;
-//        listTeamsRegistration->appendTeam(team);
-//    });
-    connect(bibleBrainRingServerClassical.get(), &BibleBrainRingServerClassical::signalConnectNewTeam, this, [](TeamDto team){
-        listTeamsRegistration->appendTeam(team);
-    }, Qt::BlockingQueuedConnection);
+    connect(bibleBrainRingServerClassical.get(), &BibleBrainRingServerClassical::signalConnectNewTeam,
+            this, &RegistrationStateMain::slotConnectNewTeam, Qt::BlockingQueuedConnection);
 
 
 
@@ -64,4 +59,9 @@ StateAbstract *RegistrationStateMain::onQmlButtonClicked(const BibleBrainRing::B
         return new GameSession();
     }
     return nullptr;
+}
+
+void RegistrationStateMain::slotConnectNewTeam(TeamDto team)
+{
+    listTeamsRegistration->appendTeam(team);
 }

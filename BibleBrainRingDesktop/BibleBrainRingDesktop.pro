@@ -1,4 +1,5 @@
 include($$PWD/../BibleBrainRingServerLib/biblebrainringserverlib.pri)
+include($$PWD/../YeelightSmartLEDBulb/src/YeelightSmartLEDBulbSrc.pri)
 include($$PWD/../Exceptions/exceptions.pri)
 
 QT += quick

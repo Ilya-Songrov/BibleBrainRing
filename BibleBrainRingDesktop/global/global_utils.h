@@ -15,8 +15,10 @@
 #include "providerqml.h"
 #include "server_classical/biblebrainringserverclassical.h"
 #include "iodevice/none/NoneServer.h"
+#include "Bulb.hpp"
 
 extern QScopedPointer<ProviderQml                   > providerQml;
 extern QScopedPointer<BibleBrainRingServerClassical > bibleBrainRingServerClassical;
+extern QVector<YeelightBulb::Bulb*                  > vecBulbs;
 
 extern void createUtils();

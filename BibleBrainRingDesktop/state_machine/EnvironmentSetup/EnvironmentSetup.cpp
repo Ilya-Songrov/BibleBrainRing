@@ -4,6 +4,16 @@ EnvironmentSetup::EnvironmentSetup(QObject *parent)
     : StateAbstract(__FUNCTION__, parent)
 {
     providerQml->setCurrentAppState(BibleBrainRing::EnvironmentSetup);
+
+#ifdef QT_DEBUG
+    vecBulbs.append(new YeelightBulb::Bulb(providerQml.get()));
+    vecBulbs.append(new YeelightBulb::Bulb(providerQml.get()));
+    vecBulbs[0]->connectToBulb(QHostAddress("192.168.0.107"), 55443);
+//    vecBulbs[0]->connectToBulb(QHostAddress("192.168.0.107"), 55443);
+    for (YeelightBulb::Bulb* bulb: qAsConst(vecBulbs)) {
+        bulb->set_power(false, YeelightBulb::Bulb::Sudden, 1);
+    }
+#endif
 }
 
 StateAbstract* EnvironmentSetup::onQmlButtonClicked(const BibleBrainRing::Button button)

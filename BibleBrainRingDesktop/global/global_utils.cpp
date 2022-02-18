@@ -12,8 +12,9 @@
 
 #include "global_utils.h"
 
-QScopedPointer<ProviderQml                  > providerQml (nullptr);
-QScopedPointer<BibleBrainRingServerClassical> bibleBrainRingServerClassical (nullptr);
+QScopedPointer<ProviderQml                      > providerQml (nullptr);
+QScopedPointer<BibleBrainRingServerClassical    > bibleBrainRingServerClassical (nullptr);
+QVector<YeelightBulb::Bulb*                     > vecBulbs;
 
 void createUtils()
 {
