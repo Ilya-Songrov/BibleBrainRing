@@ -1,5 +1,4 @@
 const playGameBtn = document.getElementById("play-game-btn");
-console.log(playGameBtn);
 let sendingGuid = localStorage.getItem('guid');
 playGameBtn.addEventListener("click",()=>{
     sendData(`guid=${sendingGuid==undefined ? "" : sendingGuid}`);
@@ -19,7 +18,7 @@ function sendData(data) {
             window.location.replace(`${window.location.origin}/${obj.page}`);
         } 
         else {
-            alert("Игра еще не началась");
+            alert("The game hasn't started yet");
         }
       }
     };

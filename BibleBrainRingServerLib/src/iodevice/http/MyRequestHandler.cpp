@@ -35,7 +35,7 @@ void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings:
         const TeamDto team = _funcGetTeam (guid);
         QString page;
         qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " team.status: " << team.status << Qt::endl;
-        if (team.status == TeamStatus::Registered) {
+        if (team.status == TeamStatus::Registered || team.status == TeamStatus::WaitingForTheNextRound) {
             page = page_waiting_hall;
         }
         else if(team.status == TeamStatus::InBattle){
@@ -81,11 +81,11 @@ void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings:
     else if(path == "/button-pressed"){
         const TeamDto team = _funcGetTeam (guid);
         const QString time = request.getParameter("time");
+        QString page;
         bool ok = false;
         DtoButtonPressedRq buttonPressedRq;
         buttonPressedRq.guid = guid;
         buttonPressedRq.time = QString(time).toLongLong(&ok);
-        status = team.status == TeamStatus::InBattle ? "success" : "redirect";
         if (!ok) {
             qWarning() << "time is not valid:" << time << Qt::endl;
             buttonPressedRq.time = QDateTime::currentSecsSinceEpoch();
@@ -93,8 +93,13 @@ void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings:
         if (team.status == TeamStatus::InBattle) {
             emit buttonPressed(buttonPressedRq);
         }
+        else{
+            status = "redirect";
+            page = page_waiting_hall;
+        }
         QJsonObject obj{
             {"status", status},
+            {"page", page},
             {"error", error},
         };
         response.write(QJsonDocument(obj).toJson(), true);

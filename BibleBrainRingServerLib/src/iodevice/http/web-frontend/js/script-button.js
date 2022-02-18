@@ -6,13 +6,14 @@ sendTimeBtn.addEventListener("click", () => {
 });
 
 function sendTime() {
-  const sendingTime = `time=${new Date().getTime()}`;
+  let myGuid = localStorage.getItem("guid");
+  const sendingTime = `guid=${myGuid==undefined ? "" : myGuid}&time=${new Date().getTime()}`;
   sendData(sendingTime);
 }
 
 function sendData(data) {
   var http = new XMLHttpRequest();
-  var url = `${window.location.origin}/pressed-button`;
+  var url = `${window.location.origin}/button-pressed`;
   var params = data;
   http.open("POST", url, true);
 
@@ -25,6 +26,7 @@ function sendData(data) {
       if(obj.status=="redirect") {
         window.location.replace(`${window.location.origin}/${obj.page}`);
       }
+      console.log(obj);
     }
   };
   http.send(params);

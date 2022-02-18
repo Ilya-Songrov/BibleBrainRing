@@ -11,14 +11,14 @@ GameSession::GameSession(QObject *parent)
 
 #ifdef QT_DEBUG
 //    managerQuestions->loadQuestions("/home/songrov/test_questions.txt");
-    TeamDto team;
-    team.guid        = "guid";
-    team.name        = "name";
-    team.color       = "green";
-    team.score       = 2;
-    team.position    = 3;
-    team.bulbPosition= 1;
-    team.status      = TeamStatus::Registered;
+//    TeamDto team;
+//    team.guid        = "guid";
+//    team.name        = "name";
+//    team.color       = "green";
+//    team.score       = 2;
+//    team.position    = 3;
+//    team.bulbPosition= 1;
+//    team.status      = TeamStatus::Registered;
 //    listTeamsInBattle->appendTeam(team);
 //    team.color      = "blue";
 //    team.status     = TeamStatus::Registered;
@@ -27,12 +27,7 @@ GameSession::GameSession(QObject *parent)
 //    listTeamsInBattle->appendTeam(team);
 //    team.name       = "name nameB nameB nameB";
 //    team.guid       = "2222";
-    listTeamsInGameSession->appendTeam(team);
-
-//    QTimer::singleShot(2000, [team](){
-//        qDebug() << "SingleShot" << Qt::endl;
-//        listTeamsInBattle->setBulbPosition(3, team.guid);
-//    });
+//    listTeamsInGameSession->appendTeam(team);
 //    listTeamsInGameSession->appendTeam(team);
 //    listTeamsInGameSession->appendTeam(team);
 //    listTeamsInGameSession->appendTeam(team);
@@ -65,6 +60,7 @@ StateAbstract* GameSession::onQmlButtonClicked(const BibleBrainRing::Button butt
 
 void GameSession::slotPressedButtonBulb(DtoButtonPressedRq rq)
 {
+    qDebug() << "print_function:" << __FUNCTION__ << "guid:" << rq.guid << "time:" << rq.time << Qt::endl;
     for (const DtoButtonPressedRq& rqSaved: qAsConst(vecButtonPressed)) {
         if (rqSaved.guid == rq.guid) {
             return;
@@ -73,7 +69,7 @@ void GameSession::slotPressedButtonBulb(DtoButtonPressedRq rq)
     vecButtonPressed.append(rq);
     for (const TeamDto& team: qAsConst(listTeamsInBattle->getList())) {
         if (team.guid == rq.guid) {
-            listTeamsInGameSession->setBulbPosition(vecButtonPressed.size(), team.guid);
+            listTeamsInBattle->setBulbPosition(vecButtonPressed.size(), team.guid);
         }
     }
 }

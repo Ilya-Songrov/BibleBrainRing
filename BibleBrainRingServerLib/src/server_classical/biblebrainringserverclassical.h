@@ -52,6 +52,8 @@ signals:
 private slots:
     void slotJoinedClient(const DtoTeamRegistrationClientRs teamRs);
     void slotButtonPressed(const DtoButtonPressedRq buttonPressedRq);
+    void slotRefereeReset(qint64 time);
+    void slotRefereeStartTime(qint64 time);
 
 private:
     void appendTeam(const TeamDto &team);

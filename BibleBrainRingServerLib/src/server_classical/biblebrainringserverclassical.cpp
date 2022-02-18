@@ -21,8 +21,8 @@ BibleBrainRingServerClassical::BibleBrainRingServerClassical(IODeviceServerAbstr
 {
     connect(io, &IODeviceServerAbstract::joinedClient, this, &BibleBrainRingServerClassical::slotJoinedClient, Qt::DirectConnection);
     connect(io, &IODeviceServerAbstract::buttonPressed, this, &BibleBrainRingServerClassical::slotButtonPressed, Qt::DirectConnection);
-    connect(io, &IODeviceServerAbstract::refereeReset, this, &BibleBrainRingServerClassical::signalRefereeReset, Qt::DirectConnection);
-    connect(io, &IODeviceServerAbstract::refereeStartTime, this, &BibleBrainRingServerClassical::signalRefereeStartTime, Qt::DirectConnection);
+    connect(io, &IODeviceServerAbstract::refereeReset, this, &BibleBrainRingServerClassical::slotRefereeReset, Qt::DirectConnection);
+    connect(io, &IODeviceServerAbstract::refereeStartTime, this, &BibleBrainRingServerClassical::slotRefereeStartTime, Qt::DirectConnection);
 }
 
 BibleBrainRingServerClassical::~BibleBrainRingServerClassical()
@@ -79,23 +79,18 @@ void BibleBrainRingServerClassical::addTeamToBattle(const QString& guidTeam)
     DtoTeamActivationForBattleServerRq dto;
     dto.guid = team.guid;
     dto.isActive = true;
-    io->sendToClients(dto);
     changeTeam(guidTeam, TeamStatus::InBattle);
+    io->sendToClients(dto);
 }
 
 void BibleBrainRingServerClassical::removeTeamFromBattle(const QString& guidTeam)
 {
-    QVector<DtoTeamActivationForBattleServerRq> vec;
-    const auto vecTeams = getTeams(TeamStatus::InBattle);
-    for (const TeamDto& t: vecTeams) {
-        if (t.guid == guidTeam) {
-            DtoTeamActivationForBattleServerRq dto;
-            dto.guid = t.guid;
-            dto.isActive = false;
-            break;
-        }
-    }
-    io->sendToClients(vec);
+    changeTeam(guidTeam, TeamStatus::WaitingForTheNextRound);
+    TeamDto team = getTeam(guidTeam);
+    DtoTeamActivationForBattleServerRq dto;
+    dto.guid = team.guid;
+    dto.isActive = false;
+    io->sendToClients(dto);
 }
 
 QVector<TeamDto> BibleBrainRingServerClassical::getTeamsInBattle()
@@ -126,6 +121,16 @@ void BibleBrainRingServerClassical::slotButtonPressed(const DtoButtonPressedRq b
         functionPressedButton (buttonPressedRq);
     }
     emit signalPressedButton(buttonPressedRq);
+}
+
+void BibleBrainRingServerClassical::slotRefereeReset(qint64 time)
+{
+    emit signalRefereeReset(time);
+}
+
+void BibleBrainRingServerClassical::slotRefereeStartTime(qint64 time)
+{
+    emit signalRefereeStartTime(time);
 }
 
 void BibleBrainRingServerClassical::appendTeam(const TeamDto& team)
