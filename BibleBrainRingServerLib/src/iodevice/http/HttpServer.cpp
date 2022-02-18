@@ -1,13 +1,12 @@
 #include "HttpServer.hpp"
 
-#include "MyRequestHandler.hpp"
-
-HttpServer::HttpServer(const QString& host, const QString& port, std::function<TeamDto(QString guidTeam)> funcGetTeam, QObject *parent)
-    : IODeviceServerAbstract{parent}
+HttpServer::HttpServer(const QString& host, const QString& port)
+    : IODeviceServerAbstract{nullptr}
     , _host(host)
     , _port(port)
     , httpListener(nullptr)
-    , _funcGetTeam(funcGetTeam)
+    , myRequestHandler(nullptr)
+    , _funcGetTeam(nullptr)
 {
 
 }
@@ -28,7 +27,12 @@ bool HttpServer::initServer()
     settings->setValue("readTimeout"        , "60000");
     settings->setValue("maxRequestSize"     , "16000");
     settings->setValue("maxMultiPartSize"   , "10000000");
-    httpListener = new stefanfrings::HttpListener(settings, new MyRequestHandler(_funcGetTeam, &acceptClients, this), this);
+    settings->setValue("minLevel"           , "INFO");
+    ;
+    myRequestHandler = new MyRequestHandler(BibleBrainRingServerClassical::getTeam, &acceptClients, this);
+    httpListener = new stefanfrings::HttpListener(settings, myRequestHandler, this);
+    connect(myRequestHandler, &MyRequestHandler::joinedClient, this, &IODeviceServerAbstract::joinedClient, Qt::DirectConnection);
+    connect(myRequestHandler, &MyRequestHandler::buttonPressed, this, &IODeviceServerAbstract::buttonPressed, Qt::DirectConnection);
     return httpListener->isListening();
 }
 
@@ -50,5 +54,10 @@ void HttpServer::stopAcceptingClients()
 void HttpServer::startAcceptingClients()
 {
     acceptClients = true;
+}
+
+void HttpServer::setFunctionGetTeam(std::function<TeamDto (QString)> funcGetTeam)
+{
+    _funcGetTeam = funcGetTeam;
 }
 

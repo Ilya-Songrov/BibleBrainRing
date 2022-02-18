@@ -1,35 +1,31 @@
+let HOST = window.location.origin;
 const form = document.querySelector(".validate-form");
-
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const inputs = document.querySelectorAll(".login100-form input");
-  const sendingData = `name=${inputs[0].value}&color=${inputs[1].value}`;
+  const guid = localStorage.getItem('guid');
+  const sendingData = `name=${inputs[0].value}&color=${inputs[1].value}&guid=${guid==undefined ? "" : guid}`;
   sendData(sendingData);
 });
 
 function sendData(data) {
-  var hostPort = "192.168.0.104:8081"
   var http = new XMLHttpRequest();
-  var url = hostPort + "/bogdan_post";
+  var url = `${HOST}/register`;
   var params = data;
   http.open("POST", url, true);
-
-  //Send the proper header information along with the request
   http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
   http.onreadystatechange = function () {
-    //Call a function when the state changes.
-    console.log("onreadystatechange lenght", http.responseText.lenght);
-    console.log("onreadystatechange", http.responseText);
-
     if (http.readyState == 4 && http.status == 200) {
         const obj = JSON.parse(http.responseText);
-        if(obj.your_name == "ilya"){
-        	console.log("obj.your_name", obj.your_name);
-        	window.location.replace( "http://192.168.0.104:8081/button");
+        if(obj.status=="success") {
+        	window.location.replace(`${HOST}/waiting-hall`);
+          return obj;
         }
-      // alert(http.responseText);
-      //window.location.replace("http://192.168.0.104:8080/button");
+        if (obj.status=="error") {
+          alert (obj.error);
+        }
+        console.log(obj);
+     
     }
   };
   http.send(params);

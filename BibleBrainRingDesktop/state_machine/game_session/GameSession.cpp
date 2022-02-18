@@ -9,13 +9,13 @@ GameSession::GameSession(QObject *parent)
 
 #ifdef QT_DEBUG
 //    managerQuestions->loadQuestions("/home/songrov/test_questions.txt");
-    TeamDto team;
-    team.guid        = "guid";
-    team.name        = "name";
-    team.color       = "green";
-    team.score       = 2;
-    team.position    = 3;
-    team.status      = TeamStatus::Registered;
+//    TeamDto team;
+//    team.guid        = "guid";
+//    team.name        = "name";
+//    team.color       = "green";
+//    team.score       = 2;
+//    team.position    = 3;
+//    team.status      = TeamStatus::Registered;
 //    listTeamsInBattle->appendTeam(team);
 //    team.color      = "blue";
 //    team.status     = TeamStatus::Registered;
@@ -61,11 +61,13 @@ void GameSession::setConnections()
         const TeamDto team = listTeamsInGameSession->getTeam(index);
         listTeamsInBattle->appendTeam(team);
         listTeamsInGameSession->removeTeam(index);
+        bibleBrainRingServerClassical->addTeamToBattle(team.guid);
     });
     connect(listTeamsInBattle.get(), &ListTeams::moveTeamToAnotherList, this, [](int index){
         const TeamDto team = listTeamsInBattle->getTeam(index);
         listTeamsInGameSession->appendTeam(team);
         listTeamsInBattle->removeTeam(index);
+        bibleBrainRingServerClassical->removeTeamFromBattle(team.guid);
     });
 }
 
@@ -76,18 +78,6 @@ void GameSession::loadTeams()
     for (const TeamDto& team: qAsConst(listTeamsRegistration->getList())) {
         if (team.status == Registered || team.status == WaitingForTheNextRound || team.status == InBattle) {
             listTeamsInGameSession->appendTeam(team);
-        }
-    }
-    for (const TeamDto& teamG: qAsConst(listTeamsInGameSession->getList())) {
-        bool found = false;
-        for (const TeamDto& teamR: qAsConst(listTeamsInResult->getList())) {
-            if (teamG.name == teamR.name) {
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            listTeamsInResult->appendTeam(teamG);
         }
     }
 }

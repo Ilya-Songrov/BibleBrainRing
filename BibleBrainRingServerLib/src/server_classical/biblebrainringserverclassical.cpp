@@ -12,16 +12,22 @@
 
 #include "biblebrainringserverclassical.h"
 
+QList<TeamDto> BibleBrainRingServerClassical::listTeams;
+
 BibleBrainRingServerClassical::BibleBrainRingServerClassical(IODeviceServerAbstract *ioDeviceServerAbstract) : QObject(nullptr)
-    , io(ioDeviceServerAbstract)
+  , io(ioDeviceServerAbstract)
+  , functionConnectNewTeam(nullptr)
+  , functionPressedButton(nullptr)
 {
-    connect(io, &IODeviceServerAbstract::joinedClient, this, &BibleBrainRingServerClassical::slotJoinedClient);
-    connect(io, &IODeviceServerAbstract::buttonPressed, this, &BibleBrainRingServerClassical::slotButtonPressed);
+    connect(io, &IODeviceServerAbstract::joinedClient, this, &BibleBrainRingServerClassical::slotJoinedClient, Qt::DirectConnection);
+    connect(io, &IODeviceServerAbstract::buttonPressed, this, &BibleBrainRingServerClassical::slotButtonPressed, Qt::DirectConnection);
 }
 
 BibleBrainRingServerClassical::~BibleBrainRingServerClassical()
 {
-
+    if (io) {
+        delete io;
+    }
 }
 
 bool BibleBrainRingServerClassical::initServer()
@@ -65,6 +71,31 @@ void BibleBrainRingServerClassical::removeTeamsFromBattle()
     io->sendToClients(vec);
 }
 
+void BibleBrainRingServerClassical::addTeamToBattle(const QString& guidTeam)
+{
+    TeamDto team = getTeam(guidTeam);
+    DtoTeamActivationForBattleServerRq dto;
+    dto.guid = team.guid;
+    dto.isActive = true;
+    io->sendToClients(dto);
+    changeTeam(guidTeam, TeamStatus::InBattle);
+}
+
+void BibleBrainRingServerClassical::removeTeamFromBattle(const QString& guidTeam)
+{
+    QVector<DtoTeamActivationForBattleServerRq> vec;
+    const auto vecTeams = getTeams(TeamStatus::InBattle);
+    for (const TeamDto& t: vecTeams) {
+        if (t.guid == guidTeam) {
+            DtoTeamActivationForBattleServerRq dto;
+            dto.guid = t.guid;
+            dto.isActive = false;
+            break;
+        }
+    }
+    io->sendToClients(vec);
+}
+
 QVector<TeamDto> BibleBrainRingServerClassical::getTeamsInBattle()
 {
     return getTeams(TeamStatus::InBattle);
@@ -80,11 +111,6 @@ void BibleBrainRingServerClassical::onPressedButton(std::function<void (const Dt
     functionPressedButton = function;
 }
 
-void BibleBrainRingServerClassical::onTeamDtoChanged(std::function<void (const TeamDto&)> function)
-{
-    functionTeamDtoChanged = function;
-}
-
 void BibleBrainRingServerClassical::slotJoinedClient(const DtoTeamRegistrationClientRs teamRs)
 {
     TeamDto team = DtoCreator::getTeamDto(teamRs.guid, teamRs.name, teamRs.color);
@@ -97,37 +123,36 @@ void BibleBrainRingServerClassical::slotButtonPressed(const DtoButtonPressedRq b
     if (functionPressedButton) {
         functionPressedButton (buttonPressedRq);
     }
+    emit signalPressedButton(buttonPressedRq);
 }
 
 void BibleBrainRingServerClassical::appendTeam(const TeamDto& team)
 {
     listTeams.append(team);
-    if (functionTeamDtoChanged) {
-        functionTeamDtoChanged (team);
+    if (functionConnectNewTeam) {
+        functionConnectNewTeam (team);
     }
+    emit signalConnectNewTeam(team);
 }
 
-void BibleBrainRingServerClassical::changeTeam(const TeamDto& team, const bool runCallback)
+void BibleBrainRingServerClassical::changeTeam(const TeamDto& team)
 {
     for (TeamDto &t: listTeams) {
         if (t.guid == team.guid) {
             t = team;
-            if (runCallback && functionTeamDtoChanged) {
-                functionTeamDtoChanged (team);
-            }
             return;
         }
     }
 }
 
-void BibleBrainRingServerClassical::changeTeam(const QString& guidTeam, const TeamStatus teamStatus, const bool runCallback)
+void BibleBrainRingServerClassical::changeTeam(const QString& guidTeam, const TeamStatus teamStatus)
 {
     auto team = DtoCreator::getTeamDto(guidTeam);
     team.status = teamStatus;
-    changeTeam(team, runCallback);
+    changeTeam(team);
 }
 
-TeamDto BibleBrainRingServerClassical::getTeam(const QString& guidTeam)
+TeamDto BibleBrainRingServerClassical::getTeam(QString guidTeam)
 {
     for (const TeamDto &t: qAsConst(listTeams)) {
         if (t.guid == guidTeam) {

@@ -376,6 +376,7 @@ iframe {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 .wrap-login100-form-btn {

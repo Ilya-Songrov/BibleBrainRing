@@ -28,3 +28,8 @@ void IODeviceServerAbstract::sendToClients(const QVector<DtoTeamActivationForBat
 {
 
 }
+
+void IODeviceServerAbstract::sendToClients(const DtoTeamActivationForBattleServerRq& dto)
+{
+
+}

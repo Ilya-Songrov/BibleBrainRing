@@ -16,6 +16,7 @@
 #include <QJsonObject>
 
 #include "dtos/AllDtos.hpp"
+#include "iodevice/http/HttpServer.hpp" //TODO: delete me
 #include "iodevice/iodeviceserverabstract.h"
 
 class BibleBrainRingServerClassical : public QObject
@@ -32,14 +33,19 @@ public:
 
     void addTeamsToBattle(const QVector<QString>& vecGuidTeam);
     void removeTeamsFromBattle();
+    void addTeamToBattle(const QString& guidTeam);
+    void removeTeamFromBattle(const QString& guidTeam);
     QVector<TeamDto> getTeamsInBattle();
 
-    TeamDto getTeam(const QString& guidTeam);
+    static TeamDto getTeam(QString guidTeam);
 
     // callbacks:
     void onConnectNewTeam   (std::function<void(const TeamDto)> function);
     void onPressedButton    (std::function<void(const DtoButtonPressedRq)> function);
-    void onTeamDtoChanged   (std::function<void(const TeamDto &)> function);
+
+signals:
+    void signalConnectNewTeam(TeamDto);
+    void signalPressedButton(DtoButtonPressedRq);
 
 private slots:
     void slotJoinedClient(const DtoTeamRegistrationClientRs teamRs);
@@ -47,16 +53,15 @@ private slots:
 
 private:
     void appendTeam(const TeamDto &team);
-    void changeTeam(const TeamDto &team, const bool runCallback = false);
-    void changeTeam(const QString& guidTeam, const TeamStatus teamStatus, const bool runCallback = false);
+    void changeTeam(const TeamDto &team);
+    void changeTeam(const QString& guidTeam, const TeamStatus teamStatus);
     QVector<TeamDto> getTeams(const TeamStatus teamStatus);
 
 
 private:
+    static QList<TeamDto> listTeams;
     IODeviceServerAbstract *io;
-    QList<TeamDto> listTeams;
     std::function<void(const TeamDto)>              functionConnectNewTeam;
     std::function<void(const DtoButtonPressedRq)>   functionPressedButton;
-    std::function<void(const TeamDto)>              functionTeamDtoChanged;
 };
 

@@ -37,6 +37,7 @@ public:
     virtual void broadcast(const QByteArray &arr, const int writeTimeout) = 0;
 
     virtual void sendToClients(const QVector<DtoTeamActivationForBattleServerRq>& vecDto);
+    virtual void sendToClients(const DtoTeamActivationForBattleServerRq& dto);
 
 signals:
     void joinedClient(const DtoTeamRegistrationClientRs teamRegistrationDto);

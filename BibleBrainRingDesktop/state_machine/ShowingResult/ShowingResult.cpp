@@ -23,6 +23,20 @@ StateAbstract* ShowingResult::onQmlButtonClicked(const BibleBrainRing::Button bu
 
 void ShowingResult::updateScores()
 {
+    for (const TeamDto& teamG: qAsConst(listTeamsInGameSession->getList())) {
+        bool found = false;
+        for (const TeamDto& teamR: qAsConst(listTeamsInResult->getList())) {
+            if (teamG.name == teamR.name) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            listTeamsInResult->appendTeam(teamG);
+        }
+    }
+
+
     for (TeamDto& teamR: listTeamsInResult->getList()) {
         for (const TeamDto& teamB: qAsConst(listTeamsInBattle->getList())) {
             if (teamR.name == teamB.name) {
@@ -32,4 +46,6 @@ void ShowingResult::updateScores()
             }
         }
     }
+
+
 }

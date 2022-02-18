@@ -13,10 +13,10 @@
 #include "global_utils.h"
 
 QScopedPointer<ProviderQml                  > providerQml (nullptr);
-QScopedPointer<BibleBrainRingServerClassical> serverClassical (nullptr);
+QScopedPointer<BibleBrainRingServerClassical> bibleBrainRingServerClassical (nullptr);
 
 void createUtils()
 {
     providerQml.reset(new ProviderQml());
-    serverClassical.reset(new BibleBrainRingServerClassical(new NoneServer()));
+    bibleBrainRingServerClassical.reset(new BibleBrainRingServerClassical(new NoneServer()));
 }

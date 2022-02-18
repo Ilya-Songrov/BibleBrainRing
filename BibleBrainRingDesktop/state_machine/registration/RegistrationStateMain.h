@@ -12,6 +12,8 @@
 
 #pragma once
 
+#include <QTimer>
+
 #include "StateAbstract.h"
 #include "all_states.h"
 

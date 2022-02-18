@@ -15,6 +15,7 @@
 #include "StateAbstract.h"
 #include "all_states.h"
 #include "iodevice/tcp/tcpserver.h"
+#include "iodevice/http/HttpServer.hpp"
 
 
 class StartStateMenuMain : public StateAbstract

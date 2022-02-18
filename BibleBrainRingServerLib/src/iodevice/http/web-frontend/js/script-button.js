@@ -1,6 +1,7 @@
-const sendTimeBtn = document.querySelector("#send-time-btn");
+const sendTimeBtn = document.querySelector("#send-btn-wrapper");
 
 sendTimeBtn.addEventListener("click", () => {
+  console.log("click");
   sendTime();
 });
 
@@ -11,7 +12,7 @@ function sendTime() {
 
 function sendData(data) {
   var http = new XMLHttpRequest();
-  var url = "http://192.168.0.104:8080/post";
+  var url = `${window.location.origin}/pressed-button`;
   var params = data;
   http.open("POST", url, true);
 
@@ -19,10 +20,11 @@ function sendData(data) {
   http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   http.onreadystatechange = function () {
-    //Call a function when the state changes.
-    console.log("onreadystatechange", http.responseText);
     if (http.readyState == 4 && http.status == 200) {
-      alert(http.responseText);
+      const obj = JSON.parse(http.responseText);  
+      if(obj.status=="redirect") {
+        window.location.replace(`${window.location.origin}/${obj.page}`);
+      }
     }
   };
   http.send(params);

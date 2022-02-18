@@ -17,6 +17,6 @@
 #include "iodevice/none/NoneServer.h"
 
 extern QScopedPointer<ProviderQml                   > providerQml;
-extern QScopedPointer<BibleBrainRingServerClassical > serverClassical;
+extern QScopedPointer<BibleBrainRingServerClassical > bibleBrainRingServerClassical;
 
 extern void createUtils();

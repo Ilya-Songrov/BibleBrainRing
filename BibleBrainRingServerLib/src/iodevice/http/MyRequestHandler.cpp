@@ -18,33 +18,29 @@ MyRequestHandler::~MyRequestHandler()
 
 void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings::HttpResponse& response)
 {
-    static const QString page_registrartion = "registrartion";
+    static const QString page_index = "index";
     static const QString page_waiting_hall = "waiting-hall";
     static const QString page_button = "button";
     static const QString page_wrong = "wrong";
     const QByteArray path = request.getPath();
-    qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
+    qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " Start handller. path: " << path << Qt::endl;
 
     QString guid = request.getParameter("guid");
     QString status("success");
     QString error;
     if(path == "/check-guid"){
+        if (guid.isEmpty()) { guid = QUuid::createUuid().toString(); }
         const TeamDto team = _funcGetTeam (guid);
         QString page;
-        if (*_acceptClients && !team.guid.isEmpty()) {
+        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " team.status: " << team.status << Qt::endl;
+        if (team.status == TeamStatus::Registered) {
             page = page_waiting_hall;
-        }
-        else if(*_acceptClients && guid.isEmpty()){
-            guid = QUuid::createUuid().toString();
-            page = page_registrartion;
         }
         else if(team.status == TeamStatus::InBattle){
             page = page_button;
         }
         else{
-            status = "error";
-            page = page_wrong;
-            error = "Something went wrong";
+            page = page_index;
         }
         QJsonObject obj{
             {"status", status},
@@ -53,7 +49,29 @@ void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings:
             {"error", error},
         };
         response.write(QJsonDocument(obj).toJson(), true);
-        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
+        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << " obj: " << obj << Qt::endl;
+    }
+    else if(path == "/register"){
+        const TeamDto team = _funcGetTeam (guid);
+        if (*_acceptClients && team.guid.isEmpty()) {
+            const QString name = request.getParameter("name");
+            const QString color = request.getParameter("color");
+            DtoTeamRegistrationClientRs rs;
+            rs.guid     = guid;
+            rs.name     = name;
+            rs.color    = color;
+            emit joinedClient(rs);
+        }
+        else{
+            status = "error";
+            error = "Registration failed";
+        }
+        QJsonObject obj{
+            {"status", status},
+            {"error", error},
+        };
+        response.write(QJsonDocument(obj).toJson(), true);
+        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << " obj: " << obj << Qt::endl;
     }
     else if(path == "/button-pressed"){
         const TeamDto team = _funcGetTeam (guid);
@@ -75,29 +93,7 @@ void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings:
             {"error", error},
         };
         response.write(QJsonDocument(obj).toJson(), true);
-        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
-    }
-    else if(path == "/" + page_registrartion){
-        const TeamDto team = _funcGetTeam (guid);
-        if (!team.guid.isEmpty()) {
-            const QString name = request.getParameter("name");
-            const QString color = request.getParameter("color");
-            DtoTeamRegistrationClientRs rs;
-            rs.guid     = guid;
-            rs.name     = name;
-            rs.color    = color;
-            emit joinedClient(rs);
-        }
-        else{
-            status = "error";
-            error = "Registration failed";
-        }
-        QJsonObject obj{
-            {"status", status},
-            {"error", error},
-        };
-        response.write(QJsonDocument(obj).toJson(), true);
-        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
+        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << " obj: " << obj << Qt::endl;
     }
     else if(path == "/" + page_waiting_hall){
         response.write(FileWorker::readFile(rootPath + path + ".html"), true);
@@ -111,10 +107,14 @@ void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings:
         response.write(FileWorker::readFile(rootPath + path + ".html"), true);
         qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
     }
-    else if(path.isEmpty()){
+    else if(path == "/" + page_index || path == "/"){
+        response.write(FileWorker::readFile(rootPath + "/index.html"), true);
+        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
+    }
+    else if(!path.isEmpty()){
         response.write(FileWorker::readFile(rootPath + path), true);
         qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
     }
 
-    qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
+    qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " Finish handller. path: " << path << Qt::endl;
 }

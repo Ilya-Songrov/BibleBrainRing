@@ -16,7 +16,16 @@ RegistrationStateMain::RegistrationStateMain(QObject *parent)
     : StateAbstract(__FUNCTION__, parent)
 {
     providerQml->setCurrentAppState(BibleBrainRing::Registration);
-//    serverClassical->startRegistration();
+    bibleBrainRingServerClassical->startRegistration();
+//    bibleBrainRingServerClassical->onConnectNewTeam([](TeamDto team){
+//        qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " text: " << __LINE__ << Qt::endl;
+//        listTeamsRegistration->appendTeam(team);
+//    });
+    connect(bibleBrainRingServerClassical.get(), &BibleBrainRingServerClassical::signalConnectNewTeam, this, [](TeamDto team){
+        listTeamsRegistration->appendTeam(team);
+    }, Qt::BlockingQueuedConnection);
+
+
 
 #ifdef QT_DEBUG
 //    QTimer::singleShot(100, [](){
@@ -46,6 +55,7 @@ RegistrationStateMain::RegistrationStateMain(QObject *parent)
 
 StateAbstract *RegistrationStateMain::onQmlButtonClicked(const BibleBrainRing::Button button)
 {
+    bibleBrainRingServerClassical->stopRegistration();
     if (button == BibleBrainRing::ButtonComeback) {
         // TODO: add: do you want to lose all progress?
         return new EnvironmentSetup();
