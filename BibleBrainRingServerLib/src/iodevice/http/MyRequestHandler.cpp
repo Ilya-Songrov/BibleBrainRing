@@ -3,7 +3,6 @@
 
 MyRequestHandler::MyRequestHandler(std::function<TeamDto(QString guidTeam)> funcGetTeam, bool* acceptClients, QObject* parent)
     : HttpRequestHandler(parent)
-    // TODO: finish me
     , rootPath(":/all_files/web-frontend")
     , _funcGetTeam(funcGetTeam)
     , _acceptClients(acceptClients)

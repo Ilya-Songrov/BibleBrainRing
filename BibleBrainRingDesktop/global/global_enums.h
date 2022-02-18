@@ -38,6 +38,8 @@ enum Button {
     ButtonStartOnlyProgram,
     ButtonComeback,
     ButtonNext,
+    ButtonRunCustomServer,
+    ButtonAddBulb,
 };
 Q_ENUM_NS(Button)
 

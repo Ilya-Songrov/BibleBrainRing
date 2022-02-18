@@ -58,6 +58,11 @@ void HttpServer::startAcceptingClients()
     acceptClients = true;
 }
 
+QString HttpServer::getHostPort()
+{
+    return _host + ":" + _port;
+}
+
 void HttpServer::setFunctionGetTeam(std::function<TeamDto (QString)> funcGetTeam)
 {
     _funcGetTeam = funcGetTeam;

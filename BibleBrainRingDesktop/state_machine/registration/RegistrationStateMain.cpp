@@ -53,7 +53,7 @@ StateAbstract *RegistrationStateMain::onQmlButtonClicked(const BibleBrainRing::B
     bibleBrainRingServerClassical->stopRegistration();
     if (button == BibleBrainRing::ButtonComeback) {
         // TODO: add: do you want to lose all progress?
-        return new EnvironmentSetup();
+        return new EnvironmentSetupHttpServer();
     }
     else if (button == BibleBrainRing::ButtonNext) {
         return new GameSession();

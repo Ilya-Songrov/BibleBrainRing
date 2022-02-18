@@ -33,13 +33,20 @@ StateAbstract *StartStateMenuMain::onQmlButtonClicked(const BibleBrainRing::Butt
     }
     else if (button == BibleBrainRing::ButtonStartServerHttp) {
         providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeServerHttp);
-        HttpServer* httpServer = new HttpServer("192.168.0.104", "8484"); // TODO: finish me
+#ifdef QT_DEBUG
+        HttpServer* httpServer = new HttpServer("192.168.43.45", "8080");
+#else
+        HttpServer* httpServer = new HttpServer(QHostAddress(QHostAddress::Any).toString(), "8080");
+#endif
         bibleBrainRingServerClassical.reset(new BibleBrainRingServerClassical(httpServer));
         const bool ret = bibleBrainRingServerClassical->initServer();
+        const QString address = "Your server address: " + httpServer->getHostPort();
+        const QString message = ret ? address : "Http server can't start";
+        providerQml->setCurrentHttpServerHostPort(message);
         if (ret) {
-            return new EnvironmentSetup();
+            return new EnvironmentSetupHttpServer();
         }
-        emit providerQml->showMessage("Http server can't start");
+        emit providerQml->showMessage(message);
     }
     else if (button == BibleBrainRing::ButtonStartClientWifi) {
         providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeClientWifi);
@@ -51,7 +58,7 @@ StateAbstract *StartStateMenuMain::onQmlButtonClicked(const BibleBrainRing::Butt
     }
     else if (button == BibleBrainRing::ButtonStartOnlyProgram) {
         providerQml->setCurrentAppMode(BibleBrainRing::AppMode::AppModeOnlyProgram);
-        return new EnvironmentSetup();
+        return new EnvironmentSetup("write me");
     }
     return nullptr;
 }

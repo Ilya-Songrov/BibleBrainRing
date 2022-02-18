@@ -2,6 +2,7 @@
 
 #include <QObject>
 #include <QJsonDocument>
+#include <QInputDialog>
 
 #include "global_enums.h"
 #include "global_utils.h"

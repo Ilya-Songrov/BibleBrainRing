@@ -25,6 +25,7 @@ HEADERS += \
     provider/ProviderQuestions.hpp \
     provider/providerqml.h \
     state_machine/EnvironmentSetup/EnvironmentSetup.hpp \
+    state_machine/EnvironmentSetup/EnvironmentSetupHttpServer.hpp \
     state_machine/ShowingResult/ShowingResult.hpp \
     state_machine/StateAbstract.h \
     state_machine/all_states.h \
@@ -48,6 +49,7 @@ SOURCES += \
     provider/ProviderQuestions.cpp \
     provider/providerqml.cpp \
     state_machine/EnvironmentSetup/EnvironmentSetup.cpp \
+    state_machine/EnvironmentSetup/EnvironmentSetupHttpServer.cpp \
     state_machine/ShowingResult/ShowingResult.cpp \
     state_machine/StateAbstract.cpp \
     state_machine/game_session/GameSession.cpp \

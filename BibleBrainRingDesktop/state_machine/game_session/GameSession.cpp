@@ -6,45 +6,9 @@ GameSession::GameSession(QObject *parent)
 {
     setConnections();
     loadTeams();
+    settingTimer();
     providerQml->setCurrentAppState(BibleBrainRing::GameSession);
-
-
-#ifdef QT_DEBUG
-//    managerQuestions->loadQuestions("/home/songrov/test_questions.txt");
-//    TeamDto team;
-//    team.guid        = "guid";
-//    team.name        = "name";
-//    team.color       = "green";
-//    team.score       = 2;
-//    team.position    = 3;
-//    team.bulbPosition= 1;
-//    team.status      = TeamStatus::Registered;
-//    listTeamsInBattle->appendTeam(team);
-//    team.color      = "blue";
-//    team.status     = TeamStatus::Registered;
-//    team.name       = "name nameA nameA nameA";
-//    team.guid       = "1111";
-//    listTeamsInBattle->appendTeam(team);
-//    team.name       = "name nameB nameB nameB";
-//    team.guid       = "2222";
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-//    listTeamsInGameSession->appendTeam(team);
-#endif
+    providerQml->setVisibleBulbOnScreen(false);
 }
 
 StateAbstract* GameSession::onQmlButtonClicked(const BibleBrainRing::Button button)
@@ -67,19 +31,23 @@ void GameSession::slotPressedButtonBulb(DtoButtonPressedRq rq)
         }
     }
     vecButtonPressed.append(rq);
-    for (const TeamDto& team: qAsConst(listTeamsInBattle->getList())) {
-        if (team.guid == rq.guid) {
-            listTeamsInBattle->setBulbPosition(vecButtonPressed.size(), team.guid);
-        }
+    if (!timerFroShowingResult.isActive()) {
+        timerFroShowingResult.start();
+    }
+    else if(vecButtonPressed.size() == listTeamsInBattle->getListSize()){
+        showResult();
+        timerFroShowingResult.stop();
     }
 }
 
 void GameSession::slotRefereeReset(qint64)
 {
-    for (const DtoButtonPressedRq& rq: qAsConst(vecButtonPressed)) {
-        listTeamsInBattle->setBulbPosition(0, rq.guid);
+    for (const TeamDto& team: qAsConst(listTeamsInBattle->getList())) {
+        listTeamsInBattle->setBulbPosition(0, team.guid);
     }
     vecButtonPressed.clear();
+    timerFroShowingResult.stop();
+    providerQml->setVisibleBulbOnScreen(false);
 }
 
 void GameSession::slotRefereeStartTime(qint64 time)
@@ -118,4 +86,39 @@ void GameSession::loadTeams()
             listTeamsInGameSession->appendTeam(team);
         }
     }
+}
+
+void GameSession::settingTimer()
+{
+    connect(&timerFroShowingResult, &QTimer::timeout, this, &GameSession::showResult);
+    timerFroShowingResult.setInterval(3000);
+}
+
+void GameSession::showResult()
+{
+//    QList<TeamDto> listSortInBattle = listTeamsInBattle->getList();
+//    std::sort(listSortInBattle.begin(), listSortInBattle.end(), [](const TeamDto& t1, const TeamDto& t2){ return t1.bulbPosition < t2.bulbPosition; });
+//    if (!listSortInBattle.isEmpty()) {
+//        int step = 0;
+//        for (const TeamDto& teamVoted : listSortInBattle) {
+//            for (const TeamDto& team: qAsConst(listTeamsInBattle->getList())) {
+//                if (teamVoted.guid == team.guid) {
+//                    listTeamsInBattle->setBulbPosition(++step, team.guid);
+//                }
+//            }
+//        }
+//    }
+    QVector<DtoButtonPressedRq> vecSort = vecButtonPressed;
+    std::sort(vecSort .begin(), vecSort .end(), [](const DtoButtonPressedRq& rq1, const DtoButtonPressedRq& rq2){ return rq1.time < rq2.time; });
+    if (!vecSort .isEmpty()) {
+        int step = 0;
+        for (const DtoButtonPressedRq& rqVoted : vecSort ) {
+            for (const TeamDto& team: qAsConst(listTeamsInBattle->getList())) {
+                if (rqVoted.guid == team.guid) {
+                    listTeamsInBattle->setBulbPosition(++step, team.guid);
+                }
+            }
+        }
+    }
+    providerQml->setVisibleBulbOnScreen(true);
 }

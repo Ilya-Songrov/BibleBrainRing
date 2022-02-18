@@ -25,8 +25,8 @@ public:
     static TeamDto getTeamDto(const QString &guid,
                            const QString &name = QString(),
                            const QString &color = QString(),
-                           const double score = -1.0,
-                           const int position = -1,
+                           const double score = 0.0,
+                           const int position = 0,
                            const TeamStatus status = TeamStatus::None);
     static TeamDto getTeamDto(const QString &guid,
                               const TeamStatus status);

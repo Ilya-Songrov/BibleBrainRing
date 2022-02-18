@@ -3,8 +3,19 @@ import QtQuick.Controls 2.15
 import QtQuick.Dialogs 1.0
 import QtQuick.Layouts 1.12
 
+import biblebrainring.namespace 1.0
+
 Item {
     anchors.fill: parent
+
+    Text {
+        text: providerQml.currentHttpServerHostPort
+        anchors.top: parent.top
+        anchors.topMargin: parent.height * 0.1
+        anchors.horizontalCenter: parent.horizontalCenter
+        font.bold: true
+        font.weight: Font.ExtraBold
+    }
 
     RowLayout{
         id: rowLayoutEnviromentSetup
@@ -19,9 +30,16 @@ Item {
         }
         Button{
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            text: "Smart Lamp settings"
+            text: "Wifi Bulb settings"
             onClicked: {
-                // TODO: write me
+                providerQml.onQmlButtonClicked(BibleBrainRing.ButtonAddBulb)
+            }
+        }
+        Button{
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            text: "Custom Http server"
+            onClicked: {
+                providerQml.onQmlButtonClicked(BibleBrainRing.ButtonRunCustomServer)
             }
         }
     }

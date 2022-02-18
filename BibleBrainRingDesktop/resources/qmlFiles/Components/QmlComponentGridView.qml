@@ -7,8 +7,8 @@ Item {
     property var listModelObj           : ListModel;
 
     GridView {
-        property int maxQuantityCells:  4
-        property int minQuantityCells:  3
+        property int maxQuantityCells:  6
+        property int minQuantityCells:  5
 
         id: gridViewButtons
         width: parent.width

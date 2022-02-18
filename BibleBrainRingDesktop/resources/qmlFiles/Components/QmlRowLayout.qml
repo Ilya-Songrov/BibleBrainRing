@@ -50,7 +50,8 @@ Item {
                     minimumPixelSize: 1
                     font.pixelSize: textPixelSize
                     color: textColor
-                    text: model["bulbPosition"]
+                    text: model["bulbPosition"] === 0 ? "" : model["bulbPosition"]
+                    visible: providerQml.visibleBulbOnScreen
                 }
                 Text {
                     Layout.fillWidth: true

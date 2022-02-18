@@ -24,6 +24,8 @@ public:
     virtual void stopAcceptingClients();
     virtual void startAcceptingClients();
 
+    QString getHostPort();
+
     void setFunctionGetTeam(std::function<TeamDto(QString guidTeam)> funcGetTeam);
 
 private:

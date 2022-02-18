@@ -18,9 +18,12 @@ private slots:
 private:
     void setConnections();
     void loadTeams();
+    void settingTimer();
+    void showResult();
 
 private:
     qint64 refereeStartTime;
     QVector<DtoButtonPressedRq> vecButtonPressed;
+    QTimer timerFroShowingResult;
 };
 

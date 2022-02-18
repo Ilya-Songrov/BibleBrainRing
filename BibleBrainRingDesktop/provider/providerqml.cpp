@@ -15,6 +15,7 @@
 ProviderQml::ProviderQml(QObject *parent) : QObject(parent)
   , currentAppState(BibleBrainRing::None)
   , currentAppMode(BibleBrainRing::AppModeNone)
+  , visibleBulbOnScreen(false)
 {
 
 }
@@ -27,6 +28,18 @@ void ProviderQml::setCurrentAppState(const BibleBrainRing::AppState appState)
 void ProviderQml::setCurrentAppMode(const BibleBrainRing::AppMode appMode)
 {
     setCurrentAppMode((int)appMode);
+}
+
+void ProviderQml::setVisibleBulbOnScreen(const bool value)
+{
+    visibleBulbOnScreen = value;
+    emit visibleBulbOnScreenChanged();
+}
+
+void ProviderQml::setCurrentHttpServerHostPort(const QString& hostPort)
+{
+    currentHttpServerHostPort = hostPort;
+    emit currentHttpServerHostPortChanged();
 }
 
 void ProviderQml::setCurrentAppState(const int appState)
@@ -49,4 +62,14 @@ int ProviderQml::getCurrentAppState()
 int ProviderQml::getCurrentAppMode()
 {
     return currentAppMode;
+}
+
+int ProviderQml::getVisibleBulbOnScreen()
+{
+    return visibleBulbOnScreen;
+}
+
+QString ProviderQml::getCurrentHttpServerHostPort()
+{
+    return currentHttpServerHostPort;
 }

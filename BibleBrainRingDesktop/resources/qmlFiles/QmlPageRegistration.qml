@@ -9,10 +9,19 @@ import biblebrainring.namespace 1.0
 Item {
     anchors.fill: parent
 
+    Text {
+        text: "Registration"
+        anchors.top: parent.top
+        anchors.topMargin: parent.height * 0.1
+        anchors.horizontalCenter: parent.horizontalCenter
+        font.bold: true
+        font.weight: Font.ExtraBold
+    }
+
     MyComponents.QmlComponentGridView{
         id: gridViewRegistration
         width: parent.width * 0.8
-        height: parent.height * 0.8
+        height: parent.height * 0.73
         anchors.centerIn: parent
         listModelObj: ListModel {
             listTeams: listTeamsRegistrationQml
