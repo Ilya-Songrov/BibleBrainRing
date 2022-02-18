@@ -23,11 +23,13 @@ class ProviderQml : public QObject
     int currentAppState;
     int currentAppMode;
     bool visibleBulbOnScreen;
+    bool useReferee;
     QString currentHttpServerHostPort;
 
     Q_PROPERTY(int currentAppState                  READ getCurrentAppState             WRITE setCurrentAppState            NOTIFY currentAppStateChanged)
     Q_PROPERTY(int currentAppMode                   READ getCurrentAppMode              WRITE setCurrentAppMode             NOTIFY currentAppModeChanged)
     Q_PROPERTY(int visibleBulbOnScreen              READ getVisibleBulbOnScreen         WRITE setVisibleBulbOnScreen        NOTIFY visibleBulbOnScreenChanged)
+    Q_PROPERTY(int useReferee                       READ getUseReferee                  WRITE setUseReferee                 NOTIFY useRefereeChanged)
     Q_PROPERTY(QString currentHttpServerHostPort    READ getCurrentHttpServerHostPort   WRITE setCurrentHttpServerHostPort  NOTIFY currentHttpServerHostPortChanged)
 public:
     explicit ProviderQml(QObject *parent = nullptr);
@@ -35,7 +37,10 @@ public:
     void setCurrentAppState(const BibleBrainRing::AppState appState);
     void setCurrentAppMode(const BibleBrainRing::AppMode appMode);
     void setVisibleBulbOnScreen(const bool value);
+    void setUseReferee(const bool value);
     void setCurrentHttpServerHostPort(const QString& hostPort);
+
+    bool getUseReferee();
 
 private:
     void setCurrentAppState(const int appState);
@@ -43,18 +48,20 @@ private:
 
     int getCurrentAppState();
     int getCurrentAppMode();
-    int getVisibleBulbOnScreen();
+    bool getVisibleBulbOnScreen();
     QString getCurrentHttpServerHostPort();
 
 signals:
     void currentAppStateChanged();
     void currentAppModeChanged();
     void visibleBulbOnScreenChanged();
+    void useRefereeChanged();
     void currentHttpServerHostPortChanged();
 
     void showMessage(const QString &message);
 
     void onEndQmlCreation();
     void onQmlButtonClicked(const BibleBrainRing::Button button);
+    void resetBulbScore(const qint64 time);
 };
 

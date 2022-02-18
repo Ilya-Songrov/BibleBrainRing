@@ -20,6 +20,10 @@ private:
     void loadTeams();
     void settingTimer();
     void showResult();
+    void setBulbPower(const int index, const bool power);
+    void bulbPowerForAll(const bool power,
+                         const YeelightBulb::Bulb::BulbEffect bulbEffect = YeelightBulb::Bulb::Sudden,
+                         const int duration = 1);
 
 private:
     qint64 refereeStartTime;

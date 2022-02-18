@@ -111,14 +111,26 @@ Item {
                 colorDialog.showDialog((color)=>{objSCP.textColor = color})
             }
         }
-        CheckBox{
+        RowLayout{
             Layout.maximumWidth: columnLayoutSettings.width
             Layout.minimumWidth: Layout.maximumWidth
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            checked: objSCP.visibleTeams
-            text: "teams"
-            onCheckedChanged: objSCP.visibleTeams = checked
+            CheckBox{
+                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+                checked: objSCP.visibleTeams
+                text: "teams"
+                onCheckedChanged: objSCP.visibleTeams = checked
+            }
+            Button{
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+                text: "reset bulb score"
+                onClicked: {
+                    providerQml.resetBulbScore(0)
+                }
+            }
         }
+
         Row{
             Layout.maximumWidth: columnLayoutSettings.width
             Layout.minimumWidth: Layout.maximumWidth

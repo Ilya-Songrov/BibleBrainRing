@@ -49,6 +49,16 @@ void ListTeams::setBulbPosition(const int bulbPosition, const QString& guidTeam)
     emit updateModel();
 }
 
+int ListTeams::getIndex(const QString& guidTeam)
+{
+    for (int var = 0; var < list.size(); ++var) {
+        if (list.at(var).guid == guidTeam) {
+            return var;
+        }
+    }
+    return -1;
+}
+
 TeamDto ListTeams::getTeam(const int index)
 {
     if (index > -1 && list.size() > index) {

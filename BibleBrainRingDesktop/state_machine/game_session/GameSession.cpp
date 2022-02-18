@@ -2,7 +2,7 @@
 
 GameSession::GameSession(QObject *parent)
     : StateAbstract(__FUNCTION__, parent)
-    , refereeStartTime(QDateTime::currentSecsSinceEpoch())
+    , refereeStartTime(0)
 {
     setConnections();
     loadTeams();
@@ -34,7 +34,7 @@ void GameSession::slotPressedButtonBulb(DtoButtonPressedRq rq)
     if (!timerFroShowingResult.isActive()) {
         timerFroShowingResult.start();
     }
-    else if(vecButtonPressed.size() == listTeamsInBattle->getListSize()){
+    if(vecButtonPressed.size() == listTeamsInBattle->getListSize()){
         showResult();
         timerFroShowingResult.stop();
     }
@@ -47,6 +47,8 @@ void GameSession::slotRefereeReset(qint64)
     }
     vecButtonPressed.clear();
     timerFroShowingResult.stop();
+    refereeStartTime = 0;
+    bulbPowerForAll(false);
     providerQml->setVisibleBulbOnScreen(false);
 }
 
@@ -75,6 +77,7 @@ void GameSession::setConnections()
             this, &GameSession::slotRefereeReset, Qt::BlockingQueuedConnection);
     connect(bibleBrainRingServerClassical.get(), &BibleBrainRingServerClassical::signalRefereeStartTime,
             this, &GameSession::slotRefereeStartTime, Qt::BlockingQueuedConnection);
+    connect(providerQml.get(), &ProviderQml::resetBulbScore, this, &GameSession::slotRefereeReset);
 }
 
 void GameSession::loadTeams()
@@ -96,18 +99,6 @@ void GameSession::settingTimer()
 
 void GameSession::showResult()
 {
-//    QList<TeamDto> listSortInBattle = listTeamsInBattle->getList();
-//    std::sort(listSortInBattle.begin(), listSortInBattle.end(), [](const TeamDto& t1, const TeamDto& t2){ return t1.bulbPosition < t2.bulbPosition; });
-//    if (!listSortInBattle.isEmpty()) {
-//        int step = 0;
-//        for (const TeamDto& teamVoted : listSortInBattle) {
-//            for (const TeamDto& team: qAsConst(listTeamsInBattle->getList())) {
-//                if (teamVoted.guid == team.guid) {
-//                    listTeamsInBattle->setBulbPosition(++step, team.guid);
-//                }
-//            }
-//        }
-//    }
     QVector<DtoButtonPressedRq> vecSort = vecButtonPressed;
     std::sort(vecSort .begin(), vecSort .end(), [](const DtoButtonPressedRq& rq1, const DtoButtonPressedRq& rq2){ return rq1.time < rq2.time; });
     if (!vecSort .isEmpty()) {
@@ -115,10 +106,36 @@ void GameSession::showResult()
         for (const DtoButtonPressedRq& rqVoted : vecSort ) {
             for (const TeamDto& team: qAsConst(listTeamsInBattle->getList())) {
                 if (rqVoted.guid == team.guid) {
-                    listTeamsInBattle->setBulbPosition(++step, team.guid);
+                    int currentStep = ++step;
+                    if (providerQml->getUseReferee()) {
+                        currentStep = refereeStartTime > rqVoted.time ? currentStep * -1 : currentStep;
+                    }
+                    listTeamsInBattle->setBulbPosition(currentStep, team.guid);
+                    if (step == 0) {
+                        setBulbPower(listTeamsInBattle->getIndex(team.guid), true);
+                    }
                 }
             }
         }
     }
     providerQml->setVisibleBulbOnScreen(true);
+}
+
+void GameSession::setBulbPower(const int index, const bool power)
+{
+    if (index > -1 && vecBulbs.size() < index) {
+        vecBulbs.at(index)->set_power(power, YeelightBulb::Bulb::Sudden, 1);
+    }
+    else{
+        qWarning() << "print_function:" << __FUNCTION__ << __LINE__ << " index is invalid: " << index << Qt::endl;
+    }
+}
+
+void GameSession::bulbPowerForAll(const bool power,
+                                  const YeelightBulb::Bulb::BulbEffect bulbEffect,
+                                  const int duration)
+{
+    for (YeelightBulb::Bulb* bulb: qAsConst(vecBulbs)) {
+        bulb->set_power(power, bulbEffect, duration);
+    }
 }

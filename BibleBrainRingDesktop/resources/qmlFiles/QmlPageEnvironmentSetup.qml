@@ -42,6 +42,12 @@ Item {
                 providerQml.onQmlButtonClicked(BibleBrainRing.ButtonRunCustomServer)
             }
         }
+        CheckBox{
+            width: parent.width
+            height: parent.height / columnButtons.count
+            text: "Use referee"
+            checked: providerQml.useReferee
+        }
     }
     Text {
         id: textPreview
