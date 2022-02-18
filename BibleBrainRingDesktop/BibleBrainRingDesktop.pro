@@ -98,8 +98,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 CONFIG(release, debug | release) {
 
     unix:{
-        QMAKE_POST_LINK=/bin/bash -c \"cqtdeployer -bin $${OUT_PWD}/$${TARGET} -targetDir cqtdeploy-of-$${TARGET} -qmake $${QMAKE_QMAKE} -libDir $${PWD} \
-                                        -recursiveDepth 10 -qmlDir $${PWD} force-clear ; \"
+#        QMAKE_POST_LINK=/bin/bash -c \"cqtdeployer -bin $${OUT_PWD}/$${TARGET} -targetDir cqtdeploy-of-$${TARGET} -qmake $${QMAKE_QMAKE} -libDir $${PWD} \
+#                                        -recursiveDepth 10 -qmlDir $${PWD} force-clear ; \"
     }
     win32:{
         FOLDER_WIN_BUILD = $$OUT_PWD/$${TARGET}_Win

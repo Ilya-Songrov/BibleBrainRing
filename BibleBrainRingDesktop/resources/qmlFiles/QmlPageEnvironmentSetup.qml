@@ -44,7 +44,7 @@ Item {
         }
         CheckBox{
             width: parent.width
-            height: parent.height / columnButtons.count
+//            height: parent.height / columnButtons.count
             text: "Use referee"
             checked: providerQml.useReferee
         }

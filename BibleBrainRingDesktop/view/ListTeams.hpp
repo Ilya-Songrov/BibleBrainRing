@@ -17,6 +17,7 @@ public:
     void clear();
 
     void setBulbPosition(const int bulbPosition, const QString& guidTeam);
+    int getIndex(const QString& guidTeam);
 
     TeamDto getTeam(const int index);
     QList<TeamDto>& getList();
