@@ -145,6 +145,7 @@ void MyRequestHandler::service(stefanfrings::HttpRequest& request, stefanfrings:
         qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;
     }
     else if(path == "/" + page_referee){
+        if (guid.isEmpty()) { guid = QUuid::createUuid().toString(); }
         guidReferee = guid;
         response.write(FileWorker::readFile(rootPath + path + ".html"), true);
         qDebug() << "print_function:" << __FUNCTION__ << __LINE__ << " path: " << path << Qt::endl;

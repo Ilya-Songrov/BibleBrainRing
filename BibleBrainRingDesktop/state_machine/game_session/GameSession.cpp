@@ -65,7 +65,7 @@ StateAbstract* GameSession::onQmlButtonClicked(const BibleBrainRing::Button butt
 
 void GameSession::slotPressedButtonBulb(DtoButtonPressedRq rq)
 {
-    for (const DtoButtonPressedRq& rqSaved: vecButtonPressed) {
+    for (const DtoButtonPressedRq& rqSaved: qAsConst(vecButtonPressed)) {
         if (rqSaved.guid == rq.guid) {
             return;
         }
@@ -80,6 +80,9 @@ void GameSession::slotPressedButtonBulb(DtoButtonPressedRq rq)
 
 void GameSession::slotRefereeReset(qint64)
 {
+    for (const DtoButtonPressedRq& rq: qAsConst(vecButtonPressed)) {
+        listTeamsInGameSession->setBulbPosition(0, rq.guid);
+    }
     vecButtonPressed.clear();
 }
 
