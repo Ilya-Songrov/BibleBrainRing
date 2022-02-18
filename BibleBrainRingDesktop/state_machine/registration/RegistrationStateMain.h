@@ -24,5 +24,7 @@ public:
 
     virtual StateAbstract *onQmlButtonClicked   (const BibleBrainRing::Button button) override;
 
+private slots:
+    void slotConnectNewTeam(TeamDto team);
 };
 

@@ -10,8 +10,14 @@ public:
 
     virtual StateAbstract *onQmlButtonClicked   (const BibleBrainRing::Button button) override;
 
+private slots:
+    void slotPressedButtonBulb(DtoButtonPressedRq rq);
+
 private:
     void setConnections();
     void loadTeams();
+
+private:
+    qint64 resetTime;
 };
 
