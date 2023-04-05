@@ -25,13 +25,16 @@ RegistrationStateMain::RegistrationStateMain(QObject *parent)
 #ifdef QT_DEBUG
 //    QTimer::singleShot(100, [](){
 //        qDebug() << "SingleShot" << Qt::endl;
-//        TeamDto team;
-//        team.guid        = "guid";
-//        team.name        = "name";
-//        team.color       = "green";
-//        team.score       = 2;
-//        team.position    = 3;
-//        team.status      = TeamStatus::NotValid;
+        TeamDto team;
+        team.guid        = "guid";
+        team.name        = "name";
+        team.color       = "green";
+        team.score       = 2;
+        team.position    = 3;
+        team.status      = TeamStatus::Registered;
+//        listTeamsRegistration->appendTeam(team);
+//        listTeamsRegistration->appendTeam(team);
+//        listTeamsRegistration->appendTeam(team);
 //        listTeamsRegistration->appendTeam(team);
 //        team.color      = "blue";
 //        team.status      = TeamStatus::Lost;

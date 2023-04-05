@@ -25,12 +25,14 @@ class ProviderQml : public QObject
     bool visibleBulbOnScreen;
     bool useReferee;
     QString currentHttpServerHostPort;
+    QString textResult;
 
     Q_PROPERTY(int currentAppState                  READ getCurrentAppState             WRITE setCurrentAppState            NOTIFY currentAppStateChanged)
     Q_PROPERTY(int currentAppMode                   READ getCurrentAppMode              WRITE setCurrentAppMode             NOTIFY currentAppModeChanged)
     Q_PROPERTY(int visibleBulbOnScreen              READ getVisibleBulbOnScreen         WRITE setVisibleBulbOnScreen        NOTIFY visibleBulbOnScreenChanged)
     Q_PROPERTY(int useReferee                       READ getUseReferee                  WRITE setUseReferee                 NOTIFY useRefereeChanged)
     Q_PROPERTY(QString currentHttpServerHostPort    READ getCurrentHttpServerHostPort   WRITE setCurrentHttpServerHostPort  NOTIFY currentHttpServerHostPortChanged)
+    Q_PROPERTY(QString textResult                   READ getTextResult                  WRITE setTextResult                 NOTIFY textResultChanged)
 public:
     explicit ProviderQml(QObject *parent = nullptr);
 
@@ -39,8 +41,10 @@ public:
     void setVisibleBulbOnScreen(const bool value);
     void setUseReferee(const bool value);
     void setCurrentHttpServerHostPort(const QString& hostPort);
+    void setTextResult(const QString& value);
 
     bool getUseReferee();
+    QString getTextResult();
 
 private:
     void setCurrentAppState(const int appState);
@@ -57,6 +61,7 @@ signals:
     void visibleBulbOnScreenChanged();
     void useRefereeChanged();
     void currentHttpServerHostPortChanged();
+    void textResultChanged();
 
     void showMessage(const QString &message);
 

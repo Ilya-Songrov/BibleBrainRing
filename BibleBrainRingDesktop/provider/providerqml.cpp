@@ -49,6 +49,12 @@ void ProviderQml::setCurrentHttpServerHostPort(const QString& hostPort)
     emit currentHttpServerHostPortChanged();
 }
 
+void ProviderQml::setTextResult(const QString &value)
+{
+    textResult = value;
+    emit textResultChanged();
+}
+
 void ProviderQml::setCurrentAppState(const int appState)
 {
     currentAppState = appState;
@@ -84,4 +90,9 @@ bool ProviderQml::getUseReferee()
 QString ProviderQml::getCurrentHttpServerHostPort()
 {
     return currentHttpServerHostPort;
+}
+
+QString ProviderQml::getTextResult()
+{
+    return textResult;
 }

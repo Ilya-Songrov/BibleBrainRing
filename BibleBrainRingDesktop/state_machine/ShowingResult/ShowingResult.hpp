@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QFileDialog>
+
 #include "StateAbstract.h"
 #include "all_states.h"
 
@@ -12,5 +14,6 @@ public:
 
 private:
     void updateScores();
+    void saveResultToFile();
 };
 

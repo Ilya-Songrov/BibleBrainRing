@@ -40,6 +40,7 @@ enum Button {
     ButtonNext,
     ButtonRunCustomServer,
     ButtonAddBulb,
+    SaveTextToFile,
 };
 Q_ENUM_NS(Button)
 

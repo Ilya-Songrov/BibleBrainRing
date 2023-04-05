@@ -12,6 +12,9 @@ StateAbstract* ShowingResult::onQmlButtonClicked(const BibleBrainRing::Button bu
     if (button == BibleBrainRing::ButtonComeback) {
         return new GameSession();
     }
+    else if (button == BibleBrainRing::SaveTextToFile) {
+        saveResultToFile();
+    }
     else if (button == BibleBrainRing::ButtonNext) {
         const int res = QMessageBox::question(nullptr, QObject::tr("Game"), "Do you want to end the game and lose all progress?");
         if (res == QMessageBox::Button::Yes) {
@@ -35,8 +38,6 @@ void ShowingResult::updateScores()
             listTeamsInResult->appendTeam(teamG);
         }
     }
-
-
     for (TeamDto& teamR: listTeamsInResult->getList()) {
         for (const TeamDto& teamB: qAsConst(listTeamsInBattle->getList())) {
             if (teamR.name == teamB.name) {
@@ -48,4 +49,24 @@ void ShowingResult::updateScores()
     }
 
 
+    QString result = providerQml->getTextResult();
+    result += "TIME: " + QDateTime::currentDateTime().toString();
+    result += "\n";
+    for (const TeamDto& team: qAsConst(listTeamsInBattle->getList())) {
+        result += team.name + " - " + QString::number(team.score);
+        result += "\n";
+    }
+    for (const TeamDto& team: qAsConst(listTeamsInResult->getList())) {
+        result += "================ sum: " + team.name + " - " + QString::number(team.score);
+        result += "\n";
+    }
+    result += "\n";
+    providerQml->setTextResult(result);
+
+}
+
+void ShowingResult::saveResultToFile()
+{
+    const QString name = QFileDialog::getSaveFileName(nullptr);
+    FileWorker::writeFile(providerQml->getTextResult().toUtf8(), name + ".txt");
 }

@@ -72,17 +72,33 @@ Item {
                         verticalAlignment: Qt.AlignVCenter
                         text: "score:"
                     }
-                    SpinBox{
+//                    SpinBox{
+//                        id: textFieldFontSize
+//                        width: parent.width - parent.spacing - textFontSize.width
+//                        value: model["score"]
+//                        inputMethodHints: Qt.ImhDigitsOnly
+//                        validator: IntValidator {
+//                            bottom: 1
+//                            top: 1000
+//                        }
+//                        onValueModified: {
+//                            model["score"] = value
+//                        }
+//                    }
+                    TextField{
                         id: textFieldFontSize
                         width: parent.width - parent.spacing - textFontSize.width
-                        value: model["score"]
-                        inputMethodHints: Qt.ImhDigitsOnly
-                        validator: IntValidator {
-                            bottom: 1
-                            top: 1000
-                        }
-                        onValueModified: {
-                            model["score"] = value
+//                        text: Number(model["score"])
+//                        inputMethodHints: Qt.ImhDigitsOnly
+//                        validator: IntValidator {
+//                            bottom: 1
+//                            top: 1000
+//                        }
+//                        onTextChanged: {
+//                            model["score"] = value
+//                        }
+                        onTextEdited: {
+                            model["score"] = text
                         }
                     }
                 }
