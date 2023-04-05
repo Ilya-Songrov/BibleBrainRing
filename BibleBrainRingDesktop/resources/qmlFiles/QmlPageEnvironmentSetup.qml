@@ -34,6 +34,7 @@ Item {
             onClicked: {
                 providerQml.onQmlButtonClicked(BibleBrainRing.ButtonAddBulb)
             }
+            enabled: false // TODO: Delete me
         }
         Button{
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
@@ -41,12 +42,14 @@ Item {
             onClicked: {
                 providerQml.onQmlButtonClicked(BibleBrainRing.ButtonRunCustomServer)
             }
+            enabled: false // TODO: Delete me
         }
         CheckBox{
             width: parent.width
 //            height: parent.height / columnButtons.count
             text: "Use referee"
             checked: providerQml.useReferee
+            enabled: false // TODO: Delete me
         }
     }
     Text {

@@ -54,7 +54,7 @@ Item {
                 }
                 MouseArea{
                     anchors.fill: parent
-                    onPressed: {
+                    onClicked: {
                         moveTeamToAnotherList(index)
                     }
                 }

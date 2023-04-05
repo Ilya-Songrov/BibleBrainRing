@@ -32,6 +32,7 @@ Item {
             height: parent.height / columnButtons.count
             text: "Start Http server"
             onClicked: providerQml.onQmlButtonClicked(BibleBrainRing.ButtonStartServerHttp)
+            enabled: false // TODO: Delete me
         }
         Button{
             width: parent.width
