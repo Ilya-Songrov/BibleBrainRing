@@ -1,5 +1,8 @@
 #include "ManagerQuestions.hpp"
 
+#include <QTextCodec>
+
+
 ManagerQuestions::ManagerQuestions(QObject *parent)
     : QObject{parent}
 {
@@ -25,6 +28,8 @@ QString ManagerQuestions::loadQuestions(const QString fileUrls)
         QMessageBox::warning(nullptr, QObject::tr("Codecs"), QString("Cannot read file %1").arg(QUrl(fileUrls).toLocalFile()));
     }
     QTextStream in(&inputFile);
+    QTextCodec* codec = QTextCodec::codecForName("UTF-8");
+    in.setCodec(codec);
     while (!in.atEnd())
     {
         QString line = in.readLine();
