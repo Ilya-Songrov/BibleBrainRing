@@ -18,7 +18,7 @@ SectorActions::~SectorActions()
 void SectorActions::setupActions()
 {
     ui->action_exit->setIcon(QIcon(":/new/ActionImage/ActionImageMenuBar/Exit.png"));
-    ui->menu_question->setIcon(QIcon(":/new/ActionImage/ActionImageMenuBar/Open.png"));
+    ui->action_question->setIcon(QIcon(":/new/ActionImage/ActionImageMenuBar/Open.png"));
     ui->action_question_fast->setIcon(QIcon(":/new/ActionImage/ActionImageMenuBar/Question.png"));
     ui->action_question_decocer->setIcon(QIcon(":/new/ActionImage/ActionImageMenuBar/Question5.png"));
     ui->action_save->setIcon(QIcon(":/new/ActionImage/ActionImageMenuBar/Save.png"));
@@ -62,31 +62,27 @@ void SectorActions::slotOn_checkBox_3_clicked(bool checked)
 {
     if(checked == true)
     {
-    QMessageBox::information(ui->mainToolBar,"Title", "Вы " + QString::number(Just_a_button) +
-                             " раз нажали на эту кнопку."+
-                             " Это просто кнопка. Не стоит на нее нажимать."
-                             " Просто снимите флажок и забудте про нее.");
+    QMessageBox::information(ui->mainToolBar,"Title", "Ви " + QString::number(Just_a_button) +
+                                                " разів натиснули на цю кнопку." +
+                                                " Це просто кнопка. Не варто на неї натискати." +
+                                                " Просто зніміть прапорець і забудьте про неї.");
     }
     else
     {
-        QMessageBox::information(ui->mainToolBar,"Title", "Вы " + QString::number(Just_a_button) +
-                                 " раз нажали на эту кнопку."+
-                                 " Это просто кнопка. Не стоит на нее нажимать."
-                                 " Флажок сняли и не обращайте внимания.");
+        QMessageBox::information(ui->mainToolBar,"Title", "Ви " + QString::number(Just_a_button) +
+                                                            " разів натиснули на цю кнопку." +
+                                                            " Це просто кнопка. Не варто на неї натискати." +
+                                                            " Прапорець зняли і не звертайте на неї уваги.");
     }
 
     if(Just_a_button == 100)
-        QMessageBox::about(ui->mainToolBar,"Surprise", "Поздравляю. Вы " + QString::number(Just_a_button) +
-         " раз нажали на эту кнопку. Позвоните мне на мой номер +380983008644 "
-   "и я пополню ваш счет на 50гр. Если Вы окажетесь первыми то деньги прийдут на ваш счет.");
+        QMessageBox::about(ui->mainToolBar,"Surprise", "Вітаю. Ви " + QString::number(Just_a_button) +
+                                                    " разів натиснули на цю кнопку. Напишіть мені в Instagram @ilya_songrov"
+                                                    " і отримайте приз.");
 
-    if(Just_a_button == 200)
-        QMessageBox::question(ui->mainToolBar,"What?", "Вы уже " + QString::number(Just_a_button) +
-           " раз нажали на эту кнопку. Чего вы ожидаете. Я советую вам не продолжать!");
-    if(Just_a_button == 1000)
-        QMessageBox::critical(ui->mainToolBar,"Thousand", "Тысяча молний. Вы " + QString::number(Just_a_button) +
-        " раз нажали на эту кнопку. Позвоните мне на мой номер +380983008644 чтоб я"
-        " вам перезвонил, мне нужно с вами поговорить. Проверочный код: моя дата рождения");
+    if(Just_a_button > 200)
+        QMessageBox::question(ui->mainToolBar,"What?", "Ви вже " + QString::number(Just_a_button) +
+                                                        " разів натиснули на цю кнопку. Чого ви очікуєте? Рекомендую вам не продовжувати!");
     Just_a_button++;
 }
 
@@ -106,17 +102,17 @@ void SectorActions::slotOnAction_administration_triggered()
         spinBoxJust->setMaximum(10000);
         spinBoxJust->setValue(Just_a_button);
             QLabel *labelScreen = new QLabel(&dialog);
-            labelScreen->setText("Показывать основной экран?");
+            labelScreen->setText("Показати головний екран?");
             QCheckBox *checkBoxScreen = new QCheckBox(&dialog);
             checkBoxScreen->setCheckable(true);
             checkBoxScreen->setChecked(true);
         QLabel *labelQuestionsonEsther = new QLabel(&dialog);
-        labelQuestionsonEsther->setText("Загрузить вопросы по Есфири?");
+        labelQuestionsonEsther->setText("Завантажити питання по Естер?");
         QCheckBox *checkBoxQuestionsonEsther = new QCheckBox(&dialog);
         checkBoxQuestionsonEsther->setCheckable(true);
         checkBoxQuestionsonEsther->setChecked(true);
             QLabel *labelQuestionNumber = new QLabel(&dialog);
-            labelQuestionNumber->setText("Номер вопроса: ");
+            labelQuestionNumber->setText("Номер питання: ");
             QLineEdit *lineQuestionNumber = new QLineEdit(&dialog);
             lineQuestionNumber->setText("52");
 
@@ -168,16 +164,16 @@ void SectorActions::slotOnAction_Opening_questions_help_triggered()
     QVBoxLayout vbox(&wgt);
     QVBoxLayout vbox2;
         QLabel lab1;
-        lab1.setText("Для того чтоб вопросы корректно отображались программой. Необходимо\n"
-                     "учесть требования поискового алгоритма:\n");
+        lab1.setText("Щоб питання коректно відображались програмою, необхідно\n"
+                     "врахувати вимоги пошукового алгоритму:\n");
         QLabel lab2;
-        lab2.setText("1. Вопросы должны начинаться только с цифр, со своего порядкового номера.\n"
-                     "2. Один вопрос должен помещаться на одну строку.\n"
-                     "3. Вопросы должны быть сохраненны в (Текстовом документе (.txt))\n");
+        lab2.setText("1. Питання повинні починатися тільки з цифр, зі свого порядкового номера.\n"
+                     "2. Одне питання повинно поміщатися на один рядок.\n"
+                     "3. Питання повинні бути збережені в (Текстовому документі (.txt))\n");
         QLabel lab3;
-        lab3.setText("4. Возможна ситуация когда текстовый фаил не сможет распознать кириллицу,\n"
-                     " в этом случае воспользуйтесь загрузкой вопросов (With Decoder) и подберите\n"
-                     "нужную кодировку. \n");
+        lab3.setText("4. Можлива ситуація, коли текстовий файл не зможе розпізнати кирилицю,\n"
+                     "у цьому випадку скористайтесь завантаженням питань (With Decoder) та підберіть\n"
+                     "потрібну кодування.\n");
 
         vbox.addWidget(&lab1);
         vbox.addWidget(&lab2);
@@ -211,9 +207,9 @@ void SectorActions::slotOnAction_Screens_help_triggered()
         lab1.setPixmap(QPixmap(":/new/ActionImage/ActionImageMenuBar/Screens.png").
                        scaled(300,200,Qt::KeepAspectRatio));
         QLabel lab2;
-        lab2.setText("Проблем с экранами возникнуть не должно. Сложности могут быть в том случае,\n"
-                     "если менять основные экраны. В такой ситуации прийдется в ручную двигать\n"
-                     "остальные экраны, через меню (Размеры экранов), возможно и по отрицательным числам.");
+        lab2.setText("Проблем з екранами виникнути не повинно. Складнощі можуть бути лише у випадку,\n"
+                     "якщо змінювати основні екрани. У такій ситуації доведеться вручну пересувати\n"
+                     "інші екрани через меню (Розміри екранів), можливо, і з використанням від’ємних чисел.");
 
         vbox.addWidget(&lab1);
         vbox.addWidget(&lab2);
@@ -245,20 +241,16 @@ void SectorActions::slotOnAction_developer_triggered()
         lab1.setPixmap(QPixmap(":/new/Other/FilesAndLogo/Logo_temporarily.png"));
         QLabel lab2;
         lab2.setTextInteractionFlags(Qt::TextSelectableByMouse);
-        lab2.setText("Разработчик: \n"
-                     "  Сонгров Илья. На данный момент получающий образование в музыкальной области и \n"
-                     "  интересующийся программированием.");
+        lab2.setText("Розробник: \n"
+                     "  Instagram @ilya_songrov");
         QLabel lab3;
         lab3.setTextInteractionFlags(Qt::TextSelectableByMouse);
-        lab3.setText("Мои контакты: \n"
-                     "  телефон:  +380983008644\n"
-                     "Автор логотипа: \n"
-                     "  Костенко Марк (vk - https://vk.com/id305604444)");
+        lab3.setText("");
 
         QLabel lab4;
         lab4.setTextInteractionFlags(Qt::TextSelectableByMouse);
-        lab4.setText("Программа является бесплатной, если она используется для славы Божьей. Может распространяться"
-                     "\nпо лицензии свободных программ, если не приносит вред и не нарушает лицензию Qt. ");
+        lab4.setText("Програма є безкоштовною, якщо вона використовується для Слави Божої. Може поширюватися\n"
+                     "за ліцензією вільного програмного забезпечення, якщо не завдає шкоди та не порушує ліцензію Qt.");
         vbox.addWidget(&lab1);
         vbox.addWidget(&lab2);
         vbox.addWidget(&lab3);

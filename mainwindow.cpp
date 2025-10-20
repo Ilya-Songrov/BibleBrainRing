@@ -4,7 +4,7 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    m_settings("Ilya","BrainRing"),
+    m_settings(QDir(QCoreApplication::applicationDirPath()).filePath("settings.ini"), QSettings::IniFormat),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -77,14 +77,15 @@ void MainWindow::setupConnections()
 // связи для QAction
     connect(ui->action_question_fast, &QAction::triggered, this, [&]() {questionSearch->questionFastLoad(false);});
     connect(ui->action_question_decocer, &QAction::triggered, this,
-                                             [&]() {questionSearch->showPreviewFormDecoder(QDir::currentPath());});
+            [&]() {questionSearch->showPreviewFormDecoder(QDir::currentPath());});
     connect(ui->action_save, &QAction::triggered, sectorActions, &SectorActions::slotOnAction_save_triggeredSector);
     connect(ui->action_exit, &QAction::triggered, this, &MainWindow::close);
     connect(ui->action_Screens, &QAction::triggered, sectorGraphicsView, &SectorGraphicsView::slotSettingsScreens);
     connect(ui->action_Restore_by_default, &QAction::triggered, this, [&]{
                     m_settings.setValue("boolClearRestore", true);
-                    QMessageBox::information(this,"Title","Настройки сбросятся со следующего запуска. \n"
-                                              "Можете перезагрузить приложение.");});
+        QMessageBox::information(this, "Title", "Налаштування скинуться з наступного запуску.\n"
+                                                "Можете перезавантажити додаток.");
+                    });
     connect(ui->action_administration, &QAction::triggered, sectorActions,
                             &SectorActions::slotOnAction_administration_triggered);
     connect(ui->action_Opening_questions_help, &QAction::triggered, sectorActions,

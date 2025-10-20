@@ -31,12 +31,12 @@ void QDialogSettingsScreens::setupBudy()
     font.setWeight(75);
     label->setFont(font);
     label->setTextFormat(Qt::AutoText);
-    label->setText("Думайте перед тем как что-то менять!");
+    label->setText("Думайте, перш ніж щось змінювати!");
 
     gridLayout->addWidget(label, 0, 0, 1, 1);
 
     horizontalLayout = new QHBoxLayout;
-    pushButton_reset = new QPushButton("Сбросить", this);
+    pushButton_reset = new QPushButton("Скинути", this);
     pushButton_reset->setMinimumSize(QSize(0, 26));
 
     horizontalLayout->addWidget(pushButton_reset);
@@ -50,12 +50,12 @@ void QDialogSettingsScreens::setupBudy()
 
     horizontalLayout->addWidget(pushButton_ok);
 
-    pushButton_cancel = new QPushButton("Отмена", this);
+    pushButton_cancel = new QPushButton("Відміна", this);
     pushButton_cancel->setMinimumSize(QSize(0, 26));
 
     horizontalLayout->addWidget(pushButton_cancel);
 
-    pushButton_apply = new QPushButton("Применить", this);
+    pushButton_apply = new QPushButton("Застосувати", this);
     pushButton_apply->setMinimumSize(QSize(0, 26));
 
     horizontalLayout->addWidget(pushButton_apply);
@@ -82,15 +82,15 @@ void QDialogSettingsScreens::setupTableWidget()
     tableWidget->setColumnCount(4);
     QTableWidgetItem* ptwi = 0;
     QStringList lstHorizontal;
-    lstHorizontal << "Ширина" << "Высота" << "Двигаться по Х" << "Двигаться по Y";
+    lstHorizontal << "Ширина" << "Висота" << "Рухатись по X" << "Рухатись по Y";
     tableWidget->setHorizontalHeaderLabels(lstHorizontal);
     QStringList lstVertical;
     for (int i = 0; i < countScreen; ++i)
     {
         if (i != desktopWidgetDialog->primaryScreen())
-        {lstVertical << "Экран "+QString::number(i);}
+        {lstVertical << "Екран " + QString::number(i);}
         else
-        {lstVertical << "Экран основной";}
+        {lstVertical << "Екран головний";}
         tableWidget->setVerticalHeaderLabels(lstVertical);
 
         ptwi = new QTableWidgetItem(QString::number(structScreens.VecGraphicsViewDesktop[i]->width()-6));
@@ -140,15 +140,15 @@ void QDialogSettingsScreens::slotOnPushButton_reset_clicked()
 
     QTableWidgetItem* ptwi = 0;
     QStringList lstHorizontal;
-    lstHorizontal << "Ширина" << "Высота" << "Двигаться по Х" << "Двигаться по Y";
+    lstHorizontal << "Ширина" << "Висота" << "Рухатись по X" << "Рухатись по Y";
     tableWidget->setHorizontalHeaderLabels(lstHorizontal);
     QStringList lstVertical;
     for (int i = 0; i < countScreen; ++i)
     {
         if (i != desktopWidgetDialog->primaryScreen())
-        {lstVertical << "Экран "+QString::number(i);}
+        {lstVertical << "Екран "+QString::number(i);}
         else
-        {lstVertical << "Экран основной";}
+        {lstVertical << "Екран головний";}
         tableWidget->setVerticalHeaderLabels(lstVertical);
 
         ptwi = new QTableWidgetItem(QString::number(structScreens.VecGraphicsViewReset[i] [0] - 6));

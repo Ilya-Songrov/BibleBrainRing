@@ -7,7 +7,6 @@ SectorGraphicsView::SectorGraphicsView(Ui::MainWindow *uiMain, int timerBasic, S
     structScreens(structScreens_),
     m_settings(m_settings_)
 {
-
     readSettingsSectorGraphicsView();
     setupEverythingThatAreAboveStage();
     setupAndCreateMainScene();
@@ -120,7 +119,7 @@ m_settings.beginGroup("/SettingsN");
     m_settings.setValue("/colorItem_LineSecondPointsB", Item_LineSecondPoints->defaultTextColor().blue());
         m_settings.setValue("/strItem_LineSecondPoints", Doc_LineSecondPoints->toHtml());
 
-    m_settings.setValue("/colorItem_LineQuestionR", Item_LineQuestion->defaultTextColor().red());
+    m_settings.setValue("/colorItem_LineQuestionR", Item_LineQuestion->defaultTextColor().green());
     m_settings.setValue("/colorItem_LineQuestionG", Item_LineQuestion->defaultTextColor().green());
     m_settings.setValue("/colorItem_LineQuestionB", Item_LineQuestion->defaultTextColor().blue());
 
@@ -182,36 +181,36 @@ connect(ui->toolButton_color_2, &QToolButton::clicked, this,
     sceneMenu = new QMenu(ui->menuBar);
     sceneMenu->setObjectName("sceneMenu");
     sceneMenu->setStyleSheet("color: black");
-       sceneMenuAllitem = new QMenu("Все надписи", sceneMenu);
+       sceneMenuAllitem = new QMenu("Всі надписи", sceneMenu);
             sceneMenuAllitem->setIcon(QIcon(":/new/ActionImage/ActionImageMenuBar/Text.png"));
             aFontAllitem = new QAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Font.png"),tr("Шрифт"), sceneMenuAllitem);
             aFontAllitem->setShortcut(Qt::CTRL + Qt::Key_F);
 //                QShortcut* fontShortcut = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_F), sceneMenuAllitem);
 //                connect(fontShortcut, &QShortcut::activated, aFontAllitem, &QAction::trigger);
             sceneMenuAllitem->addAction(aFontAllitem);
-            aColorAllitem = new QAction(QIcon(":/new/ActionImage/ActionImageScene/colors.png"),tr("Цвет"), sceneMenuAllitem);
+            aColorAllitem = new QAction(QIcon(":/new/ActionImage/ActionImageScene/colors.png"),tr("Колір"), sceneMenuAllitem);
             aColorAllitem->setShortcut(Qt::CTRL + Qt::Key_G);
             sceneMenuAllitem->addAction(aColorAllitem);
-            aBackgroundAllitem = new QAction(tr("Цвет Фона"), sceneMenuAllitem);
+            aBackgroundAllitem = new QAction(tr("Колір Фона"), sceneMenuAllitem);
             aBackgroundAllitem->setShortcut(Qt::CTRL + Qt::Key_H);
             sceneMenuAllitem->addAction(aBackgroundAllitem);
-            aRectAllitem = new QAction(tr("Описывать квадраты"), sceneMenuAllitem);
+            aRectAllitem = new QAction(tr("Описувати квадрати"), sceneMenuAllitem);
             aRectAllitem->setCheckable(true);
             aRectAllitem->setChecked(true);
-            aAutoFontQuestion = new QAction(tr("Автоматический шрифт вопроса"), sceneMenuAllitem);// Используется как флаг
+            aAutoFontQuestion = new QAction(tr("Автоматичний шрифт питання"), sceneMenuAllitem);// Используется как флаг
             aAutoFontQuestion->setCheckable(true);
             aAutoFontQuestion->setChecked(true);
-            aAutoZeroPoints = new QAction(tr("Обнулять баллы"), sceneMenuAllitem);// Используется как флаг
+            aAutoZeroPoints = new QAction(tr("Обнуляти бали"), sceneMenuAllitem);// Используется как флаг
             aAutoZeroPoints->setCheckable(true);
             aAutoZeroPoints->setChecked(true);
 
         sceneMenuUseItem = new QMenu(sceneMenu);
-        sceneMenuUseItem->setTitle("Использовать элементы");
-            aRemuveTitlePixmapItem = new QAction(tr("Заглавие изображение"), sceneMenuUseItem);
+        sceneMenuUseItem->setTitle("Використовувати елементи");
+            aRemuveTitlePixmapItem = new QAction(tr("Заголовок зображення"), sceneMenuUseItem);
             aRemuveTitlePixmapItem->setCheckable(true);
             aRemuveTitlePixmapItem->setChecked(false);
             sceneMenuUseItem->addAction(aRemuveTitlePixmapItem);
-            aRemuveTitleTextItem = new QAction(tr("Заглавие текст"), sceneMenuUseItem);
+            aRemuveTitleTextItem = new QAction(tr("Заголовок текст"), sceneMenuUseItem);
             aRemuveTitleTextItem->setCheckable(true);
             aRemuveTitleTextItem->setChecked(true);
             sceneMenuUseItem->addAction(aRemuveTitleTextItem);
@@ -223,15 +222,15 @@ connect(ui->toolButton_color_2, &QToolButton::clicked, this,
             aRemuveTeam2item->setCheckable(true);
             aRemuveTeam2item->setChecked(true);
             sceneMenuUseItem->addAction(aRemuveTeam2item);
-            aRemuvePoints1item = new QAction(tr("Баллы 1"), sceneMenuUseItem);
+            aRemuvePoints1item = new QAction(tr("Бали 1"), sceneMenuUseItem);
             aRemuvePoints1item->setCheckable(true);
             aRemuvePoints1item->setChecked(true);
             sceneMenuUseItem->addAction(aRemuvePoints1item);
-            aRemuvePoints2item = new QAction(tr("Баллы 2"), sceneMenuUseItem);
+            aRemuvePoints2item = new QAction(tr("Бали 2"), sceneMenuUseItem);
             aRemuvePoints2item->setCheckable(true);
             aRemuvePoints2item->setChecked(true);
             sceneMenuUseItem->addAction(aRemuvePoints2item);
-            aRemuveQuestionitem = new QAction(tr("Вопрос"), sceneMenuUseItem);
+            aRemuveQuestionitem = new QAction(tr("Питання"), sceneMenuUseItem);
             aRemuveQuestionitem->setCheckable(true);
             aRemuveQuestionitem->setChecked(true);
             sceneMenuUseItem->addAction(aRemuveQuestionitem);
@@ -239,7 +238,7 @@ connect(ui->toolButton_color_2, &QToolButton::clicked, this,
             aRemuveTimeritem->setCheckable(true);
             aRemuveTimeritem->setChecked(true);
             sceneMenuUseItem->addAction(aRemuveTimeritem);
-            aNothingNotUse = new QAction(tr("Все элементы"), sceneMenuUseItem);
+            aNothingNotUse = new QAction(tr("Всі елементи"), sceneMenuUseItem);
             aNothingNotUse->setCheckable(true);
             aNothingNotUse->setChecked(true);
             sceneMenuUseItem->addAction(aNothingNotUse);
@@ -248,22 +247,22 @@ connect(ui->toolButton_color_2, &QToolButton::clicked, this,
         sceneMenuTimer->setTitle("Таймер");
         sceneMenuTimer->setIcon(QIcon(":/new/GroupBoxes/MaterialsGroupBoxes/IconTimer.png"));
             aTimerTime = new QAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Time.png"),
-                                     tr("Время"), sceneMenuTimer);
+                                     tr("Час"), sceneMenuTimer);
             sceneMenuTimer->addAction(aTimerTime);
             aTimerSpeed = new QAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Speed.png"),
-                                      tr("Скорость отката"), sceneMenuTimer);
+                                      tr("Швидкість відкату"), sceneMenuTimer);
             sceneMenuTimer->addAction(aTimerSpeed);
-            aTimerComeback = new QAction(tr("Откат"), sceneMenuTimer);
+            aTimerComeback = new QAction(tr("Відкат числа"), sceneMenuTimer);
             aTimerComeback->setObjectName("aTimerComeback");
             aTimerComeback->setCheckable(true);
             aTimerComeback->setChecked(true);
             sceneMenuTimer->addAction(aTimerComeback);
-            aTimerNegativeNumbers = new QAction(tr("Отрицательные числа"), sceneMenuTimer);
+            aTimerNegativeNumbers = new QAction(tr("Від'ємні числа"), sceneMenuTimer);
             aTimerNegativeNumbers->setObjectName("aTimerNegativeNumbers");
             aTimerNegativeNumbers->setCheckable(true);
             aTimerNegativeNumbers->setChecked(true);
             sceneMenuTimer->addAction(aTimerNegativeNumbers);
-            aTimerGradient = new QAction(tr("Градиент"), sceneMenuTimer);
+            aTimerGradient = new QAction(tr("Градієнт"), sceneMenuTimer);
             aTimerGradient->setCheckable(true);
             aTimerGradient->setChecked(true);
             sceneMenuTimer->addAction(aTimerGradient);
@@ -390,7 +389,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
 
     Doc_LineQuestion = new QTextDocument(structScreens.parentWidget);
     Doc_LineQuestion->setDefaultFont(QFont("MS Shell Dlg 2",16,QFont::Normal));
-    Doc_LineQuestion->setHtml("<font>Какая птица заставила камень заплакать?<br></font>");
+    Doc_LineQuestion->setHtml("<font>Який цар написав багато псалмів?<br></font>");
         Item_LineQuestion = new myQGraphicsTextItem(myQGraphicsTextItem::LineQuestion);
         Item_LineQuestion->setDocument(Doc_LineQuestion);
         Item_LineQuestion->setTextWidth(400);
@@ -430,7 +429,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     ui->lineEdit_2->setText(Doc_LineSecondTeam->toPlainText());
     ui->lineEdit_value_1->setText(Doc_LineFirstPoints->toPlainText());
     ui->lineEdit_value_2->setText(Doc_LineSecondPoints->toPlainText());
-    ui->comboBox_question->setCurrentText("Какая птица заставила камень заплакать? ");
+    ui->comboBox_question->setCurrentText("Який цар написав багато псалмів?");
 
     connect(ui->lineEdit_0,&QLineEdit::textChanged,this,&SectorGraphicsView::slotLineTextChanged);
     connect(ui->lineEdit_1,&QLineEdit::textChanged,this,&SectorGraphicsView::slotLineTextChanged);
@@ -582,7 +581,7 @@ void SectorGraphicsView::slotSceneMenuTriggered(QAction *action)
 //    QAction *sceenAction = qobject_cast<QAction *>(sender()); // для запоминания. Можно удалить
     QAction *sceenAction = action;
 
-    if(sceenAction->text() == "Описывать квадраты")
+    if(sceenAction->text() == "Описувати квадрати")
     {
         foreach (myQGraphicsTextItem *item, vecAll_Item_Line)
             item->setShow_HideRect(sceenAction->isChecked());
@@ -605,7 +604,7 @@ void SectorGraphicsView::slotSceneMenuTriggered(QAction *action)
             item->document()->setDefaultFont(font);
         }
     }
-    else if(sceenAction->text() == "Цвет")
+    else if(sceenAction->text() == "Колір")
     {
         QColor color = QColorDialog::getColor(Qt::white);
         if(!color.isValid())
@@ -623,11 +622,11 @@ void SectorGraphicsView::slotSceneMenuTriggered(QAction *action)
             vecAll_Item_LineD[item->data(1).toInt()]->setDefaultTextColor(color);
         }
     }
-    else if(sceenAction->text() == "Цвет Фона"){
+    else if(sceenAction->text() == "Колір Фона"){
         slotOnPushButton_color_clicked();
     }
 
-    else if(sceenAction->text() == "Все элементы"){// Сначала заходим сюда, а потом по очереди
+    else if(sceenAction->text() == "Всі елементи"){// Сначала заходим сюда, а потом по очереди
         aRemuveTitlePixmapItem->setChecked(false);
         aRemuveTitleTextItem->setChecked(aNothingNotUse->isChecked());
         aRemuveTeam1item->setChecked(aNothingNotUse->isChecked());
@@ -637,28 +636,28 @@ void SectorGraphicsView::slotSceneMenuTriggered(QAction *action)
         aRemuveQuestionitem->setChecked(aNothingNotUse->isChecked());
         aRemuveTimeritem->setChecked(aNothingNotUse->isChecked());
     }
-    if(sceenAction->text() == "Заглавие изображение" || sceenAction->text() == "Все элементы"){
+    if(sceenAction->text() == "Заголовок зображення" || sceenAction->text() == "Всі елементи"){
         Item_LineTitlePixmap->setVisible(aRemuveTitlePixmapItem->isChecked());
         Item_LineTitlePixmapD->setVisible(aRemuveTitlePixmapItem->isChecked());}
-    if(sceenAction->text() == "Заглавие текст" || sceenAction->text() == "Все элементы"){
+    if(sceenAction->text() == "Заголовок текст" || sceenAction->text() == "Всі елементи"){
         Item_LineTitleText->setVisible(sceenAction->isChecked() ? true : false);
         Item_LineTitleTextD->setVisible(sceenAction->isChecked() ? true : false);}
-    if(sceenAction->text() == "Команда 1" || sceenAction->text() == "Все элементы"){
+    if(sceenAction->text() == "Команда 1" || sceenAction->text() == "Всі елементи"){
         Item_LineFirstTeam->setVisible(sceenAction->isChecked() ? true : false);
         Item_LineFirstTeamD->setVisible(sceenAction->isChecked() ? true : false);}
-    if(sceenAction->text() == "Команда 2" || sceenAction->text() == "Все элементы"){
+    if(sceenAction->text() == "Команда 2" || sceenAction->text() == "Всі елементи"){
         Item_LineSecondTeam->setVisible(sceenAction->isChecked() ? true : false);
         Item_LineSecondTeamD->setVisible(sceenAction->isChecked() ? true : false);}
-    if(sceenAction->text() == "Баллы 1" || sceenAction->text() == "Все элементы"){
+    if(sceenAction->text() == "Бали 1" || sceenAction->text() == "Всі елементи"){
         Item_LineFirstPoints->setVisible(sceenAction->isChecked() ? true : false);
         Item_LineFirstPointsD->setVisible(sceenAction->isChecked() ? true : false);}
-    if(sceenAction->text() == "Баллы 2" || sceenAction->text() == "Все элементы"){
+    if(sceenAction->text() == "Бали 2" || sceenAction->text() == "Всі елементи"){
         Item_LineSecondPoints->setVisible(sceenAction->isChecked() ? true : false);
         Item_LineSecondPointsD->setVisible(sceenAction->isChecked() ? true : false);}
-    if(sceenAction->text() == "Вопрос" || sceenAction->text() == "Все элементы"){
+    if(sceenAction->text() == "Питання" || sceenAction->text() == "Всі елементи"){
         Item_LineQuestion->setVisible(sceenAction->isChecked() ? true : false);
         Item_LineQuestionD->setVisible(sceenAction->isChecked() ? true : false);}
-    if(sceenAction->text() == "Таймер" || sceenAction->text() == "Все элементы")
+    if(sceenAction->text() == "Таймер" || sceenAction->text() == "Всі елементи")
     {
         Item_LineTimer->setVisible(sceenAction->isChecked() ? true : false);
         Item_LineTimerD->setVisible(sceenAction->isChecked() ? true : false);
@@ -666,10 +665,10 @@ void SectorGraphicsView::slotSceneMenuTriggered(QAction *action)
     }
 
 
-    if(sceenAction->text() == "Время"){
+    if(sceenAction->text() == "Час"){
         emit aTimeToActionSceneMenuTimerTimeTriggered();
     }
-    if(sceenAction->text() == "Скорость отката"){
+    if(sceenAction->text() == "Швидкість відкату"){
         emit aSpeedToActionSceneMenuTimerSpeedTriggered();
     }
 

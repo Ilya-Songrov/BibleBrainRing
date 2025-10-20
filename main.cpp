@@ -4,23 +4,6 @@
 #include <QSplashScreen>
 
 
-    void loadModules(QSplashScreen* psplash)
-    {
-        QTime time;
-        time.start();
-
-        float opacity = 0.01;
-        for (int i = 0; i < 100; )
-        {
-            if (time.elapsed() > 40)
-            {
-            time.start();
-            ++i;
-            opacity = (float)opacity + 0.01;
-            psplash->setWindowOpacity(opacity);
-            }
-        }
-    }
 // Доделать:
 // -2. Во время как работает таймер, обнуление очков происходит при касании на название команды.
 // -1. И хотелось бы, чтобы было после 10 секунд какой-то сигнал, мол время закончилось.
@@ -36,14 +19,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
-    QSplashScreen splash(QPixmap(":/new/Other/FilesAndLogo/Logo_temporarily.png"));
-    splash.setWindowOpacity(0.01);
     MainWindow win;
-
-    splash.show();
-    loadModules(&splash);
-    splash.finish(&win);
 
     win.setGeometry(QStyle::alignedRect(Qt::LeftToRight,Qt::AlignCenter,win.size(),
                                         qApp->desktop()->availableGeometry()));

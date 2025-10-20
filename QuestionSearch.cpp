@@ -108,7 +108,7 @@ QStringList QuestionSearch::search(QString strRequest)
 void QuestionSearch::slotTextChanged(const QString &)
 {
     if(vecText_questions.size() == 0){
-        QMessageBox::information(parentMain, "Title","Загрузите вопросы.");
+        QMessageBox::information(parentMain, "Title","Завантажте питання.");
     }
 }
 

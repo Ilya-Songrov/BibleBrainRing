@@ -57,7 +57,7 @@ void myQMediaPlayer::music_startPause_clicked()
     {
     case myQMediaPlayer::PlayingState:
         this->pause();
-        ui->pushButton_MusicStartPause->setText("Старт");
+        ui->pushButton_MusicStartPause->setText("Пуск");
         ui->pushButton_MusicStartPause->setIcon(QMainWindow().style()->standardIcon(QStyle::SP_MediaPlay));
         break;
     default:
@@ -71,7 +71,7 @@ void myQMediaPlayer::music_startPause_clicked()
 void myQMediaPlayer::music_reset_clicked()
 {
     this->stop();
-    ui->pushButton_MusicStartPause->setText("Старт");
+    ui->pushButton_MusicStartPause->setText("Пуск");
     ui->pushButton_MusicStartPause->setIcon(QMainWindow().style()->standardIcon(QStyle::SP_MediaPlay));
     currentSource = true;
     PlayingMusicTimer = false;
