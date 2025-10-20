@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1102</width>
-    <height>658</height>
+    <height>697</height>
    </rect>
   </property>
   <property name="contextMenuPolicy">
@@ -1135,7 +1135,7 @@ border-radius: 6px;*/
      <x>0</x>
      <y>0</y>
      <width>1102</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -1301,12 +1301,12 @@ border-radius: 6px;*/
   <customwidget>
    <class>myQListWidget</class>
    <extends>QListWidget</extends>
-   <header>myqlistwidget.h</header>
+   <header>myQListWidget.h</header>
   </customwidget>
   <customwidget>
    <class>myComboBox</class>
    <extends>QComboBox</extends>
-   <header>mycombobox.h</header>
+   <header>myComboBox.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

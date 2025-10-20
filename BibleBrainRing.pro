@@ -15,7 +15,7 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
+    mainwindow.cpp \
     myQGraphicsTextItem.cpp \
     QuestionSearch.cpp \
     QuestionPreviewForm.cpp \
