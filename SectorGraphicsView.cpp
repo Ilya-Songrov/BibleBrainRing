@@ -810,7 +810,7 @@ QMenu *SectorGraphicsView::createColorMenu(QColor defaultColor)
             if (colors.at(i) == defaultColor)
                 colorMenu->setDefaultAction(action);
     }
-        QAction *action = new QAction(tr("Другой..."), structScreens.parentWidget);
+        QAction *action = new QAction(tr("Інший..."), structScreens.parentWidget);
         action->setData("more");
         action->setIcon(QIcon(QPixmap(":/new/ActionImage/ActionImageScene/colors.png")));
             connect(action, SIGNAL(triggered()),this, SLOT(textColorChanged()));
@@ -825,7 +825,7 @@ void SectorGraphicsView::textColorChanged()
     // эта фунция должна вызываться только по причине активации контекстного меню
     // здесь перерисовывается картинка(А) и под ней меняется цвет соотвецтвенно выбору пользователя
     QAction *textAction = qobject_cast<QAction *>(sender());
-    if(textAction->text() == "Другой...")
+    if(textAction->text() == "Інший...")
     {
         QColor color = QColorDialog::getColor(Qt::black);
         ui->toolButton_color_2->setIcon(createColorToolButtonIcon(color));

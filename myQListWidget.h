@@ -40,11 +40,14 @@ protected:
         foreach (QUrl url, event->mimeData()->urls())
         {
             QString strSuffix = QFileInfo(url.toString().remove("file:///")).suffix();
+            qDebug() << "function: " << __FUNCTION__ << " strSuffix: " << strSuffix << Qt::endl;
 
             if(strSuffix == "png" || strSuffix == "jpg")// Если картинки, сохраняем адреса.
                 strPathDropPix += url.toString().remove("file:///") + "\n";
             if(strSuffix == "mp3" || strSuffix == "wav")// Если музыка, сохраняем адреса.
                 strPathDropMp3 += url.toString().remove("file:///") + "\n";
+            qDebug() << "function: " << __FUNCTION__ << " strPathDropPix: " << strPathDropPix << Qt::endl;
+            qDebug() << "function: " << __FUNCTION__ << " strPathDropMp3: " << strPathDropMp3 << Qt::endl;
         }
         if(!strPathDropPix.isEmpty()){
             // Если картинка - отправляем сигнал.

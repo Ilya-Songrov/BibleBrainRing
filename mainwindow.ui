@@ -797,7 +797,7 @@ border-radius: 6px;*/
                <enum>Qt::NoContextMenu</enum>
               </property>
               <property name="text">
-               <string>&amp;Показать</string>
+               <string>Показати</string>
               </property>
              </widget>
             </item>
@@ -822,7 +822,7 @@ border-radius: 6px;*/
                <enum>Qt::NoContextMenu</enum>
               </property>
               <property name="text">
-               <string>&amp;Скрыть</string>
+               <string>&amp;Сховати</string>
               </property>
              </widget>
             </item>
@@ -903,7 +903,7 @@ border-radius: 6px;*/
               <enum>Qt::NoContextMenu</enum>
              </property>
              <property name="text">
-              <string>изображение</string>
+              <string>зображення</string>
              </property>
              <property name="checkable">
               <bool>true</bool>
@@ -928,7 +928,7 @@ border-radius: 6px;*/
               <enum>Qt::NoContextMenu</enum>
              </property>
              <property name="text">
-              <string>цвет</string>
+              <string>колір</string>
              </property>
              <property name="checkable">
               <bool>true</bool>
@@ -1146,7 +1146,6 @@ border-radius: 6px;*/
      <property name="title">
       <string>Завантажити питання</string>
      </property>
-     <addaction name="action_question_fast"/>
      <addaction name="action_question_decocer"/>
     </widget>
     <addaction name="action_question"/>
@@ -1292,7 +1291,7 @@ border-radius: 6px;*/
   </action>
   <action name="action_question_decocer">
    <property name="text">
-    <string>With Decoder</string>
+    <string>Завантажити</string>
    </property>
   </action>
  </widget>
@@ -1351,12 +1350,12 @@ border-radius: 6px;*/
    <slot>animateClick()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>96</x>
-     <y>150</y>
+     <x>146</x>
+     <y>194</y>
     </hint>
     <hint type="destinationlabel">
-     <x>191</x>
-     <y>150</y>
+     <x>242</x>
+     <y>194</y>
     </hint>
    </hints>
   </connection>
@@ -1367,12 +1366,12 @@ border-radius: 6px;*/
    <slot>setFocus()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>441</x>
-     <y>209</y>
+     <x>472</x>
+     <y>243</y>
     </hint>
     <hint type="destinationlabel">
-     <x>441</x>
-     <y>248</y>
+     <x>751</x>
+     <y>504</y>
     </hint>
    </hints>
   </connection>
