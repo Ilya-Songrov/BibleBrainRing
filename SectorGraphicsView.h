@@ -2,7 +2,7 @@
 #define SECTORGRAPHICSVIEW_H
 
 #include "ui_mainwindow.h"
-#include "myQGraphicsTextItem.h"
+#include "MyQGraphicsTextItem.h"
 #include "QDialogSettingsScreens.h"
 #include "StructScreens.h"
 
@@ -14,7 +14,7 @@
 #include "QColorDialog"
 
 QT_BEGIN_NAMESPACE
-class myQGraphicsTextItem;
+class MyQGraphicsTextItem;
 QT_END_NAMESPACE
 
 
@@ -39,36 +39,36 @@ public:
     QGraphicsPixmapItem *Item_LineTitlePixmap; // заглавие картинка
 
     QTextDocument *Doc_LineTitleText;
-        myQGraphicsTextItem *Item_LineTitleText; // заглавие текст
+        MyQGraphicsTextItem *Item_LineTitleText; // заглавие текст
     QTextDocument *Doc_LineFirstTeam;
-        myQGraphicsTextItem *Item_LineFirstTeam;
+        MyQGraphicsTextItem *Item_LineFirstTeam;
     QTextDocument *Doc_LineSecondTeam;
-        myQGraphicsTextItem *Item_LineSecondTeam;
+        MyQGraphicsTextItem *Item_LineSecondTeam;
     QTextDocument *Doc_LineFirstPoints;
-        myQGraphicsTextItem *Item_LineFirstPoints;
+        MyQGraphicsTextItem *Item_LineFirstPoints;
     QTextDocument *Doc_LineSecondPoints;
-        myQGraphicsTextItem *Item_LineSecondPoints;
+        MyQGraphicsTextItem *Item_LineSecondPoints;
     QTextDocument *Doc_LineQuestion;
-        myQGraphicsTextItem *Item_LineQuestion;
+        MyQGraphicsTextItem *Item_LineQuestion;
     QTextDocument *Doc_LineTimer;
-        myQGraphicsTextItem *Item_LineTimer;
+        MyQGraphicsTextItem *Item_LineTimer;
 
 
     // сначала думал без вектора обойдусь, но после пришлось сделать, когда уже почти все сделал. Смешно просто.
-    QVector <myQGraphicsTextItem *> vecAll_Item_Line;
-    QVector <myQGraphicsTextItem *> vecAll_Item_LineD; // еще и этот вектор понадобился
+    QVector <MyQGraphicsTextItem *> vecAll_Item_Line;
+    QVector <MyQGraphicsTextItem *> vecAll_Item_LineD; // еще и этот вектор понадобился
     int intIntervalPlusMinus = 0;
 
 
     // другие экраны:
     QGraphicsPixmapItem *Item_LineTitlePixmapD; // заглавие картинка
-    myQGraphicsTextItem *Item_LineTitleTextD; // заглавие текст
-    myQGraphicsTextItem *Item_LineFirstTeamD;
-    myQGraphicsTextItem *Item_LineSecondTeamD;
-    myQGraphicsTextItem *Item_LineFirstPointsD;
-    myQGraphicsTextItem *Item_LineSecondPointsD;
-    myQGraphicsTextItem *Item_LineQuestionD;
-    myQGraphicsTextItem *Item_LineTimerD;
+    MyQGraphicsTextItem *Item_LineTitleTextD; // заглавие текст
+    MyQGraphicsTextItem *Item_LineFirstTeamD;
+    MyQGraphicsTextItem *Item_LineSecondTeamD;
+    MyQGraphicsTextItem *Item_LineFirstPointsD;
+    MyQGraphicsTextItem *Item_LineSecondPointsD;
+    MyQGraphicsTextItem *Item_LineQuestionD;
+    MyQGraphicsTextItem *Item_LineTimerD;
 
     QMenu *sceneMenu;
     QMenu *sceneMenuAllitem;
@@ -124,7 +124,7 @@ private slots: /* доделать в конце  public? */
     void setupAndCreateMainScene();
     void setupAndCreateSceneSecond();
     void setupPushButton_color();
-    void writeTextChanged_on_Item_Line(myQGraphicsTextItem *Item, const int pos, const QString &str);
+    void writeTextChanged_on_Item_Line(MyQGraphicsTextItem *Item, const int pos, const QString &str);
 
 
     QPixmap createColorToolButtonIcon(QColor color);
@@ -134,7 +134,7 @@ private slots: /* доделать в конце  public? */
         void refreshPosOtherScreens();/* доделать в конце move to private*/
         void slotRefresh_ItemPos();
         void slotRefresh_Tool();
-        myQGraphicsTextItem *slotIsFocusItem();
+        MyQGraphicsTextItem *slotIsFocusItem();
         void slotfocusItemChanged(QGraphicsItem *newFocus, QGraphicsItem *oldFocus, Qt::FocusReason reason);
         void slotSetFont();
         void slot_fontSizeCombo_highlighted_AND_activated(int index);

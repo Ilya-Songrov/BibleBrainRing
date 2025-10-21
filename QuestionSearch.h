@@ -2,7 +2,7 @@
 #define QUESTIONSEARCH_H
 
 #include "ui_mainwindow.h"
-#include "myProxyStyleHTMLdelegate.h"
+#include "MyProxyStyleHTMLdelegate.h"
 #include "QuestionPreviewForm.h"
 
 #include "QObject"

@@ -1,4 +1,4 @@
-#include "sectorGroupBoxeLeft.h"
+#include "SectorGroupBoxeLeft.h"
 
 SectorGroupBoxeLeft::SectorGroupBoxeLeft(Ui::MainWindow *uiMain, QVector <QString> &vecStrMusicSector) :
     ui(uiMain),
@@ -51,10 +51,10 @@ void SectorGroupBoxeLeft::setupActionsAndConnections()
     contextMenuMp3->addAction(QIcon(":/new/GroupBoxes/MaterialsGroupBoxes/IconTimer.png"),"Музыка таймера");
     contextMenuMp3->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Load.png"),"Загрузить");
     connect(contextMenuMp3,SIGNAL(triggered(QAction*)),SLOT(slotActivatedMp3(QAction*)));
-    connect(ui->listWidget_Music, &myQListWidget::signalDropListWidgetMp3, this, &SectorGroupBoxeLeft::slotDropMp3);
+    connect(ui->listWidget_Music, &MyQListWidget::signalDropListWidgetMp3, this, &SectorGroupBoxeLeft::slotDropMp3);
 
 
-    connect(ui->listWidget_Music, &myQListWidget::customContextMenuRequested, this,
+    connect(ui->listWidget_Music, &MyQListWidget::customContextMenuRequested, this,
             &SectorGroupBoxeLeft::slotExecContextMenuMp3);
 }
 

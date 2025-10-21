@@ -1,7 +1,7 @@
 #ifndef SECTORGROUPBOXELEFT_H
 #define SECTORGROUPBOXELEFT_H
 
-#include "myQListWidget.h"
+#include "MyQListWidget.h"
 #include "ui_mainwindow.h"
 
 #include <QObject>

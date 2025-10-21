@@ -317,7 +317,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     // Дефолт. шрифт какбы не нужен, поскольку мы используем HTML, но после сброса настроек нужно указать шрифт.
     Doc_LineTitleText->setDefaultFont(boolFontDefaultItemsReset ? QFont("Times New Roman",12)
                                                           : Doc_LineTitleText->defaultFont());
-        Item_LineTitleText = new myQGraphicsTextItem(myQGraphicsTextItem::LineTitleText);
+        Item_LineTitleText = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineTitleText);
         Item_LineTitleText->setDocument(Doc_LineTitleText);
     // Для того чтобы, если после запуска сразу удалить какой-то текст, шрифт уйдет в 8.
     // Это потому что текст считался с настроек в виде Html.
@@ -332,7 +332,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     Doc_LineFirstTeam->setDefaultFont(boolFontDefaultItemsReset ? QFont("MS Shell Dlg 2",30,QFont::Bold)
                                                                   : Doc_LineFirstTeam->defaultFont());
     Doc_LineFirstTeam->setHtml(strItem_LineFirstTeam);
-        Item_LineFirstTeam = new myQGraphicsTextItem(myQGraphicsTextItem::LineFirstTeam);
+        Item_LineFirstTeam = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineFirstTeam);
         Item_LineFirstTeam->setDocument(Doc_LineFirstTeam);
     // Обьяснение выше
     Item_LineFirstTeam->document()->setDefaultFont(QTextCursor(Item_LineFirstTeam->document()).charFormat().font());
@@ -346,7 +346,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     Doc_LineSecondTeam->setDefaultFont(boolFontDefaultItemsReset ? QFont("MS Shell Dlg 2",30,QFont::Bold)
                                                                    : Doc_LineSecondTeam->defaultFont());
     Doc_LineSecondTeam->setHtml(strItem_LineSecondTeam);
-        Item_LineSecondTeam = new myQGraphicsTextItem(myQGraphicsTextItem::LineSecondTeam);
+        Item_LineSecondTeam = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineSecondTeam);
         Item_LineSecondTeam->setDocument(Doc_LineSecondTeam);
     // Обьяснение выше
     Item_LineSecondTeam->document()->setDefaultFont(QTextCursor(
@@ -361,7 +361,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     Doc_LineFirstPoints->setDefaultFont(boolFontDefaultItemsReset ? QFont("MS Shell Dlg 2",32,QFont::Bold)
                                                                     : Doc_LineFirstPoints->defaultFont());
     Doc_LineFirstPoints->setHtml(strItem_LineFirstPoints);
-        Item_LineFirstPoints = new myQGraphicsTextItem(myQGraphicsTextItem::LineFirstPoints);
+        Item_LineFirstPoints = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineFirstPoints);
         Item_LineFirstPoints->setDocument(Doc_LineFirstPoints);
     // Обьяснение выше
     Item_LineFirstPoints->document()->setDefaultFont(QTextCursor(
@@ -376,7 +376,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     Doc_LineSecondPoints->setDefaultFont(boolFontDefaultItemsReset ? QFont("MS Shell Dlg 2",32,QFont::Bold)
                                                                      : Doc_LineSecondPoints->defaultFont());
     Doc_LineSecondPoints->setHtml(strItem_LineSecondPoints);
-        Item_LineSecondPoints = new myQGraphicsTextItem(myQGraphicsTextItem::LineSecondPoints);
+        Item_LineSecondPoints = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineSecondPoints);
         Item_LineSecondPoints->setDocument(Doc_LineSecondPoints);
     // Обьяснение выше
     Item_LineSecondPoints->document()->setDefaultFont(QTextCursor(
@@ -390,7 +390,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     Doc_LineQuestion = new QTextDocument(structScreens.parentWidget);
     Doc_LineQuestion->setDefaultFont(QFont("MS Shell Dlg 2",16,QFont::Normal));
     Doc_LineQuestion->setHtml("<font>Який цар написав багато псалмів?<br></font>");
-        Item_LineQuestion = new myQGraphicsTextItem(myQGraphicsTextItem::LineQuestion);
+        Item_LineQuestion = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineQuestion);
         Item_LineQuestion->setDocument(Doc_LineQuestion);
         Item_LineQuestion->setTextWidth(400);
         Item_LineQuestion->setShow_HideRect(true);
@@ -407,7 +407,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     QTextCursor cursor6(Doc_LineTimer);
     cursor6.insertHtml("<b><font>&nbsp;&nbsp;&nbsp;" +
                 QTime::fromMSecsSinceStartOfDay(int_timer_basic * 1000).toString("mm:ss:zzz") + "</font></b>");
-        Item_LineTimer = new myQGraphicsTextItem(myQGraphicsTextItem::LineTimer);
+        Item_LineTimer = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineTimer);
         Item_LineTimer->setDocument(Doc_LineTimer);
         Item_LineTimer->setTextWidth(400);
         Item_LineTimer->setShow_HideRect(true);
@@ -464,43 +464,43 @@ void SectorGraphicsView::setupAndCreateSceneSecond()
         sceneD.addItem(Item_LineTitlePixmapD);
 
 
-                Item_LineTitleTextD = new myQGraphicsTextItem(myQGraphicsTextItem::LineTitleText);
+                Item_LineTitleTextD = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineTitleText);
                 Item_LineTitleTextD->setDocument(Doc_LineTitleText);
                 Item_LineTitleTextD->setTextWidth(400);
                 Item_LineTitleTextD->setDefaultTextColor(colorItem_LineTitle);
                 sceneD.addItem(Item_LineTitleTextD);
 
-                Item_LineFirstTeamD = new myQGraphicsTextItem(myQGraphicsTextItem::LineFirstTeam);
+                Item_LineFirstTeamD = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineFirstTeam);
                 Item_LineFirstTeamD->setDocument(Doc_LineFirstTeam);
                 Item_LineFirstTeamD->setTextWidth(198);
                 Item_LineFirstTeamD->setDefaultTextColor(colorItem_LineFirstTeam);
                 sceneD.addItem(Item_LineFirstTeamD);
 
-                Item_LineSecondTeamD = new myQGraphicsTextItem(myQGraphicsTextItem::LineSecondTeam);
+                Item_LineSecondTeamD = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineSecondTeam);
                 Item_LineSecondTeamD->setDocument(Doc_LineSecondTeam);
                 Item_LineSecondTeamD->setTextWidth(198);
                 Item_LineSecondTeamD->setDefaultTextColor(colorItem_LineSecondTeam);
                 sceneD.addItem(Item_LineSecondTeamD);
 
-                Item_LineFirstPointsD = new myQGraphicsTextItem(myQGraphicsTextItem::LineFirstPoints);
+                Item_LineFirstPointsD = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineFirstPoints);
                 Item_LineFirstPointsD->setDocument(Doc_LineFirstPoints);
                 Item_LineFirstPointsD->setTextWidth(198);
                 Item_LineFirstPointsD->setDefaultTextColor(colorItem_LineFirstPoints);
                 sceneD.addItem(Item_LineFirstPointsD);
 
-                Item_LineSecondPointsD = new myQGraphicsTextItem(myQGraphicsTextItem::LineSecondPoints);
+                Item_LineSecondPointsD = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineSecondPoints);
                 Item_LineSecondPointsD->setDocument(Doc_LineSecondPoints);
                 Item_LineSecondPointsD->setTextWidth(198);
                 Item_LineSecondPointsD->setDefaultTextColor(colorItem_LineSecondPoints);
                 sceneD.addItem(Item_LineSecondPointsD);
 
-                Item_LineQuestionD = new myQGraphicsTextItem(myQGraphicsTextItem::LineQuestion);
+                Item_LineQuestionD = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineQuestion);
                 Item_LineQuestionD->setDocument(Doc_LineQuestion);
                 Item_LineQuestionD->setTextWidth(400);
                 Item_LineQuestionD->setDefaultTextColor(colorItem_LineQuestion);
                 sceneD.addItem(Item_LineQuestionD);
 
-                Item_LineTimerD = new myQGraphicsTextItem(myQGraphicsTextItem::LineTimer);
+                Item_LineTimerD = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineTimer);
                 Item_LineTimerD->setDocument(Doc_LineTimer);
                 Item_LineTimerD->setTextWidth(400);
                 Item_LineTimerD->setDefaultTextColor(colorItem_LineTimer);
@@ -541,13 +541,13 @@ connect(Item_LineFirstPoints->document(),&QTextDocument::contentsChanged,this,&S
 connect(Item_LineSecondPoints->document(),&QTextDocument::contentsChanged,this,&SectorGraphicsView::slotRefresh_ItemPos);
 connect(Item_LineQuestion->document(),&QTextDocument::contentsChanged,this,&SectorGraphicsView::slotRefresh_ItemPos);
 connect(Item_LineTimer->document(),&QTextDocument::contentsChanged,this,&SectorGraphicsView::slotRefresh_ItemPos);
-   connect(Item_LineTitleText,&myQGraphicsTextItem::cursorPositionChangeD,this,&SectorGraphicsView::slotRefresh_Tool);
-   connect(Item_LineFirstTeam,&myQGraphicsTextItem::cursorPositionChangeD,this,&SectorGraphicsView::slotRefresh_Tool);
-   connect(Item_LineSecondTeam,&myQGraphicsTextItem::cursorPositionChangeD,this,&SectorGraphicsView::slotRefresh_Tool);
-   connect(Item_LineFirstPoints,&myQGraphicsTextItem::cursorPositionChangeD,this,&SectorGraphicsView::slotRefresh_Tool);
-   connect(Item_LineSecondPoints,&myQGraphicsTextItem::cursorPositionChangeD,this,&SectorGraphicsView::slotRefresh_Tool);
-   connect(Item_LineQuestion,&myQGraphicsTextItem::cursorPositionChangeD,this,&SectorGraphicsView::slotRefresh_Tool);
-   connect(Item_LineTimer,&myQGraphicsTextItem::cursorPositionChangeD,this,&SectorGraphicsView::slotRefresh_Tool);
+   connect(Item_LineTitleText,&MyQGraphicsTextItem::cursorPositionChangeD,this,&SectorGraphicsView::slotRefresh_Tool);
+   connect(Item_LineFirstTeam,&MyQGraphicsTextItem::cursorPositionChangeD,this,&SectorGraphicsView::slotRefresh_Tool);
+   connect(Item_LineSecondTeam,&MyQGraphicsTextItem::cursorPositionChangeD,this,&SectorGraphicsView::slotRefresh_Tool);
+   connect(Item_LineFirstPoints,&MyQGraphicsTextItem::cursorPositionChangeD,this,&SectorGraphicsView::slotRefresh_Tool);
+   connect(Item_LineSecondPoints,&MyQGraphicsTextItem::cursorPositionChangeD,this,&SectorGraphicsView::slotRefresh_Tool);
+   connect(Item_LineQuestion,&MyQGraphicsTextItem::cursorPositionChangeD,this,&SectorGraphicsView::slotRefresh_Tool);
+   connect(Item_LineTimer,&MyQGraphicsTextItem::cursorPositionChangeD,this,&SectorGraphicsView::slotRefresh_Tool);
 
 connect(&main_scene,&QGraphicsScene::focusItemChanged,this,&SectorGraphicsView::slotfocusItemChanged);
 
@@ -583,7 +583,7 @@ void SectorGraphicsView::slotSceneMenuTriggered(QAction *action)
 
     if(sceenAction->text() == "Описувати квадрати")
     {
-        foreach (myQGraphicsTextItem *item, vecAll_Item_Line)
+        foreach (MyQGraphicsTextItem *item, vecAll_Item_Line)
             item->setShow_HideRect(sceenAction->isChecked());
     }
     else if(sceenAction->text() == "Шрифт")
@@ -594,7 +594,7 @@ void SectorGraphicsView::slotSceneMenuTriggered(QAction *action)
             if(!ok) return;
         QTextCharFormat fontFormat;
         fontFormat.setFont(font);
-        foreach (myQGraphicsTextItem *item, vecAll_Item_Line)
+        foreach (MyQGraphicsTextItem *item, vecAll_Item_Line)
         {
             QTextCursor cursor = item->textCursor();
             cursor.select(QTextCursor::Document);
@@ -611,7 +611,7 @@ void SectorGraphicsView::slotSceneMenuTriggered(QAction *action)
             return;
         QTextCharFormat foregroundFormat;
         foregroundFormat.setForeground(QBrush(color));
-        foreach (myQGraphicsTextItem *item, vecAll_Item_Line)
+        foreach (MyQGraphicsTextItem *item, vecAll_Item_Line)
         {
             QTextCursor cursor = item->textCursor();
             cursor.select(QTextCursor::Document);
@@ -676,7 +676,7 @@ void SectorGraphicsView::slotSceneMenuTriggered(QAction *action)
 
 }
 
-void SectorGraphicsView::writeTextChanged_on_Item_Line(myQGraphicsTextItem *Item, const int pos, const QString &str)
+void SectorGraphicsView::writeTextChanged_on_Item_Line(MyQGraphicsTextItem *Item, const int pos, const QString &str)
 {
     QTextCursor cursor(Item->document());
 
@@ -915,7 +915,7 @@ void SectorGraphicsView::slotRefresh_ItemPos()
 // Для того чтобы при пустом документе все настройки не уходили в дефолт. Слишком тяжело для пониания и обьяснения.
 
                 if(slotIsFocusItem() == 0) return;// Выходим если пишеться не в сцене.
-                myQGraphicsTextItem *myItem = slotIsFocusItem();
+                MyQGraphicsTextItem *myItem = slotIsFocusItem();
 
                 static bool boolEnter = true;
                 if(myItem->document()->isEmpty() && boolEnter)
@@ -998,9 +998,9 @@ void SectorGraphicsView::slotRefresh_Tool()
 }
 
 
-myQGraphicsTextItem *SectorGraphicsView::slotIsFocusItem()
+MyQGraphicsTextItem *SectorGraphicsView::slotIsFocusItem()
 {
-    myQGraphicsTextItem *item;
+    MyQGraphicsTextItem *item;
     if(Item_LineTitleText->boolFocusInOut)
         item = Item_LineTitleText;
     else if(Item_LineFirstTeam->boolFocusInOut)
@@ -1030,10 +1030,10 @@ void SectorGraphicsView::slotfocusItemChanged(QGraphicsItem *newFocus, QGraphics
         Item_LineTitlePixmap->setFlag(QGraphicsItem::ItemIsSelectable,true);
     }
         if(oldFocus == 0 /*для первого запуска приложения*/) return;
-        QTextCursor cursor = qgraphicsitem_cast<myQGraphicsTextItem *> (oldFocus)->textCursor();
+        QTextCursor cursor = qgraphicsitem_cast<MyQGraphicsTextItem *> (oldFocus)->textCursor();
             if(main_scene.hasFocus() && cursor.hasSelection())
             cursor.clearSelection();
-        qgraphicsitem_cast<myQGraphicsTextItem *> (oldFocus)->setTextCursor(cursor);
+        qgraphicsitem_cast<MyQGraphicsTextItem *> (oldFocus)->setTextCursor(cursor);
 }
 
 void SectorGraphicsView::slotSetFont()
@@ -1099,7 +1099,7 @@ void SectorGraphicsView::slotQuestion(const QString &str)
     if(Item_LineQuestion->isVisible() && !strCopy.isEmpty() && aAutoFontQuestion->isChecked())
     {
         // Определяется относительно чего ориентироваться, Item_LineTimer или Item_LineQuestion.
-        myQGraphicsTextItem *ItemTimerOrQuestion = Item_LineTimer->isVisible() ? Item_LineTimer : Item_LineQuestion;
+        MyQGraphicsTextItem *ItemTimerOrQuestion = Item_LineTimer->isVisible() ? Item_LineTimer : Item_LineQuestion;
         QTextCursor cursor = Item_LineQuestion->textCursor();
         cursor.select(QTextCursor::Document);
         QTextCharFormat PointSizeFormat;

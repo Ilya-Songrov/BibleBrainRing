@@ -1,6 +1,6 @@
-#include "myQMediaPlayer.h"
+#include "MyQMediaPlayer.h"
 
-myQMediaPlayer::myQMediaPlayer(Ui::MainWindow *uiMain,  QVector <QString> &vecStrMusicSector, QWidget *parent)  :
+MyQMediaPlayer::MyQMediaPlayer(Ui::MainWindow *uiMain,  QVector <QString> &vecStrMusicSector, QWidget *parent)  :
     QMediaPlayer(parent),
     ui(uiMain),
     currentSource(true), //текущий трек меняется в зависимости от значения этой переменной
@@ -14,7 +14,7 @@ myQMediaPlayer::myQMediaPlayer(Ui::MainWindow *uiMain,  QVector <QString> &vecSt
     setupConnections();
 }
 
-void myQMediaPlayer::setupSettingsWidets()
+void MyQMediaPlayer::setupSettingsWidets()
 {
     ui->pushButton_MusicStartPause->setIcon(QMainWindow().style()->standardIcon(QStyle::SP_MediaPlay));
     ui->pushButton_MusicReset->setIcon(QMainWindow().style()->standardIcon(QStyle::SP_MediaStop));
@@ -24,15 +24,15 @@ void myQMediaPlayer::setupSettingsWidets()
     ui->verticalSlider_volume->setValue(50);
 }
 
-void myQMediaPlayer::setupConnections()
+void MyQMediaPlayer::setupConnections()
 {
     connect(ui->verticalSlider_volume, SIGNAL(valueChanged(int)), this, SLOT(setVolume(int)));
-    connect(ui->horizontalSlider_music, &QSlider::sliderMoved, this, &myQMediaPlayer::slotSetMediaPosition);
-    connect(this, &QMediaPlayer::positionChanged, this, &myQMediaPlayer::slotSetSliderPosition);
-    connect(this, &QMediaPlayer::durationChanged, this, &myQMediaPlayer::slotSetDuration);
+    connect(ui->horizontalSlider_music, &QSlider::sliderMoved, this, &MyQMediaPlayer::slotSetMediaPosition);
+    connect(this, &QMediaPlayer::positionChanged, this, &MyQMediaPlayer::slotSetSliderPosition);
+    connect(this, &QMediaPlayer::durationChanged, this, &MyQMediaPlayer::slotSetDuration);
 }
 
-QString myQMediaPlayer::msecsToString(qint64 n)
+QString MyQMediaPlayer::msecsToString(qint64 n)
 {
     int nHours   = (n / (60 * 60 * 1000));
     int nMinutes = ((n  % (60 * 60 * 1000)) / (60 * 1000));
@@ -41,7 +41,7 @@ QString myQMediaPlayer::msecsToString(qint64 n)
     return QTime(nHours, nMinutes, nSeconds).toString("hh:mm:ss");
 }
 
-void myQMediaPlayer::music_startPause_clicked()
+void MyQMediaPlayer::music_startPause_clicked()
 {
         if (currentSource == true)
         {
@@ -55,7 +55,7 @@ void myQMediaPlayer::music_startPause_clicked()
 
     switch(this->state())
     {
-    case myQMediaPlayer::PlayingState:
+    case MyQMediaPlayer::PlayingState:
         this->pause();
         ui->pushButton_MusicStartPause->setText("Пуск");
         ui->pushButton_MusicStartPause->setIcon(QMainWindow().style()->standardIcon(QStyle::SP_MediaPlay));
@@ -68,7 +68,7 @@ void myQMediaPlayer::music_startPause_clicked()
     }
 }
 
-void myQMediaPlayer::music_reset_clicked()
+void MyQMediaPlayer::music_reset_clicked()
 {
     this->stop();
     ui->pushButton_MusicStartPause->setText("Пуск");
@@ -78,12 +78,12 @@ void myQMediaPlayer::music_reset_clicked()
     SomeTrackStop = true;
 }
 
-void myQMediaPlayer::slotSetMediaPosition(int n)
+void MyQMediaPlayer::slotSetMediaPosition(int n)
 {
     this->setPosition(n);
 }
 
-void myQMediaPlayer::slotSetSliderPosition(qint64 n)
+void MyQMediaPlayer::slotSetSliderPosition(qint64 n)
 {
     ui->horizontalSlider_music->setValue(n);
 
@@ -92,7 +92,7 @@ void myQMediaPlayer::slotSetSliderPosition(qint64 n)
     ui->label_Music_Remain->setText(msecsToString(nDuration - n));
 }
 
-void myQMediaPlayer::slotSetDuration(qint64 n)
+void MyQMediaPlayer::slotSetDuration(qint64 n)
 {
     ui->horizontalSlider_music->setRange(0, n);
     ui->label_Music_Current->setText(msecsToString(0));

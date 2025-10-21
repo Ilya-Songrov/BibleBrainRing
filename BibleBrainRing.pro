@@ -16,7 +16,8 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     mainwindow.cpp \
-    myQGraphicsTextItem.cpp \
+    MyQGraphicsTextItem.cpp \
+    MyQMediaPlayer.cpp \
     QuestionSearch.cpp \
     QuestionPreviewForm.cpp \
     QDialogAdministration.cpp \
@@ -24,17 +25,17 @@ SOURCES += main.cpp\
     SectorGraphicsView.cpp \
     SectorGroupBoxeLeft.cpp \
     SectorGroupBoxeRight.cpp \
-    myQMediaPlayer.cpp \
     SectorPlayerAndTimer.cpp \
     SectorActions.cpp \
     StructScreens.cpp
 
 
 HEADERS  += mainwindow.h \
-    myQListWidget.h \
-    myQGraphicsTextItem.h \
-    myComboBox.h \
-    myProxyStyleHTMLdelegate.h \
+    MyQListWidget.h \
+    MyComboBox.h \
+    MyProxyStyleHTMLdelegate.h \
+    MyQGraphicsTextItem.h \
+    MyQMediaPlayer.h \
     QuestionSearch.h \
     QuestionPreviewForm.h \
     QDialogAdministration.h \
@@ -42,7 +43,6 @@ HEADERS  += mainwindow.h \
     SectorGraphicsView.h \
     SectorGroupBoxeLeft.h \
     SectorGroupBoxeRight.h \
-    myQMediaPlayer.h \
     SectorPlayerAndTimer.h \
     SectorActions.h \
     StructScreens.h

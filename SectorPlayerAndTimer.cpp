@@ -13,14 +13,14 @@ SectorPlayerAndTimer::SectorPlayerAndTimer(Ui::MainWindow *uiMain, QVector<QStri
 
 SectorPlayerAndTimer::~SectorPlayerAndTimer()
 {
-    delete myMediaPlayer;
+    delete MyMediaPlayer;
 }
 
 void SectorPlayerAndTimer::setupPlayer()
 {    
-    myMediaPlayer = new myQMediaPlayer(ui, vecStrMusic);
-    connect(this, &SectorPlayerAndTimer::signalChangeStrMusicTimerPlayer, myMediaPlayer,
-                &myQMediaPlayer::slotChangeStrMusicTimer);
+    MyMediaPlayer = new MyQMediaPlayer(ui, vecStrMusic);
+    connect(this, &SectorPlayerAndTimer::signalChangeStrMusicTimerPlayer, MyMediaPlayer,
+                &MyQMediaPlayer::slotChangeStrMusicTimer);
 }
 
 void SectorPlayerAndTimer::setupTimer()
@@ -153,16 +153,16 @@ void SectorPlayerAndTimer::timer_reset_clicked()
 void SectorPlayerAndTimer::slotOnPushButton_timer_on_off_clickedSector(bool checked)
 {
     if(ui->checkBox_music_timer->isChecked() == true &&
-            vecStrMusic[ui->listWidget_Music->currentRow()] == myMediaPlayer->strMusicTimer
-        && (myMediaPlayer->PlayingMusicTimer == true || myMediaPlayer->SomeTrackStop == true))
+            vecStrMusic[ui->listWidget_Music->currentRow()] == MyMediaPlayer->strMusicTimer
+        && (MyMediaPlayer->PlayingMusicTimer == true || MyMediaPlayer->SomeTrackStop == true))
     { // если связаны музыка и таймер и текущий трек (метрономный) на паузе
-        myMediaPlayer->music_startPause_clicked();
+        MyMediaPlayer->music_startPause_clicked();
         timer_on_off_clicked(checked);
     }
     else if(ui->checkBox_music_timer->isChecked() == true &&
-            myMediaPlayer->PlayingMusicTimer == true)
+            MyMediaPlayer->PlayingMusicTimer == true)
     { // если связаны музыка и таймер и текущий трек есть метрономный
-        myMediaPlayer->music_startPause_clicked();
+        MyMediaPlayer->music_startPause_clicked();
         timer_on_off_clicked(checked);
     }
     else
@@ -174,16 +174,16 @@ void SectorPlayerAndTimer::slotOnPushButton_timer_on_off_clickedSector(bool chec
 void SectorPlayerAndTimer::slotOnPushButton_timer_reset_clickedSector()
 {
     if(ui->checkBox_music_timer->isChecked() == true &&
-            vecStrMusic[ui->listWidget_Music->currentRow()] == myMediaPlayer->strMusicTimer
-            && (myMediaPlayer->PlayingMusicTimer == true || myMediaPlayer->SomeTrackStop == true))
+            vecStrMusic[ui->listWidget_Music->currentRow()] == MyMediaPlayer->strMusicTimer
+            && (MyMediaPlayer->PlayingMusicTimer == true || MyMediaPlayer->SomeTrackStop == true))
     { // если связаны музыка и таймер и текущий трек (метрономный) на паузе
-        myMediaPlayer->music_reset_clicked();
+        MyMediaPlayer->music_reset_clicked();
         timer_reset_clicked();
     }
     else if(ui->checkBox_music_timer->isChecked() == true &&
-            myMediaPlayer->PlayingMusicTimer == true)
+            MyMediaPlayer->PlayingMusicTimer == true)
     { // если связаны музыка и таймер и текущий трек есть метрономный
-        myMediaPlayer->music_reset_clicked();
+        MyMediaPlayer->music_reset_clicked();
         timer_reset_clicked();
     }
     else
@@ -195,59 +195,59 @@ void SectorPlayerAndTimer::slotOnPushButton_timer_reset_clickedSector()
 void SectorPlayerAndTimer::slotOnListWidget_Music_itemActivatedSector(QListWidgetItem *item)
 {
     if(ui->checkBox_music_timer->isChecked() == true &&
-            vecStrMusic[ui->listWidget_Music->row(item)] == myMediaPlayer->strMusicTimer)
+            vecStrMusic[ui->listWidget_Music->row(item)] == MyMediaPlayer->strMusicTimer)
     { // если связаны музыка и таймер и текущий трек есть метрономный
 
-        myMediaPlayer->music_reset_clicked();
-        myMediaPlayer->music_startPause_clicked();
+        MyMediaPlayer->music_reset_clicked();
+        MyMediaPlayer->music_startPause_clicked();
         timer_reset_clicked();
         timer_on_off_clicked(true);
     }
     else
     {
-        myMediaPlayer->music_reset_clicked();
-        myMediaPlayer->music_startPause_clicked();
+        MyMediaPlayer->music_reset_clicked();
+        MyMediaPlayer->music_startPause_clicked();
     }
 }
 
 void SectorPlayerAndTimer::slotOnPushButton_MusicStartPause_clickedSector()
 {
     if(ui->checkBox_music_timer->isChecked() == true &&
-            vecStrMusic[ui->listWidget_Music->currentRow()] == myMediaPlayer->strMusicTimer
-            && (myMediaPlayer->PlayingMusicTimer == true || myMediaPlayer->SomeTrackStop == true))
+            vecStrMusic[ui->listWidget_Music->currentRow()] == MyMediaPlayer->strMusicTimer
+            && (MyMediaPlayer->PlayingMusicTimer == true || MyMediaPlayer->SomeTrackStop == true))
     { // если связаны музыка и таймер и текущий трек (метрономный) на паузе
-        myMediaPlayer->music_startPause_clicked();
+        MyMediaPlayer->music_startPause_clicked();
         timer_on_off_clicked(!ui->pushButton_timer_on_off->isChecked());
     }
     else if(ui->checkBox_music_timer->isChecked() == true &&
-            myMediaPlayer->PlayingMusicTimer == true)
+            MyMediaPlayer->PlayingMusicTimer == true)
     { // если связаны музыка и таймер и текущий трек есть метрономный
-        myMediaPlayer->music_startPause_clicked();
+        MyMediaPlayer->music_startPause_clicked();
         timer_on_off_clicked(!ui->pushButton_timer_on_off->isChecked());
     }
     else
     {
-        myMediaPlayer->music_startPause_clicked();
+        MyMediaPlayer->music_startPause_clicked();
     }
 }
 
 void SectorPlayerAndTimer::slotOnPushButton_MusicReset_clickedSector()
 {
     if(ui->checkBox_music_timer->isChecked() == true &&
-            vecStrMusic[ui->listWidget_Music->currentRow()] == myMediaPlayer->strMusicTimer
-        && (myMediaPlayer->PlayingMusicTimer == true || myMediaPlayer->SomeTrackStop == true))
+            vecStrMusic[ui->listWidget_Music->currentRow()] == MyMediaPlayer->strMusicTimer
+        && (MyMediaPlayer->PlayingMusicTimer == true || MyMediaPlayer->SomeTrackStop == true))
     { // если связаны музыка и таймер и текущий трек (метрономный) на паузе
-        myMediaPlayer->music_reset_clicked();
+        MyMediaPlayer->music_reset_clicked();
         timer_reset_clicked();
     }
-    else if(ui->checkBox_music_timer->isChecked() == true && myMediaPlayer->PlayingMusicTimer == true)
+    else if(ui->checkBox_music_timer->isChecked() == true && MyMediaPlayer->PlayingMusicTimer == true)
     { // если связаны музыка и таймер и текущий трек есть метрономный
-        myMediaPlayer->music_reset_clicked();
+        MyMediaPlayer->music_reset_clicked();
         timer_reset_clicked();
     }
     else
     {
-        myMediaPlayer->music_reset_clicked();
+        MyMediaPlayer->music_reset_clicked();
     }
 }
 

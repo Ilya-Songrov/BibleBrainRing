@@ -11,7 +11,7 @@
 #include <QAbstractItemView>
 #include <QStyledItemDelegate>
 
-class myProxyStyle : public QProxyStyle
+class MyProxyStyle : public QProxyStyle
 {
   public:
     void drawItemText(QPainter *painter, const QRect &rect, int flags, const QPalette &pal, bool enabled,
@@ -39,9 +39,9 @@ class myProxyStyle : public QProxyStyle
     }
 };
 
-class myStyledItemDelegate : public QStyledItemDelegate {
+class MyStyledItemDelegate : public QStyledItemDelegate {
 public:
-    myStyledItemDelegate(QObject* pobj = 0) : QStyledItemDelegate(pobj)
+    MyStyledItemDelegate(QObject* pobj = 0) : QStyledItemDelegate(pobj)
     {
     }
 

@@ -1,4 +1,4 @@
-#include "sectorGroupBoxeRight.h"
+#include "SectorGroupBoxeRight.h"
 
 SectorGroupBoxeRight::SectorGroupBoxeRight(Ui::MainWindow *uiMain) :
     ui(uiMain)
@@ -42,14 +42,14 @@ void SectorGroupBoxeRight::setupActionsAndConnections()
     contextMenuPix->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/DeleteAll.png"),"Удалить все");
     contextMenuPix->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Load.png"),"Загрузить");
     connect(contextMenuPix,SIGNAL(triggered(QAction*)),SLOT(slotActivatedPng(QAction*)));
-    connect(ui->listWidget_pix, &myQListWidget::signalDropListWidgetPix, this, &SectorGroupBoxeRight::slotDropPix);
+    connect(ui->listWidget_pix, &MyQListWidget::signalDropListWidgetPix, this, &SectorGroupBoxeRight::slotDropPix);
 
 
-    connect(ui->listWidget_pix, &myQListWidget::itemActivated, this,
+    connect(ui->listWidget_pix, &MyQListWidget::itemActivated, this,
             &SectorGroupBoxeRight::slotOnListWidget_pix_itemActivated);
-    connect(ui->listWidget_pix, &myQListWidget::itemPressed, this,
+    connect(ui->listWidget_pix, &MyQListWidget::itemPressed, this,
             &SectorGroupBoxeRight::slotOnListWidget_pix_itemPressed);
-    connect(ui->listWidget_pix, &myQListWidget::customContextMenuRequested, this,
+    connect(ui->listWidget_pix, &MyQListWidget::customContextMenuRequested, this,
             &SectorGroupBoxeRight::slotExecContextMenuPng);
 
     connect(ui->pushButton_png, &QPushButton::clicked, this, &SectorGroupBoxeRight::slotOnPushButton_png_clicked);

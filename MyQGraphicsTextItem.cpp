@@ -1,7 +1,7 @@
-#include "myQGraphicsTextItem.h"
+#include "MyQGraphicsTextItem.h"
 #include "QTextCursor"
 
-myQGraphicsTextItem::myQGraphicsTextItem(myQGraphicsTextItem::GroupMembers members, QGraphicsTextItem *parent)
+MyQGraphicsTextItem::MyQGraphicsTextItem(MyQGraphicsTextItem::GroupMembers members, QGraphicsTextItem *parent)
                 : QGraphicsTextItem(parent)
 {
     member = members;
@@ -14,19 +14,19 @@ myQGraphicsTextItem::myQGraphicsTextItem(myQGraphicsTextItem::GroupMembers membe
 }
 
 
-QRectF myQGraphicsTextItem::boundingRect() const
+QRectF MyQGraphicsTextItem::boundingRect() const
 {
     switch (member)
     {
-    case myQGraphicsTextItem::LineFirstTeam:
-    case myQGraphicsTextItem::LineSecondTeam:
-    case myQGraphicsTextItem::LineFirstPoints:
-    case myQGraphicsTextItem::LineSecondPoints:
+    case MyQGraphicsTextItem::LineFirstTeam:
+    case MyQGraphicsTextItem::LineSecondTeam:
+    case MyQGraphicsTextItem::LineFirstPoints:
+    case MyQGraphicsTextItem::LineSecondPoints:
         return QRectF(0,0,textWidth(),QGraphicsTextItem::boundingRect().height());
         break;
-    case myQGraphicsTextItem::LineTitleText:
-    case myQGraphicsTextItem::LineQuestion:
-    case myQGraphicsTextItem::LineTimer:
+    case MyQGraphicsTextItem::LineTitleText:
+    case MyQGraphicsTextItem::LineQuestion:
+    case MyQGraphicsTextItem::LineTimer:
         return QRectF(0,0,textWidth(),QGraphicsTextItem::boundingRect().height());
         break;
     default:
@@ -35,14 +35,14 @@ QRectF myQGraphicsTextItem::boundingRect() const
     }
 }
 
-QPainterPath myQGraphicsTextItem::shape() const
+QPainterPath MyQGraphicsTextItem::shape() const
 {
     QPainterPath path; // метод скорее не нужен. Пусть пока будет
     path.addRect(boundingRect());
     return path;
 }
 
-void myQGraphicsTextItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void MyQGraphicsTextItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
 
     painter->save();
@@ -65,13 +65,13 @@ void myQGraphicsTextItem::paint(QPainter *painter, const QStyleOptionGraphicsIte
 }
 
 
-void myQGraphicsTextItem::focusInEvent(QFocusEvent *event)
+void MyQGraphicsTextItem::focusInEvent(QFocusEvent *event)
 {
     QGraphicsTextItem::focusInEvent(event);
     boolFocusInOut = true;
 }
 
-void myQGraphicsTextItem::focusOutEvent(QFocusEvent *event)
+void MyQGraphicsTextItem::focusOutEvent(QFocusEvent *event)
 {
     QGraphicsTextItem::focusOutEvent(event);
     boolFocusInOut = false;
@@ -80,7 +80,7 @@ void myQGraphicsTextItem::focusOutEvent(QFocusEvent *event)
     emit cursorPositionChangeD(); // когда итем теряет фокус, обнуляются QToolButton в slotRefresh_Tool()
 }
 
-void myQGraphicsTextItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void MyQGraphicsTextItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsTextItem::mousePressEvent(event);
     Q_UNUSED(event);
@@ -92,13 +92,13 @@ void myQGraphicsTextItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
     }
 }
 
-void myQGraphicsTextItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void MyQGraphicsTextItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsTextItem::mouseReleaseEvent(event);
     emit cursorPositionChangeD(); // в ворде тоже реагирует на снятие а не на нажатие.
 }
 
-void myQGraphicsTextItem::keyPressEvent(QKeyEvent *event)
+void MyQGraphicsTextItem::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Backspace && (event->modifiers() == Qt::CTRL || event->modifiers() == Qt::ALT ||
                                              event->modifiers() == Qt::SHIFT))

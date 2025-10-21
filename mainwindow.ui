@@ -463,7 +463,7 @@
             </layout>
            </item>
            <item row="0" column="0" colspan="2">
-            <widget class="myQListWidget" name="listWidget_Music">
+            <widget class="MyQListWidget" name="listWidget_Music">
              <property name="focusPolicy">
               <enum>Qt::WheelFocus</enum>
              </property>
@@ -560,7 +560,7 @@
                  </widget>
                 </item>
                 <item row="0" column="1">
-                 <widget class="myComboBox" name="fontSizeCombo_2">
+                 <widget class="MyComboBox" name="fontSizeCombo_2">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -874,7 +874,7 @@ border-radius: 6px;*/
            <item row="0" column="0" colspan="2">
             <layout class="QHBoxLayout" name="horizontalLayout_5">
              <item>
-              <widget class="myQListWidget" name="listWidget_pix">
+              <widget class="MyQListWidget" name="listWidget_pix">
                <property name="focusPolicy">
                 <enum>Qt::WheelFocus</enum>
                </property>
@@ -1298,14 +1298,14 @@ border-radius: 6px;*/
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>myQListWidget</class>
+   <class>MyQListWidget</class>
    <extends>QListWidget</extends>
-   <header>myQListWidget.h</header>
+   <header>MyQListWidget.h</header>
   </customwidget>
   <customwidget>
-   <class>myComboBox</class>
+   <class>MyComboBox</class>
    <extends>QComboBox</extends>
-   <header>myComboBox.h</header>
+   <header>MyComboBox.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

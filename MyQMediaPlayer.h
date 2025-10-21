@@ -9,10 +9,10 @@
 #include <QStyle>
 #include <QTime>
 
-class myQMediaPlayer : public QMediaPlayer
+class MyQMediaPlayer : public QMediaPlayer
 {
 public:
-    myQMediaPlayer(Ui::MainWindow *uiMain, QVector <QString> &vecStrMusicSector, QWidget *parent = 0);
+    MyQMediaPlayer(Ui::MainWindow *uiMain, QVector <QString> &vecStrMusicSector, QWidget *parent = 0);
 
     Ui::MainWindow *ui;
 

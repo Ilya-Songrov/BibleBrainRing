@@ -11,11 +11,11 @@
 #include <QLineEdit>
 
 
-class myComboBox : public QComboBox
+class MyComboBox : public QComboBox
 {
     Q_OBJECT
 public:
-     explicit myComboBox(QWidget *parent = 0) : QComboBox(parent)
+     explicit MyComboBox(QWidget *parent = 0) : QComboBox(parent)
      {
          const QList<int> standardSizes = QFontDatabase::standardSizes();
          foreach (int size, standardSizes)

@@ -119,8 +119,8 @@ void MainWindow::setupFront()
 
 
     // Устанавливаем это, чтобы поисковые слова были выделенны желтым цветом.
-    ui->comboBox_question->setStyle(new myProxyStyle);
-    ui->comboBox_question->setItemDelegate(new myStyledItemDelegate);
+    ui->comboBox_question->setStyle(new MyProxyStyle);
+    ui->comboBox_question->setItemDelegate(new MyStyledItemDelegate);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *pe)

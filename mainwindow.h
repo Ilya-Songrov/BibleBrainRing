@@ -4,8 +4,8 @@
 #include "QuestionSearch.h"
 #include "SectorActions.h"
 #include "SectorGraphicsView.h"
-#include "sectorGroupBoxeRight.h"
-#include "sectorGroupBoxeLeft.h"
+#include "SectorGroupBoxeRight.h"
+#include "SectorGroupBoxeLeft.h"
 #include "SectorPlayerAndTimer.h"
 #include "StructScreens.h"
 

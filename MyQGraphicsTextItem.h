@@ -11,14 +11,14 @@
 #include <QStyleOptionGraphicsItem>
 
 
-class myQGraphicsTextItem : public QGraphicsTextItem
+class MyQGraphicsTextItem : public QGraphicsTextItem
 {
     Q_OBJECT
 
 public:
     enum GroupMembers {LineTitleText = 0, LineFirstTeam, LineSecondTeam, LineFirstPoints,
                                             LineSecondPoints, LineQuestion, LineTimer};
-     explicit myQGraphicsTextItem(GroupMembers members, QGraphicsTextItem *parent = 0);
+     explicit MyQGraphicsTextItem(GroupMembers members, QGraphicsTextItem *parent = 0);
 
     GroupMembers member;
     bool boolFocusInOut;

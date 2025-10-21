@@ -12,11 +12,11 @@
 #include <QDebug>
 
 
-class myQListWidget : public QListWidget
+class MyQListWidget : public QListWidget
 {// Нужен для дропа.
     Q_OBJECT
 public:
-    explicit myQListWidget(QWidget *parent = 0) : QListWidget(parent)
+    explicit MyQListWidget(QWidget *parent = 0) : QListWidget(parent)
     {
         setAcceptDrops(true);
     }

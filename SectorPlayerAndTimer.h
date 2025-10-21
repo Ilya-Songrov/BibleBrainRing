@@ -2,7 +2,7 @@
 #define SECTORPLAYERANDTIMER_H
 
 #include "ui_mainwindow.h"
-#include "myQMediaPlayer.h"
+#include "MyQMediaPlayer.h"
 
 #include <QObject>
 #include <QTimer>
@@ -23,7 +23,7 @@ private:
     Ui::MainWindow *ui;
     QVector <QString> &vecStrMusic;
 
-    myQMediaPlayer *myMediaPlayer;
+    MyQMediaPlayer *MyMediaPlayer;
     QTimer timer; // Вызывает сигнал и отката и обычного движения таймера.
     QTime timePause;
     QTime timeLastStart;
