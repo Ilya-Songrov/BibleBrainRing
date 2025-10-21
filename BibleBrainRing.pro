@@ -16,38 +16,39 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     mainwindow.cpp \
-    MyQGraphicsTextItem.cpp \
-    MyQMediaPlayer.cpp \
-    QuestionSearch.cpp \
-    QuestionPreviewForm.cpp \
-    QDialogAdministration.cpp \
-    QDialogSettingsScreens.cpp \
-    SectorGraphicsView.cpp \
-    SectorGroupBoxLeft.cpp \
-    SectorGroupBoxRight.cpp \
-    SectorPlayerAndTimer.cpp \
-    SectorActions.cpp \
-    StructScreens.cpp
+    Core/MyQGraphicsTextItem.cpp \
+    Core/MyQMediaPlayer.cpp \
+    Core/QuestionSearch.cpp \
+    Core/QuestionPreviewForm.cpp \
+    Core/QDialogAdministration.cpp \
+    Core/QDialogSettingsScreens.cpp \
+    Core/SectorGraphicsView.cpp \
+    Core/SectorGroupBoxLeft.cpp \
+    Core/SectorGroupBoxRight.cpp \
+    Core/SectorPlayerAndTimer.cpp \
+    Core/SectorActions.cpp \
+    Core/StructScreens.cpp
 
 
 HEADERS  += mainwindow.h \
-    MyQListWidget.h \
-    MyComboBox.h \
-    MyProxyStyleHTMLdelegate.h \
-    MyQGraphicsTextItem.h \
-    MyQMediaPlayer.h \
-    QuestionSearch.h \
-    QuestionPreviewForm.h \
-    QDialogAdministration.h \
-    QDialogSettingsScreens.h \
-    SectorGraphicsView.h \
-    SectorGroupBoxLeft.h \
-    SectorGroupBoxRight.h \
-    SectorPlayerAndTimer.h \
-    SectorActions.h \
-    StructScreens.h
+    Core/MyQListWidget.h \
+    Core/MyComboBox.h \
+    Core/MyProxyStyleHTMLdelegate.h \
+    Core/MyQGraphicsTextItem.h \
+    Core/MyQMediaPlayer.h \
+    Core/QuestionSearch.h \
+    Core/QuestionPreviewForm.h \
+    Core/QDialogAdministration.h \
+    Core/QDialogSettingsScreens.h \
+    Core/SectorGraphicsView.h \
+    Core/SectorGroupBoxLeft.h \
+    Core/SectorGroupBoxRight.h \
+    Core/SectorPlayerAndTimer.h \
+    Core/SectorActions.h \
+    Core/StructScreens.h
 
-
+INCLUDEPATH += \
+    Core
 
 FORMS    += \
     mainwindow.ui \
