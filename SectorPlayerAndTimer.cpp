@@ -259,10 +259,12 @@ void SectorPlayerAndTimer::slotOnPushButton_MusicOpen_clickedSector()
 
     if (!str.isEmpty())
     {
-        vecStrMusic.push_back(str);
+        qDebug() << "function: " << __FUNCTION__ << " str: " << str << Qt::endl;
+        qDebug() << "function: " << __FUNCTION__ << " QUrl::fromLocalFile(str).toLocalFile(): " << QUrl::fromLocalFile(str).toLocalFile() << Qt::endl;
+        vecStrMusic.push_back("file://" + QUrl::fromLocalFile(str).toLocalFile());
 
         QListWidgetItem* pitem = 0;
-        pitem = new QListWidgetItem(QDir(str).dirName(), ui->listWidget_Music);
+        pitem = new QListWidgetItem(QFileInfo(str).fileName(), ui->listWidget_Music);
         pitem->setIcon(QPixmap(":/new/GroupBoxes/MaterialsGroupBoxes/IconMusic.png").scaled(QSize(35,35),
                                                                         Qt::IgnoreAspectRatio));
 

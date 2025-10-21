@@ -12,8 +12,8 @@ void QDialogAdministration::setupBody()
     lineEdit = new QLineEdit(this);
     label = new QLabel(this);
     label_2 = new QLabel(this);
-    pushButton = new QPushButton("ок", this);
-    pushButton_2 = new QPushButton("отмена", this);
+    pushButton = new QPushButton("Гаразд", this);
+    pushButton_2 = new QPushButton("Скасувати", this);
 
         QFont font;
         font.setPointSize(10);
@@ -25,7 +25,7 @@ void QDialogAdministration::setupBody()
         font1.setWeight(75);
     label->setFont(font1);
     label->setTextFormat(Qt::RichText);
-    label->setText("Введите пароль. Это секретные настройки.");
+    label->setText("Введіть пароль. Це секретні налаштування.");
     pushButton->setEnabled(false);
 
     gridLayout->addWidget(label, 0, 0, 1, 2);
@@ -53,27 +53,28 @@ void QDialogAdministration::on_lineEdit_textChanged(const QString &arg1)
 
 void QDialogAdministration::fillVectorTry()
 {
-    vecTextTry.push_back("Пытайся!");
-    vecTextTry.push_back("Пытайся!");
-    vecTextTry.push_back("Пытайся!");
-    vecTextTry.push_back("Это связанно с датой летней встречи 2017");
-    vecTextTry.push_back("По секрету. Букв нет");
+    vecTextTry.push_back("Пробуй!");
+    vecTextTry.push_back("Пробуй!");
+    vecTextTry.push_back("Пробуй!");
+    vecTextTry.push_back("Це пов’язано з датою літньої зустрічі 2017");
+    vecTextTry.push_back("По секрету: літер немає");
     vecTextTry.push_back("Пиши... пиши...");
-    vecTextTry.push_back("Пытайся!");
-    vecTextTry.push_back("Может чет другое...");
-    vecTextTry.push_back("Может чет другое...");
-    vecTextTry.push_back("Здесь 8 цифр");
+    vecTextTry.push_back("Пробуй!");
+    vecTextTry.push_back("Може, щось інше...");
+    vecTextTry.push_back("Може, щось інше...");
+    vecTextTry.push_back("Тут 8 цифр");
     vecTextTry.push_back("Пиши... пиши...");
     vecTextTry.push_back("Пиши... пиши...");
-    vecTextTry.push_back("А может буквы не стоит писать?");
+    vecTextTry.push_back("А може, літери не варто писати?");
     vecTextTry.push_back("Пиши... пиши...");
-    vecTextTry.push_back("А может буквы не стоит писать?");
-    vecTextTry.push_back("И кто вообще это придумал?");
-    vecTextTry.push_back("Опа, опа... Лан шучу");
-    vecTextTry.push_back("200520 - дальше уже додумай сам");
-    vecTextTry.push_back("Пароль не сложный");
-    vecTextTry.push_back("А может буквы не стоит писать?");
-    vecTextTry.push_back("Пароль не сложный");
-    vecTextTry.push_back("Опа, опа... Лан шучу");
-    vecTextTry.push_back("Опа, опа... Лан шучу");
+    vecTextTry.push_back("А може, літери не варто писати?");
+    vecTextTry.push_back("І хто взагалі це придумав?");
+    vecTextTry.push_back("Опа, опа... Гаразд, жартую");
+    vecTextTry.push_back("200520 — далі вже здогадайся сам");
+    vecTextTry.push_back("Пароль не складний");
+    vecTextTry.push_back("А може, літери не варто писати?");
+    vecTextTry.push_back("Пароль не складний");
+    vecTextTry.push_back("Опа, опа... Гаразд, жартую");
+    vecTextTry.push_back("Опа, опа... Гаразд, жартую");
+
 }

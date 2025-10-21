@@ -7,11 +7,11 @@
 #include <QObject>
 #include <QDir>
 
-class SectorGroupBoxeLeft : public QObject
+class SectorGroupBoxLeft : public QObject
 {
     Q_OBJECT
 public:
-    SectorGroupBoxeLeft(Ui::MainWindow *uiMain, QVector <QString> &vecStrMusicSector);
+    SectorGroupBoxLeft(Ui::MainWindow *uiMain, QVector <QString> &vecStrMusicSector);
 
 private:
     Ui::MainWindow *ui;
@@ -31,7 +31,7 @@ public slots:
     void slotExecContextMenuMp3(const QPoint &);
 
 signals:
-    void signalChangeStrMusicTimerGroupBoxeLeft(QString strMusicTimer);
+    void signalChangeStrMusicTimerGroupBoxLeft(QString strMusicTimer);
     void signalLoadMusicTrack();
 };
 

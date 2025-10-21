@@ -17,10 +17,10 @@ MainWindow::MainWindow(QWidget *parent) :
     sectorActions = new SectorActions(ui, structScreens, m_settings);
 
     // Здесь обрабатываем все что касается бокса справа.
-    sectorGroupBoxeRight = new SectorGroupBoxeRight(ui);
+    sectorGroupBoxRight = new SectorGroupBoxRight(ui);
 
     // Здесь обрабатываем все что касается бокса слева.
-    sectorGroupBoxeLeft = new SectorGroupBoxeLeft(ui, vecStrMusic);
+    sectorGroupBoxLeft = new SectorGroupBoxLeft(ui, vecStrMusic);
 
     // Этот класс занимается музыкой и таймером. Все расчеты здесь.
     sectorPlayerAndTimer = new SectorPlayerAndTimer(ui, vecStrMusic);
@@ -41,8 +41,8 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete sectorActions;
-    delete sectorGroupBoxeRight;
-    delete sectorGroupBoxeLeft;
+    delete sectorGroupBoxRight;
+    delete sectorGroupBoxLeft;
     delete sectorPlayerAndTimer;
     delete sectorGraphicsView;
     delete questionSearch;
@@ -58,11 +58,11 @@ void MainWindow::setupConnections()
 // Связи между классами
     connect(sectorActions, &SectorActions::signalQuestionFastLoad,
                 questionSearch, &QuestionSearch::questionFastLoad);
-    connect(sectorGroupBoxeLeft, &SectorGroupBoxeLeft::signalChangeStrMusicTimerGroupBoxeLeft,
+    connect(sectorGroupBoxLeft, &SectorGroupBoxLeft::signalChangeStrMusicTimerGroupBoxLeft,
                 sectorPlayerAndTimer, &SectorPlayerAndTimer::signalChangeStrMusicTimerPlayer);
-    connect(sectorGroupBoxeLeft, &SectorGroupBoxeLeft::signalLoadMusicTrack,
+    connect(sectorGroupBoxLeft, &SectorGroupBoxLeft::signalLoadMusicTrack,
                 sectorPlayerAndTimer, &SectorPlayerAndTimer::slotOnPushButton_MusicOpen_clickedSector);
-    connect(sectorGroupBoxeRight, &SectorGroupBoxeRight::signalSetBackgroundBrush,
+    connect(sectorGroupBoxRight, &SectorGroupBoxRight::signalSetBackgroundBrush,
                 sectorGraphicsView, &SectorGraphicsView::slotSetBackgroundBrush);
     connect(sectorPlayerAndTimer, &SectorPlayerAndTimer::signalWriteTextChanged_on_TimerItem,
                 sectorGraphicsView, &SectorGraphicsView::slotWriteTextChanged_on_TimerItem);

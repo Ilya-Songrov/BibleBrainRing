@@ -31,9 +31,9 @@ void SectorGraphicsView::readSettingsSectorGraphicsView()
 
 m_settings.beginGroup("/SettingsN");
 
-int Ncolor_for_DialogR = m_settings.value("/color_backgroundScene_DialogR", 85).toInt();
-int Ncolor_for_DialogG = m_settings.value("/color_backgroundScene_DialogG", 255).toInt();
-int Ncolor_for_DialogB = m_settings.value("/color_backgroundScene_DialogB", 127).toInt();
+int Ncolor_for_DialogR = m_settings.value("/color_backgroundScene_DialogR", 250).toInt();
+int Ncolor_for_DialogG = m_settings.value("/color_backgroundScene_DialogG", 190).toInt();
+int Ncolor_for_DialogB = m_settings.value("/color_backgroundScene_DialogB", 111).toInt();
     color_backgroundScene_Dialog.setRgb(Ncolor_for_DialogR,Ncolor_for_DialogG,Ncolor_for_DialogB);
 
 int NColorR0 = m_settings.value("/colorItem_LineTitleR", QColor(Qt::black).red()).toInt();
@@ -1226,6 +1226,8 @@ void SectorGraphicsView::slotSetBackgroundBrush(QPixmap pixCurent)
 void SectorGraphicsView::slotOnPushButton_color_clicked()
 {
     QColor color = QColorDialog::getColor(Qt::black);
+    qDebug() << "function: " << __FUNCTION__ << " color: " << color << Qt::endl;
+    qDebug() << "function: " << __FUNCTION__ << " color: " << color.red() << color.green() << color.blue() << Qt::endl;
     if (color.isValid())
     {
         color_backgroundScene_Dialog = color;

@@ -1,17 +1,17 @@
-#include "SectorGroupBoxeRight.h"
+#include "SectorGroupBoxRight.h"
 
-SectorGroupBoxeRight::SectorGroupBoxeRight(Ui::MainWindow *uiMain) :
+SectorGroupBoxRight::SectorGroupBoxRight(Ui::MainWindow *uiMain) :
     ui(uiMain)
 {
     setupGroupBoxRight_png();
     setupActionsAndConnections();
 }
 
-void SectorGroupBoxeRight::setupGroupBoxRight_png()
+void SectorGroupBoxRight::setupGroupBoxRight_png()
 {
     vecPixImage.push_back(QPixmap(":/new/GroupBoxes/MaterialsGroupBoxes/Gradient 1.png"));
     vecPixImage.push_back(QPixmap(":/new/GroupBoxes/MaterialsGroupBoxes/Gradient 2.png"));
-    vecPixImage.push_back(QPixmap(":/new/GroupBoxes/MaterialsGroupBoxes/The sun sparkles on the waves.png"));
+    vecPixImage.push_back(QPixmap(":/new/GroupBoxes/MaterialsGroupBoxes/chomu-potribno-beregty-pryrodu.jpg"));
 
         QPalette pal2 = ui->listWidget_pix->palette();
         pal2.setColor(QPalette::Text, QColor(206,190,255).darker(199));
@@ -23,69 +23,69 @@ void SectorGroupBoxeRight::setupGroupBoxRight_png()
 
     QListWidgetItem* pitem = 0;
 
-        pitem = new QListWidgetItem("Градиент 1.png", ui->listWidget_pix);
+        pitem = new QListWidgetItem("Градієнт 1.png", ui->listWidget_pix);
             pitem->setIcon(vecPixImage[0].scaled(QSize(48, 48),Qt::IgnoreAspectRatio));
 
-        pitem = new QListWidgetItem("Градиент 2.png", ui->listWidget_pix);
+        pitem = new QListWidgetItem("Градієнт 2.png", ui->listWidget_pix);
             pitem->setIcon(vecPixImage[1].scaled(QSize(48, 48),Qt::IgnoreAspectRatio));
 
-        pitem = new QListWidgetItem("Солнце искрится на волнах.png", ui->listWidget_pix);
+        pitem = new QListWidgetItem("Поле.jpg", ui->listWidget_pix);
             pitem->setIcon(vecPixImage[2].scaled(QSize(48, 48),Qt::IgnoreAspectRatio));
 
             ui->listWidget_pix->setCurrentItem(pitem);
 }
 
-void SectorGroupBoxeRight::setupActionsAndConnections()
+void SectorGroupBoxRight::setupActionsAndConnections()
 {
     contextMenuPix = new QMenu(ui->menu); /* доделать в конце подыскать родителя*/
-    contextMenuPix->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Delete1.png"),"Удалить");
-    contextMenuPix->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/DeleteAll.png"),"Удалить все");
-    contextMenuPix->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Load.png"),"Загрузить");
+    contextMenuPix->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Delete1.png"),"Видалити");
+    contextMenuPix->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/DeleteAll.png"),"Видалити все");
+    contextMenuPix->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Load.png"),"Завантажити");
     connect(contextMenuPix,SIGNAL(triggered(QAction*)),SLOT(slotActivatedPng(QAction*)));
-    connect(ui->listWidget_pix, &MyQListWidget::signalDropListWidgetPix, this, &SectorGroupBoxeRight::slotDropPix);
+    connect(ui->listWidget_pix, &MyQListWidget::signalDropListWidgetPix, this, &SectorGroupBoxRight::slotDropPix);
 
 
     connect(ui->listWidget_pix, &MyQListWidget::itemActivated, this,
-            &SectorGroupBoxeRight::slotOnListWidget_pix_itemActivated);
+            &SectorGroupBoxRight::slotOnListWidget_pix_itemActivated);
     connect(ui->listWidget_pix, &MyQListWidget::itemPressed, this,
-            &SectorGroupBoxeRight::slotOnListWidget_pix_itemPressed);
+            &SectorGroupBoxRight::slotOnListWidget_pix_itemPressed);
     connect(ui->listWidget_pix, &MyQListWidget::customContextMenuRequested, this,
-            &SectorGroupBoxeRight::slotExecContextMenuPng);
+            &SectorGroupBoxRight::slotExecContextMenuPng);
 
-    connect(ui->pushButton_png, &QPushButton::clicked, this, &SectorGroupBoxeRight::slotOnPushButton_png_clicked);
-    connect(ui->radioButton_png, &QPushButton::clicked, this, &SectorGroupBoxeRight::slotOnRadioButton_png_clicked);
-    connect(ui->radioButton_2, &QPushButton::clicked, this, &SectorGroupBoxeRight::slotOnRadioButton_2_clicked);
+    connect(ui->pushButton_png, &QPushButton::clicked, this, &SectorGroupBoxRight::slotOnPushButton_png_clicked);
+    connect(ui->radioButton_png, &QPushButton::clicked, this, &SectorGroupBoxRight::slotOnRadioButton_png_clicked);
+    connect(ui->radioButton_2, &QPushButton::clicked, this, &SectorGroupBoxRight::slotOnRadioButton_2_clicked);
 }
 
-void SectorGroupBoxeRight::slotExecContextMenuPng(const QPoint &)
+void SectorGroupBoxRight::slotExecContextMenuPng(const QPoint &)
 {
     contextMenuPix->exec(QCursor::pos());
 }
 
-void SectorGroupBoxeRight::slotActivatedPng(QAction* pAction)
+void SectorGroupBoxRight::slotActivatedPng(QAction* pAction)
 {
-    if(pAction->text() == "Удалить"){
+    if(pAction->text() == "Видалити"){
         if(vecPixImage.size() != 0){
         vecPixImage.remove(ui->listWidget_pix->currentRow());
         QListWidgetItem *it = ui->listWidget_pix->item(ui->listWidget_pix->currentRow());
             delete it;
         }
     }
-    if(pAction->text() == "Удалить все"){
+    if(pAction->text() == "Видалити все"){
         for (int var = 0; var < vecPixImage.size(); ++var){
             QListWidgetItem *it = ui->listWidget_pix->item(ui->listWidget_pix->currentRow());
             delete it;
         }
         vecPixImage.clear();
     }
-    if(pAction->text() == "Загрузить"){
+    if(pAction->text() == "Завантажити"){
         slotOnPushButton_png_clicked();
     }
 }
 
 
 
-void SectorGroupBoxeRight::slotDropPix(QString strPathDrop, QString objectNameN)
+void SectorGroupBoxRight::slotDropPix(QString strPathDrop, QString objectNameN)
 {
     QStringList listDrop;
     listDrop = strPathDrop.split(QLatin1Char('\n'),QString :: SkipEmptyParts);
@@ -110,7 +110,7 @@ void SectorGroupBoxeRight::slotDropPix(QString strPathDrop, QString objectNameN)
     }
 }
 
-void SectorGroupBoxeRight::slotOnPushButton_png_clicked()
+void SectorGroupBoxRight::slotOnPushButton_png_clicked()
 {
     QString strFilter;
     QString str = QFileDialog::getOpenFileName(0,tr("Open Pixmap"), QDir::currentPath(),
@@ -135,7 +135,7 @@ void SectorGroupBoxeRight::slotOnPushButton_png_clicked()
     }
 }
 
-void SectorGroupBoxeRight::slotOnRadioButton_png_clicked(bool checked)
+void SectorGroupBoxRight::slotOnRadioButton_png_clicked(bool checked)
 {
     if(checked && vecPixImage.size() != 0){
       QPixmap pixCurentForBrushScene = vecPixImage[ui->listWidget_pix->currentRow()].scaled(
@@ -144,7 +144,7 @@ void SectorGroupBoxeRight::slotOnRadioButton_png_clicked(bool checked)
     }
 }
 
-void SectorGroupBoxeRight::slotOnRadioButton_2_clicked(bool checked_2)
+void SectorGroupBoxRight::slotOnRadioButton_2_clicked(bool checked_2)
 {
     if(checked_2 == true){
         QPixmap pixCurentForBrushScene;
@@ -152,7 +152,7 @@ void SectorGroupBoxeRight::slotOnRadioButton_2_clicked(bool checked_2)
     }
 }
 
-void SectorGroupBoxeRight::slotOnListWidget_pix_itemActivated(QListWidgetItem *)
+void SectorGroupBoxRight::slotOnListWidget_pix_itemActivated(QListWidgetItem *)
 {
     ui->radioButton_png->setChecked(true);
     if(ui->radioButton_png->isChecked() && vecPixImage.size() != 0){
@@ -162,7 +162,7 @@ void SectorGroupBoxeRight::slotOnListWidget_pix_itemActivated(QListWidgetItem *)
     }
 }
 
-void SectorGroupBoxeRight::slotOnListWidget_pix_itemPressed(QListWidgetItem *item)
+void SectorGroupBoxRight::slotOnListWidget_pix_itemPressed(QListWidgetItem *item)
 {
     Q_UNUSED(item);
     if(ui->radioButton_png->isChecked() && vecPixImage.size() != 0)

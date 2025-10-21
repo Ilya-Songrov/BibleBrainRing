@@ -1,6 +1,6 @@
-#include "SectorGroupBoxeLeft.h"
+#include "SectorGroupBoxLeft.h"
 
-SectorGroupBoxeLeft::SectorGroupBoxeLeft(Ui::MainWindow *uiMain, QVector <QString> &vecStrMusicSector) :
+SectorGroupBoxLeft::SectorGroupBoxLeft(Ui::MainWindow *uiMain, QVector <QString> &vecStrMusicSector) :
     ui(uiMain),
     vecStrMusic(vecStrMusicSector)
 {
@@ -8,7 +8,7 @@ SectorGroupBoxeLeft::SectorGroupBoxeLeft(Ui::MainWindow *uiMain, QVector <QStrin
     setupActionsAndConnections();
 }
 
-void SectorGroupBoxeLeft::setupGroupBoxLeft_mp3()
+void SectorGroupBoxLeft::setupGroupBoxLeft_mp3()
 {
     // для музыки нужно еще добавлять (qrc) поскольку QUrl() не читает.
     vecStrMusic.push_back("qrc:/new/GroupBoxes/MaterialsGroupBoxes/SoundQuestion.mp3");
@@ -31,41 +31,41 @@ void SectorGroupBoxeLeft::setupGroupBoxLeft_mp3()
 
     QListWidgetItem* pitem = 0;
 
-        pitem = new QListWidgetItem("Вопрос", ui->listWidget_Music);
+        pitem = new QListWidgetItem("Питання.mp3", ui->listWidget_Music);
             pitem->setIcon(pixMp3_Wav);
 
-        pitem = new QListWidgetItem("Не правильный ответ.wav", ui->listWidget_Music);
+        pitem = new QListWidgetItem("Хибна відповідь.wav", ui->listWidget_Music);
             pitem->setIcon(pixMp3_Wav);
 
-        pitem = new QListWidgetItem("Таймер", ui->listWidget_Music);
+        pitem = new QListWidgetItem("Таймер.mp3", ui->listWidget_Music);
             pitem->setIcon(pixTimerMusic);
 
         ui->listWidget_Music->setCurrentItem(pitem);
 }
 
-void SectorGroupBoxeLeft::setupActionsAndConnections()
+void SectorGroupBoxLeft::setupActionsAndConnections()
 {
     contextMenuMp3 = new QMenu(ui->menu);/* доделать в конце подыскать родителя*/
-    contextMenuMp3->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Delete1.png"),"Удалить");
-    contextMenuMp3->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/DeleteAll.png"),"Удалить почти все");
-    contextMenuMp3->addAction(QIcon(":/new/GroupBoxes/MaterialsGroupBoxes/IconTimer.png"),"Музыка таймера");
-    contextMenuMp3->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Load.png"),"Загрузить");
+    contextMenuMp3->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Delete1.png"),"Видалити вибране");
+    contextMenuMp3->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/DeleteAll.png"),"Видалити все окрім таймера");
+    contextMenuMp3->addAction(QIcon(":/new/GroupBoxes/MaterialsGroupBoxes/IconTimer.png"),"Встановити музикою таймера");
+    contextMenuMp3->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Load.png"),"Завантажити");
     connect(contextMenuMp3,SIGNAL(triggered(QAction*)),SLOT(slotActivatedMp3(QAction*)));
-    connect(ui->listWidget_Music, &MyQListWidget::signalDropListWidgetMp3, this, &SectorGroupBoxeLeft::slotDropMp3);
+    connect(ui->listWidget_Music, &MyQListWidget::signalDropListWidgetMp3, this, &SectorGroupBoxLeft::slotDropMp3);
 
 
     connect(ui->listWidget_Music, &MyQListWidget::customContextMenuRequested, this,
-            &SectorGroupBoxeLeft::slotExecContextMenuMp3);
+            &SectorGroupBoxLeft::slotExecContextMenuMp3);
 }
 
-void SectorGroupBoxeLeft::slotExecContextMenuMp3(const QPoint &)
+void SectorGroupBoxLeft::slotExecContextMenuMp3(const QPoint &)
 {
     contextMenuMp3->exec(QCursor::pos());
 }
 
-void SectorGroupBoxeLeft::slotActivatedMp3(QAction *pAction)
+void SectorGroupBoxLeft::slotActivatedMp3(QAction *pAction)
 {
-    if(pAction->text() == "Удалить"){
+    if(pAction->text() == "Видалити вибране"){
         if(vecStrMusic.size() != 0 && vecStrMusic[ui->listWidget_Music->currentRow()] != strMusicTimer)
         {
             vecStrMusic.remove(ui->listWidget_Music->currentRow());
@@ -73,21 +73,20 @@ void SectorGroupBoxeLeft::slotActivatedMp3(QAction *pAction)
             delete it;
         }
     }
-    if(pAction->text() == "Удалить почти все"){
+    if(pAction->text() == "Видалити все окрім таймера"){
         for (int var = 0; var < vecStrMusic.size(); ++var)
         {
                 QListWidgetItem *it = ui->listWidget_Music->item(ui->listWidget_Music->currentRow());
                 delete it;
         }
         vecStrMusic.clear();//Сначала все удаляется, после вставляется только муз.таймер
-
         vecStrMusic.push_back(strMusicTimer);
         QListWidgetItem* pitem = 0;
-        pitem = new QListWidgetItem(QDir(vecStrMusic[0]).dirName(), ui->listWidget_Music);
+        pitem = new QListWidgetItem("Таймер", ui->listWidget_Music);
         pitem->setIcon(pixTimerMusic);
         ui->listWidget_Music->setCurrentItem(pitem);
     }
-    if(pAction->text() == "Музыка таймера"){
+    if(pAction->text() == "Встановити музикою таймера"){
         if(vecStrMusic.size() != 0 && vecStrMusic[ui->listWidget_Music->currentRow()] != strMusicTimer)
         {
             for (int var = 0; var < vecStrMusic.size(); ++var)
@@ -96,18 +95,18 @@ void SectorGroupBoxeLeft::slotActivatedMp3(QAction *pAction)
                 }
 // Сначала меняется предыдущая картинка таймера на pixMp3_Wav, после новый трек получает pixTimerMusic
             strMusicTimer = vecStrMusic[ui->listWidget_Music->currentRow()];
-            emit signalChangeStrMusicTimerGroupBoxeLeft(strMusicTimer);
+            emit signalChangeStrMusicTimerGroupBoxLeft(strMusicTimer);
             ui->listWidget_Music->item(ui->listWidget_Music->currentRow())->setIcon(pixTimerMusic);
         }
 
     }
-    if(pAction->text() == "Загрузить"){
+    if(pAction->text() == "Завантажити"){
         emit signalLoadMusicTrack();
     }
 
 }
 
-void SectorGroupBoxeLeft::slotDropMp3(QString strPathDrop, QString objectNameN)
+void SectorGroupBoxLeft::slotDropMp3(QString strPathDrop, QString objectNameN)
 {
     QStringList listDrop;
     listDrop = strPathDrop.split(QLatin1Char('\n'),QString :: SkipEmptyParts);

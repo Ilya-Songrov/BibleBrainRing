@@ -8,11 +8,11 @@
 #include <QDir>
 #include <QFileDialog>
 
-class SectorGroupBoxeRight : public QObject
+class SectorGroupBoxRight : public QObject
 {
     Q_OBJECT
 public:
-    SectorGroupBoxeRight(Ui::MainWindow *uiMain);
+    SectorGroupBoxRight(Ui::MainWindow *uiMain);
 
 private:
     Ui::MainWindow *ui;

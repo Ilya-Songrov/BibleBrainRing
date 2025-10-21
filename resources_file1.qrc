@@ -32,13 +32,13 @@
     <qresource prefix="/new/GroupBoxes">
         <file>MaterialsGroupBoxes/Gradient 1.png</file>
         <file>MaterialsGroupBoxes/Gradient 2.png</file>
-        <file>MaterialsGroupBoxes/The sun sparkles on the waves.png</file>
         <file>MaterialsGroupBoxes/IconMusic.png</file>
         <file>MaterialsGroupBoxes/IconTimer.png</file>
         <file>MaterialsGroupBoxes/SoundIncorrectAnswer.wav</file>
         <file>MaterialsGroupBoxes/SoundQuestion.mp3</file>
         <file>MaterialsGroupBoxes/SoundTimer.mp3</file>
         <file>MaterialsGroupBoxes/Bible Brain Ring (Icon).png</file>
+        <file>MaterialsGroupBoxes/chomu-potribno-beregty-pryrodu.jpg</file>
     </qresource>
     <qresource prefix="/new/Other">
         <file>FilesAndLogo/Logo_temporarily.png</file>

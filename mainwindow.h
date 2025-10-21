@@ -4,8 +4,8 @@
 #include "QuestionSearch.h"
 #include "SectorActions.h"
 #include "SectorGraphicsView.h"
-#include "SectorGroupBoxeRight.h"
-#include "SectorGroupBoxeLeft.h"
+#include "SectorGroupBoxRight.h"
+#include "SectorGroupBoxLeft.h"
 #include "SectorPlayerAndTimer.h"
 #include "StructScreens.h"
 
@@ -55,8 +55,8 @@ public:
     StructScreens structScreens;
 
     SectorActions *sectorActions;
-    SectorGroupBoxeRight *sectorGroupBoxeRight;
-    SectorGroupBoxeLeft *sectorGroupBoxeLeft;
+    SectorGroupBoxRight *sectorGroupBoxRight;
+    SectorGroupBoxLeft *sectorGroupBoxLeft;
     SectorPlayerAndTimer *sectorPlayerAndTimer;
     SectorGraphicsView *sectorGraphicsView;
     QuestionSearch *questionSearch;

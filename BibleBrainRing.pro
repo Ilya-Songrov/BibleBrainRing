@@ -14,7 +14,7 @@ TARGET = Bible' 'Brain' 'Ring
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
+SOURCES += main.cpp \
     mainwindow.cpp \
     MyQGraphicsTextItem.cpp \
     MyQMediaPlayer.cpp \
@@ -23,8 +23,8 @@ SOURCES += main.cpp\
     QDialogAdministration.cpp \
     QDialogSettingsScreens.cpp \
     SectorGraphicsView.cpp \
-    SectorGroupBoxeLeft.cpp \
-    SectorGroupBoxeRight.cpp \
+    SectorGroupBoxLeft.cpp \
+    SectorGroupBoxRight.cpp \
     SectorPlayerAndTimer.cpp \
     SectorActions.cpp \
     StructScreens.cpp
@@ -41,8 +41,8 @@ HEADERS  += mainwindow.h \
     QDialogAdministration.h \
     QDialogSettingsScreens.h \
     SectorGraphicsView.h \
-    SectorGroupBoxeLeft.h \
-    SectorGroupBoxeRight.h \
+    SectorGroupBoxLeft.h \
+    SectorGroupBoxRight.h \
     SectorPlayerAndTimer.h \
     SectorActions.h \
     StructScreens.h
