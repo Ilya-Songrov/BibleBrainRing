@@ -9,10 +9,10 @@
 struct StructScreens
 {
 public:
-    QDesktopWidget *desktopWidget; // ссылка на QDesktopWidget
-    QVector <QGraphicsView *> VecGraphicsViewDesktop; // созданные экраны
-    QVector <QSizeF> VecGraphicsViewScaleSize; // созданные экраны
-    QVector <QVector <int> > VecGraphicsViewReset; // экраны для VecGraphicsViewResetса)
+    QDesktopWidget *desktopWidget; // посилання на QDesktopWidget
+    QVector <QGraphicsView *> VecGraphicsViewDesktop; // створені екрани
+    QVector <QSizeF> VecGraphicsViewScaleSize; // створені екрани
+    QVector <QVector <int> > VecGraphicsViewReset; // екрани для скидання
     QWidget *parentWidget;
 
     bool showORhideScreen = false;

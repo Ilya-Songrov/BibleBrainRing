@@ -37,8 +37,8 @@
         <file>MaterialsGroupBoxes/SoundIncorrectAnswer.wav</file>
         <file>MaterialsGroupBoxes/SoundQuestion.mp3</file>
         <file>MaterialsGroupBoxes/SoundTimer.mp3</file>
-        <file>MaterialsGroupBoxes/Bible Brain Ring (Icon).png</file>
         <file>MaterialsGroupBoxes/chomu-potribno-beregty-pryrodu.jpg</file>
+        <file>MaterialsGroupBoxes/BibleBrainRingIcon.png</file>
     </qresource>
     <qresource prefix="/new/Other">
         <file>FilesAndLogo/Logo_temporarily.png</file>

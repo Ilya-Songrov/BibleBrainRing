@@ -9,8 +9,8 @@ IDI_ICON1               ICON    DISCARDABLE     "myappico.ico"
 //#define VER_FILEDESCRIPTION_STR     "Description of the project"
 //#define VER_INTERNALNAME_STR        "Sensor"
 //#define VER_LEGALCOPYRIGHT_STR      "Ilya Songrov"
-//#define VER_ORIGINALFILENAME_STR    "Bible Brain Ring.exe"
-//#define VER_PRODUCTNAME_STR         "Bible Brain Ring"
+//#define VER_ORIGINALFILENAME_STR    "BibleBrainRing.exe"
+//#define VER_PRODUCTNAME_STR         "BibleBrainRing"
 
 //VS_VERSION_INFO VERSIONINFO
 //FILEVERSION     VER_FILEVERSION

@@ -300,7 +300,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     pixmapD.fill(QColor(color_backgroundScene_Dialog));
     pixCurentForBrushScene = pixmapD;
 
-    pixLineTitlePixmap = QPixmap(":/new/GroupBoxes/MaterialsGroupBoxes/Bible Brain Ring (Icon).png").
+    pixLineTitlePixmap = QPixmap(":/new/GroupBoxes/MaterialsGroupBoxes/BibleBrainRingIcon.png").
                                                                     scaled(400,50,Qt::KeepAspectRatio);
 
     main_scene.setBackgroundBrush(QBrush(pixCurentForBrushScene));

@@ -22,7 +22,7 @@ public:
 
     GroupMembers member;
     bool boolFocusInOut;
-    bool boolMousePress = true;// для того чтобы нажимая на итем, текст в нем выделялся.
+    bool boolMousePress = true;// для того щоб натискаючи на айтем, текст в ньому виділявся.
     bool showHideRect = false;
 
     void setShow_HideRect(bool showHide = false){showHideRect = showHide; update();}

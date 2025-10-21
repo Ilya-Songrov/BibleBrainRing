@@ -110,8 +110,8 @@ void MainWindow::setupConnections()
 
 void MainWindow::setupFront()
 {
-    this->setWindowIconText("Bible' 'Brain' 'Ring");
-    this->setWindowTitle("Bible Brain Ring");
+    this->setWindowIconText("BibleBrainRing");
+    this->setWindowTitle("BibleBrainRing");
         QPalette pal_Window; // фон всього додатку
         pal_Window.setBrush(QPalette::Background,QBrush(Qt::lightGray));
         setPalette(pal_Window);

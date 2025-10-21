@@ -34,7 +34,7 @@ void QuestionSearch::showPreviewFormDecoder(QString currentPath)
     questionPreviewForm->setWindowTitle(QObject::tr("Choose Encoding for %1").arg(QFileInfo(fileName).fileName()));
     questionPreviewForm->setEncodedData(data);
     if (questionPreviewForm->exec())
-    {                          //  я сам доделал, как мог)
+    {                          //  я сам доробив, як міг)
         QStringList list;
         list = questionPreviewForm->decodedString().split(QLatin1Char('\n'),QString :: SkipEmptyParts);
         for (int var = 0; var < list.size(); ++var)
@@ -50,12 +50,12 @@ void QuestionSearch::questionFastLoad(bool boolQuestionsonEsther)
 {
     QString str;
     QString strFilter;
-    if(!boolQuestionsonEsther)// Если обычная ситуация, тоесть в административных настройках ничего не установленно.
+    if(!boolQuestionsonEsther)// Якщо звичайна ситуація, тобто в адміністративних налаштуваннях нічого не встановлено.
         str = QFileDialog::getOpenFileName(0,"Open questions", QDir::currentPath(),"*.txt", &strFilter);
 
 //-------------------------------------------------------------------------------------------------------------
-// Вопросы по Есфири сохранены в ресурсах. Загрузить можно через административные настройки.
-    if(boolQuestionsonEsther)// Если в административных настройках установленно, мы входим. Вызовется эта функция.
+// Питання по Есфірі збережені в ресурсах. Завантажити можна через адміністративні налаштування.
+    if(boolQuestionsonEsther)// Якщо в адміністративних налаштуваннях встановлено, ми входимо. Викличеться ця функція.
         str = ":/new/Other/FilesAndLogo/Вопросы по Есфири  ANSI Windows1251.txt";
 //-------------------------------------------------------------------------------------------------------------
 
@@ -85,19 +85,19 @@ void QuestionSearch::questionFastLoad(bool boolQuestionsonEsther)
 
 QStringList QuestionSearch::search(QString strRequest)
 {
-   QStringList lstHTML_questions;//Список вопросов которые соотвецтвуют поиску.
+   QStringList lstHTML_questions;//Список питань які відповідають пошуку.
 
-   for (int var = 0; var < vecText_questions.size(); ++var)// Поиск.
+   for (int var = 0; var < vecText_questions.size(); ++var)// Пошук.
    {
-       // toLower() - переводим все в нижний регистр, чтобы поиск был независимо от регистра.
+       // toLower() - переводимо все в нижній регістр, щоб пошук був незалежно від регістру.
        int purpose = vecText_questions[var].toLower().indexOf(strRequest.toLower(),0);
        if(purpose >= 0)
        {
-           // Вставка в текс HTML тегов. Все для выделения желтым цветом.
+           // Вставка в текст HTML тегів. Все для виділення жовтим кольором.
            QString strHTML = vecText_questions[var];
-           // Сначала вставляется закрывающий тег. Позиция + количество букв в поисковом слове, это куда вставлять.
+           // Спочатку вставляється закриваючий тег. Позиція + кількість букв в пошуковому слові, це куди вставляти.
            strHTML.insert(purpose + strRequest.size(),"</span>");
-           strHTML.insert(purpose, "<span style=\"background: yellow\">");// Вставляется открывающий тег.
+           strHTML.insert(purpose, "<span style=\"background: yellow\">");// Вставляється відкриваючий тег.
            lstHTML_questions.push_back(strHTML);
        }
    }
@@ -118,14 +118,14 @@ void QuestionSearch::slotOnPushButton_Search_clicked()
 
     ui->comboBox_question->clear();
     if(lstHTML_questions.size() > 1 || lstHTML_questions.isEmpty())
-    {//Если по запросу поиска несколько вариантов или вовсе никаких, тогда:
-        ui->comboBox_question->addItem("");// Выводим пустую строку, и
+    {//Якщо за запитом пошуку кілька варіантів або взагалі ніяких, тоді:
+        ui->comboBox_question->addItem("");// Виводимо порожній рядок, і
         ui->comboBox_question->addItems(lstHTML_questions);
         ui->comboBox_question->showPopup();
     }
-    if(lstHTML_questions.size() == 1)// Если вариант один
+    if(lstHTML_questions.size() == 1)// Якщо варіант один
     {
-        ui->comboBox_question->addItems(lstHTML_questions);// Он один помещается в комбобокс и
-        emit signalShowQuestion(lstHTML_questions[0]);// сразу выводим это на экран.
+        ui->comboBox_question->addItems(lstHTML_questions);// Він один поміщається в комбобокс і
+        emit signalShowQuestion(lstHTML_questions[0]);// одразу виводимо це на екран.
     }
 }

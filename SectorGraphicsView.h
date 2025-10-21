@@ -19,7 +19,7 @@ QT_END_NAMESPACE
 
 
 class SectorGraphicsView : public QObject
-{// Здесь обрабатываются сцена и виджеты над сценой
+{// Тут обробляються сцена і віджети над сценою
     Q_OBJECT
 public:
     SectorGraphicsView(Ui::MainWindow *uiMain, int timerBasic, StructScreens &structScreens_,
@@ -36,10 +36,10 @@ public:
     QColor color_backgroundScene_Dialog;
 
 
-    QGraphicsPixmapItem *Item_LineTitlePixmap; // заглавие картинка
+    QGraphicsPixmapItem *Item_LineTitlePixmap; // заголовок картинка
 
     QTextDocument *Doc_LineTitleText;
-        MyQGraphicsTextItem *Item_LineTitleText; // заглавие текст
+        MyQGraphicsTextItem *Item_LineTitleText; // заголовок текст
     QTextDocument *Doc_LineFirstTeam;
         MyQGraphicsTextItem *Item_LineFirstTeam;
     QTextDocument *Doc_LineSecondTeam;
@@ -54,15 +54,15 @@ public:
         MyQGraphicsTextItem *Item_LineTimer;
 
 
-    // сначала думал без вектора обойдусь, но после пришлось сделать, когда уже почти все сделал. Смешно просто.
+    // спочатку думав без вектора обійдуся, але після довелося зробити, коли вже майже все зробив. Смішно просто.
     QVector <MyQGraphicsTextItem *> vecAll_Item_Line;
-    QVector <MyQGraphicsTextItem *> vecAll_Item_LineD; // еще и этот вектор понадобился
+    QVector <MyQGraphicsTextItem *> vecAll_Item_LineD; // ще і цей вектор знадобився
     int intIntervalPlusMinus = 0;
 
 
-    // другие экраны:
-    QGraphicsPixmapItem *Item_LineTitlePixmapD; // заглавие картинка
-    MyQGraphicsTextItem *Item_LineTitleTextD; // заглавие текст
+    // інші екрани:
+    QGraphicsPixmapItem *Item_LineTitlePixmapD; // заголовок картинка
+    MyQGraphicsTextItem *Item_LineTitleTextD; // заголовок текст
     MyQGraphicsTextItem *Item_LineFirstTeamD;
     MyQGraphicsTextItem *Item_LineSecondTeamD;
     MyQGraphicsTextItem *Item_LineFirstPointsD;
@@ -95,9 +95,9 @@ public:
         QAction *aTimerNegativeNumbers;
         QAction *aTimerGradient;
 
-        bool boolFontDefaultItemsReset = false;// При первом запуске прочтение сохранения установить здесь истину,
-        // что позволит использовать дефолтный шрифт. При повторных запусках будут использоваться сохраненные
-        // настройки, поскольку дефолт будет установлен на ложь. При сбросе настроек опять установиться истина.
+        bool boolFontDefaultItemsReset = false;// При першому запуску прочитання збереження встановити тут істину,
+        // що дозволить використовувати дефолтний шрифт. При повторних запусках будуть використовуватися збережені
+        // налаштування, оскільки дефолт буде встановлений на хибність. При скиданні налаштувань знову встановиться істина.
 
         QColor colorItem_LineTitle;
         QColor colorItem_LineFirstTeam;

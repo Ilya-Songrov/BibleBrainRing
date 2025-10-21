@@ -10,7 +10,7 @@ SectorGroupBoxLeft::SectorGroupBoxLeft(Ui::MainWindow *uiMain, QVector <QString>
 
 void SectorGroupBoxLeft::setupGroupBoxLeft_mp3()
 {
-    // для музыки нужно еще добавлять (qrc) поскольку QUrl() не читает.
+    // для музики потрібно ще додавати (qrc) оскільки QUrl() не читає.
     vecStrMusic.push_back("qrc:/new/GroupBoxes/MaterialsGroupBoxes/SoundQuestion.mp3");
     vecStrMusic.push_back("qrc:/new/GroupBoxes/MaterialsGroupBoxes/SoundIncorrectAnswer.wav");
     vecStrMusic.push_back("qrc:/new/GroupBoxes/MaterialsGroupBoxes/SoundTimer.mp3");
@@ -45,7 +45,7 @@ void SectorGroupBoxLeft::setupGroupBoxLeft_mp3()
 
 void SectorGroupBoxLeft::setupActionsAndConnections()
 {
-    contextMenuMp3 = new QMenu(ui->menu);/* доделать в конце подыскать родителя*/
+    contextMenuMp3 = new QMenu(ui->menu);/* доробити в кінці підшукати батька*/
     contextMenuMp3->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Delete1.png"),"Видалити вибране");
     contextMenuMp3->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/DeleteAll.png"),"Видалити все окрім таймера");
     contextMenuMp3->addAction(QIcon(":/new/GroupBoxes/MaterialsGroupBoxes/IconTimer.png"),"Встановити музикою таймера");
@@ -79,7 +79,7 @@ void SectorGroupBoxLeft::slotActivatedMp3(QAction *pAction)
                 QListWidgetItem *it = ui->listWidget_Music->item(ui->listWidget_Music->currentRow());
                 delete it;
         }
-        vecStrMusic.clear();//Сначала все удаляется, после вставляется только муз.таймер
+        vecStrMusic.clear();//Спочатку все видаляється, після вставляється тільки муз.таймер
         vecStrMusic.push_back(strMusicTimer);
         QListWidgetItem* pitem = 0;
         pitem = new QListWidgetItem("Таймер", ui->listWidget_Music);
@@ -93,7 +93,7 @@ void SectorGroupBoxLeft::slotActivatedMp3(QAction *pAction)
                 if(vecStrMusic[var] == strMusicTimer){
                     ui->listWidget_Music->item(var)->setIcon(pixMp3_Wav);
                 }
-// Сначала меняется предыдущая картинка таймера на pixMp3_Wav, после новый трек получает pixTimerMusic
+// Спочатку змінюється попередня картинка таймера на pixMp3_Wav, після новий трек отримує pixTimerMusic
             strMusicTimer = vecStrMusic[ui->listWidget_Music->currentRow()];
             emit signalChangeStrMusicTimerGroupBoxLeft(strMusicTimer);
             ui->listWidget_Music->item(ui->listWidget_Music->currentRow())->setIcon(pixTimerMusic);
@@ -111,7 +111,7 @@ void SectorGroupBoxLeft::slotDropMp3(QString strPathDrop, QString objectNameN)
     QStringList listDrop;
     listDrop = strPathDrop.split(QLatin1Char('\n'),QString :: SkipEmptyParts);
 
-    if(objectNameN == "listWidget_Music")// Если это mp3 и listWidget котрый слева.
+    if(objectNameN == "listWidget_Music")// Якщо це mp3 і listWidget який зліва.
     {
         for (int var = 0; var < listDrop.size(); ++var)
         {

@@ -16,7 +16,7 @@ class MyProxyStyle : public QProxyStyle
   public:
     void drawItemText(QPainter *painter, const QRect &rect, int flags, const QPalette &pal, bool enabled,
                       const QString &text, QPalette::ColorRole textRole = QPalette::NoRole) const
-    {// Это работает только когда комбобокс не редактируемый.
+    {// Це працює тільки коли комбобокс не редагований.
         if(text.isEmpty() || text == "") return;
 
         QPen saved_pen;
@@ -59,7 +59,7 @@ public:
            optionS.widget->style()->drawControl(QStyle::CE_ItemViewItem, &optionS, pPainter);
 
            pPainter->translate(optionS.rect.left() - 3, optionS.rect.top() - 3);
-           QRect clip(0, 0, optionS.rect.width(), optionS.rect.height() + 5);// + 5 чтоб снизу не обрезались буквы.
+           QRect clip(0, 0, optionS.rect.width(), optionS.rect.height() + 5);// + 5 щоб знизу не обрізалися букви.
            doc.drawContents(pPainter, clip);
 
            pPainter->restore();
