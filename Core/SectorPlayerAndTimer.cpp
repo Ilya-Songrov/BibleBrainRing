@@ -52,12 +52,12 @@ void SectorPlayerAndTimer::slotTimer()
     QString strMinus = "   ";
     int mseconds = 0;
 
-    if(boolComeback)// Если это возврат.
+    if(boolComeback)// Якщо це повернення.
     {
         intComeback += 1000;
-        mseconds = intComeback / 1000 * 1000;// Это для того чтобы мелесикунды всегда были 3 нолика.
+        mseconds = intComeback / 1000 * 1000;// Це для того щоб мілісекунди завжди були 3 нолики.
 
-        if(intComeback >= int_timer_basic * 1000){// Если перевалили за точку отсчета.
+        if(intComeback >= int_timer_basic * 1000){// Якщо перевалили за точку відліку.
             emit signalWriteTextChanged_on_TimerItem(QTime::fromMSecsSinceStartOfDay(int_timer_basic * 1000)
                 .second(), "   " + QTime::fromMSecsSinceStartOfDay(int_timer_basic * 1000).toString("mm:ss:zzz"));
             timer.stop();
@@ -69,30 +69,30 @@ void SectorPlayerAndTimer::slotTimer()
             return;
         }
     }
-    else// Если это обычное движение таймера вниз.
-    {   // +1 чтобы не терять первую секунду.
+    else// Якщо це звичайний рух таймера вниз.
+    {   // +1 щоб не втрачати першу секунду.
         mseconds = ((int_timer_basic + 1) * 1000) - (timePause.msecsSinceStartOfDay() +
                     QTime::currentTime().msecsSinceStartOfDay() - timeLastStart.msecsSinceStartOfDay());
-        intComeback = mseconds;// Записываем сколько опустился таймер в мелесикудах, потом столько же поднимемся.
+        intComeback = mseconds;// Записуємо скільки опустився таймер в мілісекундах, потім стільки ж піднімемося.
     }
 
-    if(mseconds < 0){// Если число отрицательное мы его делаем положительным, поскольку QTime не понимает минус.
+    if(mseconds < 0){// Якщо число від'ємне ми його робимо додатним, оскільки QTime не розуміє мінус.
         mseconds = mseconds * -1;
         strMinus = " - ";
-        if(!boolComeback){// Для того чтобы секунду ноль не показывать 2 раза.
+        if(!boolComeback){// Для того щоб секунду ноль не показувати 2 рази.
             mseconds += 1000;
         }
         QMenu *sceneMenu = ui->menuBar->findChild<QMenu *>("sceneMenu");
         QMenu *sceneMenuTimer = sceneMenu->findChild<QMenu *>("sceneMenuTimer");
         QAction *aTimerNegativeNumbers = sceneMenuTimer->findChild<QAction *>("aTimerNegativeNumbers");
 
-            if(!aTimerNegativeNumbers->isChecked()){// Если не нужно уходить в минус. Делаем паузу.
+            if(!aTimerNegativeNumbers->isChecked()){// Якщо не потрібно йти в мінус. Робимо паузу.
                 slotOnPushButton_timer_on_off_clickedSector(!ui->pushButton_timer_on_off->isChecked());
                 return;
         }
     }
 
-    // если секунда отрицательная, отправляем отрицательной.
+    // якщо секунда від'ємна, відправляємо від'ємною.
     emit signalWriteTextChanged_on_TimerItem(strMinus != " - " ?
         QTime::fromMSecsSinceStartOfDay(mseconds).second() : QTime::fromMSecsSinceStartOfDay(mseconds).second() * -1,
                             strMinus + QTime::fromMSecsSinceStartOfDay(mseconds).toString("mm:ss:zzz"));
@@ -113,7 +113,7 @@ void SectorPlayerAndTimer::timer_on_off_clicked(bool checked)
     {
         timeLastStart = QTime::currentTime();
         timer.start(20);
-        boolComeback = false;// Если вдруг возврат не закончился, а мы нажали пуск, тут отменяется возврат.
+        boolComeback = false;// Якщо раптом повернення не закінчилося, а ми натиснули пуск, тут скасовується повернення.
         ui->pushButton_timer_on_off->setChecked(true);
         ui->pushButton_timer_on_off->setText("Выкл.");
     }

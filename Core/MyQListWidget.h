@@ -13,7 +13,7 @@
 
 
 class MyQListWidget : public QListWidget
-{// Нужен для дропа.
+{// Потрібен для дропу.
     Q_OBJECT
 public:
     explicit MyQListWidget(QWidget *parent = 0) : QListWidget(parent)
@@ -42,24 +42,24 @@ protected:
             QString strSuffix = QFileInfo(url.toString().remove("file:///")).suffix();
             qDebug() << "function: " << __FUNCTION__ << " strSuffix: " << strSuffix << Qt::endl;
 
-            if(strSuffix == "png" || strSuffix == "jpg")// Если картинки, сохраняем адреса.
+            if(strSuffix == "png" || strSuffix == "jpg")// Якщо картинки, зберігаємо адреси.
                 strPathDropPix += url.toString().remove("file:///") + "\n";
-            if(strSuffix == "mp3" || strSuffix == "wav")// Если музыка, сохраняем адреса.
+            if(strSuffix == "mp3" || strSuffix == "wav")// Якщо музика, зберігаємо адреси.
                 strPathDropMp3 += url.toString().remove("file:///") + "\n";
             qDebug() << "function: " << __FUNCTION__ << " strPathDropPix: " << strPathDropPix << Qt::endl;
             qDebug() << "function: " << __FUNCTION__ << " strPathDropMp3: " << strPathDropMp3 << Qt::endl;
         }
         if(!strPathDropPix.isEmpty()){
-            // Если картинка - отправляем сигнал.
+            // Якщо картинка - відправляємо сигнал.
             emit signalDropListWidgetPix(strPathDropPix, this->objectName());
         }
         if(!strPathDropMp3.isEmpty()){
-            // Если музыка - отправляем сигнал.
+            // Якщо музика - відправляємо сигнал.
             emit signalDropListWidgetMp3(strPathDropMp3, this->objectName());
         }
     }
 signals:
-    // Первый параметр адреса, второй - или картинки или музыка.
+    // Перший параметр адреси, другий - або картинки або музика.
     void signalDropListWidgetPix(QString strPathDrop, QString objectNameN);
     void signalDropListWidgetMp3(QString strPathDrop, QString objectNameN);
 };
