@@ -1,7 +1,7 @@
 #include "QDialogSettingsScreens.h"
 
 QDialogSettingsScreens::QDialogSettingsScreens(StructScreens &structScreens_, QWidget *parent) :
-    QDialog(parent), // Для запоминания, инициализация родителя должна быть раньше инициализации полей.
+    QDialog(parent), // Для запам'ятовування, ініціалізація батька повинна бути раніше ініціалізації полів.
     structScreens(structScreens_)
 {
     setupBudy();
@@ -109,9 +109,9 @@ void QDialogSettingsScreens::slotOnPushButton_apply_clicked()
 {
     int row = tableWidget->rowCount();
     for (int var = 0; var < row; ++var)
-    { // for для обхода всех экранов в системе. Чтоб для каждого отдельно подготовить GraphicsView
-      // добавление цифр (+6,-3) для того чтобы не были видны края экрана, они по умолчанию белые.
-      // на черном фоне это прекрасно заметно.
+    { // for для обходу всіх екранів в системі. Щоб для кожного окремо підготувати GraphicsView
+      // додавання цифр (+6,-3) для того щоб не були видні краї екрана, вони за замовчуванням білі.
+      // на чорному тлі це прекрасно помітно.
 
         int intDesWidth = tableWidget->item(var,0)->text().toInt()+6;
         int intDesHeight = tableWidget->item(var,1)->text().toInt()+6;

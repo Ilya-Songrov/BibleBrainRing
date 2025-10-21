@@ -8,12 +8,12 @@ void StructScreens::initializationDesktop()
     int intAllXmove = 0;
 
     for (int var = 0; var < desktopWidget->numScreens(); ++var)
-    { // for для обхода всех экранов в системе. Чтоб для каждого отдельно подготовить QGraphicsView
+    { // for для обходу всіх екранів в системі. Щоб для кожного окремо підготувати QGraphicsView
         int intDesWidth = 0;
         int intDesHeight = 0;
         int intDesYmove = 0;
         if (var != desktopWidget->primaryScreen())
-        { // если не основной экран в системе.
+        { // якщо не основний екран в системі.
             intDesWidth = desktopWidget->screenGeometry(var).width();
             intDesHeight = desktopWidget->screenGeometry(var).height();
             intDesYmove = 0;
@@ -23,7 +23,7 @@ void StructScreens::initializationDesktop()
             intDesWidth = desktopWidget->screenGeometry(var).width();
             intDesHeight = desktopWidget->screenGeometry(var).height();
             intDesYmove = 0;
-    //            intDesWidth = 400; // после удалить
+    //            intDesWidth = 400; // після видалити
     //            intDesHeight = 300;
     //            intDesYmove = 0;
     //            intAllXmove = 359;
@@ -35,12 +35,12 @@ void StructScreens::initializationDesktop()
             graphicsViewD->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
             graphicsViewD->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
             graphicsViewD->setMinimumSize(intDesWidth+6,intDesHeight+6);
-            graphicsViewD->move(intAllXmove-3,intDesYmove-3); // чтобы скрыть края
+            graphicsViewD->move(intAllXmove-3,intDesYmove-3); // щоб сховати краї
 
             VecGraphicsViewDesktop.push_back(graphicsViewD);
 
-    //            intDesWidth += 6,intDesHeight += 6; // чтобы скрыть края
-            // Выщитывается во сколько увеличен экран относительно главной сцены, делением на ее размер.
+    //            intDesWidth += 6,intDesHeight += 6; // щоб сховати краї
+            // Вирахується у скільки збільшений екран відносно головної сцени, діленням на її розмір.
             VecGraphicsViewScaleSize.push_back(QSizeF((qreal)intDesWidth / 400,
                                                       (qreal)intDesHeight / 300));
 

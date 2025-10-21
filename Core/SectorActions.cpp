@@ -5,14 +5,14 @@ SectorActions::SectorActions(Ui::MainWindow *uiMain, StructScreens &structScreen
     structScreens(structScreens_),
     m_settings(m_settings_)
 {
-    Just_a_button = m_settings.value("Just_a_button", 1).toInt(); // читаем сохранение
+    Just_a_button = m_settings.value("Just_a_button", 1).toInt(); // читаємо збереження
     setupActions();
     setupConnections();
 }
 
 SectorActions::~SectorActions()
 {
-    m_settings.setValue("Just_a_button", Just_a_button); // записываем сохранение
+    m_settings.setValue("Just_a_button", Just_a_button); // записуємо збереження
 }
 
 void SectorActions::setupActions()
@@ -45,7 +45,7 @@ void SectorActions::setupConnections()
 }
 
 void SectorActions::slotOnAction_save_triggeredSector()
-{/* доделать в конце работает ли?*/
+{/* доробити в кінці чи працює?*/
     QString strFilter;
     QString str = QFileDialog::getSaveFileName(0,QObject::tr("Save Pixmap"),
         ui->lineEdit_1->text() + " - " + ui->lineEdit_2->text(),"*.jpg",&strFilter);
@@ -89,8 +89,8 @@ void SectorActions::slotOn_checkBox_3_clicked(bool checked)
 void SectorActions::slotOnAction_administration_triggered()
 {
     QDialogAdministration dialogAdministration;
-    if(dialogAdministration.exec() != QDialog::Accepted)// Если не нажимаем ок, тогда выходим. Ок недоступна, -
-        return;                                                 // - пока не введеться правильно пароль.
+    if(dialogAdministration.exec() != QDialog::Accepted)// Якщо не натискаємо ок, тоді виходимо. Ок недоступна, -
+        return;                                                 // - поки не введеться правильно пароль.
 
         QDialog dialog;
         dialog.setWindowFlags(Qt::WindowCloseButtonHint);

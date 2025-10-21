@@ -55,7 +55,7 @@ class QTextCodec;
 QT_END_NAMESPACE
 
 class QuestionPreviewForm : public QDialog
-{// Заимствован из примеров Qt.
+{// Запозичено з прикладів Qt.
     Q_OBJECT
 
 public:

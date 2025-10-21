@@ -129,8 +129,8 @@ void SectorPlayerAndTimer::timer_reset_clicked()
     if(aTimerComeback->isChecked() == true)
     {
         timer.stop();
-        boolComeback = true;// Отмечаем что пошел возврат.
-        timer.start(int_timer_speed);// Замедляем таймер для возврата.
+        boolComeback = true;// Відмічаємо що почалося повернення.
+        timer.start(int_timer_speed);// Уповільнюємо таймер для повернення.
         timePause = QTime::fromMSecsSinceStartOfDay(0);
 
         ui->pushButton_timer_on_off->setText("Вкл.");
@@ -155,13 +155,13 @@ void SectorPlayerAndTimer::slotOnPushButton_timer_on_off_clickedSector(bool chec
     if(ui->checkBox_music_timer->isChecked() == true &&
             vecStrMusic[ui->listWidget_Music->currentRow()] == MyMediaPlayer->strMusicTimer
         && (MyMediaPlayer->PlayingMusicTimer == true || MyMediaPlayer->SomeTrackStop == true))
-    { // если связаны музыка и таймер и текущий трек (метрономный) на паузе
+    { // якщо зв'язані музика і таймер і поточний трек (метрономний) на паузі
         MyMediaPlayer->music_startPause_clicked();
         timer_on_off_clicked(checked);
     }
     else if(ui->checkBox_music_timer->isChecked() == true &&
             MyMediaPlayer->PlayingMusicTimer == true)
-    { // если связаны музыка и таймер и текущий трек есть метрономный
+    { // якщо зв'язані музика і таймер і поточний трек є метрономний
         MyMediaPlayer->music_startPause_clicked();
         timer_on_off_clicked(checked);
     }

@@ -37,7 +37,7 @@ QRectF MyQGraphicsTextItem::boundingRect() const
 
 QPainterPath MyQGraphicsTextItem::shape() const
 {
-    QPainterPath path; // метод скорее не нужен. Пусть пока будет
+    QPainterPath path; // метод швидше не потрібен. Нехай поки буде
     path.addRect(boundingRect());
     return path;
 }
@@ -51,7 +51,7 @@ void MyQGraphicsTextItem::paint(QPainter *painter, const QStyleOptionGraphicsIte
     {
         if(boolFocusInOut == false)
         {
-            painter->setPen(Qt::white); // рисуется 2 цвета, покуда фон может быть черным и белым и другим
+            painter->setPen(Qt::white); // рисується 2 кольори, поки фон може бути чорним і білим і іншим
             painter->drawRect(boundingRect());
             painter->setPen(Qt::black);
             painter->drawRect(boundingRect());
@@ -75,16 +75,16 @@ void MyQGraphicsTextItem::focusOutEvent(QFocusEvent *event)
 {
     QGraphicsTextItem::focusOutEvent(event);
     boolFocusInOut = false;
-    boolMousePress = true;// ставит true чтобы при следующем нажатии сработало выделение.
-    // вызов как-бы не пердназначался для этого и не связан с названием, но он хорошо подходит
-    emit cursorPositionChangeD(); // когда итем теряет фокус, обнуляются QToolButton в slotRefresh_Tool()
+    boolMousePress = true;// ставить true щоб при наступному натисканні спрацювало виділення.
+    // виклик як-би не передбачався для цього і не пов'язаний з назвою, але він добре підходить
+    emit cursorPositionChangeD(); // коли айтем втрачає фокус, обнуляються QToolButton в slotRefresh_Tool()
 }
 
 void MyQGraphicsTextItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsTextItem::mousePressEvent(event);
     Q_UNUSED(event);
-    if(boolMousePress){// если первый раз нажали значит выделить текст.
+    if(boolMousePress){// якщо перший раз натиснули значить виділити текст.
         QTextCursor cursor = this->textCursor();
         cursor.select(QTextCursor::Document);
         this->setTextCursor(cursor);
@@ -95,14 +95,14 @@ void MyQGraphicsTextItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void MyQGraphicsTextItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsTextItem::mouseReleaseEvent(event);
-    emit cursorPositionChangeD(); // в ворде тоже реагирует на снятие а не на нажатие.
+    emit cursorPositionChangeD(); // в ворді теж реагує на зняття а не на натискання.
 }
 
 void MyQGraphicsTextItem::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Backspace && (event->modifiers() == Qt::CTRL || event->modifiers() == Qt::ALT ||
                                              event->modifiers() == Qt::SHIFT))
-        return; // пришлось сделать чтобы при пустом документе все не уходило в дефолт.
+        return; // довелося зробити щоб при порожньому документі все не йшло в дефолт.
     QGraphicsTextItem::keyPressEvent(event);
     if(event->key() == Qt::Key_Left || event->key() == Qt::Key_Right ||
        event->key() == Qt::Key_Up ||  event->key() == Qt::Key_Down)
