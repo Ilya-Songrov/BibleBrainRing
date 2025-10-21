@@ -23,7 +23,7 @@ public:
          setCurrentIndex(standardSizes.indexOf(QApplication::font().pointSize()));
                  //color(qrand() % 256, qrand() % 256, qrand() % 256)
          setEditable(true);
-         setAutoCompletion(false); // без автодополнения
+         setAutoCompletion(false); // без автодоповнення
          setMaxCount(count());
      }
 
@@ -32,7 +32,7 @@ public:
      virtual void hidePopup()
      {
          QComboBox::hidePopup();
-         // обработка сигнала прописана в QtCreator. После сигнала фокус пололучает ui->graphicsView
+         // обробка сигналу прописана в QtCreator. Після сигналу фокус отримує ui->graphicsView
          emit signalComboBoxHidePopup();
      }
 protected:

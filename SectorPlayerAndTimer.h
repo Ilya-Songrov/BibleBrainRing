@@ -24,14 +24,14 @@ private:
     QVector <QString> &vecStrMusic;
 
     MyQMediaPlayer *MyMediaPlayer;
-    QTimer timer; // Вызывает сигнал и отката и обычного движения таймера.
+    QTimer timer; // Викликає сигнал і відкату і звичайного руху таймера.
     QTime timePause;
     QTime timeLastStart;
     bool boolComeback = false;
     int int_timer_basic;
-    int intComeback; // По этому числу удобно откатывать таймер.
-    // равно 10. Будем умножать на 1000(переводя в миллисекунды), чтобы не было проблем если введут 67 секунд.
-    int int_timer_speed; // скорость отката
+    int intComeback; // За цим числом зручно відкочувати таймер.
+    // дорівнює 10. Будемо помножувати на 1000(переводячи в мілісекунди), щоб не було проблем якщо введуть 67 секунд.
+    int int_timer_speed; // швидкість відкату
 
     void setupPlayer();
     void setupTimer();

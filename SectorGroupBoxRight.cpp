@@ -37,7 +37,7 @@ void SectorGroupBoxRight::setupGroupBoxRight_png()
 
 void SectorGroupBoxRight::setupActionsAndConnections()
 {
-    contextMenuPix = new QMenu(ui->menu); /* доделать в конце подыскать родителя*/
+    contextMenuPix = new QMenu(ui->menu); /* доробити в кінці підшукати батька*/
     contextMenuPix->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Delete1.png"),"Видалити");
     contextMenuPix->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/DeleteAll.png"),"Видалити все");
     contextMenuPix->addAction(QIcon(":/new/ActionImage/ActionImageMenuBar/Load.png"),"Завантажити");
@@ -90,7 +90,7 @@ void SectorGroupBoxRight::slotDropPix(QString strPathDrop, QString objectNameN)
     QStringList listDrop;
     listDrop = strPathDrop.split(QLatin1Char('\n'),QString :: SkipEmptyParts);
 
-    if(objectNameN == "listWidget_pix")// Если это музыка и listWidget котрый справа.
+    if(objectNameN == "listWidget_pix")// Якщо це картинки і listWidget який справа.
     {
         for (int var = 0; var < listDrop.size(); ++var)
         {

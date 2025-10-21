@@ -9,32 +9,32 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // Структура для хранения информации об экранах. Собственном и если подключен проэктор, тогда и о нем.
+    // Структура для зберігання інформації про екрани. Власний і якщо підключено проектор, тоді і про нього.
     structScreens.setParentWidget(this);
     structScreens.initializationDesktop();
 
-    // Здесь обрабатывается информация QActions которые находятся в меню. Конечно есть и исключение.
+    // Тут обробляється інформація QActions які знаходяться в меню. Звичайно є і виняток.
     sectorActions = new SectorActions(ui, structScreens, m_settings);
 
-    // Здесь обрабатываем все что касается бокса справа.
+    // Тут обробляємо все що стосується бокса справа.
     sectorGroupBoxRight = new SectorGroupBoxRight(ui);
 
-    // Здесь обрабатываем все что касается бокса слева.
+    // Тут обробляємо все що стосується бокса зліва.
     sectorGroupBoxLeft = new SectorGroupBoxLeft(ui, vecStrMusic);
 
-    // Этот класс занимается музыкой и таймером. Все расчеты здесь.
+    // Цей клас займається музикою і таймером. Всі розрахунки тут.
     sectorPlayerAndTimer = new SectorPlayerAndTimer(ui, vecStrMusic);
 
-    // Этот класс самый большой. Он занят графическим интерфейсом. Как все будет выглядеть в приложении и на
-    // экране решается здесь. Также возможности редактирования осуществленны в этом классе.
+    // Цей клас найбільший. Він зайнятий графічним інтерфейсом. Як все буде виглядати в додатку і на
+    // екрані вирішується тут. Також можливості редагування здійснені в цьому класі.
     sectorGraphicsView = new SectorGraphicsView(ui, sectorPlayerAndTimer->getInt_timer_basic(), structScreens,
                                                 m_settings);
-    // Класс для работы с вопросами. Загрузка,разшифровка, поиск.
+    // Клас для роботи з питаннями. Завантаження, розшифровка, пошук.
     questionSearch = new QuestionSearch(ui, this);
 
 
-    setupFront(); // Настройки касаемо всего приложения.
-    setupConnections(); // Установка связей между классами, а также видлжетами и их слотами.
+    setupFront(); // Налаштування стосовно всього додатку.
+    setupConnections(); // Встановлення зв'язків між класами, а також віджетами і їх слотами.
 }
 
 MainWindow::~MainWindow()
@@ -47,15 +47,15 @@ MainWindow::~MainWindow()
     delete sectorGraphicsView;
     delete questionSearch;
     if(m_settings.value("boolClearRestore", false).toBool()){
-        m_settings.clear(); // если настройки сброшены, мы очищаем.
+        m_settings.clear(); // якщо налаштування скинуті, ми очищаємо.
         m_settings.setValue("boolClearRestore", false);
     }
-    /* доделать в конце удалить классы в динамической памяти*/
+    /* доробити в кінці видалити класи в динамічній пам'яті*/
 }
 
 void MainWindow::setupConnections()
 {
-// Связи между классами
+// Зв'язки між класами
     connect(sectorActions, &SectorActions::signalQuestionFastLoad,
                 questionSearch, &QuestionSearch::questionFastLoad);
     connect(sectorGroupBoxLeft, &SectorGroupBoxLeft::signalChangeStrMusicTimerGroupBoxLeft,
@@ -74,7 +74,7 @@ void MainWindow::setupConnections()
                 sectorGraphicsView, &SectorGraphicsView::slotQuestionPublic);
 
 
-// связи для QAction
+// зв'язки для QAction
     connect(ui->action_question_fast, &QAction::triggered, this, [&]() {questionSearch->questionFastLoad(false);});
     connect(ui->action_question_decocer, &QAction::triggered, this,
             [&]() {questionSearch->showPreviewFormDecoder(QDir::currentPath());});
@@ -101,7 +101,7 @@ void MainWindow::setupConnections()
     connect(ui->action_ItemPixmapSize, &QAction::triggered, sectorGraphicsView,
             &SectorGraphicsView::slotSetItemPixmapSize);
 
-// связи остальные
+// зв'язки інші
     connect(ui->pushButton_color, &QPushButton::clicked, sectorGraphicsView,
             &SectorGraphicsView::slotOnPushButton_color_clicked);
         QShortcut * shortCutTimer = new QShortcut(QKeySequence(Qt::ALT + Qt::Key_D), this);
@@ -112,13 +112,13 @@ void MainWindow::setupFront()
 {
     this->setWindowIconText("Bible' 'Brain' 'Ring");
     this->setWindowTitle("Bible Brain Ring");
-        QPalette pal_Window; // фон всего приложения
+        QPalette pal_Window; // фон всього додатку
         pal_Window.setBrush(QPalette::Background,QBrush(Qt::lightGray));
         setPalette(pal_Window);
     ui->mainToolBar->setVisible(false);
 
 
-    // Устанавливаем это, чтобы поисковые слова были выделенны желтым цветом.
+    // Встановлюємо це, щоб пошукові слова були виділені жовтим кольором.
     ui->comboBox_question->setStyle(new MyProxyStyle);
     ui->comboBox_question->setItemDelegate(new MyStyledItemDelegate);
 }
@@ -131,6 +131,6 @@ void MainWindow::keyPressEvent(QKeyEvent *pe)
             sectorActions->slotOn_pushButton_hide_clicked();
         break;
         default:
-        QWidget::keyPressEvent(pe); // Передать событие дальше
+        QWidget::keyPressEvent(pe); // Передати подію далі
     }
 }

@@ -3,9 +3,9 @@
 MyQMediaPlayer::MyQMediaPlayer(Ui::MainWindow *uiMain,  QVector <QString> &vecStrMusicSector, QWidget *parent)  :
     QMediaPlayer(parent),
     ui(uiMain),
-    currentSource(true), //текущий трек меняется в зависимости от значения этой переменной
-    PlayingMusicTimer(false), //доколе "звучит" музыка таймера переменная == true
-    SomeTrackStop(true),//означает что любой трек находится в остановленном состоянии
+    currentSource(true), //поточний трек змінюється залежно від значення цієї змінної
+    PlayingMusicTimer(false), //доки "звучить" музика таймера змінна == true
+    SomeTrackStop(true),//означає що будь-який трек знаходиться в зупиненому стані
     strMusicTimer("qrc:/new/GroupBoxes/MaterialsGroupBoxes/SoundTimer.mp3"),
     vecStrMusic(vecStrMusicSector)
 {
