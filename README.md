@@ -5,8 +5,12 @@ This application is intended for use in competitions. It displays on the screen 
 ## BibleBrainRing
 ![Image 1](docs/images/Screenshot-desktop.png)
 
+## Download
+- [BibleBrainRing Windows](https://github.com/Ilya-Songrov/BibleBrainRing)
+- [BibleBrainRing Linux](https://github.com/Ilya-Songrov/BibleBrainRing/releases/download/v1.1.0/BibleBrainRing-x86_64.AppImage)
 
 ## Develop
 - [How to build in QtCreator?](docs/README-How-to-build-in-QtCreator.md)
 - [How to deploy Linux AppImage?](docs/README-How-to-deploy-Linux-AppImage.md)
 - [How to deploy Windows Exec?](docs/README-How-to-deploy-Windows-Exec.md)
+- [How to create Releases or Tags?](docs/README-How-to-depcreateloy-Releases-or-Tags.md)
