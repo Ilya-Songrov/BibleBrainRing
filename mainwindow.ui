@@ -1245,7 +1245,7 @@ border-radius: 6px;*/
   </action>
   <action name="action_developer">
    <property name="text">
-    <string>Розробник</string>
+    <string>Про застосунок</string>
    </property>
   </action>
   <action name="action_administration">

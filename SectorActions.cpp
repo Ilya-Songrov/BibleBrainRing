@@ -241,12 +241,10 @@ void SectorActions::slotOnAction_developer_triggered()
         lab1.setPixmap(QPixmap(":/new/Other/FilesAndLogo/Logo_temporarily.png"));
         QLabel lab2;
         lab2.setTextInteractionFlags(Qt::TextSelectableByMouse);
-        lab2.setText("Розробник: \n"
-                     "  Instagram @ilya_songrov");
+        lab2.setText("Версія: v1.1.0");
         QLabel lab3;
         lab3.setTextInteractionFlags(Qt::TextSelectableByMouse);
-        lab3.setText("");
-
+        lab3.setText("Розробник: @ilya_songrov (Instagram)");
         QLabel lab4;
         lab4.setTextInteractionFlags(Qt::TextSelectableByMouse);
         lab4.setText("Програма є безкоштовною, якщо вона використовується для Слави Божої. Може поширюватися\n"
