@@ -514,9 +514,9 @@ void SectorGraphicsView::setupAndCreateSceneSecond()
                 vecAll_Item_LineD.push_back(Item_LineQuestionD);
                 vecAll_Item_LineD.push_back(Item_LineTimerD);
     for (int var = 0; var < vecAll_Item_LineD.size(); ++var)
-        vecAll_Item_LineD[var]->setData(1,int(var)); // необходимо чтобы цвет не терялся когда текст.док. пустой
+        vecAll_Item_LineD[var]->setData(1,int(var)); // необхідно щоб колір не втрачався коли текст.док. порожній
 
-        // увеличиваем изображение только однажды. Последущее увеличение происходит только через настройки.
+        // збільшуємо зображення тільки один раз. Подальше збільшення відбувається тільки через налаштування.
         for (int var = 0; var < structScreens.VecGraphicsViewDesktop.size(); ++var)
         {
             structScreens.VecGraphicsViewDesktop[var]->setScene(&sceneD);
@@ -528,9 +528,9 @@ void SectorGraphicsView::setupAndCreateSceneSecond()
 //-------------------------------------------------------------------------------------------------------
 
         slotRefresh_ItemPos(); // установка каждого (ItemLine... - главных) на свое место
-        slotOnToolButton_plus_2_clicked();// Вызываю 3 раза поднятие элементов чтобы коректно выглядели.
+        slotOnToolButton_plus_2_clicked();// Викликаю 3 рази підняття елементів щоб коректно виглядали.
         slotOnToolButton_plus_2_clicked();
-        slotOnToolButton_plus_2_clicked();// Сделал так поскольку уже боюсь что-то испортить.
+        slotOnToolButton_plus_2_clicked();// Зробив так оскільки вже боюся щось зіпсувати.
 
 
 //  slotRefresh_ItemPos() - не только обновляется позиция элементов, а и обновление текста в (LineEdit...)
@@ -626,7 +626,7 @@ void SectorGraphicsView::slotSceneMenuTriggered(QAction *action)
         slotOnPushButton_color_clicked();
     }
 
-    else if(sceenAction->text() == "Всі елементи"){// Сначала заходим сюда, а потом по очереди
+    else if(sceenAction->text() == "Всі елементи"){// Спочатку заходимо сюди, а потім по черзі
         aRemuveTitlePixmapItem->setChecked(false);
         aRemuveTitleTextItem->setChecked(aNothingNotUse->isChecked());
         aRemuveTeam1item->setChecked(aNothingNotUse->isChecked());
@@ -680,7 +680,7 @@ void SectorGraphicsView::writeTextChanged_on_Item_Line(MyQGraphicsTextItem *Item
 {
     QTextCursor cursor(Item->document());
 
-            // Чтобы при пустом документе все настройки не уходили в дефолт.
+            // Щоб при порожньому документі всі налаштування не йшли в дефолт.
             if(str == ""){
                 Item->document()->setDefaultFont(cursor.charFormat().font());
             }
@@ -714,11 +714,11 @@ cursor.beginEditBlock();// очень важная вещь
             charFormat.setForeground(cursor.charFormat().foreground());
 
 
-//          Все рисуется стандартным цветом. Если нужно другой, дальше это делается.
+//          Все рисується стандартним кольором. Якщо потрібен інший, далі це робиться.
             charFormat.setForeground(Item_LineTimer->defaultTextColor());
 
-                QRgb rgb = qRgb(250,0,0);// Это подготовленный красный цвет, если что то он вставится.
-                // Если включен градиент он будет действовать только на цифры 3,2,1,0
+                QRgb rgb = qRgb(250,0,0);// Це підготовлений червоний колір, якщо що то він вставиться.
+                // Якщо включений градієнт він буде діяти тільки на цифри 3,2,1,0
                 if(int_SecondsTimer_changing_now <= 3 && int_SecondsTimer_changing_now >= 0
                         && aTimerGradient->isChecked())
                 {
@@ -737,7 +737,7 @@ cursor.beginEditBlock();// очень важная вещь
                         charFormat.setForeground(QBrush(QColor(rgb)));
                 }
 
-                // Если ниже нуля, всегда красный несмотря на то что включен градиент или нет.
+                // Якщо нижче нуля, завжди червоний незважаючи на те що включений градієнт чи ні.
                 if(int_SecondsTimer_changing_now < 0)
                     charFormat.setForeground(QBrush(QColor(rgb)));
 
@@ -1078,9 +1078,9 @@ void SectorGraphicsView::slotLineTextChanged(const QString str)
 
 
 void SectorGraphicsView::slotQuestion(const QString &str)
-{// Сюда заходим если комбобокс вызвал, при выборе из списка. Когда редактируется комбобокс сюда не входим.
+{// Сюди заходимо якщо комбобокс викликав, при виборі зі списку. Коли редагується комбобокс сюди не входимо.
 
-    QString strCopy = str;// Создаем копию, чтобы можно было удалить теги.
+    QString strCopy = str;// Створюємо копію, щоб можна було видалити теги.
     QRegExp rxHTML("(<span style=\"background: yellow\">|</span>)");
     if(rxHTML.indexIn(str, 0) != -1){// Если теги были найдены мы их удалим. И еще это от рекурсии.
         strCopy.remove(rxHTML);// Очищаем теги

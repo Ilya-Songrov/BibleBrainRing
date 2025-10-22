@@ -176,13 +176,13 @@ void SectorPlayerAndTimer::slotOnPushButton_timer_reset_clickedSector()
     if(ui->checkBox_music_timer->isChecked() == true &&
             vecStrMusic[ui->listWidget_Music->currentRow()] == MyMediaPlayer->strMusicTimer
             && (MyMediaPlayer->PlayingMusicTimer == true || MyMediaPlayer->SomeTrackStop == true))
-    { // если связаны музыка и таймер и текущий трек (метрономный) на паузе
+    { // якщо зв'язані музика і таймер і поточний трек (метрономний) на паузі
         MyMediaPlayer->music_reset_clicked();
         timer_reset_clicked();
     }
     else if(ui->checkBox_music_timer->isChecked() == true &&
             MyMediaPlayer->PlayingMusicTimer == true)
-    { // если связаны музыка и таймер и текущий трек есть метрономный
+    { // якщо зв'язані музика і таймер і поточний трек є метрономний
         MyMediaPlayer->music_reset_clicked();
         timer_reset_clicked();
     }
@@ -196,7 +196,7 @@ void SectorPlayerAndTimer::slotOnListWidget_Music_itemActivatedSector(QListWidge
 {
     if(ui->checkBox_music_timer->isChecked() == true &&
             vecStrMusic[ui->listWidget_Music->row(item)] == MyMediaPlayer->strMusicTimer)
-    { // если связаны музыка и таймер и текущий трек есть метрономный
+    { // якщо зв'язані музика і таймер і поточний трек є метрономний
 
         MyMediaPlayer->music_reset_clicked();
         MyMediaPlayer->music_startPause_clicked();
@@ -215,13 +215,13 @@ void SectorPlayerAndTimer::slotOnPushButton_MusicStartPause_clickedSector()
     if(ui->checkBox_music_timer->isChecked() == true &&
             vecStrMusic[ui->listWidget_Music->currentRow()] == MyMediaPlayer->strMusicTimer
             && (MyMediaPlayer->PlayingMusicTimer == true || MyMediaPlayer->SomeTrackStop == true))
-    { // если связаны музыка и таймер и текущий трек (метрономный) на паузе
+    { // якщо зв'язані музика і таймер і поточний трек (метрономний) на паузі
         MyMediaPlayer->music_startPause_clicked();
         timer_on_off_clicked(!ui->pushButton_timer_on_off->isChecked());
     }
     else if(ui->checkBox_music_timer->isChecked() == true &&
             MyMediaPlayer->PlayingMusicTimer == true)
-    { // если связаны музыка и таймер и текущий трек есть метрономный
+    { // якщо зв'язані музика і таймер і поточний трек є метрономний
         MyMediaPlayer->music_startPause_clicked();
         timer_on_off_clicked(!ui->pushButton_timer_on_off->isChecked());
     }
@@ -236,12 +236,12 @@ void SectorPlayerAndTimer::slotOnPushButton_MusicReset_clickedSector()
     if(ui->checkBox_music_timer->isChecked() == true &&
             vecStrMusic[ui->listWidget_Music->currentRow()] == MyMediaPlayer->strMusicTimer
         && (MyMediaPlayer->PlayingMusicTimer == true || MyMediaPlayer->SomeTrackStop == true))
-    { // если связаны музыка и таймер и текущий трек (метрономный) на паузе
+    { // якщо зв'язані музика і таймер і поточний трек (метрономний) на паузі
         MyMediaPlayer->music_reset_clicked();
         timer_reset_clicked();
     }
     else if(ui->checkBox_music_timer->isChecked() == true && MyMediaPlayer->PlayingMusicTimer == true)
-    { // если связаны музыка и таймер и текущий трек есть метрономный
+    { // якщо зв'язані музика і таймер і поточний трек є метрономний
         MyMediaPlayer->music_reset_clicked();
         timer_reset_clicked();
     }
