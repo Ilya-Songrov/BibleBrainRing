@@ -26,7 +26,7 @@ SectorGraphicsView::~SectorGraphicsView()
 
 void SectorGraphicsView::readSettingsSectorGraphicsView()
 {
-    // для сброса дефолта шрифта. По сути есть HTML, но чтобы лагов не было оставляем еще и дефолт шрифт.
+    // для скидання дефолту шрифта. По суті є HTML, але щоб лагів не було залишаємо ще і дефолт шрифт.
     boolFontDefaultItemsReset = m_settings.value("boolFontReset", true).toBool();
 
 m_settings.beginGroup("/SettingsN");
@@ -86,7 +86,7 @@ m_settings.endGroup();
 
 void SectorGraphicsView::writeSettingsSectorGraphicsView()
 {
-    m_settings.setValue("boolFontReset", false);// Записываем ложь, чтобы потом не начинать с дефолта шрифта.
+    m_settings.setValue("boolFontReset", false);// Записуємо хибність, щоб потім не починати з дефолту шрифта.
 
 m_settings.beginGroup("/SettingsN");
 
@@ -154,10 +154,10 @@ void SectorGraphicsView::setupEverythingThatAreAboveStage()
     ui->toolButton_minus_2->setIcon(QIcon(":/new/ActionImage/ActionImageScene/minus.png"));
 
 
-    // highlighted connect, и возможно второй, не должны использоваться так как они используются.
-    // Дело в том что когда они подают сигнал слот редактирует текст. И если востользоваться Cntrl+Z
-    // возрат будет происходить по пути изменения. Этот сигнал должен использовать для демонстрации
-    // изменения текста, но не изменять, а уже когда пользователь нажал мышкой тогда уже редактировать ткст.
+    // highlighted connect, і можливо другий, не повинні використовуватися так як вони використовуються.
+    // Справа в тому що коли вони подають сигнал слот редагує текст. І якщо скористатися Cntrl+Z
+    // повернення буде відбуватися по шляху зміни. Цей сигнал повинен використовувати для демонстрації
+    // зміни тексту, але не змінювати, а вже коли користувач натиснув мишкою тоді вже редагувати текст.
             connect(ui->fontSizeCombo_2,SIGNAL(highlighted(int)),this,SLOT
                     (slot_fontSizeCombo_highlighted_AND_activated(int)));
             connect(ui->fontSizeCombo_2,SIGNAL(activated(int)),this,SLOT
@@ -275,7 +275,7 @@ connect(ui->toolButton_color_2, &QToolButton::clicked, this,
     sceneMenu->addAction(aAutoFontQuestion);
     sceneMenu->addAction(aAutoZeroPoints);
 
-    // добавляюем все эти действия в меню на панели меню, может кто не найдет на сцене.
+    // додаємо всі ці дії в меню на панелі меню, може хто не знайде на сцені.
     ui->menu_2->addSeparator();
     ui->menu_2->addMenu(sceneMenuAllitem);
     ui->menu_2->addMenu(sceneMenuUseItem);
@@ -284,7 +284,7 @@ connect(ui->toolButton_color_2, &QToolButton::clicked, this,
     ui->menu_2->addAction(aAutoFontQuestion);
     ui->menu_2->addAction(aAutoZeroPoints);
 
-    // описываем так коннекты, чтобы они работали также и с панели меню.
+    // описуємо так коннекти, щоб вони працювали також і з панелі меню.
     connect(sceneMenuAllitem,&QMenu::triggered,this,&SectorGraphicsView::slotSceneMenuTriggered);
     connect(sceneMenuUseItem,&QMenu::triggered,this,&SectorGraphicsView::slotSceneMenuTriggered);
     connect(sceneMenuTimer,&QMenu::triggered,this,&SectorGraphicsView::slotSceneMenuTriggered);
@@ -314,13 +314,13 @@ void SectorGraphicsView::setupAndCreateMainScene()
 
     Doc_LineTitleText = new QTextDocument(structScreens.parentWidget);
     Doc_LineTitleText->setHtml(strItem_LineTitle);
-    // Дефолт. шрифт какбы не нужен, поскольку мы используем HTML, но после сброса настроек нужно указать шрифт.
+    // Дефолт. шрифт якби не потрібен, оскільки ми використовуємо HTML, але після скидання налаштувань потрібно вказати шрифт.
     Doc_LineTitleText->setDefaultFont(boolFontDefaultItemsReset ? QFont("Times New Roman",12)
                                                           : Doc_LineTitleText->defaultFont());
         Item_LineTitleText = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineTitleText);
         Item_LineTitleText->setDocument(Doc_LineTitleText);
-    // Для того чтобы, если после запуска сразу удалить какой-то текст, шрифт уйдет в 8.
-    // Это потому что текст считался с настроек в виде Html.
+    // Для того щоб, якщо після запуску одразу видалити якийсь текст, шрифт піде в 8.
+    // Це тому що текст зчитувався з налаштувань у вигляді Html.
     Item_LineTitleText->document()->setDefaultFont(QTextCursor(Item_LineTitleText->document()).charFormat().font());
         Item_LineTitleText->setTextWidth(400);
         Item_LineTitleText->setShow_HideRect(true);
@@ -437,7 +437,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     connect(ui->lineEdit_value_1,&QLineEdit::textChanged,this,&SectorGraphicsView::slotLineTextChanged);
     connect(ui->lineEdit_value_2,&QLineEdit::textChanged,this,&SectorGraphicsView::slotLineTextChanged);
     connect(ui->comboBox_question,&QComboBox::currentTextChanged,this,&SectorGraphicsView::slotLineTextChanged);
-    // отображение найденного вопроса
+    // відображення знайденого питання
     connect(ui->comboBox_question,SIGNAL(activated(QString)),this,SLOT(slotQuestion(QString)));
 
 
@@ -452,8 +452,8 @@ void SectorGraphicsView::setupAndCreateSceneSecond()
 
 //-------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------
-// создание еще одной сцены которая будет устанавливаться на новое graphicsViewD и увеличиваться под другие экраны
-// используются документы которые уже были созданы для главной сцены.
+// створення ще однієї сцени яка буде встановлюватися на нове graphicsViewD і збільшуватися під інші екрани
+// використовуються документи які вже були створені для головної сцени.
 
         sceneD.setBackgroundBrush(pixCurentForBrushScene);
         sceneD.setSceneRect(0,0,400,300);

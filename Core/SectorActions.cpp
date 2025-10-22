@@ -141,9 +141,9 @@ void SectorActions::slotOnAction_administration_triggered()
             Just_a_button = spinBoxJust->value();
             structScreens.showORhideScreen = checkBoxScreen->isChecked();
             if(checkBoxQuestionsonEsther->isChecked())
-            {// Если указанно что нужно загрузить Вопросы, мы это делаем.
+            {// Якщо вказано що потрібно завантажити Питання, ми це робимо.
                 emit signalQuestionFastLoad(true);
-                ui->lineEdit_question->setText(lineQuestionNumber->text());// 52 Вопрос интересный.
+                ui->lineEdit_question->setText(lineQuestionNumber->text());// 52 Питання цікаве.
                 ui->lineEdit_question->setFocus();
             }
         }
@@ -274,7 +274,7 @@ void SectorActions::slotOn_pushButton_show_clicked()
     for (int i = 0; i < structScreens.VecGraphicsViewDesktop.size(); ++i)
     {
         if (i != QApplication::desktop()->primaryScreen() || structScreens.showORhideScreen)
-        { // если не основной экран в системе.
+        { // якщо не основний екран в системі.
             structScreens.VecGraphicsViewDesktop [i]->show();
         }
     }
@@ -285,7 +285,7 @@ void SectorActions::slotOn_pushButton_hide_clicked()
     for (int i = 0; i < structScreens.VecGraphicsViewDesktop.size(); ++i)
     {
         if (i != QApplication::desktop()->primaryScreen() || structScreens.showORhideScreen)
-        { // если не основной экран в системе.
+        { // якщо не основний екран в системі.
             structScreens.VecGraphicsViewDesktop [i]->hide();
         }
     }
