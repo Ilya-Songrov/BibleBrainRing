@@ -24,13 +24,7 @@ int main(int argc, char *argv[])
     win.setGeometry(QStyle::alignedRect(Qt::LeftToRight,Qt::AlignCenter,win.size(),
                                         qApp->desktop()->availableGeometry()));
 //        win.move(560,105);  // після видалити
-
-    // без ffShowPopupComboBox спочатку, якщо виділити текст або highlighted() по комбо боксу, нічого не буде.
-    // Однак якщо це закоментувати, то ще до появи додатку буде з'являтися комбобокс.
-    win.ffShowPopupComboBox();
     win.show();
-    win.ffHidePopupComboBox();
-
     return a.exec();
 }
 

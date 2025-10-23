@@ -138,7 +138,7 @@ void SectorGraphicsView::setupEverythingThatAreAboveStage()
     ui->toolButton_Italic_2->setShortcut(QKeySequence::Italic);
     ui->toolButton_Underline_2->setIcon(QIcon(":/new/ActionImage/ActionImageScene/Underline.png"));
     ui->toolButton_Underline_2->setShortcut(QKeySequence::Underline);
-    ui->toolButton_font_2->setIcon(QIcon(":/new/ActionImage/ActionImageScene/font_увеличить.png"));
+    ui->toolButton_font_2->setIcon(QIcon(":/new/ActionImage/ActionImageScene/font.png"));
     ui->toolButton_font_2->setIconSize(QSize(ui->toolButton_font_2->iconSize().width()+10
                                            ,ui->toolButton_font_2->iconSize().height()+10));
 
@@ -389,7 +389,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
 
     Doc_LineQuestion = new QTextDocument(structScreens.parentWidget);
     Doc_LineQuestion->setDefaultFont(QFont("MS Shell Dlg 2",16,QFont::Normal));
-    Doc_LineQuestion->setHtml("<font>Який цар написав багато псалмів?<br></font>");
+    Doc_LineQuestion->setHtml("<font>Який цар написав багато псалмів?</font>");
         Item_LineQuestion = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineQuestion);
         Item_LineQuestion->setDocument(Doc_LineQuestion);
         Item_LineQuestion->setTextWidth(400);

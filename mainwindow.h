@@ -65,10 +65,6 @@ private:
     void setupConnections();
     void setupFront();
 
-public:
-    void ffShowPopupComboBox(){ ui->fontSizeCombo_2->showPopup(); }
-    void ffHidePopupComboBox(){ ui->fontSizeCombo_2->hidePopup(); }
-
 private:
     Ui::MainWindow *ui;
 };

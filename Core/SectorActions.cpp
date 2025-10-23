@@ -271,6 +271,13 @@ void SectorActions::slotOnAction_AboutQt_triggered()
 
 void SectorActions::slotOn_pushButton_show_clicked()
 {
+
+    if ((structScreens.VecGraphicsViewDesktop.size() < 2))
+    {
+        QMessageBox::information(ui->mainToolBar,"Title", "Не знайдено екранів. Під'єднайте кабель і перезапустіть додаток.");
+        return;
+    }
+    
     for (int i = 0; i < structScreens.VecGraphicsViewDesktop.size(); ++i)
     {
         if (i != QApplication::desktop()->primaryScreen() || structScreens.showORhideScreen)

@@ -2,7 +2,6 @@
     <qresource prefix="/new/ActionImage">
         <file>ActionImageScene/Bold.png</file>
         <file>ActionImageScene/colors.png</file>
-        <file>ActionImageScene/font_увеличить.png</file>
         <file>ActionImageScene/Italic.png</file>
         <file>ActionImageScene/minus.png</file>
         <file>ActionImageScene/plus.png</file>
@@ -28,6 +27,7 @@
         <file>ActionImageMenuBar/Speed.png</file>
         <file>ActionImageMenuBar/Text.png</file>
         <file>ActionImageMenuBar/Time.png</file>
+        <file>ActionImageScene/font.png</file>
     </qresource>
     <qresource prefix="/new/GroupBoxes">
         <file>MaterialsGroupBoxes/Gradient 1.png</file>
@@ -43,6 +43,6 @@
     <qresource prefix="/new/Other">
         <file>FilesAndLogo/Logo_temporarily.png</file>
         <file>FilesAndLogo/myappico.ico</file>
-        <file>FilesAndLogo/Вопросы по Есфири  ANSI Windows1251.txt</file>
+        <file>FilesAndLogo/Questions-about-Esther-ANSI-Windows-1251.txt</file>
     </qresource>
 </RCC>

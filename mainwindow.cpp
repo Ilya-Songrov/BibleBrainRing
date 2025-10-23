@@ -4,7 +4,7 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    m_settings(QDir(QCoreApplication::applicationDirPath()).filePath("settings.ini"), QSettings::IniFormat),
+    m_settings("BibleBrainRingOrganization", "BibleBrainRingApplication"),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
