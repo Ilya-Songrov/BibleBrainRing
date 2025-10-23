@@ -35,6 +35,9 @@ void QuestionSearch::showPreviewFormDecoder(QString currentPath)
     questionPreviewForm->setEncodedData(data);
     if (questionPreviewForm->exec())
     {                          //  я сам доробив, як міг)
+        // зберігаємо шлях до файла при успішному завантаженні
+        lastUsedQuestionFilePath = fileName;
+        
         QStringList list;
         list = questionPreviewForm->decodedString().split(QLatin1Char('\n'),QString :: SkipEmptyParts);
         for (int var = 0; var < list.size(); ++var)
@@ -61,6 +64,9 @@ void QuestionSearch::questionFastLoad(bool boolQuestionsonEsther)
 
     if (!str.isEmpty())
     {
+        // зберігаємо шлях до файла тільки якщо це не ресурсний файл
+        if (!boolQuestionsonEsther)
+            lastUsedQuestionFilePath = str;
 
         QFile read_file(str);
         QString text;
@@ -127,5 +133,40 @@ void QuestionSearch::slotOnPushButton_Search_clicked()
     {
         ui->comboBox_question->addItems(lstHTML_questions);// Він один поміщається в комбобокс і
         emit signalShowQuestion(lstHTML_questions[0]);// одразу виводимо це на екран.
+    }
+}
+
+void QuestionSearch::autoLoadQuestions()
+{
+    // автоматичне завантаження питань з раніше збереженого файла
+    if (!lastUsedQuestionFilePath.isEmpty() && QFile::exists(lastUsedQuestionFilePath))
+    {
+        vecText_questions.clear(); // очищуємо попередні питання
+        
+        QFile read_file(lastUsedQuestionFilePath);
+        QString text;
+
+        if(read_file.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            QTextStream stream(&read_file);
+
+            do
+            {
+                text = stream.readLine();
+                if(!text.isNull())
+                    vecText_questions.push_back(text);
+            } while (!text.isNull());
+
+            read_file.close();
+
+            // Повідомляємо користувача про успішне завантаження
+
+            QTimer::singleShot(0, this, [this]() {
+                QMessageBox::information(parentMain, "Автозавантаження питань",
+                                         QString("Автоматично завантажено %1 питань з файла:\n%2")
+                                    .arg(vecText_questions.size())
+                                             .arg(QFileInfo(lastUsedQuestionFilePath).fileName()));
+            });
+        }
     }
 }

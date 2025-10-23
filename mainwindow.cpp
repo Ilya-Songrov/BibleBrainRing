@@ -56,8 +56,12 @@ MainWindow::~MainWindow()
 void MainWindow::setupConnections()
 {
 // Зв'язки між класами
-    connect(sectorActions, &SectorActions::signalQuestionFastLoad,
-                questionSearch, &QuestionSearch::questionFastLoad);
+    connect(sectorActions, &SectorActions::signalQuestionFastLoad, this, [&](bool boolQuestionsonEsther) {
+        questionSearch->questionFastLoad(boolQuestionsonEsther);
+        // зберігаємо шлях до файла після завантаження (тільки якщо це не ресурсний файл)
+        if (!boolQuestionsonEsther)
+            sectorGraphicsView->setQuestionFilePath(questionSearch->getLastUsedQuestionFilePath());
+    });
     connect(sectorGroupBoxLeft, &SectorGroupBoxLeft::signalChangeStrMusicTimerGroupBoxLeft,
                 sectorPlayerAndTimer, &SectorPlayerAndTimer::signalChangeStrMusicTimerPlayer);
     connect(sectorGroupBoxLeft, &SectorGroupBoxLeft::signalLoadMusicTrack,
@@ -73,11 +77,28 @@ void MainWindow::setupConnections()
     connect(questionSearch, &QuestionSearch::signalShowQuestion,
                 sectorGraphicsView, &SectorGraphicsView::slotQuestionPublic);
 
+    // синхронізація шляху до файла з питаннями між SectorGraphicsView та QuestionSearch
+    // АВТОЗАВАНТАЖЕННЯ ПИТАНЬ:
+    // 1. При запуску додатку завантажуємо збережений шлях до файла з питаннями
+    // 2. Якщо файл існує, автоматично завантажуємо питання з нього
+    // 3. При завантаженні нових питань через меню, шлях автоматично зберігається
+    // 4. При закритті додатку всі налаштування, включаючи шлях до файла, зберігаються
+    questionSearch->setLastUsedQuestionFilePath(sectorGraphicsView->getQuestionFilePath());
+    // автоматично завантажуємо питання якщо є збережений шлях
+    questionSearch->autoLoadQuestions();
+
 
 // зв'язки для QAction
-    connect(ui->action_question_fast, &QAction::triggered, this, [&]() {questionSearch->questionFastLoad(false);});
-    connect(ui->action_question_decocer, &QAction::triggered, this,
-            [&]() {questionSearch->showPreviewFormDecoder(QDir::currentPath());});
+    connect(ui->action_question_fast, &QAction::triggered, this, [&]() {
+        questionSearch->questionFastLoad(false);
+        // зберігаємо шлях до файла після завантаження
+        sectorGraphicsView->setQuestionFilePath(questionSearch->getLastUsedQuestionFilePath());
+    });
+    connect(ui->action_question_decocer, &QAction::triggered, this, [&]() {
+        questionSearch->showPreviewFormDecoder(QDir::currentPath());
+        // зберігаємо шлях до файла після завантаження
+        sectorGraphicsView->setQuestionFilePath(questionSearch->getLastUsedQuestionFilePath());
+    });
     connect(ui->action_save, &QAction::triggered, sectorActions, &SectorActions::slotOnAction_save_triggeredSector);
     connect(ui->action_exit, &QAction::triggered, this, &MainWindow::close);
     connect(ui->action_Screens, &QAction::triggered, sectorGraphicsView, &SectorGraphicsView::slotSettingsScreens);

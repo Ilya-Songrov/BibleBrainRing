@@ -113,6 +113,8 @@ public:
         QString strItem_LineFirstPoints = "<CENTER>43</CENTER>";
         QString strItem_LineSecondPoints = "<CENTER>2</CENTER>";
 
+        QString strQuestionFilePath; // шлях до файла з питаннями для автоматичного завантаження
+
         QPixmap pixLineTitlePixmap;
         QPixmap pixCurentForBrushScene; // фон сцены
 

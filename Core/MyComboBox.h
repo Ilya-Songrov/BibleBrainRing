@@ -17,10 +17,9 @@ class MyComboBox : public QComboBox
 public:
      explicit MyComboBox(QWidget *parent = 0) : QComboBox(parent)
      {
-         const QList<int> standardSizes = QFontDatabase::standardSizes();
-         foreach (int size, standardSizes)
+         for (int size = 1; size <= 120; ++size)
              addItem(QString::number(size));
-         setCurrentIndex(standardSizes.indexOf(QApplication::font().pointSize()));
+         setCurrentIndex(QApplication::font().pointSize() - 1);
                  //color(qrand() % 256, qrand() % 256, qrand() % 256)
          setEditable(true);
          setAutoCompletion(false); // без автодоповнення

@@ -13,6 +13,7 @@
 #include "QTextCodec"
 #include "QString"
 #include "QMessageBox"
+#include "QFileInfo"
 
 QT_BEGIN_NAMESPACE
 class QuestionPreviewForm;
@@ -30,6 +31,7 @@ public:
     QWidget *parentMain;
     QuestionPreviewForm *questionPreviewForm;
     QVector <QString> vecText_questions;
+    QString lastUsedQuestionFilePath; // зберігаємо останній використаний шлях до файла з питаннями
 
 private slots:
     void slotTextChanged(const QString &);
@@ -38,6 +40,9 @@ public slots:
     void questionFastLoad(bool boolQuestionsonEsther = false);
     void showPreviewFormDecoder(QString currentPath);
     QStringList search(QString strRequest);
+    void setLastUsedQuestionFilePath(const QString &filePath) { lastUsedQuestionFilePath = filePath; } // встановлення шляху
+    QString getLastUsedQuestionFilePath() const { return lastUsedQuestionFilePath; } // отримання шляху
+    void autoLoadQuestions(); // автоматичне завантаження питань з збереженого файла
 
 signals:
     void signalShowQuestion(QString str);

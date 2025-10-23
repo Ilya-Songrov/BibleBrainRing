@@ -29,57 +29,59 @@ void SectorGraphicsView::readSettingsSectorGraphicsView()
     // для скидання дефолту шрифта. По суті є HTML, але щоб лагів не було залишаємо ще і дефолт шрифт.
     boolFontDefaultItemsReset = m_settings.value("boolFontReset", true).toBool();
 
-m_settings.beginGroup("/SettingsN");
+    m_settings.beginGroup("/SettingsN");
 
-int Ncolor_for_DialogR = m_settings.value("/color_backgroundScene_DialogR", 250).toInt();
-int Ncolor_for_DialogG = m_settings.value("/color_backgroundScene_DialogG", 190).toInt();
-int Ncolor_for_DialogB = m_settings.value("/color_backgroundScene_DialogB", 111).toInt();
+    int Ncolor_for_DialogR = m_settings.value("/color_backgroundScene_DialogR", 250).toInt();
+    int Ncolor_for_DialogG = m_settings.value("/color_backgroundScene_DialogG", 190).toInt();
+    int Ncolor_for_DialogB = m_settings.value("/color_backgroundScene_DialogB", 111).toInt();
     color_backgroundScene_Dialog.setRgb(Ncolor_for_DialogR,Ncolor_for_DialogG,Ncolor_for_DialogB);
 
-int NColorR0 = m_settings.value("/colorItem_LineTitleR", QColor(Qt::black).red()).toInt();
-int NColorG0 = m_settings.value("/colorItem_LineTitleG", QColor(Qt::black).green()).toInt();
-int NColorB0 = m_settings.value("/colorItem_LineTitleB", QColor(Qt::black).blue()).toInt();
+    int NColorR0 = m_settings.value("/colorItem_LineTitleR", QColor(Qt::black).red()).toInt();
+    int NColorG0 = m_settings.value("/colorItem_LineTitleG", QColor(Qt::black).green()).toInt();
+    int NColorB0 = m_settings.value("/colorItem_LineTitleB", QColor(Qt::black).blue()).toInt();
     colorItem_LineTitle = QColor(NColorR0,NColorG0,NColorB0);
     strItem_LineTitle = m_settings.value("/strItem_LineTitle", strItem_LineTitle).toString();
 
-int NColorR1 = m_settings.value("/colorItem_LineFirstTeamR", QColor(Qt::black).red()).toInt();
-int NColorG1 = m_settings.value("/colorItem_LineFirstTeamG", QColor(Qt::black).green()).toInt();
-int NColorB1 = m_settings.value("/colorItem_LineFirstTeamB", QColor(Qt::black).blue()).toInt();
+    int NColorR1 = m_settings.value("/colorItem_LineFirstTeamR", QColor(Qt::black).red()).toInt();
+    int NColorG1 = m_settings.value("/colorItem_LineFirstTeamG", QColor(Qt::black).green()).toInt();
+    int NColorB1 = m_settings.value("/colorItem_LineFirstTeamB", QColor(Qt::black).blue()).toInt();
     colorItem_LineFirstTeam = QColor(NColorR1,NColorG1,NColorB1);
     strItem_LineFirstTeam = m_settings.value("/strItem_LineFirstTeam",
                                                       strItem_LineFirstTeam).toString();
 
-int NColorR2 = m_settings.value("/colorItem_LineSecondTeamR", QColor(Qt::black).red()).toInt();
-int NColorG2 = m_settings.value("/colorItem_LineSecondTeamG", QColor(Qt::black).green()).toInt();
-int NColorB2 = m_settings.value("/colorItem_LineSecondTeamB", QColor(Qt::black).blue()).toInt();
+    int NColorR2 = m_settings.value("/colorItem_LineSecondTeamR", QColor(Qt::black).red()).toInt();
+    int NColorG2 = m_settings.value("/colorItem_LineSecondTeamG", QColor(Qt::black).green()).toInt();
+    int NColorB2 = m_settings.value("/colorItem_LineSecondTeamB", QColor(Qt::black).blue()).toInt();
     colorItem_LineSecondTeam = QColor(NColorR2,NColorG2,NColorB2);
     strItem_LineSecondTeam = m_settings.value("/strItem_LineSecondTeam",
                                                        strItem_LineSecondTeam).toString();
 
-int NColorR3 = m_settings.value("/colorItem_LineFirstPointsR", QColor(Qt::black).red()).toInt();
-int NColorG3 = m_settings.value("/colorItem_LineFirstPointsG", QColor(Qt::black).green()).toInt();
-int NColorB3 = m_settings.value("/colorItem_LineFirstPointsB", QColor(Qt::black).blue()).toInt();
+    int NColorR3 = m_settings.value("/colorItem_LineFirstPointsR", QColor(Qt::black).red()).toInt();
+    int NColorG3 = m_settings.value("/colorItem_LineFirstPointsG", QColor(Qt::black).green()).toInt();
+    int NColorB3 = m_settings.value("/colorItem_LineFirstPointsB", QColor(Qt::black).blue()).toInt();
     colorItem_LineFirstPoints = QColor(NColorR3,NColorG3,NColorB3);
     strItem_LineFirstPoints = m_settings.value("/strItem_LineFirstPoints",
                                                        strItem_LineFirstPoints).toString();
 
-int NColorR4 = m_settings.value("/colorItem_LineSecondPointsR", QColor(Qt::black).red()).toInt();
-int NColorG4 = m_settings.value("/colorItem_LineSecondPointsG", QColor(Qt::black).green()).toInt();
-int NColorB4 = m_settings.value("/colorItem_LineSecondPointsB", QColor(Qt::black).blue()).toInt();
+    int NColorR4 = m_settings.value("/colorItem_LineSecondPointsR", QColor(Qt::black).red()).toInt();
+    int NColorG4 = m_settings.value("/colorItem_LineSecondPointsG", QColor(Qt::black).green()).toInt();
+    int NColorB4 = m_settings.value("/colorItem_LineSecondPointsB", QColor(Qt::black).blue()).toInt();
     colorItem_LineSecondPoints = QColor(NColorR4,NColorG4,NColorB4);
     strItem_LineSecondPoints = m_settings.value("/strItem_LineSecondPoints",
                                                        strItem_LineSecondPoints).toString();
 
-int NQuestionR = m_settings.value("/colorItem_LineQuestionR", QColor(Qt::red).red()).toInt();
-int NQuestionG = m_settings.value("/colorItem_LineQuestionG", QColor(Qt::red).green()).toInt();
-int NQuestionB = m_settings.value("/colorItem_LineQuestionB", QColor(Qt::red).blue()).toInt();
+    int NQuestionR = m_settings.value("/colorItem_LineQuestionR", QColor(Qt::red).red()).toInt();
+    int NQuestionG = m_settings.value("/colorItem_LineQuestionG", QColor(Qt::red).green()).toInt();
+    int NQuestionB = m_settings.value("/colorItem_LineQuestionB", QColor(Qt::red).blue()).toInt();
     colorItem_LineQuestion = QColor(NQuestionR,NQuestionG,NQuestionB);
 
-int NColorR5 = m_settings.value("/colorItem_LineTimerR", QColor(Qt::black).red()).toInt();
-int NColorG5 = m_settings.value("/colorItem_LineTimerG", QColor(Qt::black).green()).toInt();
-int NColorB5 = m_settings.value("/colorItem_LineTimerB", QColor(Qt::black).blue()).toInt();
+    int NColorR5 = m_settings.value("/colorItem_LineTimerR", QColor(Qt::black).red()).toInt();
+    int NColorG5 = m_settings.value("/colorItem_LineTimerG", QColor(Qt::black).green()).toInt();
+    int NColorB5 = m_settings.value("/colorItem_LineTimerB", QColor(Qt::black).blue()).toInt();
     colorItem_LineTimer = QColor(NColorR5,NColorG5,NColorB5);
 
+    // читаємо шлях до файла з питаннями для автоматичного завантаження при перезапуску
+    strQuestionFilePath = m_settings.value("/questionFilePath", "").toString();
 
 m_settings.endGroup();
 }
@@ -126,6 +128,9 @@ m_settings.beginGroup("/SettingsN");
     m_settings.setValue("/colorItem_LineTimerR", Item_LineTimer->defaultTextColor().red());
     m_settings.setValue("/colorItem_LineTimerG", Item_LineTimer->defaultTextColor().green());
     m_settings.setValue("/colorItem_LineTimerB", Item_LineTimer->defaultTextColor().blue());
+
+    // записуємо шлях до файла з питаннями для автоматичного завантаження при наступному запуску
+    m_settings.setValue("/questionFilePath", strQuestionFilePath);
 
 m_settings.endGroup();
 }
@@ -389,7 +394,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
 
     Doc_LineQuestion = new QTextDocument(structScreens.parentWidget);
     Doc_LineQuestion->setDefaultFont(QFont("MS Shell Dlg 2",16,QFont::Normal));
-    Doc_LineQuestion->setHtml("<font>Який цар написав багато псалмів?</font>");
+    Doc_LineQuestion->setHtml("<font>Будь-ласка завантажте файл .txt з питаннями!</font>");
         Item_LineQuestion = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineQuestion);
         Item_LineQuestion->setDocument(Doc_LineQuestion);
         Item_LineQuestion->setTextWidth(400);
@@ -429,7 +434,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     ui->lineEdit_2->setText(Doc_LineSecondTeam->toPlainText());
     ui->lineEdit_value_1->setText(Doc_LineFirstPoints->toPlainText());
     ui->lineEdit_value_2->setText(Doc_LineSecondPoints->toPlainText());
-    ui->comboBox_question->setCurrentText("Який цар написав багато псалмів?");
+    ui->comboBox_question->setCurrentText("Будь-ласка завантажте файл .txt з питаннями!");
 
     connect(ui->lineEdit_0,&QLineEdit::textChanged,this,&SectorGraphicsView::slotLineTextChanged);
     connect(ui->lineEdit_1,&QLineEdit::textChanged,this,&SectorGraphicsView::slotLineTextChanged);
@@ -441,10 +446,10 @@ void SectorGraphicsView::setupAndCreateMainScene()
     connect(ui->comboBox_question,SIGNAL(activated(QString)),this,SLOT(slotQuestion(QString)));
 
 
-        ui->graphicsView->setScene(&main_scene);
-        ui->graphicsView->setRenderHint(QPainter::Antialiasing, true);
-        main_scene.setSceneRect(0,0,400,300);
-        ui->graphicsView->setRenderHint(QPainter::Antialiasing, true);
+    ui->graphicsView->setScene(&main_scene);
+    ui->graphicsView->setRenderHint(QPainter::Antialiasing, true);
+    main_scene.setSceneRect(0,0,400,300);
+    ui->graphicsView->setRenderHint(QPainter::Antialiasing, true);
 }
 
 void SectorGraphicsView::setupAndCreateSceneSecond()

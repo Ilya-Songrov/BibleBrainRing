@@ -113,6 +113,8 @@ public:
         QString strItem_LineFirstPoints = "<CENTER>43</CENTER>";
         QString strItem_LineSecondPoints = "<CENTER>2</CENTER>";
 
+        QString strQuestionFilePath; // шлях до файла з питаннями для автоматичного завантаження
+
         QPixmap pixLineTitlePixmap;
         QPixmap pixCurentForBrushScene; // фон сцени
 
@@ -161,6 +163,8 @@ public slots:
     void slotSetBackgroundBrush(QPixmap pixCurent);
     void slotOnPushButton_color_clicked();
     void slotOnCheckBox_timer_clicked(bool checked);
+    void setQuestionFilePath(const QString &filePath) { strQuestionFilePath = filePath; } // встановлення шляху до файла з питаннями
+    QString getQuestionFilePath() const { return strQuestionFilePath; } // отримання шляху до файла з питаннями
 
 
 signals:
