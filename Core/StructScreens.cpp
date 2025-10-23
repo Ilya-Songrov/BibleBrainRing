@@ -40,9 +40,11 @@ void StructScreens::initializationDesktop()
             VecGraphicsViewDesktop.push_back(graphicsViewD);
 
     //            intDesWidth += 6,intDesHeight += 6; // щоб сховати краї
-            // Вирахується у скільки збільшений екран відносно головної сцени, діленням на її розмір.
-            VecGraphicsViewScaleSize.push_back(QSizeF((qreal)intDesWidth / 400,
-                                                      (qreal)intDesHeight / 300));
+            // Пропорційне масштабування - зберігаємо пропорції, беремо менший масштаб
+            qreal scaleX = (qreal)intDesWidth / 400;
+            qreal scaleY = (qreal)intDesHeight / 300;
+            qreal scale = qMin(scaleX, scaleY); // Беремо менший масштаб для збереження пропорцій
+            VecGraphicsViewScaleSize.push_back(QSizeF(scale, scale));
 
     //            intDesWidth -= 6,intDesHeight -= 6;
             QVector <int> vec;
