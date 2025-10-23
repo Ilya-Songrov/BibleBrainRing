@@ -3,7 +3,7 @@ This application is intended for use in competitions. It displays on the screen 
 
 
 ## BibleBrainRing
-![Image 1](docs/images/Screenshot-desktop.png)
+![Image 1](docs/images/Screenshot-desktop-2.png)
 
 ## Download
 - [BibleBrainRing Windows](https://github.com/Ilya-Songrov/BibleBrainRing)
