@@ -4,12 +4,13 @@
 ## Qt linuxdeployqt
 ```bash
 SRC_ROOT_DIR=<src_dir>
+BUILD_RELEASE_DIR=$SRC_ROOT_DIR/../build-BibleBrainRing-Desktop_Qt_5_15_2_GCC_64bit-Release/
 cd ~/Downloads
 wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
 chmod +x linuxdeployqt-continuous-x86_64.AppImage
 rm -rf ~/Downloads/BibleBrainRing.AppDir
 mkdir -p ~/Downloads/BibleBrainRing.AppDir/usr/bin
-cp $SRC_ROOT_DIR/../build-BibleBrainRing-Desktop_Qt_5_15_2_GCC_64bit-Debug/BibleBrainRing ~/Downloads/BibleBrainRing.AppDir/usr/bin/
+cp $BUILD_RELEASE_DIR/BibleBrainRing ~/Downloads/BibleBrainRing.AppDir/usr/bin/
 cp $SRC_ROOT_DIR/MaterialsGroupBoxes/BibleBrainRingIcon.png ~/Downloads/BibleBrainRing.AppDir
 export PATH=~/Qt/5.15.2/gcc_64/bin:$PATH
 qmake -v
