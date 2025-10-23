@@ -57,6 +57,7 @@ public slots:
 signals:
     void signalWriteTextChanged_on_TimerItem(int int_SecondsTimer_changing_now, QString strTimer);
     void signalChangeStrMusicTimerPlayer(QString strMusicTimerPlayer);
+    void signalTimerBasicValueChanged(int newTimerBasic); // сигнал про зміну базового значення таймера
 };
 
 #endif // SECTORPLAYERANDTIMER_H

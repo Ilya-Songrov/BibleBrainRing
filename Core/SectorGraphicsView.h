@@ -166,6 +166,7 @@ public slots:
     void setQuestionFilePath(const QString &filePath) { strQuestionFilePath = filePath; } // встановлення шляху до файла з питаннями
     QString getQuestionFilePath() const { return strQuestionFilePath; } // отримання шляху до файла з питаннями
     void updateQuestionDisplayText(bool hasQuestions); // оновлення відображення тексту питання
+    void updateTimerBasicValue(int newTimerBasic); // оновлення базового значення таймера
 
 
 signals:

@@ -70,6 +70,8 @@ void MainWindow::setupConnections()
                 sectorGraphicsView, &SectorGraphicsView::slotSetBackgroundBrush);
     connect(sectorPlayerAndTimer, &SectorPlayerAndTimer::signalWriteTextChanged_on_TimerItem,
                 sectorGraphicsView, &SectorGraphicsView::slotWriteTextChanged_on_TimerItem);
+    connect(sectorPlayerAndTimer, &SectorPlayerAndTimer::signalTimerBasicValueChanged,
+                sectorGraphicsView, &SectorGraphicsView::updateTimerBasicValue);
     connect(sectorGraphicsView, &SectorGraphicsView::aTimeToActionSceneMenuTimerTimeTriggered,
                 sectorPlayerAndTimer, &SectorPlayerAndTimer::slotOnActionSceneMenu_timer_time_triggeredSector);
     connect(sectorGraphicsView, &SectorGraphicsView::aSpeedToActionSceneMenuTimerSpeedTriggered,

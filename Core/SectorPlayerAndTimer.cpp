@@ -64,7 +64,7 @@ void SectorPlayerAndTimer::slotTimer()
             timer.setInterval(20);
             boolComeback = false;
             timePause = QTime::fromMSecsSinceStartOfDay(0);
-            ui->pushButton_timer_on_off->setText("Вкл.");
+            ui->pushButton_timer_on_off->setText("Увімк.");
             ui->pushButton_timer_on_off->setChecked(false);
             return;
         }
@@ -107,7 +107,7 @@ void SectorPlayerAndTimer::timer_on_off_clicked(bool checked)
         timePause = QTime::fromMSecsSinceStartOfDay(timePause.msecsSinceStartOfDay() + QTime::currentTime().
                              msecsSinceStartOfDay() - timeLastStart.msecsSinceStartOfDay());
         ui->pushButton_timer_on_off->setChecked(false);
-        ui->pushButton_timer_on_off->setText("Вкл.");
+        ui->pushButton_timer_on_off->setText("Увімк.");
     }
     else
     {
@@ -115,7 +115,7 @@ void SectorPlayerAndTimer::timer_on_off_clicked(bool checked)
         timer.start(20);
         boolComeback = false;// Якщо раптом повернення не закінчилося, а ми натиснули пуск, тут скасовується повернення.
         ui->pushButton_timer_on_off->setChecked(true);
-        ui->pushButton_timer_on_off->setText("Выкл.");
+        ui->pushButton_timer_on_off->setText("Вимк.");
     }
 }
 
@@ -133,7 +133,7 @@ void SectorPlayerAndTimer::timer_reset_clicked()
         timer.start(int_timer_speed);// Уповільнюємо таймер для повернення.
         timePause = QTime::fromMSecsSinceStartOfDay(0);
 
-        ui->pushButton_timer_on_off->setText("Вкл.");
+        ui->pushButton_timer_on_off->setText("Увімк.");
         ui->pushButton_timer_on_off->setChecked(false);
 
     }
@@ -145,7 +145,7 @@ void SectorPlayerAndTimer::timer_reset_clicked()
         timer.setInterval(20);
         boolComeback = false;
         timePause = QTime::fromMSecsSinceStartOfDay(0);
-        ui->pushButton_timer_on_off->setText("Вкл.");
+        ui->pushButton_timer_on_off->setText("Увімк.");
         ui->pushButton_timer_on_off->setChecked(false);
     }
 }
@@ -295,6 +295,11 @@ void SectorPlayerAndTimer::slotOnActionSceneMenu_timer_time_triggeredSector()
     if(dialog.exec() == QDialog::Accepted)
     {
         int_timer_basic = spinBox->value();
+        // оновлюємо відображення таймера з новим часом
+        emit signalWriteTextChanged_on_TimerItem(QTime::fromMSecsSinceStartOfDay(int_timer_basic * 1000).
+                second(), "   " + QTime::fromMSecsSinceStartOfDay(int_timer_basic * 1000).toString("mm:ss:zzz"));
+        // повідомляємо про зміну базового значення таймера
+        emit signalTimerBasicValueChanged(int_timer_basic);
     }
 }
 

@@ -1355,3 +1355,26 @@ void SectorGraphicsView::updateQuestionDisplayText(bool hasQuestions)
     }
 }
 
+void SectorGraphicsView::updateTimerBasicValue(int newTimerBasic)
+{
+    // оновлюємо внутрішнє значення
+    int_timer_basic = newTimerBasic;
+    
+    // оновлюємо відображення таймера з новим значенням
+    QTextCursor cursor(Doc_LineTimer);
+    cursor.beginEditBlock();
+    cursor.movePosition(QTextCursor::End);
+    
+    QTextCharFormat charFormat;
+    charFormat.setFont(cursor.charFormat().font());
+    charFormat.setForeground(Item_LineTimer->defaultTextColor());
+    
+    QTextBlockFormat blockFormat;
+    blockFormat.setAlignment(Qt::AlignHCenter);
+    
+    Doc_LineTimer->clear();
+    cursor.insertHtml("<b><font>&nbsp;&nbsp;&nbsp;" +
+                     QTime::fromMSecsSinceStartOfDay(int_timer_basic * 1000).toString("mm:ss:zzz") + "</font></b>");
+    cursor.endEditBlock();
+}
+

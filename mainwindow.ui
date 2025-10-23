@@ -122,7 +122,7 @@
            <enum>Qt::NoContextMenu</enum>
           </property>
           <property name="text">
-           <string>Баллы</string>
+           <string>Бали</string>
           </property>
          </widget>
         </item>
@@ -1061,7 +1061,7 @@ border-radius: 6px;*/
          <enum>Qt::NoContextMenu</enum>
         </property>
         <property name="text">
-         <string>&amp;Вкл.</string>
+         <string>&amp;Увімк.</string>
         </property>
         <property name="shortcut">
          <string>Alt+В, Alt+D</string>
