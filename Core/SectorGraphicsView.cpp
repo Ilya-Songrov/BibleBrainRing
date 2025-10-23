@@ -17,7 +17,7 @@ SectorGraphicsView::SectorGraphicsView(Ui::MainWindow *uiMain, int timerBasic, S
 
 SectorGraphicsView::~SectorGraphicsView()
 {
-//    delete sceneMenu; // удалять не нужно
+//    delete sceneMenu; // видаляти не потрібно
     writeSettingsSectorGraphicsView();
     delete sceneMenuAllitem;
     delete sceneMenuTimer;
@@ -202,10 +202,10 @@ connect(ui->toolButton_color_2, &QToolButton::clicked, this,
             aRectAllitem = new QAction(tr("Описувати квадрати"), sceneMenuAllitem);
             aRectAllitem->setCheckable(true);
             aRectAllitem->setChecked(true);
-            aAutoFontQuestion = new QAction(tr("Автоматичний шрифт питання"), sceneMenuAllitem);// Используется как флаг
+            aAutoFontQuestion = new QAction(tr("Автоматичний шрифт питання"), sceneMenuAllitem);// Використовується як прапор
             aAutoFontQuestion->setCheckable(true);
             aAutoFontQuestion->setChecked(true);
-            aAutoZeroPoints = new QAction(tr("Обнуляти бали"), sceneMenuAllitem);// Используется как флаг
+            aAutoZeroPoints = new QAction(tr("Обнуляти бали"), sceneMenuAllitem);// Використовується як прапор
             aAutoZeroPoints->setCheckable(true);
             aAutoZeroPoints->setChecked(true);
 
@@ -293,7 +293,7 @@ connect(ui->toolButton_color_2, &QToolButton::clicked, this,
     connect(sceneMenuAllitem,&QMenu::triggered,this,&SectorGraphicsView::slotSceneMenuTriggered);
     connect(sceneMenuUseItem,&QMenu::triggered,this,&SectorGraphicsView::slotSceneMenuTriggered);
     connect(sceneMenuTimer,&QMenu::triggered,this,&SectorGraphicsView::slotSceneMenuTriggered);
-    // Отдельно поскольку это действие на которое нужна реакция, другие же, похожие на него, используются как флаги.
+    // Окремо оскільки це дія на яку потрібна реакція, інші ж, схожі на неї, використовуються як прапори.
     connect(aRectAllitem,&QAction::triggered,this,&SectorGraphicsView::slotActionMenuTriggered);
 
 
@@ -339,7 +339,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     Doc_LineFirstTeam->setHtml(strItem_LineFirstTeam);
         Item_LineFirstTeam = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineFirstTeam);
         Item_LineFirstTeam->setDocument(Doc_LineFirstTeam);
-    // Обьяснение выше
+    // Обʼяснення вище
     Item_LineFirstTeam->document()->setDefaultFont(QTextCursor(Item_LineFirstTeam->document()).charFormat().font());
         Item_LineFirstTeam->setTextWidth(199);
         Item_LineFirstTeam->setShow_HideRect(true);
@@ -353,7 +353,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     Doc_LineSecondTeam->setHtml(strItem_LineSecondTeam);
         Item_LineSecondTeam = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineSecondTeam);
         Item_LineSecondTeam->setDocument(Doc_LineSecondTeam);
-    // Обьяснение выше
+    // Обʼяснення вище
     Item_LineSecondTeam->document()->setDefaultFont(QTextCursor(
                                                         Item_LineSecondTeam->document()).charFormat().font());
         Item_LineSecondTeam->setTextWidth(199);
@@ -368,7 +368,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     Doc_LineFirstPoints->setHtml(strItem_LineFirstPoints);
         Item_LineFirstPoints = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineFirstPoints);
         Item_LineFirstPoints->setDocument(Doc_LineFirstPoints);
-    // Обьяснение выше
+    // Обʼяснення вище
     Item_LineFirstPoints->document()->setDefaultFont(QTextCursor(
                                                          Item_LineFirstPoints->document()).charFormat().font());
         Item_LineFirstPoints->setTextWidth(199);
@@ -383,7 +383,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     Doc_LineSecondPoints->setHtml(strItem_LineSecondPoints);
         Item_LineSecondPoints = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineSecondPoints);
         Item_LineSecondPoints->setDocument(Doc_LineSecondPoints);
-    // Обьяснение выше
+    // Обʼяснення вище
     Item_LineSecondPoints->document()->setDefaultFont(QTextCursor(
                                                           Item_LineSecondPoints->document()).charFormat().font());
         Item_LineSecondPoints->setTextWidth(199);
@@ -407,7 +407,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
 
     Doc_LineTimer = new QTextDocument(structScreens.parentWidget);
     Doc_LineTimer->setDefaultFont(QFont("MS Shell Dlg 2",28,QFont::Bold));
-    //хуже, чем <CENTER>...</CENTER>. Иногда Текс не переносится а заходит под, во внутрь.
+    //гірше, ніж <CENTER>...</CENTER>. Іноді текст не переноситься а заходить під, всередину.
     Doc_LineTimer->setDefaultTextOption(QTextOption(Qt::AlignHCenter));
     QTextCursor cursor6(Doc_LineTimer);
     cursor6.insertHtml("<b><font>&nbsp;&nbsp;&nbsp;" +
@@ -536,13 +536,13 @@ void SectorGraphicsView::setupAndCreateSceneSecond()
 //-------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------
 
-        slotRefresh_ItemPos(); // установка каждого (ItemLine... - главных) на свое место
+        slotRefresh_ItemPos(); // встановлення кожного (ItemLine... - головних) на своє місце
         slotOnToolButton_plus_2_clicked();// Викликаю 3 рази підняття елементів щоб коректно виглядали.
         slotOnToolButton_plus_2_clicked();
         slotOnToolButton_plus_2_clicked();// Зробив так оскільки вже боюся щось зіпсувати.
 
 
-//  slotRefresh_ItemPos() - не только обновляется позиция элементов, а и обновление текста в (LineEdit...)
+//  slotRefresh_ItemPos() - не тільки оновлюється позиція елементів, а й оновлення тексту в (LineEdit...)
 connect(Item_LineTitleText->document(),&QTextDocument::contentsChanged,this,&SectorGraphicsView::slotRefresh_ItemPos);
 connect(Item_LineFirstTeam->document(),&QTextDocument::contentsChanged,this,&SectorGraphicsView::slotRefresh_ItemPos);
 connect(Item_LineSecondTeam->document(),&QTextDocument::contentsChanged,this,&SectorGraphicsView::slotRefresh_ItemPos);
@@ -587,7 +587,7 @@ void SectorGraphicsView::slotActionMenuTriggered(bool)
 
 void SectorGraphicsView::slotSceneMenuTriggered(QAction *action)
 {
-//    QAction *sceenAction = qobject_cast<QAction *>(sender()); // для запоминания. Можно удалить
+//    QAction *sceenAction = qobject_cast<QAction *>(sender()); // для запамʼятовування. Можна видалити
     QAction *sceenAction = action;
 
     if(sceenAction->text() == "Описувати квадрати")
@@ -681,7 +681,7 @@ void SectorGraphicsView::slotSceneMenuTriggered(QAction *action)
         emit aSpeedToActionSceneMenuTimerSpeedTriggered();
     }
 
-    slotRefresh_ItemPos(); // думаю это никому не будет мешать
+    slotRefresh_ItemPos(); // думаю це нікому не буде заважати
 
 }
 
@@ -694,16 +694,16 @@ void SectorGraphicsView::writeTextChanged_on_Item_Line(MyQGraphicsTextItem *Item
                 Item->document()->setDefaultFont(cursor.charFormat().font());
             }
 
-cursor.beginEditBlock(); // очень важная вещь
+cursor.beginEditBlock(); // дуже важлива річ
 
         cursor.movePosition(QTextCursor::Start);
-        cursor.movePosition(QTextCursor::NextCharacter,QTextCursor::MoveAnchor,pos+1); // доделать в конце +1
+        cursor.movePosition(QTextCursor::NextCharacter,QTextCursor::MoveAnchor,pos+1); // доробити в кінці +1
             QTextCharFormat charFormat;
             charFormat.setFont(QFont(cursor.charFormat().font()));
             charFormat.setForeground(Item->textCursor().charFormat().foreground());
             QTextBlockFormat blockFormat;
             blockFormat.setAlignment(Qt::AlignHCenter);
-            cursor.document()->clear();// Именно очищать нужно.
+            cursor.document()->clear();// Саме очищати потрібно.
         cursor.insertText(str,charFormat);
         cursor.mergeCharFormat(charFormat);
             if(Item != Item_LineQuestion)
@@ -716,7 +716,7 @@ cursor.endEditBlock();
 void SectorGraphicsView::slotWriteTextChanged_on_TimerItem(int int_SecondsTimer_changing_now, QString strTimer)
 {
     QTextCursor cursor(Item_LineTimer->document());
-cursor.beginEditBlock();// очень важная вещь
+cursor.beginEditBlock();// дуже важлива річ
         cursor.movePosition(QTextCursor::End);
             QTextCharFormat charFormat;
             charFormat.setFont(cursor.charFormat().font());
@@ -732,7 +732,7 @@ cursor.beginEditBlock();// очень важная вещь
                         && aTimerGradient->isChecked())
                 {
                     QLinearGradient LinearGradient(0, 0, 210, 10);
-                    LinearGradient.setColorAt(0,cursor.charFormat().foreground().color());//Здесь смещается градиент.
+                    LinearGradient.setColorAt(0,cursor.charFormat().foreground().color());//Тут зміщується градієнт.
                     LinearGradient.setColorAt(1,QColor(250,0,0));
 
                         QImage image(210,10, QImage::Format_RGB32);
@@ -740,8 +740,8 @@ cursor.beginEditBlock();// очень важная вещь
                         painter.setBrush(LinearGradient);
                         painter.drawRect(image.rect());
 
-                        // Из-за того что часто вызывается функция, градиент смещается, поэтому одной этой -
-                        rgb = image.pixel(3,5);// - строки достаточно.
+                        // Через те що часто викликається функція, градієнт зміщується, тому однієї цієї -
+                        rgb = image.pixel(3,5);// - рядка достатньо.
 
                         charFormat.setForeground(QBrush(QColor(rgb)));
                 }
@@ -831,8 +831,8 @@ QMenu *SectorGraphicsView::createColorMenu(QColor defaultColor)
 
 void SectorGraphicsView::textColorChanged()
 {
-    // эта фунция должна вызываться только по причине активации контекстного меню
-    // здесь перерисовывается картинка(А) и под ней меняется цвет соотвецтвенно выбору пользователя
+    // ця функція повинна викликатися лише з причини активації контекстного меню
+    // тут перемальовується картинка(А) і під нею змінюється колір відповідно вибору користувача
     QAction *textAction = qobject_cast<QAction *>(sender());
     if(textAction->text() == "Інший...")
     {
@@ -851,14 +851,14 @@ void SectorGraphicsView::textColorChanged()
 
 void SectorGraphicsView::ffRefresh_ItemPos()
 {
-// выщитывается позиций квадратов и передвижение их.
+// вираховується позицій квадратів і пересування їх.
 
         static int aa = 3,a = 3,b = 3,c = 3,d = 3,f = 3,g = 3, w = 0;
         if(slotIsFocusItem() == 0 && !Item_LineTitlePixmap->isSelected())
         {
             if(intIntervalPlusMinus != 0)
-            w = 0,aa = a = b = c = d = f = g += intIntervalPlusMinus;// здесь спасает +=, в отличии от (w)
-            // обнуление происходит если нажат плюс или минус, но не при редакции текста
+            w = 0,aa = a = b = c = d = f = g += intIntervalPlusMinus;// тут рятує +=, на відміну від (w)
+            // обнулення відбувається якщо натиснуто плюс або мінус, але не при редагуванні тексту
         }
         else
         {
@@ -879,7 +879,7 @@ void SectorGraphicsView::ffRefresh_ItemPos()
             else if(Item_LineTimer->boolFocusInOut)
                 w += intIntervalPlusMinus;
         }
-        // isVisible() для того чтобы контролировать "использовать элементы" в контекстном меню
+        // isVisible() для того щоб контролювати "використовувати елементи" в контекстному меню
         int heightTitlePix = Item_LineTitlePixmap->isVisible() ? Item_LineTitlePixmap->boundingRect().height()+aa:0;
         int heightTitleText = Item_LineTitleText->isVisible() ? Item_LineTitleText->boundingRect().height()+a : 0;
         int heightFirstTeam = Item_LineFirstTeam->isVisible() ? Item_LineFirstTeam->boundingRect().height()+b : 0;
@@ -893,7 +893,7 @@ void SectorGraphicsView::ffRefresh_ItemPos()
             int hTfT_FP = heightTitlePix + heightTitleText + heightFirstTeam + heightFirstPoints;
             int hTsT_SP = heightTitlePix + heightTitleText + heightSecondTeam + heightSecondPoints;
         Item_LineTitlePixmap->setPos(200 - Item_LineTitlePixmap->pixmap().width()/2,0+w);
-        // передвигается точка отсчета, как  на выше и ниже строке
+        // пересувається точка відліку, як на вище і нижче рядку
         Item_LineTitleText->setPos(0,Item_LineTitlePixmap->isVisible() ? 0+heightTitlePix : 0+heightTitlePix + w);
         Item_LineFirstTeam->setPos(0,hTP);
         Item_LineSecondTeam->setPos(201,hTP);
@@ -902,28 +902,28 @@ void SectorGraphicsView::ffRefresh_ItemPos()
         Item_LineQuestion->setPos(0,hTfT_FP > hTsT_SP ? hTfT_FP : hTsT_SP);
         Item_LineTimer->setPos(0, hTfT_FP + heightQuestion > hTsT_SP + heightQuestion
                                ? hTfT_FP + heightQuestion : hTsT_SP + heightQuestion);
-                    intIntervalPlusMinus = 0; // обнуление
+                    intIntervalPlusMinus = 0; // обнулення
 
 }
 
 void SectorGraphicsView::slotRefresh_ItemPos()
 {
 //------------------------------------------------------------------------------------------------------
-// отделил в отдельную функцию. Сначала не было так.
+// відділив в окрему функцію. Спочатку не було так.
 
                 ffRefresh_ItemPos();
 
 
 //------------------------------------------------------------------------------------------------------
-// другие экраны
+// інші екрани
 
                 refreshPosOtherScreens();
 
 //------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-// Для того чтобы при пустом документе все настройки не уходили в дефолт. Слишком тяжело для пониания и обьяснения.
+// Для того щоб при порожньому документі всі налаштування не йшли в дефолт. Занадто важко для розуміння і пояснення.
 
-                if(slotIsFocusItem() == 0) return;// Выходим если пишеться не в сцене.
+                if(slotIsFocusItem() == 0) return;// Виходимо якщо пишеться не в сцені.
                 MyQGraphicsTextItem *myItem = slotIsFocusItem();
 
                 static bool boolEnter = true;
@@ -936,7 +936,7 @@ void SectorGraphicsView::slotRefresh_ItemPos()
                         charFormat.setFont(myItem->document()->defaultFont());
                         QTextBlockFormat blockFormat;
                         blockFormat.setAlignment(Qt::AlignHCenter);
-                        cursorMyItem.document()->clear();// Именно очищать нужно.
+                        cursorMyItem.document()->clear();// Саме очищати потрібно.
                     cursorMyItem.mergeCharFormat(charFormat);
                         if(myItem != Item_LineQuestion)
                     cursorMyItem.mergeBlockFormat(blockFormat);
@@ -952,29 +952,29 @@ void SectorGraphicsView::slotRefresh_ItemPos()
 //        qDebug() << "Text isEmpty1 " << QTextCursor(myItem->document()).charFormat().fontPointSize() <<endl;
 //qDebug() << "Text isEmpty0" << QTextCursor(myItem->document()).blockFormat().alignment() <<endl;
 //        qDebug() << "Text isEmpty0" << myItem->document()->defaultTextOption().alignment() <<endl;
-// Не удалять. Это все по-разному почему-то работает.
+// Не видаляти. Це все по-різному чомусь працює.
 
 
 //------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-// Здесь происходит утановка текста на (ui->lineEdit...) в ответ на изменения в (Item_Line...).
-// Обьеденил все здесь, очень надеюсь одно не будет мешать другому. Таймер здесь не учавствует
+// Тут відбувається встановлення тексту на (ui->lineEdit...) у відповідь на зміни в (Item_Line...).
+// Обʼєднав все тут, дуже сподіваюся одне не буде заважати іншому. Таймер тут не бере участь
 
-//                if(slotIsFocusItem() == 0) return; // выше проверка есть
+//                if(slotIsFocusItem() == 0) return; // вище перевірка є
             if(Item_LineTitleText->boolFocusInOut)
                 ui->lineEdit_0->setText(Item_LineTitleText->document()->toPlainText());
             else if(Item_LineFirstTeam->boolFocusInOut){
                 ui->lineEdit_1->setText(Item_LineFirstTeam->document()->toPlainText());
-                // Первое условие чтобы не было рекурсии. Второе смотрим флаг.
+                // Перша умова щоб не було рекурсії. Друга дивимося прапор.
                 if(ui->lineEdit_value_1->text() != "0" && aAutoZeroPoints->isChecked()){
-                    ui->lineEdit_value_1->setText("0");// Обнуление очков при редактировании команды
+                    ui->lineEdit_value_1->setText("0");// Обнулення очок при редагуванні команди
                     writeTextChanged_on_Item_Line(Item_LineFirstPoints,0,"0");
                 }
             }
             else if(Item_LineSecondTeam->boolFocusInOut){
                 ui->lineEdit_2->setText(Item_LineSecondTeam->document()->toPlainText());
                 if(ui->lineEdit_value_2->text() != "0" && aAutoZeroPoints->isChecked()){
-                    ui->lineEdit_value_2->setText("0");// Обнуление очков при редактировании команды
+                    ui->lineEdit_value_2->setText("0");// Обнулення очок при редагуванні команди
                     writeTextChanged_on_Item_Line(Item_LineSecondPoints,0,"0");
                 }
             }
@@ -1038,7 +1038,7 @@ void SectorGraphicsView::slotfocusItemChanged(QGraphicsItem *newFocus, QGraphics
         Item_LineTitlePixmap->setFlag(QGraphicsItem::ItemIsSelectable,false);
         Item_LineTitlePixmap->setFlag(QGraphicsItem::ItemIsSelectable,true);
     }
-        if(oldFocus == 0 /*для первого запуска приложения*/) return;
+        if(oldFocus == 0 /*для першого запуску додатка*/) return;
         QTextCursor cursor = qgraphicsitem_cast<MyQGraphicsTextItem *> (oldFocus)->textCursor();
             if(main_scene.hasFocus() && cursor.hasSelection())
             cursor.clearSelection();
@@ -1065,14 +1065,14 @@ void SectorGraphicsView::slotLineTextChanged(const QString str)
         writeTextChanged_on_Item_Line(Item_LineTitleText,ui->lineEdit_0->cursorPosition(),str);
     else if(ui->lineEdit_1->hasFocus()){
         writeTextChanged_on_Item_Line(Item_LineFirstTeam,ui->lineEdit_1->cursorPosition(),str);
-        if(aAutoZeroPoints->isChecked()){// Обнуление очков при редактировании команды
+        if(aAutoZeroPoints->isChecked()){// Обнулення очок при редагуванні команди
             writeTextChanged_on_Item_Line(Item_LineFirstPoints,0,"0");
             ui->lineEdit_value_1->setText("0");
         }
     }
     else if(ui->lineEdit_2->hasFocus()){
         writeTextChanged_on_Item_Line(Item_LineSecondTeam,ui->lineEdit_2->cursorPosition(),str);
-        if(aAutoZeroPoints->isChecked()){// Обнуление очков при редактировании команды
+        if(aAutoZeroPoints->isChecked()){// Обнулення очок при редагуванні команди
             writeTextChanged_on_Item_Line(Item_LineSecondPoints,0,"0");
             ui->lineEdit_value_2->setText("0");
         }
@@ -1091,54 +1091,54 @@ void SectorGraphicsView::slotQuestion(const QString &str)
 
     QString strCopy = str;// Створюємо копію, щоб можна було видалити теги.
     QRegExp rxHTML("(<span style=\"background: yellow\">|</span>)");
-    if(rxHTML.indexIn(str, 0) != -1){// Если теги были найдены мы их удалим. И еще это от рекурсии.
-        strCopy.remove(rxHTML);// Очищаем теги
-        ui->comboBox_question->lineEdit()->setText(strCopy);// Устанавливаем очищеный текст и на комбобокс.
+    if(rxHTML.indexIn(str, 0) != -1){// Якщо теги були знайдені ми їх видалимо. І ще це від рекурсії.
+        strCopy.remove(rxHTML);// Очищаємо теги
+        ui->comboBox_question->lineEdit()->setText(strCopy);// Встановлюємо очищений текст і на комбобокс.
     }
 
-    Item_LineQuestion->setPlainText(strCopy);// Устанавливаем текст.
+    Item_LineQuestion->setPlainText(strCopy);// Встановлюємо текст.
 
-// Автоматический шрифт вопроса.
+// Автоматичний шрифт питання.
 
-// Подбор шрифта происходит лишь в том случае если не отключен вопрос. Происходит это так, у последнего элемента,
-// Item_LineTimer узнается его положение и если оно выходит за граниуцы сцены или нет, мы меняем шрифт вопроса.
-// А если таймер отключен тогда мы ориентируемся по Item_LineQuestion. Если же и он отключен тогда мы вообще не
-// входим сюда.
-    // Если не скрыт вопрос, не пустая строка, и есть влажек на использование алгоритма aAutoFontQuestion.
+// Підбір шрифта відбувається лише в тому випадку якщо не відключене питання. Відбувається це так, у останнього елемента,
+// Item_LineTimer дізнається його положення і якщо воно виходить за межі сцени чи ні, ми змінюємо шрифт питання.
+// А якщо таймер відключений тоді ми орієнтуємося по Item_LineQuestion. Якщо ж і він відключений тоді ми взагалі не
+// входимо сюди.
+    // Якщо не схований питання, не порожній рядок, і є прапорець на використання алгоритму aAutoFontQuestion.
     if(Item_LineQuestion->isVisible() && !strCopy.isEmpty() && aAutoFontQuestion->isChecked())
     {
-        // Определяется относительно чего ориентироваться, Item_LineTimer или Item_LineQuestion.
+        // Визначається відносно чого орієнтуватися, Item_LineTimer або Item_LineQuestion.
         MyQGraphicsTextItem *ItemTimerOrQuestion = Item_LineTimer->isVisible() ? Item_LineTimer : Item_LineQuestion;
         QTextCursor cursor = Item_LineQuestion->textCursor();
         cursor.select(QTextCursor::Document);
         QTextCharFormat PointSizeFormat;
 
         if(ItemTimerOrQuestion->pos().y() + ItemTimerOrQuestion->boundingRect().height() < 300)
-        {// Если еще место есть, тогда увеличиваем шрифт.
+        {// Якщо ще місце є, тоді збільшуємо шрифт.
             PointSizeFormat.setFontPointSize(cursor.charFormat().font().pointSize() + 1);
             cursor.mergeCharFormat(PointSizeFormat);
             Item_LineQuestion->setTextCursor(cursor);
 
-            // Если вышли за границы сцены, тогда используем этот шрифт только -1.
+            // Якщо вийшли за межі сцени, тоді використовуємо цей шрифт тільки -1.
             if(ItemTimerOrQuestion->pos().y() + ItemTimerOrQuestion->boundingRect().height() > 300){
                 PointSizeFormat.setFontPointSize(cursor.charFormat().font().pointSize() - 1);
                 cursor.mergeCharFormat(PointSizeFormat);
                 Item_LineQuestion->setTextCursor(cursor);
-                cursor.clearSelection();// Очищаем выделение, хотя это и так понятно.
+                cursor.clearSelection();// Очищуємо виділення, хоча це і так зрозуміло.
                 Item_LineQuestion->setTextCursor(cursor);
                 return;
             }
-            slotQuestion(strCopy);// Происходит все рекурсивно.
+            slotQuestion(strCopy);// Відбувається все рекурсивно.
         }
         if(ItemTimerOrQuestion->pos().y() + ItemTimerOrQuestion->boundingRect().height() > 300)
-        {// Если вышли за границы сцены, тогда уменьшаем шрифт.
+        {// Якщо вийшли за межі сцени, тоді зменшуємо шрифт.
             PointSizeFormat.setFontPointSize(cursor.charFormat().font().pointSize() - 1);
             cursor.mergeCharFormat(PointSizeFormat);
             Item_LineQuestion->setTextCursor(cursor);
 
-            // Если уменьшили размер и нет выхода за границы, тогда оставляем текущий шрифт.
+            // Якщо зменшили розмір і немає виходу за межі, тоді залишаємо поточний шрифт.
             if(ItemTimerOrQuestion->pos().y() + ItemTimerOrQuestion->boundingRect().height() <= 300){
-                cursor.clearSelection();// Очищаем выделение, хотя это и так понятно.
+                cursor.clearSelection();// Очищуємо виділення, хоча це і так зрозуміло.
                 Item_LineQuestion->setTextCursor(cursor);
                 return;
             }
@@ -1222,7 +1222,7 @@ void SectorGraphicsView::slotSettingsScreens()
 
 void SectorGraphicsView::slotSetBackgroundBrush(QPixmap pixCurent)
 {
-    if(pixCurent.isNull()){ // Это нужно для обработки нажатия на OnRadioButton_2_clicked.
+    if(pixCurent.isNull()){ // Це потрібно для обробки натискання на OnRadioButton_2_clicked.
         pixCurent = QPixmap(10,10);
         pixCurent.fill(QColor(color_backgroundScene_Dialog));
     }
@@ -1330,7 +1330,7 @@ void SectorGraphicsView::slotOnToolButton_color_2_clicked()
 
     slotIsFocusItem()->setDefaultTextColor(qvariant_cast<QColor>(
                                         ui->toolButton_color_2->menu()->defaultAction()->data()));
-    // Послкольку мы не знаем какой итем получил цвет, то обращаемся к data. Хотя можно было objectName...
+    // Оскільки ми не знаємо який елемент отримав колір, то звертаємось до data. Хоча можна було objectName...
     vecAll_Item_LineD[slotIsFocusItem()->data(1).toInt()]->setDefaultTextColor(qvariant_cast<QColor>(
                                                  ui->toolButton_color_2->menu()->defaultAction()->data()));
 
