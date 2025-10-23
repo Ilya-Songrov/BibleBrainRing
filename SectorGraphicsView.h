@@ -107,7 +107,7 @@ public:
         QColor colorItem_LineQuestion;
         QColor colorItem_LineTimer;
 
-        QString strItem_LineTitle = "<CENTER><b>Задати складне питання — це просто мистецтво!</b> <br> <i>Уістен Хью Оден</i></CENTER>";
+        QString strItem_LineTitle = "<CENTER><b>Header (Сховайте, якщо не потрібно)</b> <br> <i>Уістен Хью Оден</i></CENTER>";
         QString strItem_LineFirstTeam = "<CENTER>Кілія</CENTER>";
         QString strItem_LineSecondTeam = "<CENTER>Одеса</CENTER>";
         QString strItem_LineFirstPoints = "<CENTER>43</CENTER>";

@@ -394,7 +394,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
 
     Doc_LineQuestion = new QTextDocument(structScreens.parentWidget);
     Doc_LineQuestion->setDefaultFont(QFont("MS Shell Dlg 2",16,QFont::Normal));
-    Doc_LineQuestion->setHtml("<font>Будь-ласка завантажте файл .txt з питаннями!</font>");
+    Doc_LineQuestion->setHtml("<font>Завантажте файл .txt з питаннями!</font>");
         Item_LineQuestion = new MyQGraphicsTextItem(MyQGraphicsTextItem::LineQuestion);
         Item_LineQuestion->setDocument(Doc_LineQuestion);
         Item_LineQuestion->setTextWidth(400);
@@ -434,7 +434,7 @@ void SectorGraphicsView::setupAndCreateMainScene()
     ui->lineEdit_2->setText(Doc_LineSecondTeam->toPlainText());
     ui->lineEdit_value_1->setText(Doc_LineFirstPoints->toPlainText());
     ui->lineEdit_value_2->setText(Doc_LineSecondPoints->toPlainText());
-    ui->comboBox_question->setCurrentText("Будь-ласка завантажте файл .txt з питаннями!");
+    ui->comboBox_question->setCurrentText("Завантажте файл .txt з питаннями!");
 
     connect(ui->lineEdit_0,&QLineEdit::textChanged,this,&SectorGraphicsView::slotLineTextChanged);
     connect(ui->lineEdit_1,&QLineEdit::textChanged,this,&SectorGraphicsView::slotLineTextChanged);
@@ -1341,7 +1341,7 @@ void SectorGraphicsView::updateQuestionDisplayText(bool hasQuestions)
     if (hasQuestions)
     {
         // Якщо питання завантажені, очищуємо дефолтний текст
-        if (Doc_LineQuestion->toPlainText() == "Будь-ласка завантажте файл .txt з питаннями!")
+        if (Doc_LineQuestion->toPlainText() == "Завантажте файл .txt з питаннями!")
         {
             Doc_LineQuestion->setHtml("<font></font>"); // порожній текст
             ui->comboBox_question->setCurrentText("");
@@ -1350,8 +1350,8 @@ void SectorGraphicsView::updateQuestionDisplayText(bool hasQuestions)
     else
     {
         // Якщо питання не завантажені, показуємо дефолтний текст
-        Doc_LineQuestion->setHtml("<font>Будь-ласка завантажте файл .txt з питаннями!</font>");
-        ui->comboBox_question->setCurrentText("Будь-ласка завантажте файл .txt з питаннями!");
+        Doc_LineQuestion->setHtml("<font>Завантажте файл .txt з питаннями!</font>");
+        ui->comboBox_question->setCurrentText("Завантажте файл .txt з питаннями!");
     }
 }
 
