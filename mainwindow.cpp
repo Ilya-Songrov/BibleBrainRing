@@ -76,6 +76,9 @@ void MainWindow::setupConnections()
                 sectorPlayerAndTimer, &SectorPlayerAndTimer::slotOnActionSceneMenu_timer_speed_triggeredSector);
     connect(questionSearch, &QuestionSearch::signalShowQuestion,
                 sectorGraphicsView, &SectorGraphicsView::slotQuestionPublic);
+    // підключаємо сигнал про стан завантаження питань
+    connect(questionSearch, &QuestionSearch::questionsLoaded,
+                sectorGraphicsView, &SectorGraphicsView::updateQuestionDisplayText);
 
     // синхронізація шляху до файла з питаннями між SectorGraphicsView та QuestionSearch
     // АВТОЗАВАНТАЖЕННЯ ПИТАНЬ:
@@ -86,6 +89,8 @@ void MainWindow::setupConnections()
     questionSearch->setLastUsedQuestionFilePath(sectorGraphicsView->getQuestionFilePath());
     // автоматично завантажуємо питання якщо є збережений шлях
     questionSearch->autoLoadQuestions();
+    // перевіряємо початковий стан та оновлюємо відображення
+    sectorGraphicsView->updateQuestionDisplayText(questionSearch->hasQuestions());
 
 
 // зв'язки для QAction

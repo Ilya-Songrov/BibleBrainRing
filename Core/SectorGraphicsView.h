@@ -23,7 +23,7 @@ class SectorGraphicsView : public QObject
     Q_OBJECT
 public:
     SectorGraphicsView(Ui::MainWindow *uiMain, int timerBasic, StructScreens &structScreens_,
-                                                            QSettings &m_settings_);
+                       QSettings &m_settings_);
     ~SectorGraphicsView();
 
     Ui::MainWindow *ui;
@@ -39,19 +39,19 @@ public:
     QGraphicsPixmapItem *Item_LineTitlePixmap; // заголовок картинка
 
     QTextDocument *Doc_LineTitleText;
-        MyQGraphicsTextItem *Item_LineTitleText; // заголовок текст
+    MyQGraphicsTextItem *Item_LineTitleText; // заголовок текст
     QTextDocument *Doc_LineFirstTeam;
-        MyQGraphicsTextItem *Item_LineFirstTeam;
+    MyQGraphicsTextItem *Item_LineFirstTeam;
     QTextDocument *Doc_LineSecondTeam;
-        MyQGraphicsTextItem *Item_LineSecondTeam;
+    MyQGraphicsTextItem *Item_LineSecondTeam;
     QTextDocument *Doc_LineFirstPoints;
-        MyQGraphicsTextItem *Item_LineFirstPoints;
+    MyQGraphicsTextItem *Item_LineFirstPoints;
     QTextDocument *Doc_LineSecondPoints;
-        MyQGraphicsTextItem *Item_LineSecondPoints;
+    MyQGraphicsTextItem *Item_LineSecondPoints;
     QTextDocument *Doc_LineQuestion;
-        MyQGraphicsTextItem *Item_LineQuestion;
+    MyQGraphicsTextItem *Item_LineQuestion;
     QTextDocument *Doc_LineTimer;
-        MyQGraphicsTextItem *Item_LineTimer;
+    MyQGraphicsTextItem *Item_LineTimer;
 
 
     // спочатку думав без вектора обійдуся, але після довелося зробити, коли вже майже все зробив. Смішно просто.
@@ -72,56 +72,56 @@ public:
 
     QMenu *sceneMenu;
     QMenu *sceneMenuAllitem;
-        QAction *aFontAllitem;
-        QAction *aColorAllitem;
-        QAction *aBackgroundAllitem;
-        QAction *aRectAllitem;
-        QAction *aAutoFontQuestion;
-        QAction *aAutoZeroPoints;
+    QAction *aFontAllitem;
+    QAction *aColorAllitem;
+    QAction *aBackgroundAllitem;
+    QAction *aRectAllitem;
+    QAction *aAutoFontQuestion;
+    QAction *aAutoZeroPoints;
     QMenu *sceneMenuUseItem;
-        QAction *aRemuveTitlePixmapItem;
-        QAction *aRemuveTitleTextItem;
-        QAction *aRemuveTeam1item;
-        QAction *aRemuveTeam2item;
-        QAction *aRemuvePoints1item;
-        QAction *aRemuvePoints2item;
-        QAction *aRemuveQuestionitem;
-        QAction *aRemuveTimeritem;
-        QAction *aNothingNotUse;
+    QAction *aRemuveTitlePixmapItem;
+    QAction *aRemuveTitleTextItem;
+    QAction *aRemuveTeam1item;
+    QAction *aRemuveTeam2item;
+    QAction *aRemuvePoints1item;
+    QAction *aRemuvePoints2item;
+    QAction *aRemuveQuestionitem;
+    QAction *aRemuveTimeritem;
+    QAction *aNothingNotUse;
     QMenu *sceneMenuTimer;
-        QAction *aTimerTime;
-        QAction *aTimerSpeed;
-        QAction *aTimerComeback;
-        QAction *aTimerNegativeNumbers;
-        QAction *aTimerGradient;
+    QAction *aTimerTime;
+    QAction *aTimerSpeed;
+    QAction *aTimerComeback;
+    QAction *aTimerNegativeNumbers;
+    QAction *aTimerGradient;
 
-        bool boolFontDefaultItemsReset = false;// При першому запуску прочитання збереження встановити тут істину,
-        // що дозволить використовувати дефолтний шрифт. При повторних запусках будуть використовуватися збережені
-        // налаштування, оскільки дефолт буде встановлений на хибність. При скиданні налаштувань знову встановиться істина.
+    bool boolFontDefaultItemsReset = false;// При першому запуску прочитання збереження встановити тут істину,
+    // що дозволить використовувати дефолтний шрифт. При повторних запусках будуть використовуватися збережені
+    // налаштування, оскільки дефолт буде встановлений на хибність. При скиданні налаштувань знову встановиться істина.
 
-        QColor colorItem_LineTitle;
-        QColor colorItem_LineFirstTeam;
-        QColor colorItem_LineSecondTeam;
-        QColor colorItem_LineFirstPoints;
-        QColor colorItem_LineSecondPoints;
-        QColor colorItem_LineQuestion;
-        QColor colorItem_LineTimer;
+    QColor colorItem_LineTitle;
+    QColor colorItem_LineFirstTeam;
+    QColor colorItem_LineSecondTeam;
+    QColor colorItem_LineFirstPoints;
+    QColor colorItem_LineSecondPoints;
+    QColor colorItem_LineQuestion;
+    QColor colorItem_LineTimer;
 
-        QString strItem_LineTitle = "<CENTER><b>Задати складне питання — це просто мистецтво!</b></CENTER>";
-        QString strItem_LineFirstTeam = "<CENTER>Кілія</CENTER>";
-        QString strItem_LineSecondTeam = "<CENTER>Одеса</CENTER>";
-        QString strItem_LineFirstPoints = "<CENTER>43</CENTER>";
-        QString strItem_LineSecondPoints = "<CENTER>2</CENTER>";
+    QString strItem_LineTitle = "<CENTER><b>Задати складне питання — це просто мистецтво!</b> <br></CENTER>";
+    QString strItem_LineFirstTeam = "<CENTER>Кілія</CENTER>";
+    QString strItem_LineSecondTeam = "<CENTER>Одеса</CENTER>";
+    QString strItem_LineFirstPoints = "<CENTER>43</CENTER>";
+    QString strItem_LineSecondPoints = "<CENTER>2</CENTER>";
 
-        QString strQuestionFilePath; // шлях до файла з питаннями для автоматичного завантаження
+    QString strQuestionFilePath; // шлях до файла з питаннями для автоматичного завантаження
 
-        QPixmap pixLineTitlePixmap;
-        QPixmap pixCurentForBrushScene; // фон сцены
+    QPixmap pixLineTitlePixmap;
+    QPixmap pixCurentForBrushScene; // фон сцени
 
 
-        void readSettingsSectorGraphicsView();
-        void writeSettingsSectorGraphicsView();
-private slots: /* доделать в конце  public? */
+    void readSettingsSectorGraphicsView();
+    void writeSettingsSectorGraphicsView();
+private slots: /* доробити в кінці public? */
     void setupEverythingThatAreAboveStage();
     void setupAndCreateMainScene();
     void setupAndCreateSceneSecond();
@@ -133,18 +133,18 @@ private slots: /* доделать в конце  public? */
     QMenu *createColorMenu(QColor defaultColor);
     void textColorChanged();
     void ffRefresh_ItemPos();
-        void refreshPosOtherScreens();/* доделать в конце move to private*/
-        void slotRefresh_ItemPos();
-        void slotRefresh_Tool();
-        MyQGraphicsTextItem *slotIsFocusItem();
-        void slotfocusItemChanged(QGraphicsItem *newFocus, QGraphicsItem *oldFocus, Qt::FocusReason reason);
-        void slotSetFont();
-        void slot_fontSizeCombo_highlighted_AND_activated(int index);
-        void slotLineTextChanged(const QString str);
-        void slotSceneMenuExec(const QPoint &pos);
-        void slotActionMenuTriggered(bool);
-        void slotSceneMenuTriggered(QAction *action);
-        void slotQuestion(const QString &str);
+    void refreshPosOtherScreens();/* доробити в кінці move to private*/
+    void slotRefresh_ItemPos();
+    void slotRefresh_Tool();
+    MyQGraphicsTextItem *slotIsFocusItem();
+    void slotfocusItemChanged(QGraphicsItem *newFocus, QGraphicsItem *oldFocus, Qt::FocusReason reason);
+    void slotSetFont();
+    void slot_fontSizeCombo_highlighted_AND_activated(int index);
+    void slotLineTextChanged(const QString str);
+    void slotSceneMenuExec(const QPoint &pos);
+    void slotActionMenuTriggered(bool);
+    void slotSceneMenuTriggered(QAction *action);
+    void slotQuestion(const QString &str);
 
 public slots:
     void slotOnToolButton_plus_2_clicked();
@@ -163,6 +163,9 @@ public slots:
     void slotSetBackgroundBrush(QPixmap pixCurent);
     void slotOnPushButton_color_clicked();
     void slotOnCheckBox_timer_clicked(bool checked);
+    void setQuestionFilePath(const QString &filePath) { strQuestionFilePath = filePath; } // встановлення шляху до файла з питаннями
+    QString getQuestionFilePath() const { return strQuestionFilePath; } // отримання шляху до файла з питаннями
+    void updateQuestionDisplayText(bool hasQuestions); // оновлення відображення тексту питання
 
 
 signals:

@@ -446,10 +446,14 @@ void SectorGraphicsView::setupAndCreateMainScene()
     connect(ui->comboBox_question,SIGNAL(activated(QString)),this,SLOT(slotQuestion(QString)));
 
 
+    qDebug() << "function: " << __FUNCTION__ << " main_scene.sceneRect: " << main_scene.sceneRect() << Qt::endl;
     ui->graphicsView->setScene(&main_scene);
     ui->graphicsView->setRenderHint(QPainter::Antialiasing, true);
+    qDebug() << "function: " << __FUNCTION__ << " main_scene.sceneRect: " << main_scene.sceneRect() << Qt::endl;
     main_scene.setSceneRect(0,0,400,300);
+    qDebug() << "function: " << __FUNCTION__ << " main_scene.sceneRect: " << main_scene.sceneRect() << Qt::endl;
     ui->graphicsView->setRenderHint(QPainter::Antialiasing, true);
+    qDebug() << "function: " << __FUNCTION__ << " main_scene.sceneRect: " << main_scene.sceneRect() << Qt::endl;
 }
 
 void SectorGraphicsView::setupAndCreateSceneSecond()
@@ -1330,5 +1334,24 @@ void SectorGraphicsView::slotOnToolButton_color_2_clicked()
     vecAll_Item_LineD[slotIsFocusItem()->data(1).toInt()]->setDefaultTextColor(qvariant_cast<QColor>(
                                                  ui->toolButton_color_2->menu()->defaultAction()->data()));
 
+}
+
+void SectorGraphicsView::updateQuestionDisplayText(bool hasQuestions)
+{
+    if (hasQuestions)
+    {
+        // Якщо питання завантажені, очищуємо дефолтний текст
+        if (Doc_LineQuestion->toPlainText() == "Будь-ласка завантажте файл .txt з питаннями!")
+        {
+            Doc_LineQuestion->setHtml("<font></font>"); // порожній текст
+            ui->comboBox_question->setCurrentText("");
+        }
+    }
+    else
+    {
+        // Якщо питання не завантажені, показуємо дефолтний текст
+        Doc_LineQuestion->setHtml("<font>Будь-ласка завантажте файл .txt з питаннями!</font>");
+        ui->comboBox_question->setCurrentText("Будь-ласка завантажте файл .txt з питаннями!");
+    }
 }
 

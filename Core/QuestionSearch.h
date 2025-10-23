@@ -14,6 +14,7 @@
 #include "QString"
 #include "QMessageBox"
 #include "QFileInfo"
+#include "QTimer"
 
 QT_BEGIN_NAMESPACE
 class QuestionPreviewForm;
@@ -43,9 +44,11 @@ public slots:
     void setLastUsedQuestionFilePath(const QString &filePath) { lastUsedQuestionFilePath = filePath; } // встановлення шляху
     QString getLastUsedQuestionFilePath() const { return lastUsedQuestionFilePath; } // отримання шляху
     void autoLoadQuestions(); // автоматичне завантаження питань з збереженого файла
+    bool hasQuestions() const { return vecText_questions.size() > 0; } // перевірка наявності питань
 
 signals:
     void signalShowQuestion(QString str);
+    void questionsLoaded(bool hasQuestions); // сигнал про стан завантаження питань
 };
 
 #endif // QUESTIONSEARCH_H

@@ -45,6 +45,9 @@ void QuestionSearch::showPreviewFormDecoder(QString currentPath)
             QString str = list[var];
             vecText_questions.push_back(str.remove("\r"));
         }
+        
+        // Сповіщаємо про успішне завантаження питань
+        emit questionsLoaded(vecText_questions.size() > 0);
     }
 }
 
@@ -85,6 +88,9 @@ void QuestionSearch::questionFastLoad(bool boolQuestionsonEsther)
         }
 
         read_file.close();
+        
+        // Сповіщаємо про успішне завантаження питань
+        emit questionsLoaded(vecText_questions.size() > 0);
 
     }
 }
@@ -158,15 +164,22 @@ void QuestionSearch::autoLoadQuestions()
             } while (!text.isNull());
 
             read_file.close();
-
+            
+            // Сповіщаємо про успішне завантаження питань
+            emit questionsLoaded(vecText_questions.size() > 0);
+            
             // Повідомляємо користувача про успішне завантаження
-
             QTimer::singleShot(0, this, [this]() {
-                QMessageBox::information(parentMain, "Автозавантаження питань",
-                                         QString("Автоматично завантажено %1 питань з файла:\n%2")
-                                    .arg(vecText_questions.size())
-                                             .arg(QFileInfo(lastUsedQuestionFilePath).fileName()));
+                QMessageBox::information(parentMain, "Автозавантаження питань", 
+                                        QString("Автоматично завантажено %1 питань з файла:\n%2")
+                                        .arg(vecText_questions.size())
+                                        .arg(QFileInfo(lastUsedQuestionFilePath).fileName()));
             });
         }
+    }
+    else
+    {
+        // Сповіщаємо що питання не завантажені
+        emit questionsLoaded(false);
     }
 }
