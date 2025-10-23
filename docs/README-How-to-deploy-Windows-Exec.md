@@ -1,28 +1,26 @@
 
 
 
-## Qt windeployqt (Use Git Bash in Windows)
+
+## Option 1: QtCreator build
+1. ```Open QtCreator``` -> ```Load Project...``` -> ```Make Changes in src code``` -> ```Release build```
+
+
+## Option 2 (TODO: finishme): Qt windeployqt (Use Git Bash in Windows)
 ```bash
 SRC_ROOT_DIR=<src_dir>
-BUILD_RELEASE_DIR=$SRC_ROOT_DIR/../build-BibleBrainRing-Desktop_Qt_5_15_2_GCC_64bit-Release/
-cd ~/Downloads
+BUILD_RELEASE_DIR=$SRC_ROOT_DIR/../build-BibleBrainRing-Desktop_Qt_5_15_2_MinGW_64_bit-Release/
 rm -rf ~/Downloads/BibleBrainRing.Win
 mkdir -p ~/Downloads/BibleBrainRing.Win
-cp $BUILD_RELEASE_DIR/BibleBrainRing ~/Downloads/BibleBrainRing.Win/
-cp $SRC_ROOT_DIR/MaterialsGroupBoxes/BibleBrainRingIcon.png ~/Downloads/BibleBrainRing.Win
-export PATH=~/Qt/5.15.2/gcc_64/bin:$PATH
-qmake -v
-cat > ~/Downloads/BibleBrainRing.Win/BibleBrainRing.desktop <<EOF
-[Desktop Entry]
-Name=BibleBrainRing
-Exec=BibleBrainRing
-Icon=BibleBrainRingIcon
-Type=Application
-Categories=Utility;
-EOF
-ls ~/Downloads/BibleBrainRing.Win/
-~/Downloads/linuxdeployqt-continuous-x86_64.AppImage ~/Downloads/BibleBrainRing.Win/BibleBrainRing -appimage
-echo $?
+cp $BUILD_RELEASE_DIR/release/BibleBrainRing.exe ~/Downloads/BibleBrainRing.Win/
+cd ~/Downloads/BibleBrainRing.Win/
+ls .
+export PATH=/d/Qt/5.15.2/mingw81_64/bin:$PATH
+/d/Qt/5.15.2/mingw81_64/bin/windeployqt.exe --release --no-translations --plugindir /d/Qt/5.15.2/mingw81_64/plugins ~/Downloads/BibleBrainRing.Win/BibleBrainRing.exe
+```
 
-windeployqt --release --no-translations MyApp.exe
+## Create Portable
+```bash
+# Download 'Enigma Virtual Box': https://enigmaprotector.com/
+# See youtube: https://www.youtube.com/watch?v=8S1L0HugWOU
 ```

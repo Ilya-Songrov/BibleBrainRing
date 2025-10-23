@@ -23,7 +23,6 @@ int main(int argc, char *argv[])
 
     win.setGeometry(QStyle::alignedRect(Qt::LeftToRight,Qt::AlignCenter,win.size(),
                                         qApp->desktop()->availableGeometry()));
-//        win.move(560,105);  // після видалити
     win.show();
     return a.exec();
 }
