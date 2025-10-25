@@ -6,8 +6,8 @@ This application is intended for use in competitions. It displays on the screen 
 ![Image 1](docs/images/Screenshot-desktop-2.png)
 
 ## Download
-- [BibleBrainRing Windows](https://github.com/Ilya-Songrov/BibleBrainRing/releases/download/v3.0.1/BibleBrainRing_WinPortable.exe)
-- [BibleBrainRing Linux](https://github.com/Ilya-Songrov/BibleBrainRing/releases/download/v3.0.1/BibleBrainRing-x86_64.AppImage)
+- [BibleBrainRing Windows](https://github.com/Ilya-Songrov/BibleBrainRing/releases/download/v3.0.2/BibleBrainRing_WinPortable.exe)
+- [BibleBrainRing Linux](https://github.com/Ilya-Songrov/BibleBrainRing/releases/download/v3.0.2/BibleBrainRing-x86_64.AppImage)
 
 ## Develop
 - [How to build in QtCreator?](docs/README-How-to-build-in-QtCreator.md)

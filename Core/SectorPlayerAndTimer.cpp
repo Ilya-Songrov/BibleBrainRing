@@ -70,8 +70,8 @@ void SectorPlayerAndTimer::slotTimer()
         }
     }
     else// Якщо це звичайний рух таймера вниз.
-    {   // +1 щоб не втрачати першу секунду.
-        mseconds = ((int_timer_basic + 1) * 1000) - (timePause.msecsSinceStartOfDay() +
+    {
+        mseconds = (int_timer_basic * 1000) - (timePause.msecsSinceStartOfDay() +
                     QTime::currentTime().msecsSinceStartOfDay() - timeLastStart.msecsSinceStartOfDay());
         intComeback = mseconds;// Записуємо скільки опустився таймер в мілісекундах, потім стільки ж піднімемося.
     }

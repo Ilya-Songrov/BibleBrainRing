@@ -241,7 +241,7 @@ void SectorActions::slotOnAction_developer_triggered()
         lab1.setPixmap(QPixmap(":/new/Other/FilesAndLogo/Logo_temporarily.png"));
         QLabel lab2;
         lab2.setTextInteractionFlags(Qt::TextSelectableByMouse);
-        lab2.setText("Версія: v3.0.1 (2025.10.23)"); // version app
+        lab2.setText("Версія: v3.0.2 (2025.10.24)"); // version app
         QLabel lab3;
         lab3.setTextInteractionFlags(Qt::TextSelectableByMouse);
         lab3.setText("Розробник: @ilya_songrov (Instagram)");
