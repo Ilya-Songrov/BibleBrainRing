@@ -237,16 +237,19 @@ void SectorPlayerAndTimer::slotOnPushButton_MusicReset_clickedSector()
             vecStrMusic[ui->listWidget_Music->currentRow()] == MyMediaPlayer->strMusicTimer
         && (MyMediaPlayer->PlayingMusicTimer == true || MyMediaPlayer->SomeTrackStop == true))
     { // якщо зв'язані музика і таймер і поточний трек (метрономний) на паузі
+        qDebug() << "function: " << __FUNCTION__ << " line: " << __LINE__ << Qt::endl;
         MyMediaPlayer->music_reset_clicked();
         timer_reset_clicked();
     }
     else if(ui->checkBox_music_timer->isChecked() == true && MyMediaPlayer->PlayingMusicTimer == true)
     { // якщо зв'язані музика і таймер і поточний трек є метрономний
+        qDebug() << "function: " << __FUNCTION__ << " line: " << __LINE__ << Qt::endl;
         MyMediaPlayer->music_reset_clicked();
         timer_reset_clicked();
     }
     else
     {
+        qDebug() << "function: " << __FUNCTION__ << " line: " << __LINE__ << Qt::endl;
         MyMediaPlayer->music_reset_clicked();
     }
 }
@@ -260,8 +263,11 @@ void SectorPlayerAndTimer::slotOnPushButton_MusicOpen_clickedSector()
     if (!str.isEmpty())
     {
         qDebug() << "function: " << __FUNCTION__ << " str: " << str << Qt::endl;
+        qDebug() << "function: " << __FUNCTION__ << " QUrl::fromLocalFile(str): " << QUrl::fromLocalFile(str) << Qt::endl;
         qDebug() << "function: " << __FUNCTION__ << " QUrl::fromLocalFile(str).toLocalFile(): " << QUrl::fromLocalFile(str).toLocalFile() << Qt::endl;
-        vecStrMusic.push_back("file://" + QUrl::fromLocalFile(str).toLocalFile());
+        qDebug() << "function: " << __FUNCTION__ << " QUrl::fromLocalFile(str).path(): " << QUrl::fromLocalFile(str).path() << Qt::endl;
+        qDebug() << "function: " << __FUNCTION__ << " QUrl::fromLocalFile(str).toString(): " << QUrl::fromLocalFile(str).toString() << Qt::endl;
+        vecStrMusic.push_back(QUrl::fromLocalFile(str).toString());
 
         QListWidgetItem* pitem = 0;
         pitem = new QListWidgetItem(QFileInfo(str).fileName(), ui->listWidget_Music);

@@ -839,7 +839,7 @@ border-radius: 6px;*/
            <enum>Qt::NoContextMenu</enum>
           </property>
           <property name="text">
-           <string>Зв'язати звук таймера з кнопкою вкл.</string>
+           <string>Зв'язати 'трек' таймера (якщо в фокусі) з кнопкою 'Увімк.'</string>
           </property>
           <property name="checked">
            <bool>true</bool>
