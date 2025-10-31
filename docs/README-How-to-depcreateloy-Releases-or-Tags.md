@@ -10,7 +10,7 @@ git tag
 ```
 
 ## Create Release
-1. ```Open GitHub``` -> ```Releases``` -> ```Draft a new release``` 
+1. ```Open GitHub``` -> ```Tags``` -> ```Releases``` -> ```Draft a new release``` 
 2. ```Select tag (v3.1.0)```
 3. ```Release title (BibleBrainRing v3.1.0)```
 4. ```Attach binaries ...```
