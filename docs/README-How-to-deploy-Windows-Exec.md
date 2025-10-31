@@ -24,3 +24,9 @@ export PATH=/d/Qt/5.15.2/mingw81_64/bin:$PATH
 # Download 'Enigma Virtual Box': https://enigmaprotector.com/
 # See youtube: https://www.youtube.com/watch?v=8S1L0HugWOU
 ```
+1. ```Open Enigma Virtual Box```
+2. ```Enter Input File Name ($SRC_ROOT_DIR/..\build-BibleBrainRing-Desktop_Qt_5_15_2_MinGW_64_bit-Release\BibleBrainRing_Win\BibleBrainRing.exe)```
+3. ```Enter Output File Name (C:\Users\user\Downloads\BibleBrainRing_Win.exe)```
+4. ```Add...``` -> ```Add Folder Recursive ($SRC_ROOT_DIR/..\build-BibleBrainRing-Desktop_Qt_5_15_2_MinGW_64_bit-Release\BibleBrainRing_Win)``` -> ```OK```
+5. ```Process```
+6. ```Close```
